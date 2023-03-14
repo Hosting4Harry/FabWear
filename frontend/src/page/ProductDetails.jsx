@@ -20,7 +20,7 @@ const ProductDetails = () => {
         }).then((response) => {
             //  console.log()
             if (!response.data.login) {
-                navigate.push("/");
+                navigate("/");
             }
         })
 

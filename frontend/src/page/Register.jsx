@@ -19,7 +19,7 @@ const Register = () => {
         }).then((response) => {
             //  console.log()
             if (response.data.login) {
-                navigate.push("/home");
+                navigate("/home");
             }
         })
 
@@ -54,7 +54,7 @@ const Register = () => {
 
         }
         else {
-            navigate.push("/")
+            navigate("/")
         }
     }
 

@@ -39,7 +39,7 @@ const Success = () => {
         }).then((response) => {
             //  console.log()
             if (!response.data.login) {
-                navigate.push("/");
+                navigate("/");
             }
         })
 
@@ -65,7 +65,7 @@ const Success = () => {
                 <div className="row">
                     <div className="container text-center">
                         <h2>Thank You for Buy This</h2>
-                        <button className="btn btn-info" onClick={() => navigate.push('/products')}>Continue Shopping</button>
+                        <button className="btn btn-info" onClick={() => navigate('/products')}>Continue Shopping</button>
                     </div>
                 </div>
             </div>

@@ -72,7 +72,7 @@ const EditAdd = () => {
 
         // eslint-disable-next-line no-unused-vars
         const res = await axios.post(`http://localhost:8000/editadd`, data)
-        navigate.push("/payment")
+        navigate("/payment")
 
     }
 

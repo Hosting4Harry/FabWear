@@ -30,7 +30,7 @@ const Payment = () => {
         }).then((response) => {
             //  console.log()
             if (!response.data.login) {
-                navigate.push("/");
+                navigate("/");
             }
         })
 
@@ -132,7 +132,7 @@ const Payment = () => {
             setCart([])
             localStorage.setItem('Ecomlongid', res.data.payment_request?.id)
 
-            navigate.push(`/myaccount`)
+            navigate(`/myaccount`)
         } else {
             console.log("order not placed")
         }
@@ -281,7 +281,7 @@ const Payment = () => {
                                                     yourAddress.map((val, ind) => {
                                                         return (
                                                             <>
-                                                                <button type="button" className="btn btn-info" onClick={() => navigate.push(`/edit_address/${UserId}`)}>Edit Address</button>
+                                                                <button type="button" className="btn btn-info" onClick={() => navigate(`/edit_address/${UserId}`)}>Edit Address</button>
                                                                 <div class="form-check ">
                                                                     <label class="form-check-label p-1 mb-2">
                                                                         <input type="radio" class="form-check-input" name="gender" value={val.id} onChange={(e) => setInputAddres(e.target.value)} required />

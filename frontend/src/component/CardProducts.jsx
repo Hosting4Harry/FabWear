@@ -16,7 +16,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
                         </div>
                         <div className="text-center">
                             {/* <button className="btn btn-info ml-1 mr-1">Add To Cart</button> */}
-                            <button className="btn btn-info ml-1 mr-1" onClick={() => navigate.push(`/details/${id}`)}>View Details</button>
+                            <button className="btn btn-info ml-1 mr-1" onClick={() => navigate(`/details/${id}`)}>View Details</button>
                         </div>
 
                     </div>
