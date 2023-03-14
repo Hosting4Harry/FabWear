@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": "YOTIpnJWq5HS",
+    "database": "ecom-react-db",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "YOTIpnJWq5HS",
+    "database": "ecom-react",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "YOTIpnJWq5HS",
+    "database": "ecom-react",
+    "host": "localhost",
+    "dialect": "mysql"
+  }
+}
