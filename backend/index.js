@@ -275,6 +275,7 @@ app.post("/paydetails", (req, res) => {
             })
     }
 })
+<<<<<<< HEAD
 app.post("/contact", (req, res) => {
     res.send({ message: " sent " })
 })
@@ -299,15 +300,15 @@ app.post("/editadd", async (req, res) => {
         console.log(error)
     })
 })
+=======
+>>>>>>> ac1852f (remove extra sapaces and comments)
 
 app.post("/register", (req, res) => {
-    const email = req.body.email;
-    const username = req.body.username;
-    const password = req.body.password;
+    const { email, username, password } = req.body;
     bcrypt.hash(password, saltRounds, async (errr, hash) => {
         const data = {
-            username: req.body.username,
-            email: req.body.email,
+            username,
+            email,
             password: hash,
         };
         if (errr) {
@@ -367,13 +368,8 @@ app.get("/isAuth", verifyJwt, (req, res) => {
 })
 
 app.post("/login", async (req, res) => {
-    const email = req.body.email;
-    const password = req.body.password;
-    const data = await db.users.findOne({
-        where: {
-            email: email
-        }
-    })
+    const { email, password } = req.body;
+
     await db.users.findOne({
         where: {
             email: email
