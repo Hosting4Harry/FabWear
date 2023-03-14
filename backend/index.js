@@ -275,26 +275,28 @@ app.post("/paydetails", (req, res) => {
             })
     }
 })
-
+app.post("/contact", (req, res) => {
+    res.send({ message: " sent " })
+})
 // edit address 
 
-app.post("/editadd", (req, res) => {
+app.post("/editadd", async (req, res) => {
 
     const name = req.body.name
     const email = req.body.email
     const phone = req.body.phone
     const address = req.body.address
     const user_id = req.body.userId
-
-
-    let sql = `update user_data set name='${name}',email='${email}',phone='${phone}',address='${address}' where user_id=${user_id}`;
-    db.query(sql, (err, result) => {
-        if (err) {
-            console.log(err)
+    await db.user_data.update({
+        name: name, email: email, phone: phone, address: address
+    }, {
+        where: {
+            user_id: user_id
         }
-        else {
-            res.send({ msg: "edit Successfully" })
-        }
+    }).then(result => {
+        res.send({ msg: "edit Successfully" })
+    }).catch(error => {
+        console.log(error)
     })
 })
 
