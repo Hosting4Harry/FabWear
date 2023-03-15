@@ -158,7 +158,7 @@ app.get("/account/:id", async (req, res) => {
 })
 app.get("/myorder/:id", (req, res) => {
     const id = +req.params.id;
-    let sqll = `SELECT * FROM orderitems WHERE  orderitems.orderid=${id}`
+    let sqll = `SELECT * FROM orderitems,products WHERE orderitems.productid = products.id && orderitems.orderid=${id}`
     db.sequelize.query(sqll, { type: QueryTypes.SELECT })
         .then(result => {
             res.send(result)
