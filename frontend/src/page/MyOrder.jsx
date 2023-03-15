@@ -13,7 +13,6 @@ const MyOrder = () => {
                 "x-access-token": localStorage.getItem("Ecomtoken")
             }
         }).then((response) => {
-            //  console.log()
             if (!response.data.login) {
                 navigate("/");
             }
@@ -27,16 +26,13 @@ const MyOrder = () => {
                 clearTimeout(timeout.current)
             }
         }
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
 
     const getData = async () => {
 
         const { data } = await axios.get(`http://localhost:8000/myorder/${id}`)
         setData(data)
-        debugger
     }
     console.log(data)
     useEffect(() => {
