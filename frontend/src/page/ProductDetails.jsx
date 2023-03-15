@@ -5,11 +5,9 @@ import { DataContext } from '../context/DataContext'
 
 const ProductDetails = () => {
     const { id } = useParams()
-
     const { cart, setCart } = useContext(DataContext)
     const [detdata, setDetdata] = useState([])
     const [pdetails, setPdetails] = useState("1")
-
     const timeout = useRef(null)
     const navigate = useNavigate()
     const checkAuth = () => {
@@ -23,9 +21,7 @@ const ProductDetails = () => {
                 navigate("/");
             }
         })
-
     }
-
     useEffect(() => {
         timeout.current = setTimeout(checkAuth, 100)
         return function () {
@@ -36,12 +32,8 @@ const ProductDetails = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-
-
     const onSub = (e) => {
         e.preventDefault();
-        debugger;
-        // console.log(pdetails)
         const data = {
             id: detdata[0].id,
             name: detdata[0].name,
@@ -49,11 +41,8 @@ const ProductDetails = () => {
             image: detdata[0].product_image,
             qty: pdetails
         }
-        // console.log(data)
-
-        // setCart([...cart,data])
         const exist = cart.find((x) => x.id === data.id);
-        debugger
+
         if (exist) {
             setCart(
                 cart.map((x) => x.id === data.id ? data : x)
@@ -62,7 +51,7 @@ const ProductDetails = () => {
         else {
             setCart([...cart, data])
         }
-
+        alert("added to the cart")
     }
 
     const getData = async () => {
@@ -78,7 +67,6 @@ const ProductDetails = () => {
     if (!detdata.length) {
         return <h1>Loading..</h1>
     }
-
     return (
         <>
             <div className="details">
