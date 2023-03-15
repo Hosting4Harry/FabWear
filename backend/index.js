@@ -13,9 +13,9 @@ require('dotenv').config();
 const PORT = process.env.PORT || 8000;
 console.log(PORT)
 // const API_KEY = "test_******";
-const API_KEY = "test_c06b46e28e2a2b035498f4721c5";
+const API_KEY = process.env.API_KEY;
 // const AUTH_KEY = "test_*****";
-const AUTH_KEY = "test_11139217a60baaae7ff95692cea";
+const AUTH_KEY = process.env.AUTH_KEY;
 
 Insta.setKeys(API_KEY, AUTH_KEY);
 Insta.isSandboxMode(true);
