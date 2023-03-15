@@ -11,7 +11,6 @@ const { QueryTypes } = require("sequelize");
 const saltRounds = 10;
 require('dotenv').config();
 const PORT = process.env.PORT || 8000;
-console.log(PORT)
 // const API_KEY = "test_******";
 const API_KEY = process.env.API_KEY;
 // const AUTH_KEY = "test_*****";
