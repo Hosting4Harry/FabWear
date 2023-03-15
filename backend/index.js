@@ -163,7 +163,7 @@ app.get("/myorder/:id", (req, res) => {
         .then(result => {
             res.send(result)
         }).catch(error => {
-            console.log(err)
+            console.log(error)
         })
 })
 
@@ -275,7 +275,7 @@ app.post("/paydetails", (req, res) => {
             })
     }
 })
-<<<<<<< HEAD
+
 app.post("/contact", (req, res) => {
     res.send({ message: " sent " })
 })
