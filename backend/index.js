@@ -169,11 +169,12 @@ app.get("/myorder/:id", (req, res) => {
 
 // post details 
 app.post("/addaddress", async (req, res) => {
+    const { name, email, phone, address } = req.body;
     const data = {
-        name: req.body.name,
-        email: req.body.email,
-        phone: +req.body.phone,
-        address: req.body.address,
+        name,
+        email,
+        phone,
+        address,
         user_id: +req.body.userId
     }
     await db.user_data.create(data)
@@ -275,19 +276,15 @@ app.post("/paydetails", (req, res) => {
             })
     }
 })
-<<<<<<< HEAD
+
 app.post("/contact", (req, res) => {
     res.send({ message: " sent " })
 })
 // edit address 
 
 app.post("/editadd", async (req, res) => {
-
-    const name = req.body.name
-    const email = req.body.email
-    const phone = req.body.phone
-    const address = req.body.address
-    const user_id = req.body.userId
+    const { name, email, phone, address } = req.body;
+    const user_id = +req.body.userId
     await db.user_data.update({
         name: name, email: email, phone: phone, address: address
     }, {
