@@ -3,21 +3,21 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { DataContext } from '../context/DataContext'
 import axios from 'axios'
 const Payment = () => {
-    const navigate = useNavigate()
-    const datemail = localStorage.getItem('EcomEmail')
-    const [name, setName] = useState("")
-    const [email, setEmail] = useState(datemail)
-    const [phone, setPhone] = useState("")
-    const [addr, setAddr] = useState("")
-    const [yourAddress, setYourAddress] = useState([])
+    const navigate = useNavigate();
+    const datemail = localStorage.getItem('EcomEmail');
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState(datemail);
+    const [phone, setPhone] = useState("");
+    const [addr, setAddr] = useState("");
+    const [yourAddress, setYourAddress] = useState([]);
     // eslint-disable-next-line no-unused-vars
-    const [inputAddres, setInputAddres] = useState("")
-    const [showaddress, setShowaddress] = useState(false)
-    const [payment, setPayment] = useState("")
-    const [UserId, setUserId] = useState("")
+    const [inputAddres, setInputAddres] = useState("");
+    const [showaddress, setShowaddress] = useState(false);
+    const [payment, setPayment] = useState("");
+    const [UserId, setUserId] = useState("");
 
     const { cart, setCart } = useContext(DataContext);
-    const [total, setTotal] = useState("")
+    const [total, setTotal] = useState("");
     var tot = 0;
 
     const timeout = useRef(null);
@@ -51,7 +51,7 @@ const Payment = () => {
             totamo += cart[i].price * cart[i].qty;
         }
         totamo += 50;
-        setTotal(totamo)
+        setTotal(totamo);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     const getaddress = async () => {
@@ -60,15 +60,14 @@ const Payment = () => {
         setYourAddress(res.data);
     }
     const sendData = async (adddata) => {
+        // eslint-disable-next-line no-unused-vars
         const res = await axios.post(`http://localhost:8000/addaddress`, adddata)
-        console.log(res)
-        setShowaddress(false)
-        console.log("first")
+        setShowaddress(false);
     }
 
     const onSub = (e) => {
         e.preventDefault()
-        const dat = localStorage.getItem('EcomUserId')
+        const dat = localStorage.getItem('EcomUserId');
         const adddata = {
             name: name,
             email: email,
@@ -76,27 +75,27 @@ const Payment = () => {
             address: addr,
             userId: dat
         }
-        sendData(adddata)
-        getaddress()
+        sendData(adddata);
+        getaddress();
         // console.log(data)
     }
 
     useEffect(() => {
-        getaddress()
+        getaddress();
     }, [])
 
     // useEffect(() => {
     //     debugger
     //     getaddress()
-    // }, [yourAddress])
+    // }, [yourAddress]);
 
     const OnBuyNow = async (e) => {
         e.preventDefault()
         //  console.log(inputAddres + payment)
-        const dat = localStorage.getItem('EcomUserId')
-        const datemail = localStorage.getItem('EcomEmail')
-        const datname = localStorage.getItem('EcomUser')
-        localStorage.setItem('Ecompaymentmode', payment)
+        const dat = localStorage.getItem('EcomUserId');
+        const datemail = localStorage.getItem('EcomEmail');
+        const datname = localStorage.getItem('EcomUser');
+        localStorage.setItem('Ecompaymentmode', payment);
         const data = {
             userid: dat,
             totalprice: total,
@@ -108,23 +107,23 @@ const Payment = () => {
         }
         // console.log(data)
 
-        const res = await axios.post(`http://localhost:8000/buynow`, data)
+        const res = await axios.post(`http://localhost:8000/buynow`, data);
         //   console.log(res.data.payment_request.longurl)
         if (res.data.success) {
             setCart([])
-            localStorage.setItem('Ecomlongid', res.data.payment_request?.id)
+            localStorage.setItem('Ecomlongid', res.data.payment_request?.id);
 
-            navigate(`/myaccount`)
+            navigate(`/myaccount`);
         } else {
-            console.log("order not placed")
+            console.log("order not placed");
         }
-        window.open(res.data.payment_request?.longurl, '_self')
+        window.open(res.data.payment_request?.longurl, '_self');
         //   window.close('http://localhost:3000/payment')
     }
 
     useEffect(() => {
-        const dat = localStorage.getItem('EcomUserId')
-        setUserId(dat)
+        const dat = localStorage.getItem('EcomUserId');
+        setUserId(dat);
     }, []);
     if (!cart.length) {
         return (
