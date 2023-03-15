@@ -4,9 +4,7 @@ import axios from 'axios'
 
 const MyAccount = () => {
     const [order, setOrder] = useState([])
-
     const userdatast = localStorage.getItem('EcomUser')
-
     const logout = () => {
         localStorage.removeItem("Ecomtoken");
         localStorage.removeItem("Ecomlongid");
@@ -40,20 +38,13 @@ const MyAccount = () => {
                 clearTimeout(timeout.current)
             }
         }
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-
-
     const getOrderDetails = async (id) => {
-        debugger;
-
         const res = await axios.get(`http://localhost:8000/account/${id}`);
-        debugger;
         setOrder(res.data)
     }
-
     useEffect(() => {
         const dat = localStorage.getItem('EcomUserId')
         getOrderDetails(dat)
@@ -93,9 +84,6 @@ const MyAccount = () => {
                                         <th>Order Status</th>
                                         <th>Amount</th>
                                         <th>Operation</th>
-
-
-
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -122,17 +110,13 @@ const MyAccount = () => {
                                             </tr>
                                             )
                                         })
-
                                     }
-
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
                 </div>
             </div>
-
         </>
     )
 }
