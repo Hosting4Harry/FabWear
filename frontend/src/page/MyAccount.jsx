@@ -3,20 +3,20 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const MyAccount = () => {
-    const [order, setOrder] = useState([])
-    const userdatast = localStorage.getItem('EcomUser')
+    const [order, setOrder] = useState([]);
+    const userdatast = localStorage.getItem('EcomUser');
     const logout = () => {
         localStorage.removeItem("Ecomtoken");
         localStorage.removeItem("Ecomlongid");
         localStorage.removeItem("EcomEmail");
         localStorage.removeItem("EcomUser");
         localStorage.removeItem("Ecompaymentmode");
-        localStorage.removeItem("EcomUserId")
-        window.location.reload()
+        localStorage.removeItem("EcomUserId");
+        window.location.reload();
     }
 
-    const timeout = useRef(null)
-    const navigate = useNavigate()
+    const timeout = useRef(null);
+    const navigate = useNavigate();
     const checkAuth = () => {
         axios.get("http://localhost:8000/isAuth", {
             headers: {
@@ -43,12 +43,11 @@ const MyAccount = () => {
 
     const getOrderDetails = async (id) => {
         const res = await axios.get(`http://localhost:8000/account/${id}`);
-        setOrder(res.data)
+        setOrder(res.data);
     }
     useEffect(() => {
-        const dat = localStorage.getItem('EcomUserId')
-        getOrderDetails(dat)
-        debugger
+        const dat = localStorage.getItem('EcomUserId');
+        getOrderDetails(dat);
     }, [])
     if (!order.length) {
         return (
