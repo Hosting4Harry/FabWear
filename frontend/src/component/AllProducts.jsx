@@ -19,17 +19,13 @@ const AllProducts = () => {
                     <div className="row">
                         {
                             getdata.map((val, ind) => {
-                                return (
-                                    <>
-                                        <CardProducts
-                                            key={ind}
-                                            id={val.id}
-                                            name={val.name}
-                                            price={val.price}
-                                            product_image={val.product_image}
-
-                                        />
-                                    </>
+                                return (<CardProducts
+                                    key={ind}
+                                    id={val.id}
+                                    name={val.name}
+                                    price={val.price}
+                                    product_image={val.product_image}
+                                />
                                 )
                             })
                         }
