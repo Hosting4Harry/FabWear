@@ -67,10 +67,6 @@ const ProductDetails = () => {
 
     }
 
-    const sendAlert = () => {
-        alert("product added to cart!! keep shopping (*_*)")
-    }
-
     const getData = async () => {
 
         const res = await axios.get(`http://localhost:8000/getdata/${id}`);
@@ -110,7 +106,7 @@ const ProductDetails = () => {
                                     </select>
                                 </div>
                                 <div className="text-left">
-                                    <button type="submit" onClick={sendAlert} className="btn btn-info">Add To Cart</button>
+                                    <button type="submit" className="btn btn-info">Add To Cart</button>
                                 </div>
                                 {/* <input type="submit" className="btn btn-info" value="Add To Cart" /> */}
                             </form>
