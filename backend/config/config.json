@@ -1,23 +1,23 @@
 {
   "development": {
-    "username": "**your_username**",
-    "password": "****your_password****",
-    "database": "***db_Schema***",
-    "host": "**host**",
+    "username": "root",
+    "password": "sumit",
+    "database": "ecom-react-db",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
-    "username": "**your_username**",
-    "password": "****your_password****",
-    "database": "***db_Schema***",
-    "host": "**host**",
+    "username": "root",
+    "password": "YOTIpnJWq5HS",
+    "database": "ecom-react",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "production": {
-     "username": "**your_username**",
-    "password": "****your_password****",
-    "database": "***db_Schema***",
-    "host": "**host**",
+    "username": "root",
+    "password": "YOTIpnJWq5HS",
+    "database": "ecom-react",
+    "host": "localhost",
     "dialect": "mysql"
   }
 }
