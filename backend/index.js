@@ -1,12 +1,12 @@
 const express = require("express");
-const mysql = require("mysql");
+// const mysql = require("mysql");
 const db = require('./models');
 const cors = require("cors");
 const bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 const Insta = require("instamojo-nodejs");
-const url = require('url');
-const open = require('openurl');
+// const url = require('url');
+// const open = require('openurl');
 const { QueryTypes } = require("sequelize");
 const saltRounds = 10;
 const PORT = process.env.PORT || 8000;
@@ -61,7 +61,6 @@ app.get("/getdataall", async (req, res) => {
 })
 app.get("/getdata", async (req, res) => {
     let sql = `select * from products ORDER BY RAND() limit 6`;
-    // await db.products.findAll()
     await db.sequelize.query(sql, { type: QueryTypes.SELECT })
         .then(result => {
             res.send(result)
@@ -195,12 +194,6 @@ app.post("/addaddress", async (req, res) => {
     // console.log(data)
 })
 app.post("/buynow", (req, res) => {
-    // const data={
-    //     userid:req.body.userid,
-    //     totalprice:req.body.totalprice,
-    //     orderstatus:req.body.orderstatus,
-    //     paymentmode:req.body.paymentmode,
-    // }
     const cartdata = req.body.cart
     const paymentemail = req.body.paymentemail
     const name = req.body.name;
@@ -215,8 +208,6 @@ app.post("/buynow", (req, res) => {
     insta.amount = req.body.totalprice;
     insta.name = name;
     insta.email = paymentemail; // REQUIRED
-
-    // console.log(paymentemail+ name)
 
     Insta.createPayment(insta, function (error, response) {
         if (error) {
@@ -244,7 +235,6 @@ app.post("/buynow", (req, res) => {
                             productqty: cartdata[i].qty,
                             productprice: cartdata[i].price
                         }
-
                         let sqll = "INSERT INTO `orderitems` SET ?";
                         db.sequelize.query(sqll, { type: QueryTypes.INSERT })
                             .then(result => {
@@ -254,18 +244,14 @@ app.post("/buynow", (req, res) => {
                 }).catch(error => {
                     console.log(error)
                 })
-
-
             res.send(response)
         }
     })
 })
 
 app.post("/paydetails", (req, res) => {
-
     const pid = req.body.pid
     const pyid = req.body.pyid
-
     if (pid === pyid) {
         let sql = `update orders set orderstatus="order done" where paymentid='${pid}'`
         db.sequelize.query(sql)
@@ -334,14 +320,12 @@ app.post("/register", (req, res) => {
                         console.log(error);
                     })
             }
-
         }
     })
 })
 
 const verifyJwt = (req, res, next) => {
     const token = req.headers["x-access-token"]
-
     if (!token) {
         res.send({ login: false, msg: "need token" });
     }
@@ -364,7 +348,6 @@ app.get("/isAuth", verifyJwt, (req, res) => {
 
 app.post("/login", async (req, res) => {
     const { email, password } = req.body;
-
     await db.users.findOne({
         where: {
             email: email
@@ -402,12 +385,7 @@ app.post("/login", async (req, res) => {
     //     // console.log("noo email ")
     // }
     // })
-
-
-
-
 })
-
 
 app.listen(PORT, () => {
     console.log(`app running on port ${PORT}`)
