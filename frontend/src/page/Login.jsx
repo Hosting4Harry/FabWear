@@ -4,13 +4,11 @@ import axios from 'axios'
 // import { DataContext } from '../context/DataContext'
 const Login = () => {
 
-
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [status, setStatus] = useState(false)
     const [msg, setMsg] = useState("")
     const timeout = useRef(null)
-
     const navigate = useNavigate()
     const checkAuth = () => {
         axios.get("http://localhost:8000/isAuth", {
@@ -23,9 +21,7 @@ const Login = () => {
                 navigate("/home");
             }
         })
-
     }
-
     useEffect(() => {
         timeout.current = setTimeout(checkAuth, 1000)
         return function () {
@@ -36,11 +32,6 @@ const Login = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     //  setInterval(checkAuth, 1000);
-
-
-
-
-
 
     const onSub = async (e) => {
         e.preventDefault()
@@ -53,7 +44,6 @@ const Login = () => {
         if (res.data.msg) {
             setStatus(true)
             setMsg(res.data.msg)
-
         }
         else {
             localStorage.setItem("Ecomtoken", res.data.token)
@@ -86,12 +76,12 @@ const Login = () => {
                             <h2 className="text-center">Login Now</h2>
                             <form onSubmit={onSub}>
 
-                                <div class="form-group">
-                                    <input type="email" class="form-control" name="email" placeholder="Enter Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                                <div className="form-group">
+                                    <input type="email" className="form-control" name="email" placeholder="Enter Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
                                 </div>
-                                <div class="form-group">
+                                <div className="form-group">
 
-                                    <input type="password" class="form-control" name="password" placeholder="Enter Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                                    <input type="password" className="form-control" name="password" placeholder="Enter Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
                                 </div>
                                 <button type="submit" className="btn btn-info">Login</button>
 
