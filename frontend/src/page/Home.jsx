@@ -35,14 +35,14 @@ const Home = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     //  setInterval(checkAuth, 1000);
-    useEffect(() => {
-        const datafet = async () => {
-            const res = await axios.get(`https://open.mapquestapi.com/geocoding/v1/address?key=ccxeu5eQ2pEdTe7UvyQNbbE9XXdeLKdi&street=Hanschara%20M%20D%20High%20School&city=chandipur&state=wb&postalCode=721625`)
-            console.log(res)
-        }
-        datafet()
+    // useEffect(() => {
+    //     const datafet = async () => {
+    //         const res = await axios.get(`https://open.mapquestapi.com/geocoding/v1/address?key=ccxeu5eQ2pEdTe7UvyQNbbE9XXdeLKdi&street=Hanschara%20M%20D%20High%20School&city=chandipur&state=wb&postalCode=721625`)
+    //         console.log(res)
+    //     }
+    //     datafet()
 
-    }, [])
+    // }, [])
 
     return (
         <>
