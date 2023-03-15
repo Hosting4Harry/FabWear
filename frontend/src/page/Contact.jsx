@@ -2,6 +2,9 @@ import React, { useRef, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import axios from 'axios'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure();
 
 const Contact = () => {
     const timeout = useRef(null)
@@ -32,7 +35,7 @@ const Contact = () => {
 
     const [status, setStatus] = useState("Submit");
     const handleSubmit = async (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         setStatus("Sending...");
         const { name, email, message } = e.target.elements;
         let details = {
@@ -46,7 +49,16 @@ const Contact = () => {
             },
             body: details
         }).then(response => {
-            alert(response.data.message);
+            toast.success(response.data.message || "message send", {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
         })
         setStatus("Submit");
     };
