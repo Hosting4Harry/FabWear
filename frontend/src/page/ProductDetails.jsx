@@ -67,9 +67,7 @@ const ProductDetails = () => {
     }
 
     const getData = async () => {
-
         const res = await axios.get(`http://localhost:8000/getdata/${id}`);
-        debugger
         setDetdata(res.data)
     }
     useEffect(() => {
@@ -93,9 +91,9 @@ const ProductDetails = () => {
                             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab quisquam quae ex maiores possimus nihil eum assumenda asperiores! Autem maxime incidunt voluptatibus quidem quaerat corrupti ex natus sed mollitia modi.</p>
                             <form onSubmit={onSub}>
                                 <input type="hidden" value={detdata[0].id} />
-                                <div class="form-group w-50">
-                                    <label for="sel1">Choose Qty:</label>
-                                    <select class="form-control" id="" onChange={(e) => setPdetails(e.target.value)} required>
+                                <div className="form-group w-50">
+                                    <label htmlFor="sel1">Choose Qty:</label>
+                                    <select className="form-control" id="" onChange={(e) => setPdetails(e.target.value)} required>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>

@@ -32,9 +32,7 @@ const Products = () => {
 
 
     const getData = async () => {
-
         const res = await axios.get('http://localhost:8000/getdataall');
-        debugger;
         setGetdata(res.data)
     }
     useEffect(() => {
@@ -53,9 +51,7 @@ const Products = () => {
         else {
             sortData(sort)
         }
-
     }
-
     if (!getdata.length) {
         return <h1>Loading..</h1>
     }
@@ -83,16 +79,13 @@ const Products = () => {
                     <div className="row">
                         {
                             getdata.map((val, ind) => {
-                                return (
-                                    <>
-                                        <CardProducts
-                                            key={ind}
-                                            id={val.id}
-                                            name={val.name}
-                                            price={val.price}
-                                            product_image={val.product_image}
-                                        />
-                                    </>
+                                return (<CardProducts
+                                    key={ind}
+                                    id={val.id}
+                                    name={val.name}
+                                    price={val.price}
+                                    product_image={val.product_image}
+                                />
                                 )
                             })
                         }

@@ -5,9 +5,9 @@ import { DataContext } from '../context/DataContext'
 import axios from 'axios'
 const Cart = () => {
 
-    const { cart } = useContext(DataContext)
-    const timeout = useRef(null)
-    const navigate = useNavigate()
+    const { cart } = useContext(DataContext);
+    const timeout = useRef(null);
+    const navigate = useNavigate();
     const checkAuth = () => {
         axios.get("http://localhost:8000/isAuth", {
             headers: {
@@ -26,11 +26,9 @@ const Cart = () => {
         timeout.current = setTimeout(checkAuth, 100)
         return function () {
             if (timeout.current) {
-                clearTimeout(timeout.current)
+                clearTimeout(timeout.current);
             }
         }
-
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     return (
@@ -53,25 +51,17 @@ const Cart = () => {
                                 <div className="row">
                                     {
                                         cart.map((val, ind) => {
-                                            return (
-                                                <>
-                                                    <CartP
-
-                                                        key={ind}
-                                                        id={val.id}
-                                                        name={val.name}
-                                                        price={val.price}
-                                                        plant_image={val.image}
-                                                        qty={val.qty}
-                                                    />
-
-                                                </>
+                                            return (<CartP
+                                                key={ind}
+                                                id={val.id}
+                                                name={val.name}
+                                                price={val.price}
+                                                plant_image={val.image}
+                                                qty={val.qty}
+                                            />
                                             )
                                         })
                                     }
-
-
-
                                 </div>
                                 <div className="row m-5">
                                     <div className="col-12">
@@ -80,18 +70,14 @@ const Cart = () => {
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-
                         </>
                     )
                 }
-
-
             </div>
 
         </>
     )
 }
 
-export default Cart
+export default Cart;

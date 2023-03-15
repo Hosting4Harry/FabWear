@@ -20,7 +20,7 @@ const Payment = () => {
     const [total, setTotal] = useState("")
     var tot = 0;
 
-    const timeout = useRef(null)
+    const timeout = useRef(null);
 
     const checkAuth = () => {
         axios.get("http://localhost:8000/isAuth", {
@@ -28,16 +28,13 @@ const Payment = () => {
                 "x-access-token": localStorage.getItem("Ecomtoken")
             }
         }).then((response) => {
-            //  console.log()
             if (!response.data.login) {
                 navigate("/");
             }
         })
-
     }
 
     useEffect(() => {
-        debugger;
         timeout.current = setTimeout(checkAuth, 1000)
         return function () {
             if (timeout.current) {
@@ -47,29 +44,20 @@ const Payment = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-
     useEffect(() => {
         //    console.log()
         let totamo = 0;
         for (let i = 0; i < cart.length; i++) {
             totamo += cart[i].price * cart[i].qty;
-
         }
         totamo += 50;
         setTotal(totamo)
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-
-
-
-
+    }, []);
     const getaddress = async () => {
-        debugger;
-        const dat = localStorage.getItem('EcomUserId')
-        const res = await axios.get(`http://localhost:8000/getaddress/${dat}`)
-        debugger
-        setYourAddress(res.data)
-
+        const dat = localStorage.getItem('EcomUserId');
+        const res = await axios.get(`http://localhost:8000/getaddress/${dat}`);
+        setYourAddress(res.data);
     }
     const sendData = async (adddata) => {
         const res = await axios.post(`http://localhost:8000/addaddress`, adddata)
@@ -79,7 +67,6 @@ const Payment = () => {
     }
 
     const onSub = (e) => {
-        debugger
         e.preventDefault()
         const dat = localStorage.getItem('EcomUserId')
         const adddata = {
@@ -89,15 +76,12 @@ const Payment = () => {
             address: addr,
             userId: dat
         }
-
-
         sendData(adddata)
         getaddress()
         // console.log(data)
     }
 
     useEffect(() => {
-        debugger
         getaddress()
     }, [])
 
@@ -105,8 +89,6 @@ const Payment = () => {
     //     debugger
     //     getaddress()
     // }, [yourAddress])
-
-
 
     const OnBuyNow = async (e) => {
         e.preventDefault()
@@ -143,11 +125,7 @@ const Payment = () => {
     useEffect(() => {
         const dat = localStorage.getItem('EcomUserId')
         setUserId(dat)
-    }, [])
-
-
-    console.log(cart)
-
+    }, []);
     if (!cart.length) {
         return (
             <>
@@ -158,9 +136,6 @@ const Payment = () => {
             </>
         )
     }
-
-
-
 
     return (
         <>
@@ -176,20 +151,12 @@ const Payment = () => {
                                         <th>Price</th>
                                         <th>Qty</th>
                                         <th>Amount</th>
-
-
-
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {
-
                                         cart.map((val, ind) => {
                                             tot = tot + val.price * val.qty
-
-                                            // tot >0 ? setTotal(tot) :null
-
-                                            // console.log(tot)
                                             return (
                                                 <>
                                                     <tr key={ind}>
@@ -205,9 +172,6 @@ const Payment = () => {
                                                         <td>{val.price}.00</td>
                                                         <td>{val.qty}</td>
                                                         <td>{val.price * val.qty}.00</td>
-
-
-
                                                     </tr>
                                                 </>
                                             )
@@ -279,16 +243,15 @@ const Payment = () => {
 
                                                 {
                                                     yourAddress.map((val, ind) => {
-                                                        return (
-                                                            <>
-                                                                <button type="button" className="btn btn-info" onClick={() => navigate(`/edit_address/${UserId}`)}>Edit Address</button>
-                                                                <div class="form-check ">
-                                                                    <label class="form-check-label p-1 mb-2">
-                                                                        <input type="radio" class="form-check-input" name="gender" value={val.id} onChange={(e) => setInputAddres(e.target.value)} required />
-                                                                        {val.name}<br /> {val.email} <br /> {val.phone} <br /> {val.address}
-                                                                    </label>
-                                                                </div>
-                                                            </>
+                                                        return (<div key={ind}>
+                                                            <button type="button" className="btn btn-info" onClick={() => navigate(`/edit_address/${UserId}`)}>Edit Address</button>
+                                                            <div class="form-check ">
+                                                                <label class="form-check-label p-1 mb-2">
+                                                                    <input type="radio" class="form-check-input" name="gender" value={val.id} onChange={(e) => setInputAddres(e.target.value)} required />
+                                                                    {val.name}<br /> {val.email} <br /> {val.phone} <br /> {val.address}
+                                                                </label>
+                                                            </div>
+                                                        </div>
                                                         )
                                                     })
                                                 }
