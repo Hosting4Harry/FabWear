@@ -215,7 +215,7 @@ const Payment = () => {
                                     }
                                     <div className="pay p-3">
                                         <h2>Sub Total : {tot}.00</h2>
-                                        <h2>Delivery Fees: 50.00</h2>
+                                        <h2>Delivery Fees:{(tot > 500) ? "free" : 50.00}</h2>
                                         <h2>Total Amount : {tot + 50}.00</h2>
 
                                     </div>
