@@ -9,8 +9,9 @@ const Insta = require("instamojo-nodejs");
 // const open = require('openurl');
 const { QueryTypes } = require("sequelize");
 const saltRounds = 10;
+require('dotenv').config();
 const PORT = process.env.PORT || 8000;
-
+console.log(PORT)
 // const API_KEY = "test_******";
 const API_KEY = "test_c06b46e28e2a2b035498f4721c5";
 // const AUTH_KEY = "test_*****";
