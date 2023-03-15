@@ -2,6 +2,9 @@ import React, { useContext, useEffect, useState, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { DataContext } from '../context/DataContext'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure();
 
 const ProductDetails = () => {
     const { id } = useParams()
@@ -51,7 +54,16 @@ const ProductDetails = () => {
         else {
             setCart([...cart, data])
         }
-        alert("added to the cart")
+        toast.success('Added to the Cart!', {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+        });
     }
 
     const getData = async () => {
