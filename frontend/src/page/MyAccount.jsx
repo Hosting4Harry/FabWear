@@ -47,6 +47,7 @@ const MyAccount = () => {
 
 
     const getOrderDetails = async (id) => {
+        debugger;
 
         const res = await axios.get(`http://localhost:8000/account/${id}`);
         debugger;
@@ -100,33 +101,25 @@ const MyAccount = () => {
                                 <tbody>
                                     {
                                         order.map((val, ind) => {
-                                            return (
-                                                <>
-                                                    <tr key={ind}>
-                                                        <td>{ind + 1}</td>
-                                                        <td >
+                                            return (<tr key={ind}>
+                                                <td>{ind + 1}</td>
+                                                <td >
+                                                    {
+                                                        new Date(val.updatedAt).toLocaleDateString()
+                                                    }
+                                                </td>
 
-                                                            {
-                                                                new Date(val.timestamp).toDateString()
-                                                            }
-                                                        </td>
-
-                                                        <td>{val.paymentmode}</td>
-                                                        <td>
-                                                            {
-                                                                val.orderstatus
-                                                            }
-                                                        </td>
-                                                        <td>{val.totalprice}</td>
-                                                        <td>
-                                                            <NavLink to={`/myorder/${val.id}`} className="btn btn-info">View</NavLink>
-                                                        </td>
-
-
-
-                                                    </tr>
-
-                                                </>
+                                                <td>{val.paymentmode}</td>
+                                                <td>
+                                                    {
+                                                        val.orderstatus
+                                                    }
+                                                </td>
+                                                <td>{val.totalprice}</td>
+                                                <td>
+                                                    <NavLink to={`/myorder/${val.id}`} className="btn btn-info">View</NavLink>
+                                                </td>
+                                            </tr>
                                             )
                                         })
 
