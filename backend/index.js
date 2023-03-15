@@ -16,7 +16,6 @@ console.log(PORT)
 const API_KEY = process.env.API_KEY;
 // const AUTH_KEY = "test_*****";
 const AUTH_KEY = process.env.AUTH_KEY;
-
 Insta.setKeys(API_KEY, AUTH_KEY);
 Insta.isSandboxMode(true);
 
@@ -195,9 +194,7 @@ app.post("/addaddress", async (req, res) => {
     // console.log(data)
 })
 app.post("/buynow", (req, res) => {
-    const cartdata = req.body.cart
-    const paymentemail = req.body.paymentemail
-    const name = req.body.name;
+    const { cartdata, paymentemail, name } = req.body;
     var insta = new Insta.PaymentData();
 
     const REDIRECT_URL = "http://localhost:3000/success";
@@ -265,10 +262,10 @@ app.post("/paydetails", (req, res) => {
 })
 
 app.post("/contact", (req, res) => {
-    res.send({ message: " sent " })
+    res.send({ message: " message sent successfully !! Thank You" })
 })
-// edit address 
 
+// edit address 
 app.post("/editadd", async (req, res) => {
     const { name, email, phone, address } = req.body;
     const user_id = +req.body.userId
