@@ -300,8 +300,6 @@ app.post("/editadd", async (req, res) => {
         console.log(error)
     })
 })
-=======
->>>>>>> ac1852f (remove extra sapaces and comments)
 
 app.post("/register", (req, res) => {
     const { email, username, password } = req.body;
