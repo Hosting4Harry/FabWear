@@ -42,6 +42,7 @@ const MyAccount = () => {
     }, [])
 
     const getOrderDetails = async (id) => {
+        if (!id) return;
         const res = await axios.get(`http://localhost:8000/account/${id}`);
         setOrder(res.data);
     }
