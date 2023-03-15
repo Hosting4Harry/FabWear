@@ -14,7 +14,7 @@
     "dialect": "mysql"
   },
   "production": {
-     "username": "**your_username**",
+    "username": "**your_username**",
     "password": "****your_password****",
     "database": "***db_Schema***",
     "host": "**host**",
