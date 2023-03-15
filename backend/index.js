@@ -149,8 +149,8 @@ app.get("/account/:id", async (req, res) => {
             userid: id,
             orderstatus: 'order done'
         }
-    }).then(response => {
-        res.send(response)
+    }).then(result => {
+        res.send(result)
     }).catch(error => {
         console.log(error);
     })
