@@ -16,7 +16,7 @@ const Navbar = () => {
             <i className="fa fa-bars"></i>
           </label>
           <label className="logo">
-            <NavLink to="/home">Cart.Com</NavLink>
+            <img style={{ width: "50px" }} src="../img/T4.png" alt="box" className="img-fluid" /><NavLink to="/home">Cart.Com</NavLink>
           </label>
           <ul>
             <li><NavLink to="/home"  >Home</NavLink></li>
