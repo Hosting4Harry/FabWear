@@ -74,7 +74,7 @@ const Home = () => {
                         </div>
                         <div className=" col-md-6 col-12 mx-auto mb-3 d-flex justify-content-center align-items-center flex-column">
                             <h1>Welcome to <span>Cart.Com</span> </h1>
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat cupiditate aspernatur, aperiam consequatur fugiat nisi! At labore corrupti, non vitae libero obcaecati, necessitatibus, odio facilis aliquid odit nulla porro itaque.</p>
+                            <p>it's a  Big Market out there, Let's Explore with Us</p>
                             <button className="btn btn-outline-success">Read More</button>
                         </div>
                     </div>
