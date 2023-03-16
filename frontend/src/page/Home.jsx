@@ -4,6 +4,7 @@ import '../App.css'
 import AllProducts from '../component/AllProducts'
 // import { DataContext } from '../context/DataContext'
 import axios from 'axios'
+import Slides from './Slides'
 
 const Home = () => {
     const timeout = useRef(null)
@@ -56,10 +57,10 @@ const Home = () => {
 
                         </div>
                         <div className="col-md-6 col-12 mb-3 mx-auto">
-                            <img src="../img/2593170.png" alt="home " className="img-fluid main-img " style={{
+                            {/* <img src="../img/2593170.png" alt="home " className="img-fluid main-img " style={{
                                 borderRadius: "2em"
-                            }} />
-
+                            }} /> */}
+                            <Slides />
                         </div>
                     </div>
                 </div>
