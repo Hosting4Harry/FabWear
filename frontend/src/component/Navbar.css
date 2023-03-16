@@ -129,3 +129,23 @@ body {
   background-color: transparent !important;
   color: #fff !important;
 }
+
+.header {
+  position: sticky;
+  top: 0;
+  background: white;
+  height: 66px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.searchbar {
+  width: 22vw;
+  border-radius: 7px;
+  padding: 4px 19px;
+  background-color: aliceblue;
+}
+
+/* 
+.searchicon {
+  background-color: #e5e7e9;
+} */
