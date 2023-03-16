@@ -1,11 +1,11 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import './Navbar.css'
 import { NavLink } from 'react-router-dom'
 import { DataContext } from '../context/DataContext'
 import { FcSearch } from "react-icons/fc";
 const Navbar = () => {
   const { cart } = useContext(DataContext)
-
+  const [inputValue, setInputValue] = useState('');
   return (
     <>
       <div className="code-nav flex">
@@ -19,7 +19,7 @@ const Navbar = () => {
           </label>
           <ul className='flex'>
             <label className='searchicon'>
-              <input placeholder="Search for products, brands and more" className='searchbar ' value="" />
+              <input placeholder="Search for products, brands and more" className='searchbar ' defaultValue={inputValue} onChange={(e) => { setInputValue(e.target.value) }} />
               <button className='btn-sm border border-dark ' > <FcSearch /></button>
             </label>
             <li><NavLink to="/home"  >Home</NavLink></li>
