@@ -15,11 +15,9 @@ const Payment = () => {
     const [showaddress, setShowaddress] = useState(false);
     const [payment, setPayment] = useState("");
     const [UserId, setUserId] = useState("");
-
-    const { cart, setCart } = useContext(DataContext);
     const [total, setTotal] = useState("");
+    const { cart, setCart } = useContext(DataContext);
     var tot = 0;
-
     const timeout = useRef(null);
 
     const checkAuth = () => {
@@ -106,13 +104,11 @@ const Payment = () => {
             cart: cart
         }
         // console.log(data)
-
         const res = await axios.post(`http://localhost:8000/buynow`, data);
         //   console.log(res.data.payment_request.longurl)
         if (res.data.success) {
             setCart([])
             localStorage.setItem('Ecomlongid', res.data.payment_request?.id);
-
             navigate(`/myaccount`);
         } else {
             console.log("order not placed");
@@ -131,7 +127,6 @@ const Payment = () => {
                 <div className="container p-5">
                     <h2>There is No cart items</h2>
                 </div>
-
             </>
         )
     }
@@ -180,13 +175,10 @@ const Payment = () => {
                                         <h2>Sub Total : {tot}.00</h2>
                                         <h2>Delivery Fees: {(tot >= 500) ? " free" : 50.00}</h2>
                                         <h2>Total Amount : {(tot >= 500) ? tot : (tot + 50)}</h2>
-
                                     </div>
-
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -211,15 +203,10 @@ const Payment = () => {
                                                     <label >Phone:</label>
                                                     <input type="tel" class="form-control" name='phone' placeholder="Enter Phone" value={phone} onChange={(e) => setPhone(e.target.value)} required />
                                                 </div>
-
                                                 <div class="form-group">
                                                     <label >Full Address:</label>
-
                                                     <textarea name="address" id="" class="form-control" rows="3" placeholder="Enter Full Address" value={addr} onChange={(e) => setAddr(e.target.value)} required></textarea>
                                                 </div>
-
-
-
                                                 <div class="text-center mb-5">
                                                     <input type="submit" class="btn btn-info pt-2 pb-2 pl-5 pr-5" value="Add Address" />
                                                 </div>
