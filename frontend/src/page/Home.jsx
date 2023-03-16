@@ -69,7 +69,7 @@ const Home = () => {
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-md-6 col-12 mx-auto mb-3 ">
-                            <img src="../img/download3.jpg" alt="ok" className="img-fluid side-img" />
+                            <img src="../img/T5.png" alt="ok" className="img-fluid side-img" />
                         </div>
                         <div className=" col-md-6 col-12 mx-auto mb-3 d-flex justify-content-center align-items-center flex-column">
                             <h1>Welcome to <span>Cart.Com</span> </h1>

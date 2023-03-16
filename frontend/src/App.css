@@ -33,7 +33,7 @@
 
 .main-img {
   width: 100%;
-  height: 500px;
+  height: 400px;
 }
 
 @media (max-width:768px) {
@@ -93,9 +93,9 @@
 }
 
 .side-img {
-  padding-top: 20px;
-  height: 500px;
-  margin-left: -50px;
+
+  height: 300px;
+  margin: 80px;
 }
 
 .desc h1 {
