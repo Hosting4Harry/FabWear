@@ -55,7 +55,7 @@ const ProductDetails = () => {
             setCart([...cart, data])
         }
         toast.success('Added to the Cart!', {
-            position: "top-center",
+            position: "bottom-right",
             autoClose: 1800,
             hideProgressBar: true,
             closeOnClick: true,
@@ -99,10 +99,17 @@ const ProductDetails = () => {
                                         <option value="3">3</option>
                                         <option value="4">4</option>
                                         <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
                                     </select>
                                 </div>
+
                                 <div className="text-left">
-                                    <button type="submit" className="btn btn-info">Add To Cart</button>
+                                    <button type="submit" className="btn btn-info" >Add To Cart</button>&nbsp;
+                                    <button type="button" className="btn btn-info" onClick={() => navigate('/cart')}>Go To Cart</button>
                                 </div>
                                 {/* <input type="submit" className="btn btn-info" value="Add To Cart" /> */}
                             </form>
