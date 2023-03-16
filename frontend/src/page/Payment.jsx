@@ -212,7 +212,6 @@ const Payment = () => {
                                                 </div>
                                             </form>
                                         </div>
-
                                     </>
                                 )
                             }
@@ -241,11 +240,6 @@ const Payment = () => {
                                                         )
                                                     })
                                                 }
-
-
-
-
-
                                                 <h4>Choose payment option</h4>
 
                                                 {/* <div class="form-check-inline">
@@ -261,9 +255,7 @@ const Payment = () => {
                                                 <div class="text-center m-3">
                                                     <input type="submit" class="btn btn-info pt-2 pb-2 pl-5 pr-5" value="Buy Now" />
                                                 </div>
-
                                             </form>
-
                                         </>
                                     ) :
                                         <button className="btn btn-info" onClick={() => setShowaddress(true)}>Add Address</button>
@@ -273,7 +265,6 @@ const Payment = () => {
                     </div>
                 </div>
             </div>
-
         </>
     )
 }

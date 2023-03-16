@@ -32,7 +32,6 @@ const CartP = ({ id, name, price, plant_image, qty }) => {
                     </div>
                 </div>
             </div>
-
         </>
     )
 }

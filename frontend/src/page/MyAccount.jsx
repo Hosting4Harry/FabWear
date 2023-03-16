@@ -61,7 +61,6 @@ const MyAccount = () => {
                     <h2>You Not Yet Placed Any Order</h2>
                     <button className="btn btn-info" onClick={() => navigate('/products')}>Continue Shopping</button>
                 </div>
-
             </>
         )
     }

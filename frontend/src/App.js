@@ -16,9 +16,7 @@ import Register from './page/Register'
 import Login from './page/Login'
 import Success from './page/Success'
 // import PayNow from './page/PayNow'
-
 import './App.css'
-
 
 const App = () => {
   return (
@@ -44,10 +42,6 @@ const App = () => {
           {/* <Footer /> */}
         </Router>
       </ConText>
-
-
-
-
     </>
   )
 }

@@ -82,13 +82,6 @@ const MyOrder = () => {
                                             )
                                         })
                                     }
-
-
-
-
-
-
-
                                 </tbody>
                             </table>
                         </div>

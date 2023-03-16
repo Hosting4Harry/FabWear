@@ -32,7 +32,6 @@ const Contact = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-
     const [status, setStatus] = useState("Submit");
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -62,7 +61,6 @@ const Contact = () => {
         })
         setStatus("Submit");
     };
-
 
     return (
         <div className='address'>

@@ -30,9 +30,7 @@ const Footer = () => {
                         all rights reserved @{new Date().getFullYear()} <NavLink to="/products">Copyrights </NavLink>
                     </div>
                 </div>
-
             </footer>
-
         </>
     )
 }

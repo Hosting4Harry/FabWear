@@ -9,7 +9,6 @@ const Register = () => {
     const [status, setStatus] = useState(false)
     const [msg, setMsg] = useState("")
     const timeout = useRef(null)
-
     const navigate = useNavigate()
     const checkAuth = () => {
         axios.get("http://localhost:8000/isAuth", {
