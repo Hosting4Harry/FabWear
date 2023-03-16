@@ -7,12 +7,12 @@ import 'react-toastify/dist/ReactToastify.css';
 toast.configure();
 
 const ProductDetails = () => {
-    const { id } = useParams()
-    const { cart, setCart } = useContext(DataContext)
-    const [detdata, setDetdata] = useState([])
-    const [pdetails, setPdetails] = useState("1")
-    const timeout = useRef(null)
-    const navigate = useNavigate()
+    const { id } = useParams();
+    const { cart, setCart } = useContext(DataContext);
+    const [detdata, setDetdata] = useState([]);
+    const [pdetails, setPdetails] = useState("1");
+    const timeout = useRef(null);
+    const navigate = useNavigate();
     const checkAuth = () => {
         axios.get("http://localhost:8000/isAuth", {
             headers: {
