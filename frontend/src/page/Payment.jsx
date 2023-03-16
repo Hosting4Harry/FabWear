@@ -178,7 +178,7 @@ const Payment = () => {
                                     }
                                     <div className="pay p-3">
                                         <h2>Sub Total : {tot}.00</h2>
-                                        <h2>Delivery Fees:{(tot > 500) ? "free" : 50.00}</h2>
+                                        <h2>Delivery Fees:{(tot >= 500) ? "free" : 50.00}</h2>
                                         <h2>Total Amount : {tot + 50}.00</h2>
 
                                     </div>
@@ -271,14 +271,9 @@ const Payment = () => {
                                                         <input type="radio" class="form-check-input" name="payment" value="online" onChange={(e) => setPayment(e.target.value)} required />Online
                                                     </label>
                                                 </div>
-
-
                                                 <div class="text-center m-3">
                                                     <input type="submit" class="btn btn-info pt-2 pb-2 pl-5 pr-5" value="Buy Now" />
                                                 </div>
-
-
-
 
                                             </form>
 
