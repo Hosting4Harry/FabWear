@@ -52,7 +52,9 @@ const Home = () => {
                     <div className="row">
                         <div className="col-md-6 col-12 mb-3 mx-auto">
                             <h1>Welcome to <span>Cart.Com</span> </h1>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, quos.</p>
+                            <p>It's a  Big Market out there, Let's Explore with Us.
+                                <h4>we always make our costomer happy by providing as many choices as possible. Get Your FREE Shoppind Website ,We turn all brands like Yours, Happy!</h4></p>
+
                             <button className="btn btn-outline-success">Read More</button>
 
                         </div>
@@ -74,7 +76,9 @@ const Home = () => {
                         </div>
                         <div className=" col-md-6 col-12 mx-auto mb-3 d-flex justify-content-center align-items-center flex-column">
                             <h1>Welcome to <span>Cart.Com</span> </h1>
-                            <p>it's a  Big Market out there, Let's Explore with Us</p>
+                            <p> <h3>It's a  Big Market out there, Let's Explore with Us</h3>
+                                Just take a quick peek & learn about the Amazing Stories of our Valued Clients. Nothing makes us happier than their Beautiful & Successful Journey with Us!</p>
+
                             <button className="btn btn-outline-success">Read More</button>
                         </div>
                     </div>
