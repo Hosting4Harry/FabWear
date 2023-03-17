@@ -12,7 +12,7 @@ body {
 
 .code-nav nav {
   background: #011727;
-  height: 70px;
+  height: 80px;
   width: 100%;
 }
 
@@ -98,7 +98,7 @@ body {
 
   .code-nav nav ul li {
     display: block;
-    margin: 50px 0;
+    margin: 25px 25px;
     line-height: 30px;
   }
 
@@ -141,6 +141,6 @@ body {
 .searchbar {
   width: 22vw;
   border-radius: 7px;
-  padding: 4px 19px;
+  /* padding: 4px 19px; */
   background-color: aliceblue;
 }
