@@ -22,7 +22,6 @@ const Navbar = () => {
               <input placeholder="Search for products, brands and more" className='searchbar ' defaultValue={inputValue} onChange={(e) => { setInputValue(e.target.value) }} />
               <button className='btn-sm border border-dark ' > <FcSearch /></button>
             </label>
-            <li><NavLink to="/home"  >Home</NavLink></li>
             <li><NavLink to="/Products">Products</NavLink></li>
             <li><NavLink to="/contact">Contact</NavLink></li>
             <li><NavLink to="/cart" className="cart-box">Cart <span>{cart.length}</span> </NavLink></li>
