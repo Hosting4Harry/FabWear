@@ -20,9 +20,9 @@ function Slides() {
                 <div className="carousel-item" data-bs-interval="3000">
                     <img src="../img/E4.jpg" className="d-block w-100" style={{ borderRadius: "2em" }} alt="..." />
                 </div>
-                <div className="carousel-item" data-bs-interval="3000">
+                {/* <div className="carousel-item" data-bs-interval="3000">
                     <img src="../img/E5.webp" className="d-block w-100" style={{ borderRadius: "2em" }} alt="..." />
-                </div>
+                </div> */}
             </div>
             <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>
