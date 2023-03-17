@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { DataContext } from '../context/DataContext'
 
 const Navbar = () => {
-  const { cart } = useContext(DataContext)
+  const { cart, wishlist } = useContext(DataContext)
   const [inputValue, setInputValue] = useState('');
   const submit = (e) => {
     e.preventDefault();
@@ -30,7 +30,7 @@ const Navbar = () => {
             </label>
             <li><NavLink to="/Products">Products</NavLink></li>
             <li><NavLink to="/contact">Contact</NavLink></li>
-            <li><NavLink to="/wishlist">Wishlist</NavLink></li>
+            <li><NavLink to="/wishlist">Wishlist <span>{wishlist.length}</span></NavLink></li>
             <li><NavLink to="/cart" className="cart-box">Cart <span>{cart.length}</span> </NavLink></li>
             <li><NavLink to="/myaccount" >User </NavLink></li>
           </ul>

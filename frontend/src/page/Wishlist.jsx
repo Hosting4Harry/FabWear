@@ -46,7 +46,7 @@ const Wishlist = () => {
                     ) : (
                         <>
                             <div className="container">
-                                <h2>Your wishlist Items</h2>
+                                <h2>Your have {wishlist.length} Items in your wishlist</h2>
                                 <br />
                                 <div className="row">
                                     {
