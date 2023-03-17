@@ -17,9 +17,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
             price: detdata[0].price,
             image: detdata[0].product_image,
         }
-        debugger
         const exist = wishlist.find((x) => x.id === data.id);
-        debugger;
         if (exist) {
             setWishlist(wishlist.map((x) => x.id === data.id ? data : x))
         } else {
