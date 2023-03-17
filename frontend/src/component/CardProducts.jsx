@@ -9,7 +9,6 @@ const CardProducts = ({ id, name, price, product_image }) => {
     const [detdata, setDetdata] = useState([]);
     const { wishlist, setWishlist } = useContext(DataContext);
 
-
     const handelfav = (e) => {
         const data = {
             id: detdata[0].id,
@@ -40,6 +39,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
     }
     useEffect(() => {
         getData()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     if (!detdata.length) {
         return <h1>Loading..</h1>

@@ -11,25 +11,23 @@ const WishlistP = ({ id, name, price, plant_image, qty }) => {
         }
     }
     return (
-        <>
-            <div className="col-lg-4 col-md-6 col-12  mb-3">
-                <div className="card">
-                    <img src={`../img/${plant_image}`} alt={plant_image} className="img-fluid wishlist-img" />
-                    <div className="p-3">
-                        <div className="wishlistbox">
-                            <div>
-                                <p>{name}</p>
-                                <p>{price}.00</p>
-                            </div>
+        <div className="col-lg-4 col-md-6 col-12 ">
+            <div className="card">
+                <img src={`../img/${plant_image}`} alt={plant_image} className="img-fluid wishlist-img" />
+                <div className="p-3">
+                    <div className="wishlistbox">
+                        <div>
+                            <p>{name}</p>
+                            <p>{price}.00</p>
                         </div>
-                        <div className="text-right">
-                            <button className="btn btn-info" onClick={() => deleteProduct(id)}>Delete</button>
-                        </div>
+                    </div>
+                    <div className="text-right">
+                        <button className="btn btn-info" onClick={() => deleteProduct(id)}>Delete</button>
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 
-export default WishlistP
+export default WishlistP;

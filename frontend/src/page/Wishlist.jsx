@@ -30,45 +30,30 @@ const Wishlist = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    return (
-        <>
-            <h1>hello this is your wishlist</h1>
-            <div className="cart">
-                {
-                    !wishlist.length ? (
-                        <>
-                            <div className="container">
-                                <h2>There is No Items In the wishlist</h2>
-                                <button className="btn btn-info" onClick={() => navigate('/products')}>Continue Shopping</button>
-                            </div>
-
-                        </>
-                    ) : (
-                        <>
-                            <div className="container">
-                                <h2>Your have {wishlist.length} Items in your wishlist</h2>
-                                <br />
-                                <div className="row">
-                                    {
-                                        wishlist.map((val, ind) => {
-                                            return (<WishlistP
-                                                key={ind}
-                                                id={val.id}
-                                                name={val.name}
-                                                price={val.price}
-                                                plant_image={val.image}
-                                            />
-                                            )
-                                        })
-                                    }
-                                </div>
-                            </div>
-                        </>
-                    )
-                }
+    return (<div className="cart">
+        {!wishlist.length ? (
+            <div className="container">
+                <h2>There is No Items In the wishlist</h2>
+                <button className="btn btn-info" onClick={() => navigate('/products')}>Continue Shopping</button>
             </div>
-
-        </>
+        ) : (<div className="container">
+            <h2>Your have {wishlist.length} Items in your wishlist</h2>
+            <br />
+            <div className="row">
+                {wishlist.map((val, ind) => {
+                    return (<WishlistP
+                        key={ind}
+                        id={val.id}
+                        name={val.name}
+                        price={val.price}
+                        plant_image={val.image}
+                    />)
+                })}
+            </div>
+        </div>
+        )
+        }
+    </div>
     )
 }
 
