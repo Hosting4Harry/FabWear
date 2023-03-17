@@ -1,11 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 import CardProducts from '../component/CardProducts'
-// import { DataContext } from '../context/DataContext'
 import { useNavigate } from 'react-router-dom'
 const Products = () => {
     const [getdata, setGetdata] = useState([])
-
     const timeout = useRef(null)
     const navigate = useNavigate()
     const checkAuth = () => {
@@ -14,7 +12,6 @@ const Products = () => {
                 "x-access-token": localStorage.getItem("Ecomtoken")
             }
         }).then((response) => {
-            //  console.log()
             if (!response.data.login) {
                 navigate("/");
             }
@@ -27,9 +24,7 @@ const Products = () => {
                 clearTimeout(timeout.current)
             }
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
 
     const getData = async () => {
         const res = await axios.get('http://localhost:8000/getdataall');
@@ -89,8 +84,6 @@ const Products = () => {
                     </div>
                 </div>
             </div>
-
-
         </>
     )
 }
