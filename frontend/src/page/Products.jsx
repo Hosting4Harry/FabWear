@@ -64,15 +64,12 @@ const Products = () => {
                     <div className="inp ">
                         <p></p>
                         <div className="form-group">
-
                             <select className="form-control" id="" onChange={sortHandel}>
                                 {/* <option value="" selected disabled hidden>Choose By Price</option> */}
                                 <option value="all">All</option>
                                 <option value="200">less then 200</option>
                                 <option value="200_500">200-500</option>
                                 <option value="500_1000">500-1000</option>
-
-
                             </select>
                         </div>
                     </div>
@@ -89,9 +86,6 @@ const Products = () => {
                                 )
                             })
                         }
-
-
-
                     </div>
                 </div>
             </div>
