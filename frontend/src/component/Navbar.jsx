@@ -45,33 +45,11 @@ const Navbar = () => {
             <li>
               <form onSubmit={submit}>
                 <div className='d-flex form-group '>
-                  <div className=''>
-                    <div className=''>
-                      <input type='text' size={30} onKeyUp={search_animal} id='searchbar' placeholder="Search for products, brands and more" className='form-control form-group-sm' defaultValue={inputValue} onChange={(e) => { setInputValue(e.target.value) }} />
-                    </div>
-                    <div className='bg-dark'>
-                      <ol id='list overlay'>
-                        <li className="animals" style={{ display: 'none' }}>Cat</li>
-                        <li className="animals" style={{ display: 'none' }}>Dog</li>
-                        <li className="animals" style={{ display: 'none' }}>Elephant</li>
-                        <li className="animals" style={{ display: 'none' }}>Fish</li>
-                        <li className="animals" style={{ display: 'none' }}>Gorilla</li>
-                        <li className="animals" style={{ display: 'none' }}>Monkey</li>
-                        <li className="animals" style={{ display: 'none' }}>Turtle</li>
-                        <li className="animals" style={{ display: 'none' }}>Whale</li>
-                        <li className="animals" style={{ display: 'none' }}>Aligator</li>
-                        <li className="animals" style={{ display: 'none' }}>Donkey</li>
-                        <li className="animals" style={{ display: 'none' }}>Horse</li>
-                      </ol>
-                    </div>
-                  </div>
-                  <div className=''>
-                    <button type='submit' className='btn btn-primary m-0' style={{ padding: "5px 15px", borderRadius: "3px" }}> <i className="fa fa-search"></i></button>
-                  </div>
+                  <input type='text' size={30} onKeyUp={search_animal} id='searchbar' placeholder="Search for products, brands and more" className='form-control form-group-sm' defaultValue={inputValue} onChange={(e) => { setInputValue(e.target.value) }} />
+                  <button type='submit' className='btn btn-primary m-0' style={{ padding: "5px 15px", borderRadius: "3px" }}> <i className="fa fa-search"></i></button>
                 </div>
               </form>
             </li>
-            <li><NavLink to="/home"  >Home</NavLink></li>
             <li><NavLink to="/Products">Products</NavLink></li>
             <li><NavLink to="/contact">Contact</NavLink></li>
             <li><NavLink to="/wishlist">Wishlist</NavLink></li>
