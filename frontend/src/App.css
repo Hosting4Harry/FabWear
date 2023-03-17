@@ -42,8 +42,6 @@
   }
 }
 
-
-
 /* == */
 .products {
   padding: 75px 0;
@@ -98,6 +96,10 @@
 }
 
 .desc h1 {
+  color: #fff;
+}
+
+.desc h3 {
   color: #fff;
 }
 
