@@ -15,6 +15,7 @@ import { ConText } from './context/DataContext'
 import Register from './page/Register'
 import Login from './page/Login'
 import Success from './page/Success'
+import Wishlist from './page/Wishlist'
 // import PayNow from './page/PayNow'
 import './App.css'
 
@@ -28,6 +29,7 @@ const App = () => {
             <Route exact path="/home" element={<Home />} />
             <Route exact path="/products" element={<Products />} />
             <Route exact path="/contact" element={<Contact />} />
+            <Route exact path="/wishlist" element={<Wishlist />} />
             <Route exact path="/cart" element={<Cart />} />
             <Route exact path="/details/:id" element={<ProductDetails />} />
             <Route exact path="/payment" element={<Payment />} />

@@ -14,7 +14,6 @@ const Cart = () => {
                 "x-access-token": localStorage.getItem("Ecomtoken")
             }
         }).then((response) => {
-            //  console.log()
             if (!response.data.login) {
                 navigate("/");
             }
