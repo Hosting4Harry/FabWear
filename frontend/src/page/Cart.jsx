@@ -55,7 +55,7 @@ const Cart = () => {
                                                 id={val.id}
                                                 name={val.name}
                                                 price={val.price}
-                                                plant_image={val.image}
+                                                product_image={val.image}
                                                 qty={val.qty}
                                             />
                                             )

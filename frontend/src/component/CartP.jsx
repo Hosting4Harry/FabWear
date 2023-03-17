@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { DataContext } from '../context/DataContext'
-const CartP = ({ id, name, price, plant_image, qty }) => {
+const CartP = ({ id, name, price, product_image, qty }) => {
     const { cart, setCart } = useContext(DataContext);
     const deleteProduct = (id) => {
         const exist = cart.find((x) => x.id === id)
@@ -14,7 +14,7 @@ const CartP = ({ id, name, price, plant_image, qty }) => {
         <>
             <div className="col-lg-4 col-md-6 col-12  mb-3">
                 <div className="card">
-                    <img src={`../img/${plant_image}`} alt={plant_image} className="img-fluid cart-img" />
+                    <img src={`../img/${product_image}`} alt={product_image} className="img-fluid cart-img" />
                     <div className="p-3">
                         <div className="cartbox">
                             <div>
