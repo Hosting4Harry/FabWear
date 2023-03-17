@@ -45,7 +45,6 @@ const ProductDetails = () => {
             qty: pdetails
         }
         const exist = cart.find((x) => x.id === data.id);
-
         if (exist) {
             setCart(
                 cart.map((x) => x.id === data.id ? data : x)
