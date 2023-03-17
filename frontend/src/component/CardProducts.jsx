@@ -1,12 +1,50 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify';
 import "../App.css";
-// import { GrFavorite } from 'react-icons/gr';
+import { DataContext } from '../context/DataContext';
 const CardProducts = ({ id, name, price, product_image }) => {
     const navigate = useNavigate();
-    const handelChange = (e) => {
+    const [detdata, setDetdata] = useState([]);
+    const { wishlist, setWishlist } = useContext(DataContext);
 
-        alert("hello")
+
+    const handelfav = (e) => {
+        const data = {
+            id: detdata[0].id,
+            name: detdata[0].name,
+            price: detdata[0].price,
+            image: detdata[0].product_image,
+        }
+        debugger
+        const exist = wishlist.find((x) => x.id === data.id);
+        debugger;
+        if (exist) {
+            setWishlist(wishlist.map((x) => x.id === data.id ? data : x))
+        } else {
+            setWishlist([...wishlist, data])
+        }
+        toast.success('Added to the Wishlist!', {
+            position: "top-left",
+            autoClose: 1800,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+        });
+    }
+    const getData = async () => {
+        const res = await axios.get(`http://localhost:8000/getdata/${id}`);
+        setDetdata(res.data)
+    }
+    useEffect(() => {
+        getData()
+    }, [])
+    if (!detdata.length) {
+        return <h1>Loading..</h1>
     }
     return (
         <>
@@ -14,7 +52,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
                 <div className="card p-2">
                     <div>
                         <input type="checkbox" id={"heart" + id} />
-                        <label for={"heart" + id}>&#9829;</label>
+                        <label for={"heart" + id} onClick={handelfav}>&#9829;</label>
                     </div>
                     <img src={`../img/${product_image}`} alt="tree" className="img-fluid p-img" />
                     <div className="overlay">
