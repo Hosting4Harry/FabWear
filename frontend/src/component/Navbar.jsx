@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Navbar.css'
 import { NavLink } from 'react-router-dom'
 import { DataContext } from '../context/DataContext'
@@ -6,6 +6,12 @@ import { DataContext } from '../context/DataContext'
 const Navbar = () => {
   const { cart } = useContext(DataContext)
   const [inputValue, setInputValue] = useState('');
+  const submit = (e) => {
+    e.preventDefault();
+    setInputValue('');
+  };
+  useEffect(() => {
+  }, [inputValue])
   return (
     <>
       <div className="code-nav flex">
@@ -19,10 +25,10 @@ const Navbar = () => {
           </label>
           <ul className='flex'>
             <li>
-              <form onSubmit=''>
+              <form onSubmit={submit}>
                 <div className='d-flex form-group '>
                   <input size={30} placeholder="Search for products, brands and more" className='form-control form-group-sm' defaultValue={inputValue} onChange={(e) => { setInputValue(e.target.value) }} />
-                  <button type='submit' className='btn btn-primary' style={{ padding: "5px 15px", borderRadius: "3px" }}> <i class="fa fa-search"></i></button>
+                  <button type='submit' className='btn btn-primary' style={{ padding: "5px 15px", borderRadius: "3px" }}> <i className="fa fa-search"></i></button>
                 </div>
               </form>
             </li>
