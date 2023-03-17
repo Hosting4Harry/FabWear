@@ -144,3 +144,12 @@ body {
   /* padding: 4px 19px; */
   background-color: aliceblue;
 }
+
+/* #list {
+  font-size: 1.5em;
+  margin-left: 90px;
+} */
+
+.animals {
+  display: none;
+}
