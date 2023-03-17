@@ -242,3 +242,15 @@ footer ul li a:hover {
 .login {
   padding: 75px 0;
 }
+
+input {
+  display: none;
+}
+
+input:checked~label {
+  color: red;
+}
+
+label {
+  font-size: 2em;
+}

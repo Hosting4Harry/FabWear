@@ -24,6 +24,7 @@ const Navbar = () => {
             <img style={{ width: "50px" }} src="../img/T4.png" alt="box" className="img-fluid" /><NavLink to="/home">Cart.Com</NavLink>
           </label>
           <ul className='flex'>
+<<<<<<< HEAD
             <li>
               <form onSubmit={submit}>
                 <div className='d-flex form-group '>
@@ -33,8 +34,15 @@ const Navbar = () => {
               </form>
             </li>
             <li><NavLink to="/home"  >Home</NavLink></li>
+=======
+            <label className='searchicon'>
+              <input placeholder="Search for products, brands and more" className='searchbar ' defaultValue={inputValue} onChange={(e) => { setInputValue(e.target.value) }} />
+              <button className='btn-sm border border-dark ' > <FcSearch /></button>
+            </label>
+>>>>>>> feature/wishlist
             <li><NavLink to="/Products">Products</NavLink></li>
             <li><NavLink to="/contact">Contact</NavLink></li>
+            <li><NavLink to="/wishlist">Wishlist</NavLink></li>
             <li><NavLink to="/cart" className="cart-box">Cart <span>{cart.length}</span> </NavLink></li>
             <li><NavLink to="/myaccount" >User </NavLink></li>
           </ul>
