@@ -8,7 +8,6 @@ const CardProducts = ({ id, name, price, product_image }) => {
     const navigate = useNavigate();
     const [detdata, setDetdata] = useState([]);
     const { wishlist, setWishlist } = useContext(DataContext);
-
     const handelfav = (e) => {
         const data = {
             id: detdata[0].id,
@@ -39,7 +38,6 @@ const CardProducts = ({ id, name, price, product_image }) => {
     }
     useEffect(() => {
         getData()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     if (!detdata.length) {
         return <h1>Loading..</h1>
@@ -55,11 +53,10 @@ const CardProducts = ({ id, name, price, product_image }) => {
                     <img src={`../img/${product_image}`} alt="tree" className="img-fluid p-img" />
                     <div className="overlay">
                         <div className="price">
-                            <p>{name} </p>
+                            <p>{name}</p>
                             <p>{price}.00</p>
                         </div>
                         <div className="text-center">
-                            {/* <button className="btn btn-info ml-1 mr-1">Add To Cart</button> */}
                             <button className="btn btn-info ml-1 mr-1" onClick={() => navigate(`/details/${id}`)}>View Details</button>
                         </div>
                     </div>
