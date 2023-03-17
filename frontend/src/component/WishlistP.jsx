@@ -15,7 +15,7 @@ const WishlistP = ({ id, name, price, product_image }) => {
             <div className="card">
                 <div>
                     <input type="checkbox" id={"heart" + id} />
-                    <label htmlFor={"heart" + id} style={{ fontSize: "25px" }}>❤️</label>
+                    <label htmlFor={"heart" + id} style={{ color: "red" }}>&nbsp; &#9829;</label>
                 </div>
                 <img src={`../img/${product_image}`} alt={product_image} className="img-fluid cart-img" />
                 <div className="p-3">

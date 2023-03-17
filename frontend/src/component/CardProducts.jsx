@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import "../App.css";
 import { DataContext } from '../context/DataContext';
+import "../page/Wishlist.css"
 const CardProducts = ({ id, name, price, product_image }) => {
     const navigate = useNavigate();
     const [detdata, setDetdata] = useState([]);
