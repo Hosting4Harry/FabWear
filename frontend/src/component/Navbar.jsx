@@ -74,6 +74,7 @@ const Navbar = () => {
             <li><NavLink to="/home"  >Home</NavLink></li>
             <li><NavLink to="/Products">Products</NavLink></li>
             <li><NavLink to="/contact">Contact</NavLink></li>
+            <li><NavLink to="/wishlist">Wishlist</NavLink></li>
             <li><NavLink to="/cart" className="cart-box">Cart <span>{cart.length}</span> </NavLink></li>
             <li><NavLink to="/myaccount" >User </NavLink></li>
           </ul>
