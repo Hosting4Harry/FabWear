@@ -26,7 +26,6 @@ const MyOrder = () => {
                 clearTimeout(timeout.current)
             }
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const getData = async () => {
@@ -70,14 +69,12 @@ const MyOrder = () => {
                                                         </td>
                                                         <td>
                                                             {val.productprice}
-
                                                         </td>
                                                         <td>{val.productqty}</td>
                                                         <td>
                                                             {val.price * val.productqty}
                                                         </td>
                                                     </tr>
-
                                                 </>
                                             )
                                         })
@@ -85,12 +82,9 @@ const MyOrder = () => {
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
                 </div>
             </div>
-
-
         </>
     )
 }
