@@ -11,7 +11,7 @@ const WishlistP = ({ id, name, price, product_image }) => {
         }
     }
     return (
-        <div className="col-lg-4 col-md-6 col-12 ">
+        <div className="col-lg-4 col-md-6 col-12 mb-3">
             <div className="card">
                 <img src={`../img/${product_image}`} alt={product_image} className="img-fluid cart-img" />
                 <div className="p-3">
