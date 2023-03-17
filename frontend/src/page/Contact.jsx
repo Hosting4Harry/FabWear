@@ -65,6 +65,7 @@ const Contact = () => {
     return (
         <div className='address'>
             <div className="container ">
+                <h2 className="text-center font-weight-bold mb-5">Contact Us</h2>
                 <div className="row">
                     <div className="col-md-6 col-12 mx-auto">
                         <div className="card">
