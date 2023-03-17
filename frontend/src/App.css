@@ -225,7 +225,7 @@ footer ul li a:hover {
 }
 
 .address {
-  padding: 80px 0;
+  padding: 100px 0;
 }
 
 .address .card {
@@ -243,14 +243,8 @@ footer ul li a:hover {
   padding: 75px 0;
 }
 
-input {
-  display: none;
-}
-
-input:checked~label {
-  color: red;
-}
-
-label {
-  font-size: 2em;
+.pay {
+  position: absolute;
+  right: 0;
+  margin-right: 10px;
 }
