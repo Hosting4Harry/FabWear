@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './Navbar.css'
 import { NavLink } from 'react-router-dom'
 import { DataContext } from '../context/DataContext'
@@ -52,7 +52,7 @@ const Navbar = () => {
             </li>
             <li><NavLink to="/Products">Products</NavLink></li>
             <li><NavLink to="/contact">Contact</NavLink></li>
-            <li><NavLink to="/wishlist">Wishlist <span>{wishlist.length}</span></NavLink></li>
+            <li><NavLink to="/wishlist" className="cart-box">Wishlist <span>{wishlist.length}</span></NavLink></li>
             <li><NavLink to="/cart" className="cart-box">Cart <span>{cart.length}</span> </NavLink></li>
             <li><NavLink to="/myaccount" >User </NavLink></li>
           </ul>

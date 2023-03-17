@@ -24,7 +24,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
             setWishlist([...wishlist, data])
         }
         toast.success('Added to the Wishlist!', {
-            position: "top-left",
+            position: "bottom-right",
             autoClose: 1800,
             hideProgressBar: true,
             closeOnClick: true,
