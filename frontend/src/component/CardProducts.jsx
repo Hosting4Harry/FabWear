@@ -50,7 +50,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
                 <div className="card p-2">
                     <div>
                         <input type="checkbox" id={"heart" + id} />
-                        <label for={"heart" + id} onClick={handelfav}>&#9829;</label>
+                        <label htmlFor={"heart" + id} onClick={handelfav}>&#9829;</label>
                     </div>
                     <img src={`../img/${product_image}`} alt="tree" className="img-fluid p-img" />
                     <div className="overlay">
