@@ -51,8 +51,8 @@ const CardProducts = ({ id, name, price, product_image }) => {
         }
         toast.success('Added to the Wishlist!', {
             position: "bottom-right",
-            autoClose: 1800,
-            hideProgressBar: true,
+            autoClose: 5000,
+            hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
@@ -79,7 +79,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
                         <input type="checkbox" id={"heart" + id} />
                         <label htmlFor={"heart" + id} onClick={addWish}>&#9829;</label>
                     </div>
-                    <img src={`../img/${product_image}`} alt="product" className="img-fluid p-img" />
+                    <img src={`../img/${product_image}`} alt="tree" className="img-fluid p-img" />
                     <div className="overlay">
                         <div className="price">
                             <p>{name}</p>
