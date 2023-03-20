@@ -19,7 +19,6 @@ const ProductDetails = () => {
                 "x-access-token": localStorage.getItem("Ecomtoken")
             }
         }).then((response) => {
-            //  console.log()
             if (!response.data.login) {
                 navigate("/");
             }
@@ -110,13 +109,11 @@ const ProductDetails = () => {
                                     <button type="submit" className="btn btn-info" >Add To Cart</button>&nbsp;
                                     <button type="button" className="btn btn-info" onClick={() => navigate('/cart')}>Go To Cart</button>
                                 </div>
-                                {/* <input type="submit" className="btn btn-info" value="Add To Cart" /> */}
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-
         </>
     )
 }
