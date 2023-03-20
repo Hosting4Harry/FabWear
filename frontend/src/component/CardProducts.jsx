@@ -9,7 +9,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
     const navigate = useNavigate();
     const [detdata, setDetdata] = useState([]);
     const { wishlist, setWishlist } = useContext(DataContext);
-    const handelfav = (e) => {
+    const addWish = (e) => {
         const data = {
             id: detdata[0].id,
             name: detdata[0].name,
@@ -24,8 +24,8 @@ const CardProducts = ({ id, name, price, product_image }) => {
         }
         toast.success('Added to the Wishlist!', {
             position: "bottom-right",
-            autoClose: 1800,
-            hideProgressBar: true,
+            autoClose: 5000,
+            hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
@@ -50,7 +50,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
                 <div className="card p-2">
                     <div>
                         <input type="checkbox" id={"heart" + id} />
-                        <label htmlFor={"heart" + id} onClick={handelfav}>&#9829;</label>
+                        <label htmlFor={"heart" + id} onClick={addWish}>&#9829;</label>
                     </div>
                     <img src={`../img/${product_image}`} alt="tree" className="img-fluid p-img" />
                     <div className="overlay">
