@@ -1,7 +1,9 @@
 import React, { useContext } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { DataContext } from '../context/DataContext'
 const WishlistP = ({ id, name, price, product_image }) => {
     const { wishlist, setWishlist } = useContext(DataContext);
+    const navigate = useNavigate();
     const deleteProduct = (id) => {
         const exist = wishlist.find((x) => x.id === id)
         if (exist) {
@@ -10,6 +12,7 @@ const WishlistP = ({ id, name, price, product_image }) => {
             )
         }
     }
+
     return (
         <div className="col-lg-4 col-md-6 col-12 mb-3">
             <div className="card">
@@ -26,6 +29,7 @@ const WishlistP = ({ id, name, price, product_image }) => {
                         </div>
                     </div>
                     <div className="text-right">
+                        <button className="btn btn-info" onClick={() => navigate(`/details/${id}`)} > view product</button>
                         <button className="btn btn-info" onClick={() => deleteProduct(id)}>Delete</button>
                     </div>
                 </div>
