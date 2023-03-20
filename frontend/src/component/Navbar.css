@@ -77,10 +77,11 @@ body {
   }
 
   .code-nav ul {
+    opacity: 0.9;
     position: fixed;
     width: 30%;
     height: 100vh;
-    background: #04292e;
+    background: #000;
     top: 80px;
     left: -100%;
     z-index: 9999;
