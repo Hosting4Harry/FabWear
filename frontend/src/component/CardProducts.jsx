@@ -9,33 +9,6 @@ const CardProducts = ({ id, name, price, product_image }) => {
     const navigate = useNavigate();
     const [detdata, setDetdata] = useState([]);
     const { wishlist, setWishlist } = useContext(DataContext);
-    const hadelChange = (e) => {
-        const { value, checked } = e.target;
-        if (checked) {
-            toast.success('Added to the Wishlist!', {
-                position: "bottom-right",
-                autoClose: 1800,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            });
-        } else {
-            toast.warning('Removed from the Wishlist!', {
-                position: "bottom-right",
-                autoClose: 1800,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            });
-        }
-
-    }
     const addWish = (e) => {
         const data = {
             id: detdata[0].id,
@@ -79,7 +52,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
                         <input type="checkbox" id={"heart" + id} />
                         <label htmlFor={"heart" + id} onClick={addWish}>&#9829;</label>
                     </div>
-                    <img src={`../img/${product_image}`} alt="tree" className="img-fluid p-img" />
+                    <img src={`../img/${product_image}`} alt="product" className="img-fluid p-img" />
                     <div className="overlay">
                         <div className="price">
                             <p>{name}</p>
