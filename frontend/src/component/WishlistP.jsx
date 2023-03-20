@@ -29,8 +29,8 @@ const WishlistP = ({ id, name, price, product_image }) => {
                         </div>
                     </div>
                     <div className="text-right">
-                        <button className="btn btn-info" onClick={() => navigate(`/details/${id}`)} > view product</button>
-                        <button className="btn btn-info" onClick={() => deleteProduct(id)}>Delete</button>
+                        <button className="btn-lg btn-info" onClick={() => navigate(`/details/${id}`)} > view product</button>&nbsp;
+                        <button className="btn-lg btn-info" onClick={() => deleteProduct(id)}>Delete</button>
                     </div>
                 </div>
             </div>

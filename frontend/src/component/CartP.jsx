@@ -27,7 +27,7 @@ const CartP = ({ id, name, price, product_image, qty }) => {
                             </div>
                         </div>
                         <div className="text-right">
-                            <button className="btn btn-info" onClick={() => deleteProduct(id)}>Delete</button>
+                            <button className="btn-lg btn-info" onClick={() => deleteProduct(id)}>Delete</button>
                         </div>
                     </div>
                 </div>

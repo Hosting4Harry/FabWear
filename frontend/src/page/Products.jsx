@@ -48,9 +48,12 @@ const Products = () => {
             sortData(sort)
         }
     }
-    if (!getdata.length) {
-        return <h1>Loading..</h1>
+    if (getdata.length === 0) {
+        return <div className='products ms-5 ps-5'> <h1>No items to show😔</h1></div>
     }
+    // if (!getdata.length) {
+    //     return <h1>Loading..</h1>
+    // }
 
     return (
         <>
