@@ -2,6 +2,7 @@ const express = require("express");
 // const mysql = require("mysql");
 const db = require('./models');
 const cors = require("cors");
+// const morgan = require('morgan');
 const bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 const Insta = require("instamojo-nodejs");
@@ -29,6 +30,7 @@ Insta.isSandboxMode(true);
 
 const app = express()
 app.use(cors())
+// app.use(morgan('dev'));
 app.use(express.json())
 // var db = mysql.createConnection({
 //     host: 'localhost',
