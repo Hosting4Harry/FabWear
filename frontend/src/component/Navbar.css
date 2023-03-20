@@ -22,14 +22,12 @@ body {
   line-height: 80px;
   padding: 0 100px;
   font-weight: bold;
-  /* margin-top: -13px; */
 
 }
 
 .code-nav nav ul {
   float: right;
   margin-right: 20px;
-  /* margin-top: -13px; */
 }
 
 .code-nav nav ul li {
@@ -68,14 +66,41 @@ body {
 }
 
 @media (max-width: 1342px) {
-
-  /* .code-nav nav ul {
-    background-color: #011727;
-  } */
   .code-nav nav {
     background: #011727;
-    height: 150px;
+    height: 80px;
     width: 100%;
+  }
+
+  .code-nav .checkbtn {
+    display: block;
+  }
+
+  .code-nav ul {
+    position: fixed;
+    width: 30%;
+    height: 100vh;
+    background: #04292e;
+    top: 80px;
+    left: -100%;
+    z-index: 9999;
+    text-align: center;
+    transition: all .5s;
+  }
+
+  .code-nav nav ul li {
+    display: block;
+    margin: 25px 25px;
+    line-height: 30px;
+  }
+
+  .code-nav nav ul li a {
+    font-size: 15px;
+
+  }
+
+  .code-nav #check:checked~ul {
+    left: 0;
   }
 
 }
