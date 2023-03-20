@@ -35,18 +35,18 @@ const Cart = () => {
             <div className="cart">
                 {
                     !cart.length ? (
-                        <>
-                            <div className="container">
-                                <h2>There is No Items In the Cart</h2>
-                                <img src="../img/emptybag.webp" alt="emptybag" />
+                        <div className="container">
+                            <div>
                                 <h2>Hey, it feels so light!!!</h2>
+                                <h2>There Is No Items In Your Cart</h2>
+                                <img src="../img/emptybag.webp" alt="emptybag" />
                                 <p>There is nothing in your bag,Let's add some items</p>
                             </div>
-                            <div className='container'>
+                            <div >
                                 <button className="btn btn-info" onClick={() => navigate('/products')}>Continue Shopping</button>
                             </div>
 
-                        </>
+                        </div>
                     ) : (
                         <>
                             <div className="container">
