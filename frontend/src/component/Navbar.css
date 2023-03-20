@@ -67,6 +67,19 @@ body {
   display: none;
 }
 
+@media (max-width: 1342px) {
+
+  /* .code-nav nav ul {
+    background-color: #011727;
+  } */
+  .code-nav nav {
+    background: #011727;
+    height: 150px;
+    width: 100%;
+  }
+
+}
+
 @media (max-width: 952px) {
   .code-nav label.logo {
     font-size: 30px;
@@ -78,7 +91,13 @@ body {
   }
 }
 
-@media (max-width: 858px) {
+@media (max-width: 860px) {
+  .code-nav nav {
+    background: #011727;
+    height: 80px;
+    width: 100%;
+  }
+
   .code-nav .checkbtn {
     display: block;
     /* margin-top: -13px; */
@@ -104,6 +123,7 @@ body {
 
   .code-nav nav ul li a {
     font-size: 20px;
+
   }
 
   .code-nav #check:checked~ul {
