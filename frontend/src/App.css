@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .home {
@@ -10,6 +11,7 @@
   background-color: #04292e;
   color: #fff;
   padding-top: 150px;
+  /* overflow-x: hidden; */
 }
 
 .home h1 {

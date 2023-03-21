@@ -11,6 +11,7 @@ body {
 }
 
 .code-nav nav {
+  overflow-y: hidden;
   background: #011727;
   height: 80px;
   width: 100%;
@@ -65,7 +66,7 @@ body {
   display: none;
 }
 
-@media (max-width: 1342px) {
+@media (max-width: 1360px) {
   .code-nav nav {
     background: #011727;
     height: 80px;
