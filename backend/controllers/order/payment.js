@@ -2,7 +2,6 @@ const express = require('express');
 const router = express();
 const db = require('../../models')
 const Insta = require("instamojo-nodejs");
-const { QueryTypes } = require("sequelize");
 const API_KEY = process.env.API_KEY || "test_c06b46e28e2a2b035498f4721c5";
 const AUTH_KEY = process.env.AUTH_KEY || "test_11139217a60baaae7ff95692cea";
 Insta.setKeys(API_KEY, AUTH_KEY);
