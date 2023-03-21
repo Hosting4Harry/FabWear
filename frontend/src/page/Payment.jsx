@@ -54,12 +54,12 @@ const Payment = () => {
     }, []);
     const getaddress = async () => {
         const dat = localStorage.getItem('EcomUserId');
-        const res = await axios.get(`http://localhost:8000/getaddress/${dat}`);
+        const res = await axios.get(`http://localhost:8000/address/getaddress/${dat}`);
         setYourAddress(res.data);
     }
     const sendData = async (adddata) => {
         // eslint-disable-next-line no-unused-vars
-        const res = await axios.post(`http://localhost:8000/addaddress`, adddata)
+        const res = await axios.post(`http://localhost:8000/address/addaddress`, adddata)
         setShowaddress(false);
     }
 

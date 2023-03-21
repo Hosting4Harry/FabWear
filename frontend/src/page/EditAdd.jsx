@@ -35,7 +35,7 @@ const EditAdd = () => {
     }, [])
 
     const getaddress = async () => {
-        const res = await axios.get(`http://localhost:8000/getaddress/${id}`)
+        const res = await axios.get(`http://localhost:8000/address/getaddress/${id}`)
         setName(res.data[0].name)
         setEmail(res.data[0].email)
         setPhone(res.data[0].phone)
@@ -56,7 +56,7 @@ const EditAdd = () => {
             userId: id
         }
         // eslint-disable-next-line no-unused-vars
-        const res = await axios.post(`http://localhost:8000/editadd`, data)
+        const res = await axios.post(`http://localhost:8000/address/editadd`, data)
         navigate("/payment")
     }
 
