@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 import CardProducts from '../component/CardProducts'
 import { useNavigate } from 'react-router-dom'
+import Footer from '../component/Footer'
 const Products = () => {
     const [getdata, setGetdata] = useState([])
     const timeout = useRef(null)
@@ -123,6 +124,7 @@ const Products = () => {
                     <img src="../img/asics.png" alt="" />
                 </div>
             </div>
+            <Footer />
         </>
     )
 }
