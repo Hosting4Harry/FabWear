@@ -9,7 +9,6 @@ const Insta = require("instamojo-nodejs");
 // const url = require('url');
 // const open = require('openurl');
 const { QueryTypes } = require("sequelize");
-const saltRounds = 10;
 require('dotenv').config();
 const PORT = process.env.PORT || 8000;
 // const API_KEY = "test_******";
@@ -18,6 +17,10 @@ const API_KEY = process.env.API_KEY;
 const AUTH_KEY = process.env.AUTH_KEY;
 Insta.setKeys(API_KEY, AUTH_KEY);
 Insta.isSandboxMode(true);
+const registerRouter = require('./controllers/account/register');
+const loginRouter = require('./controllers/account/login');
+const productRouter = require('./controllers/product/getData');
+const addressRouter = require('./controllers/address/address');
 
 (async () => {
     try {
@@ -43,102 +46,9 @@ app.get("/", (req, res) => {
     res.send("hi")
 })
 // get data 
-app.get("/getdataall", async (req, res) => {
-    await db.products.findAll()
-        .then(result => {
-            res.send(result)
-        }).catch(error => {
-            console.log(error)
-        })
-    //     let sql = `select * from products`;
-    //     db.query(sql, (err, result) => {
-    //         if (err) {
-    //             console.log(err)
-    //         }
-    //         else {
-    //             res.send(result)
-    //         }
-    //     })
-})
-app.get("/getdata", async (req, res) => {
-    let sql = `select * from products ORDER BY RAND() limit 6`;
-    await db.sequelize.query(sql, { type: QueryTypes.SELECT })
-        .then(result => {
-            res.send(result)
-        }).catch(error => [
-            console.log(error)
-        ])
-    // let sql = `select * from products ORDER BY RAND() limit 6`;
-    // db.query(sql, (err, result) => {
-    // })
-})
-app.get("/getdata/:id", async (req, res) => {
-    const id = req.params.id;
-    await db.products.findAll({
-        where: {
-            id: id
-        }
-    }).then(result => {
-        res.send(result)
-    }).catch(error => {
-        console.log(error)
-    })
-    // let sqll = `select * from products where id=${id}`;
-    // db.query(sqll, (err, result) => {
-    // })
-})
-app.get("/sort/:price", async (req, res) => {
-    const price = req.params.price;
-    if (price === '200') {
-        let sqll = `Select * FROM products WHERE price < 200`;
-        await db.sequelize.query(sqll, { type: QueryTypes.SELECT })
-            .then(result => {
-                res.send(result);
-            }).catch(error => {
-                console.log(error)
-            })
-        // let sqll = `select * from products WHERE price < 200`;
-        // db.query(sqll, (err, result) => {
-        //     if (err) {
-        //         console.log(err)
-        //     }
-        //     else {
-        //         res.send(result)
-        //     }
-        // })
+app.use('/product', productRouter);
 
-    }
-    else if (price === '200_500') {
-        let sqll = `SELECT * FROM products WHERE price >=200 && price <= 500`;
-        db.sequelize.query(sqll, { type: QueryTypes.SELECT })
-            .then(result => {
-                res.send(result)
-            }).catch(error => {
-                console.log(error);
-            })
-    }
-    else if (price === '500_1000') {
-        let sqll = `SELECT * FROM products WHERE price > 500 && price <= 1000`;
-        db.sequelize.query(sqll, { type: QueryTypes.SELECT })
-            .then(result => {
-                res.send(result)
-            }).catch(error => {
-                console.log(error);
-            })
-    }
-})
-app.get("/getaddress/:userid", async (req, res) => {
-    const userid = req.params?.userid;
-    await db.user_data.findAll({
-        where: {
-            user_id: userid
-        }
-    }).then(result => {
-        res.send(result)
-    }).catch(error => {
-        console.log(error);
-    })
-})
+
 // let sql = `select * from user_data where user_id=${userid}`;
 // db.query(sql, (err, result) => {
 // })
@@ -168,32 +78,8 @@ app.get("/myorder/:id", (req, res) => {
 })
 
 // post details 
-app.post("/addaddress", async (req, res) => {
-    const { name, email, phone, address } = req.body;
-    const data = {
-        name,
-        email,
-        phone,
-        address,
-        user_id: +req.body.userId
-    }
-    await db.user_data.create(data)
-        .then(response => {
-            res.send({ msg: "Address inserted Successfully" })
-        }).catch(error => {
-            console.log(error);
-        })
-    // let sql = "INSERT INTO `user_data` SET ?";
-    // db.query(sql, data, (err, result) => {
-    //     if (err) {
-    //         console.log(err)
-    //     }
-    //     else {
-    //         res.send({ msg: "Address inserted Successfully" })
-    //     }
-    // })
-    // console.log(data)
-})
+app.use('/address', addressRouter)
+
 app.post("/buynow", (req, res) => {
     const { cartdata, paymentemail, name } = req.body;
     var insta = new Insta.PaymentData();
@@ -267,62 +153,10 @@ app.post("/contact", (req, res) => {
 })
 
 // edit address 
-app.post("/editadd", async (req, res) => {
-    const { name, email, phone, address } = req.body;
-    const user_id = +req.body.userId
-    await db.user_data.update({
-        name: name, email: email, phone: phone, address: address
-    }, {
-        where: {
-            user_id: user_id
-        }
-    }).then(result => {
-        res.send({ msg: "edit Successfully" })
-    }).catch(error => {
-        console.log(error)
-    })
-})
 
-app.post("/register", (req, res) => {
-    const { email, username, password } = req.body;
-    bcrypt.hash(password, saltRounds, async (errr, hash) => {
-        const data = {
-            username,
-            email,
-            password: hash,
-        };
-        if (errr) {
-            console.log(errr);
-        }
-        else {
-            let result;
-            await db.users.findAll({
-                where: {
-                    email: email
-                }
-            }).then(response => {
-                result = response;
-            }).catch(error => {
-                result = error
-            })
-            if (result?.fatal) {
-                console.trace('fatal error: ' + er.message);
-            }
-            else if (result?.length > 0) {
-                res.send({ msg: "User Email Already Present" })
-            }
-            else {
-                await db.users.create(data)
-                    .then(response => {
-                        res.send({ userData: response });
-                    }).catch(error => {
-                        console.log(error);
-                    })
-            }
-        }
-    })
-})
 
+app.use('/register', registerRouter);
+app.use('/login', loginRouter);
 const verifyJwt = (req, res, next) => {
     const token = req.headers["x-access-token"]
     if (!token) {
@@ -345,46 +179,7 @@ app.get("/isAuth", verifyJwt, (req, res) => {
     res.send({ login: true, msg: "done" });
 })
 
-app.post("/login", async (req, res) => {
-    const { email, password } = req.body;
-    await db.users.findOne({
-        where: {
-            email: email
-        }
-    }).then(result => {
-        if (result) {
-            bcrypt.compare(password, result.password, (errr, response) => {
-                if (response) {
-                    const id = result.id;
-                    const token = jwt.sign({ id }, "ecomreact", {
-                        expiresIn: 60 * 60 * 24,
-                    })
-                    res.send({ login: true, token: token, user: result.username, userID: result.id, userEmail: result.email })
-                    // res.send({login:true,user:result[0].name})
-                }
-                else {
-                    res.send({ login: false, msg: "Wrong Password" });
-                }
-            })
-        } else {
-            res.send({ login: false, msg: "User Email Not Exits" });
-        }
-    }).catch(error => {
-        console.log(error);
-    })
-    // let sql = `select * from users where email='${email}'`;
-    // // console.log(sql);
-    // db.query(sql, (err, result) => {
-    // if (!userData) {
-    //     // res.send({err:err})
-    //     console.log("err");
-    // }
-    // else {
-    //     res.send({ login: false, msg: "User Email Not Exits" });
-    //     // console.log("noo email ")
-    // }
-    // })
-})
+
 
 app.listen(PORT, () => {
     console.log(`app running on port ${PORT}`)
