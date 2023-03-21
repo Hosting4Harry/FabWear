@@ -4,7 +4,6 @@ const bcrypt = require('bcrypt');
 const db = require('../../models');
 var jwt = require('jsonwebtoken');
 
-
 router.post("/", async (req, res) => {
     const { email, password } = req.body;
     await db.users.findOne({
@@ -33,6 +32,5 @@ router.post("/", async (req, res) => {
         console.log(error);
     })
 });
-
 
 module.exports = router;
