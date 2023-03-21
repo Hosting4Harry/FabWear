@@ -11,7 +11,7 @@ const Order = () => {
                 <div className="container" style={{ textAlign: 'center' }}>
                     <div>
 
-                        <h2>You haven't ordered anything</h2>
+                        <h2>You Not Yet Placed Any Order</h2>
                         <img src="../img/empty-cart.png" alt="emptybag" />
                         <h5>Let's grab your favourite product</h5>
                     </div>
