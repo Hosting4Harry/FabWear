@@ -28,7 +28,7 @@ const Products = () => {
     }, [])
 
     const getData = async () => {
-        const res = await axios.get('http://localhost:8000/getdataall');
+        const res = await axios.get('http://localhost:8000/product/getdataall');
         setGetdata(res.data)
     }
     useEffect(() => {
@@ -36,7 +36,7 @@ const Products = () => {
     }, [])
 
     const sortData = async (sort) => {
-        const res = await axios.get(`http://localhost:8000/sort/${sort}`)
+        const res = await axios.get(`http://localhost:8000/product/sort/${sort}`)
         setGetdata(res.data)
     }
     const sortHandel = (e) => {
@@ -49,7 +49,25 @@ const Products = () => {
         }
     }
     if (getdata.length === 0) {
-        return <div className='products ms-5 ps-5'> <h1>No items to show😔</h1></div>
+        return <div className='products '>
+            <div className="container">
+                <h2 className="text-center font-weight-bold mb-5">Best Products</h2>
+                <div className="inp ">
+                    <p></p>
+                    <div className="form-group">
+                        <select className="form-control" id="" onChange={sortHandel}>
+                            {/* <option value="" selected disabled hidden>Choose By Price</option> */}
+                            <option value="all">All</option>
+                            <option value="200">less then 200</option>
+                            <option value="200_500">200-500</option>
+                            <option value="500_1000">500-1000</option>
+                        </select>
+                    </div>
+                </div>
+                <h1>No items to show😔</h1>
+            </div>
+        </div>
+
     }
     // if (!getdata.length) {
     //     return <h1>Loading..</h1>
