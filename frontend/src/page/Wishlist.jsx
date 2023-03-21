@@ -34,12 +34,13 @@ const Wishlist = () => {
         {!wishlist.length ? (
             <div className="container">
                 <div className="container">
+                    <h2>There is No Items In the wishlist</h2>
                     <img src="../img/W1.png" alt="emptybag" />
                 </div>
-                <div className="container">
-                    <h2>There is No Items In the wishlist</h2>
+                <div className="container" style={{ paddingLeft: "20vh" }}>
                     <button className="btn-lg btn-info" onClick={() => navigate('/products')}>Continue Shopping</button>
                 </div>
+
             </div>
         ) : (<div className="container">
             <h2>Your have {wishlist.length} Items in your wishlist</h2>
