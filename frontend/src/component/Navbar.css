@@ -97,6 +97,7 @@ body {
     display: block;
     margin: 25px 25px;
     line-height: 30px;
+    overflow-y: hidden;
   }
 
   .code-nav nav ul li a {
@@ -118,6 +119,8 @@ body {
 
   .code-nav nav ul li a {
     font-size: 16px;
+    overflow-y: hidden;
+
   }
 }
 
