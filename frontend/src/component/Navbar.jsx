@@ -6,23 +6,6 @@ import { DataContext } from '../context/DataContext'
 const Navbar = () => {
   const { cart, wishlist } = useContext(DataContext)
   const [inputValue, setInputValue] = useState('');
-  const search_animal = () => {
-    let input = document.getElementById('searchbar').value
-    input = input.toLowerCase();
-    let x = document.getElementsByClassName('animals');
-    console.log("first")
-    for (let i = 0; i < x.length; i++) {
-      if (inputValue === "") {
-        x[i].style.display = "none";
-      }
-      else if (!x[i].innerHTML.toLowerCase().includes(input)) {
-        x[i].style.display = "none";
-      }
-      else {
-        x[i].style.display = "list-item";
-      }
-    }
-  }
 
   const submit = (e) => {
     e.preventDefault();
@@ -45,7 +28,7 @@ const Navbar = () => {
             <li>
               <form onSubmit={submit}>
                 <div className='d-flex form-group '>
-                  <input type='text' size={30} onKeyUp={search_animal} id='searchbar' placeholder="Search for products, brands and more" className='form-control form-group-sm' defaultValue={inputValue} onChange={(e) => { setInputValue(e.target.value) }} />
+                  <input type='text' size={30} id='searchbar' placeholder="Search for products, brands and more" className='form-control form-group-sm' defaultValue={inputValue} onChange={(e) => { setInputValue(e.target.value) }} />
                   <button type='submit' className='btn btn-primary m-0' style={{ padding: "5px 15px", borderRadius: "3px" }}> <i className="fa fa-search"></i></button>
                 </div>
               </form>
