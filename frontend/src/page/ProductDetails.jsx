@@ -65,7 +65,7 @@ const ProductDetails = () => {
     }
 
     const getData = async () => {
-        const res = await axios.get(`http://localhost:8000/getdata/${id}`);
+        const res = await axios.get(`http://localhost:8000/product/getdata/${id}`);
         setDetdata(res.data)
     }
     useEffect(() => {
