@@ -35,6 +35,7 @@ const Navbar = () => {
         <li><NavLink to="/wishlist" className="cart-box">Wishlist <span>{wishlist.length}</span></NavLink></li>
         <li><NavLink to="/cart" className="cart-box">Cart <span>{cart.length}</span> </NavLink></li>
         <li><NavLink to="/contact">Contact</NavLink></li>
+        <li><NavLink to="/order">Orders</NavLink></li>
         <li><NavLink to="/myaccount" >User </NavLink></li>
       </ul>
     </nav>
