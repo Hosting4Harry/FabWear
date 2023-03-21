@@ -33,11 +33,11 @@ const Wishlist = () => {
     return (<div className="cart">
         {!wishlist.length ? (
             <div className="container">
-                <div className="container">
+                <div className="container" style={{ textAlign: 'center' }}>
                     <h2>There is No Items In the wishlist</h2>
                     <img src="../img/W1.png" alt="emptybag" />
                 </div>
-                <div className="container" style={{ paddingLeft: "20vh" }}>
+                <div className="container" style={{ textAlign: 'center' }}>
                     <button className="btn-lg btn-info" onClick={() => navigate('/products')}>Continue Shopping</button>
                 </div>
 

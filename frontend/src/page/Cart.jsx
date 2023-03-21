@@ -35,14 +35,14 @@ const Cart = () => {
             <div className="cart">
                 {
                     !cart.length ? (
-                        <div className="container">
+                        <div className="container" style={{ textAlign: 'center' }}>
                             <div>
                                 <h2>Hey, it feels so light!!!</h2>
                                 <h2>There Is No Items In Your Cart</h2>
                                 <img src="../img/emptybag.webp" alt="emptybag" />
                                 <p>There is nothing in your bag,Let's add some items</p>
                             </div>
-                            <div >
+                            <div style={{ textAlign: 'center' }}>
                                 <button className="btn btn-info" onClick={() => navigate('/products')}>Continue Shopping</button>
                             </div>
 
