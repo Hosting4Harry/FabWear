@@ -48,7 +48,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
         <>
             <div className="col-lg-4 col-md-6 col-12  mb-3 products-p">
                 <div className="card p-2">
-                    <div>
+                    <div className='heart'>
                         <input type="checkbox" id={"heart" + id} />
                         <label htmlFor={"heart" + id} onClick={addWish}>&#9829;</label>
                     </div>

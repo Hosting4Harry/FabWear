@@ -1,11 +1,11 @@
-input {
+.heart input {
     display: none;
 }
 
-input:checked~label {
+.heart input:checked~label {
     color: red;
 }
 
-label {
+.heart label {
     font-size: 2em;
 }

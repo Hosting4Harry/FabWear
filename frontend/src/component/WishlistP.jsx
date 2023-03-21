@@ -16,7 +16,7 @@ const WishlistP = ({ id, name, price, product_image }) => {
     return (
         <div className="col-lg-4 col-md-6 col-12 mb-3">
             <div className="card">
-                <div>
+                <div className='heart'>
                     <input type="checkbox" id={"heart" + id} />
                     <label htmlFor={"heart" + id} style={{ color: "red" }}>&nbsp; &#9829;</label>
                 </div>
