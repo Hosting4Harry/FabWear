@@ -42,9 +42,6 @@ app.use('/register', registerRouter);
 app.use('/login', loginRouter);
 app.use('/isAuth', authRouter);
 
-
-
-
 app.listen(PORT, () => {
     console.log(`app running on port ${PORT}`)
 })
