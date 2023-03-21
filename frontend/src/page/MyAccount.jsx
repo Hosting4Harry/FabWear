@@ -43,11 +43,11 @@ const MyAccount = () => {
 
     const getOrderDetails = async (id) => {
         if (!id) return;
-        const res = await axios.get(`http://localhost:8000/account/${id}`);
+        const res = await axios.get(`http://localhost:8000/order/account/${id}`);
         setOrder(res.data);
     }
     useEffect(() => {
-        const dat = localStorage.getItem('EcomUserId');
+        const dat = +localStorage.getItem('EcomUserId');
         getOrderDetails(dat);
     }, [])
     if (!order.length) {

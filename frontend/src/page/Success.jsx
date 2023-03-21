@@ -16,7 +16,7 @@ const Success = () => {
                 pid: pid,
                 pyid: pyid
             }
-            const res = await axios.post(`http://localhost:8000/paydetails`, data)
+            const res = await axios.post(`http://localhost:8000/payment/paydetails`, data)
             console.log(res)
 
         }
@@ -66,4 +66,4 @@ const Success = () => {
     )
 }
 
-export default Success
+export default Success;

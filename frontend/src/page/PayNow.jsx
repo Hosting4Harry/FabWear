@@ -37,7 +37,7 @@
 //     //     cart:cart
 //     // }
 //     // window.location.href=urll
-//     // const res= await axios.post(`http://localhost:8000/paydetails`,data)
+//     // const res= await axios.post(`http://localhost:8000/payment/paydetails`,data)
 //      console.log("hi")
 
       
@@ -56,4 +56,4 @@
 //     )
 // }
 
-// export default PayNow
+// export default PayNow;

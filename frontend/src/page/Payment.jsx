@@ -88,7 +88,7 @@ const Payment = () => {
     // }, [yourAddress]);
 
     const OnBuyNow = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         //  console.log(inputAddres + payment)
         const dat = localStorage.getItem('EcomUserId');
         const datemail = localStorage.getItem('EcomEmail');
@@ -104,7 +104,7 @@ const Payment = () => {
             cart: cart
         }
         // console.log(data)
-        const res = await axios.post(`http://localhost:8000/buynow`, data);
+        const res = await axios.post(`http://localhost:8000/payment/buynow`, data);
         //   console.log(res.data.payment_request.longurl)
         if (res.data.success) {
             setCart([])
@@ -151,23 +151,20 @@ const Payment = () => {
                                     {
                                         cart.map((val, ind) => {
                                             tot = tot + val.price * val.qty
-                                            return (
-                                                <>
-                                                    <tr key={ind}>
-                                                        <td>{ind + 1}</td>
-                                                        <td className="tab-box">
+                                            return (<tr key={ind}>
+                                                <td>{ind + 1}</td>
+                                                <td className="tab-box">
 
-                                                            <NavLink to={`/details/${val.id}`}>
+                                                    <NavLink to={`/details/${val.id}`}>
 
-                                                                <img src={`../img/${val.image}`} alt={`../img/${val.image}`} className="img-fluid t-img" />
-                                                                <p >{val.name}</p>
-                                                            </NavLink>
-                                                        </td>
-                                                        <td>{val.price}.00</td>
-                                                        <td>{val.qty}</td>
-                                                        <td>{val.price * val.qty}.00</td>
-                                                    </tr>
-                                                </>
+                                                        <img src={`../img/${val.image}`} alt={`../img/${val.image}`} className="img-fluid t-img" />
+                                                        <p >{val.name}</p>
+                                                    </NavLink>
+                                                </td>
+                                                <td>{val.price}.00</td>
+                                                <td>{val.qty}</td>
+                                                <td>{val.price * val.qty}.00</td>
+                                            </tr>
                                             )
                                         })
                                     }
