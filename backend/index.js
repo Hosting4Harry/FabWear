@@ -21,6 +21,7 @@ const registerRouter = require('./controllers/account/register');
 const loginRouter = require('./controllers/account/login');
 const productRouter = require('./controllers/product/getData');
 const addressRouter = require('./controllers/address/address');
+const authRouter = require('./controllers/account/Auth');
 
 (async () => {
     try {
@@ -47,11 +48,9 @@ app.get("/", (req, res) => {
 })
 // get data 
 app.use('/product', productRouter);
+// post details 
+app.use('/address', addressRouter);
 
-
-// let sql = `select * from user_data where user_id=${userid}`;
-// db.query(sql, (err, result) => {
-// })
 app.get("/account/:id", async (req, res) => {
     const id = +req.params.id;
     await db.orders.findAll({
@@ -77,8 +76,6 @@ app.get("/myorder/:id", (req, res) => {
         })
 })
 
-// post details 
-app.use('/address', addressRouter)
 
 app.post("/buynow", (req, res) => {
     const { cartdata, paymentemail, name } = req.body;
@@ -157,27 +154,8 @@ app.post("/contact", (req, res) => {
 
 app.use('/register', registerRouter);
 app.use('/login', loginRouter);
-const verifyJwt = (req, res, next) => {
-    const token = req.headers["x-access-token"]
-    if (!token) {
-        res.send({ login: false, msg: "need token" });
-    }
-    else {
-        jwt.verify(token, 'ecomreact', (err, decoded) => {
-            if (err) {
-                res.send({ login: false, msg: "need for token" });
-            }
-            else {
-                req.userID = decoded.id;
-                next();
-            }
-        })
-    }
-}
+app.use('/isAuth', authRouter);
 
-app.get("/isAuth", verifyJwt, (req, res) => {
-    res.send({ login: true, msg: "done" });
-})
 
 
 
