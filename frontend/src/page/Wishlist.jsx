@@ -32,9 +32,9 @@ const Wishlist = () => {
 
     return (
         <section style={{ backgroundColor: "#eee" }}>
-            <div class="container py-5">
-                <div class="row justify-content-center mb-3">
-                    <div class="col-md-12 col-xl-10">
+            <div className="container py-5">
+                <div className="row justify-content-center mb-3">
+                    <div className="col-md-12 col-xl-10">
                         <div className="cart">
                             {!wishlist.length ? (
                                 <div className="container">
