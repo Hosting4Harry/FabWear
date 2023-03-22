@@ -31,11 +31,27 @@ const Navbar = () => {
             </div>
           </form>
         </li>
-        <li><NavLink to="/Products">Products</NavLink></li>
-        <li><NavLink to="/wishlist" className="cart-box">Wishlist <span>{wishlist.length}</span></NavLink></li>
-        <li><NavLink to="/cart" className="cart-box">Cart <span>{cart.length}</span> </NavLink></li>
-        <li><NavLink to="/contact">Contact</NavLink></li>
-        <li><NavLink to="/myaccount" >User </NavLink></li>
+        <li><NavLink to="/Products" className=" position-relative me-3 ms-2">Products</NavLink></li>
+        <li>
+          <NavLink to="/wishlist" className="position-relative me-3">Wishlist
+            {wishlist.length > 0 &&
+              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{ overflowY: "hidden" }}>
+                {wishlist.length}
+              </span>
+            }
+          </NavLink>
+        </li>
+        <li className=''>
+          <NavLink to="/cart" className=" position-relative badgeCss me-3">Cart
+            {cart.length > 0 &&
+              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{ overflowY: "hidden" }}>
+                {cart.length}
+              </span>
+            }
+          </NavLink>
+        </li>
+        <li><NavLink to="/contact" className=" position-relative me-3">Contact</NavLink></li>
+        <li><NavLink to="/myaccount" className=" position-relative me-3" >User </NavLink></li>
       </ul>
     </nav>
   </div>

@@ -10,6 +10,10 @@ body {
   font-family: montserrat;
 }
 
+.badge {
+  font-size: 15px;
+}
+
 .searchForm {
   padding-bottom: 8px;
 }
@@ -37,7 +41,7 @@ body {
 .code-nav nav ul li {
   display: inline-block;
   line-height: 80px;
-  margin: 0 5px;
+  /* margin: 0 5px; */
 }
 
 .code-nav nav ul li a {
@@ -83,7 +87,7 @@ body {
   .code-nav ul {
     opacity: 0.9;
     position: fixed;
-    width: 35%;
+    width: 30%;
     height: 100vh;
     background: #000;
     top: 80px;
@@ -91,6 +95,11 @@ body {
     z-index: 9999;
     text-align: center;
     transition: all .5s;
+  }
+
+  .code-nav nav ul li {
+    padding-top: 20px;
+
   }
 
   .code-nav nav ul li {
