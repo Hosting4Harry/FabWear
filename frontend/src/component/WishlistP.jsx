@@ -13,6 +13,7 @@ const WishlistP = ({ id, name, price, product_image }) => {
         }
     }
 
+
     return (
         <div className="card shadow-0 border rounded-3 mb-3">
             <div className="card-body">
