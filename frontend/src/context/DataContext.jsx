@@ -20,7 +20,6 @@ export const ConText = (props) => {
 
     useEffect(() => {
         checkAuth();
-        setWishlist(JSON.parse(localStorage.getItem('WishList')));
     }, [])
     setInterval(checkAuth, 1000);
 

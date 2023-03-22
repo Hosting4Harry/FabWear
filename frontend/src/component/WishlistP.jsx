@@ -2,10 +2,11 @@ import axios from 'axios';
 import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { DataContext } from '../context/DataContext'
-const WishlistP = ({ id, name, price, product_image }) => {
+const WishlistP = ({ id, name, price, product_image, productId }) => {
     const { wishlist, setWishlist } = useContext(DataContext);
     const navigate = useNavigate();
     const deleteProduct = async (id) => {
+        debugger
         const exist = wishlist.find((x) => x.id === id)
         if (exist) {
             setWishlist(
@@ -15,7 +16,7 @@ const WishlistP = ({ id, name, price, product_image }) => {
         await axios.delete('http://localhost:8000/wishlist/' + id);
 
     }
-
+    console.log(id)
 
     return (
         <div className="card shadow-0 border rounded-3 mb-3">
@@ -78,7 +79,7 @@ const WishlistP = ({ id, name, price, product_image }) => {
                             {/* <button className="btn btn-outline-primary btn-sm mt-2" type="button">
                         Add to wishlist
                     </button> */}
-                            <button className="btn btn-outline-primary btn-sm mt-2" onClick={() => deleteProduct(id)}>Delete</button>
+                            <button className="btn btn-outline-primary btn-sm mt-2" onClick={() => deleteProduct(productId)}>Delete</button>
                         </div>
                     </div>
                 </div>
