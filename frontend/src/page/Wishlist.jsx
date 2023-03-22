@@ -66,6 +66,7 @@ const Wishlist = () => {
                         name={val.name}
                         price={val.price}
                         product_image={val.product_image}
+                        productId={val.productId}
                     />)
                 })}
             </div>

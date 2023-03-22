@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react'
 import './Navbar.css'
 import { NavLink } from 'react-router-dom'
 import { DataContext } from '../context/DataContext'
-import axios from 'axios'
 
 const Navbar = () => {
   const { cart, wishlist } = useContext(DataContext);
@@ -11,22 +10,7 @@ const Navbar = () => {
     e.preventDefault();
     setInputValue('');
   };
-  const onSearch = (searchTerm) => {
-    console.log("@@@", searchTerm);
-    // setInputValue(searchTerm);
-  }
-
-
-  useEffect(() => {
-    const id = localStorage.getItem("EcomUserId");
-    axios.get('http://localhost:8000/wishlist/' + id)
-      .then((response) => {
-        setWishlist(response.data);
-      }).catch((err) => {
-        console.log(err);
-      })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  console.log(wishlist);
   // useEffect(() => {
   // }, [inputValue])
   return (<div className="code-nav flex">
@@ -43,7 +27,7 @@ const Navbar = () => {
           <form onSubmit={submit} className="searchForm">
             <div className='d-flex form-group '>
               <input type='text' size={30} id='searchbar' placeholder="Search for products, brands and more" className='form-control form-group-sm' defaultValue={inputValue} onChange={(e) => { setInputValue(e.target.value) }} />
-              <button type='submit' onClick={() => onSearch(inputValue)} className='btn btn-primary m-0' style={{ padding: "5px 15px", borderRadius: "5px" }}> <i className="fa fa-search"></i></button>
+              <button type='submit' className='btn btn-primary m-0' style={{ padding: "5px 15px", borderRadius: "5px" }}> <i className="fa fa-search"></i></button>
             </div>
             <div className='dropdown'>
               {/* read the data using map */}

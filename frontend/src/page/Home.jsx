@@ -6,9 +6,10 @@ import axios from 'axios'
 import Slides from './Slides'
 import { DataContext } from '../context/DataContext'
 
+
 const Home = () => {
     const timeout = useRef(null);
-    const { setWishlist } = useContext(DataContext);
+    const { wishlist, setWishlist } = useContext(DataContext);
     const navigate = useNavigate()
     const checkAuth = () => {
         axios.get("http://localhost:8000/isAuth", {
@@ -29,7 +30,9 @@ const Home = () => {
         debugger;
         setWishlist(res.data);
     }
+    console.log(wishlist)
     useEffect(() => {
+        debugger
         getData();
         timeout.current = setTimeout(checkAuth, 1000)
         return function () {

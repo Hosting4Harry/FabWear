@@ -39,7 +39,7 @@ router.post('/', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     await db.wishlists.destroy({
         where: {
-            id: +req.params.id
+            productId: +req.params.id
         }
     })
 })
