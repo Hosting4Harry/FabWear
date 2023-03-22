@@ -1,10 +1,11 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Navbar.css'
 import { NavLink } from 'react-router-dom'
 import { DataContext } from '../context/DataContext'
+import axios from 'axios'
 
 const Navbar = () => {
-  const { cart, wishlist } = useContext(DataContext)
+  const { cart, wishlist, setWishlist } = useContext(DataContext);
   const [inputValue, setInputValue] = useState('');
   console.log(wishlist)
   const submit = (e) => {
@@ -13,6 +14,17 @@ const Navbar = () => {
   };
   // useEffect(() => {
   // }, [inputValue])
+
+  useEffect(() => {
+    const id = localStorage.getItem("EcomUserId");
+    axios.get('http://localhost:8000/wishlist/' + id)
+      .then((response) => {
+        setWishlist(response.data);
+      }).catch((err) => {
+        console.log(err);
+      })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (<div className="code-nav flex">
     <nav className='right-nav flex'>
       <input type="checkbox" id="check" />

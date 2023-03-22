@@ -15,6 +15,12 @@ router.get('/:id', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
+    const result = await db.wishlists.findOne({
+        where: {
+            productId: req.body.id
+        }
+    })
+    if (result) return;
     const data = {
         userId: req.body.userId,
         productId: req.body.id,
@@ -23,7 +29,7 @@ router.post('/', async (req, res) => {
         image: req.body.image,
         status: req.body.status
     }
-    await db.wishlist.create(data)
+    await db.wishlists.create(data)
         .then(response => {
             res.send(data)
         }).catch(error => {
