@@ -94,12 +94,11 @@ const CardProducts = ({ id, name, price, product_image }) => {
                 <div className="card-body">
                     <div className="d-flex justify-content-between">
                         <p className="small"><a href="#!" className="text-muted">{name}</a></p>
-                        <p className="small text-danger"><s>$1099</s></p>
                     </div>
 
                     <div className="d-flex justify-content-between mb-3">
                         <h5 className="mb-0">Shirts</h5>
-                        <h5 className="text-dark mb-0">{price}</h5>
+                        <h5 className="text-dark mb-0">₹&nbsp;{price}</h5>
                     </div>
 
                     <div className="d-flex justify-content-between mb-2">

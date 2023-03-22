@@ -39,6 +39,10 @@ const Navbar = () => {
               <input type='text' size={30} id='searchbar' placeholder="Search for products, brands and more" className='form-control form-group-sm' defaultValue={inputValue} onChange={(e) => { setInputValue(e.target.value) }} />
               <button type='submit' className='btn btn-primary m-0' style={{ padding: "5px 15px", borderRadius: "5px" }}> <i className="fa fa-search"></i></button>
             </div>
+            <div className='dropdown'>
+              {/* read the data using map */}
+
+            </div>
           </form>
         </li>
         <li><NavLink to="/Products" className=" position-relative me-3 ms-2">Products</NavLink></li>
