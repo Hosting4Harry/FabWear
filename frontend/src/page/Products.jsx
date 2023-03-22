@@ -91,20 +91,24 @@ const Products = () => {
                             </select>
                         </div>
                     </div>
-                    <div className="row">
-                        {
-                            getdata.map((val, ind) => {
-                                return (<CardProducts
-                                    key={ind}
-                                    id={val.id}
-                                    name={val.name}
-                                    price={val.price}
-                                    product_image={val.product_image}
-                                />
-                                )
-                            })
-                        }
-                    </div>
+                    <section style={{ backgroundColor: "#eee" }}>
+                        <div className="container py-5">
+                            <div className="row">
+                                {
+                                    getdata.map((val, ind) => {
+                                        return (<CardProducts
+                                            key={ind}
+                                            id={val.id}
+                                            name={val.name}
+                                            price={val.price}
+                                            product_image={val.product_image}
+                                        />
+                                        )
+                                    })
+                                }
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </div>
             <div className='row bg-info pt-5 pb-4 ps-5'>

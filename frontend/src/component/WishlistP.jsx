@@ -21,7 +21,7 @@ const WishlistP = ({ id, name, price, product_image }) => {
                         <div className="bg-image hover-zoom ripple rounded ripple-surface">
                             <img src={`../img/${product_image}`} alt=''
                                 className="w-100" />
-                            <Link role='button' onClick={navigate(`/details/${id}`)}>
+                            <Link role='button' onClick={() => navigate(`/details/${id}`)}>
                                 <div className="hover-overlay">
                                     <div className="mask" style={{ backgroundColor: "rgba(253, 253, 253, 0.15)" }}></div>
                                 </div>
