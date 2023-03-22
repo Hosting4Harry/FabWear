@@ -76,44 +76,51 @@ const ProductDetails = () => {
         return <h1>Loading..</h1>
     }
     return (
-        <>
-            <div className="details">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-6 col-12 mx-auto mb-3">
-                            <img src={`../img/${detdata[0].product_image}`} alt={detdata[0].product_image} className="img-fluid p-im" />
-                        </div>
-                        <div className="col-md-6 col-12 mx-auto mb-3 d-flex  flex-column mt-5">
-                            <h2>{detdata[0].name}</h2>
-                            <h4>Price : <strong>{detdata[0].price}.00</strong> </h4>
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab quisquam quae ex maiores possimus nihil eum assumenda asperiores! Autem maxime incidunt voluptatibus quidem quaerat corrupti ex natus sed mollitia modi.</p>
-                            <form onSubmit={onSub}>
-                                <input type="hidden" value={detdata[0].id} />
-                                <div className="form-group w-50">
-                                    <label htmlFor="sel1">Choose Qty:</label>
-                                    <select className="form-control" id="" onChange={(e) => setPdetails(e.target.value)} required>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                    </select>
-                                </div>
+        <> <section style={{ backgroundColor: "#eee" }}>
+            <div class="container py-5">
+                <div class="row justify-content-center mb-3">
+                    <div class="col-md-12 col-xl-10">
+                        <div className="details">
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col-md-6 col-12 mx-auto mb-3">
+                                        <img src={`../img/${detdata[0].product_image}`} alt={detdata[0].product_image} className="img-fluid p-im" />
+                                    </div>
+                                    <div className="col-md-6 col-12 mx-auto mb-3 d-flex  flex-column mt-5">
+                                        <h2>{detdata[0].name}</h2>
+                                        <h4>Price : <strong>{detdata[0].price}.00</strong> </h4>
+                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab quisquam quae ex maiores possimus nihil eum assumenda asperiores! Autem maxime incidunt voluptatibus quidem quaerat corrupti ex natus sed mollitia modi.</p>
+                                        <form onSubmit={onSub}>
+                                            <input type="hidden" value={detdata[0].id} />
+                                            <div className="form-group w-50">
+                                                <label htmlFor="sel1">Choose Qty:</label>
+                                                <select className="form-control" id="" onChange={(e) => setPdetails(e.target.value)} required>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                    <option value="10">10</option>
+                                                </select>
+                                            </div>
 
-                                <div className="text-left">
-                                    <button type="submit" className="btn btn-info" >Add To Cart</button>&nbsp;
-                                    <button type="button" className="btn btn-info" onClick={() => navigate('/cart')}>Go To Cart</button>
+                                            <div className="text-left">
+                                                <button type="submit" className="btn btn-info" >Add To Cart</button>&nbsp;
+                                                <button type="button" className="btn btn-info" onClick={() => navigate('/cart')}>Go To Cart</button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
         </>
     )
 }
