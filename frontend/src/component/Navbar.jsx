@@ -6,7 +6,7 @@ import { DataContext } from '../context/DataContext'
 const Navbar = () => {
   const { cart, wishlist } = useContext(DataContext)
   const [inputValue, setInputValue] = useState('');
-
+  console.log(wishlist)
   const submit = (e) => {
     e.preventDefault();
     setInputValue('');

@@ -1,64 +1,37 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import "../App.css";
 import { DataContext } from '../context/DataContext';
 import "../page/Wishlist.css"
 const CardProducts = ({ id, name, price, product_image }) => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const [detdata, setDetdata] = useState([]);
     const { wishlist, setWishlist } = useContext(DataContext);
-
     const addWish = (e) => {
         const data = {
             id: detdata[0].id,
             name: detdata[0].name,
             price: detdata[0].price,
             image: detdata[0].product_image,
-            userId: localStorage.getItem("EcomUserId")
         }
-        const postWish = async () => {
-            const res = await axios.post('http://localhost:8000/wishlist', data)
-            setWishlist(wishlist);
-        }
-        postWish()
         const exist = wishlist.find((x) => x.id === data.id);
         if (exist) {
             setWishlist(wishlist.map((x) => x.id === data.id ? data : x))
         } else {
             setWishlist([...wishlist, data])
         }
-
-    }
-
-    const handelChange = (e) => {
-        const { value, checked } = e.target;
-        console.log("@@@@", checked);
-        if (checked) {
-            toast.success('Added to the Wishlist!', {
-                position: "bottom-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            });
-        } else {
-            toast.warn('Removed from Wishlist!', {
-                position: "bottom-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            });
-        }
-
+        toast.success('Added to the Wishlist!', {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+        });
     }
     const getData = async () => {
         const res = await axios.get(`http://localhost:8000/product/getdata/${id}`);
@@ -67,7 +40,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
     useEffect(() => {
         getData()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, []);
     if (!detdata.length) {
         return <h1>Loading..</h1>
     }
@@ -87,6 +60,10 @@ const CardProducts = ({ id, name, price, product_image }) => {
                         <img src={`../img/${product_image}`}
                             className="card-img-top p-img" alt="Laptop" />
                     </Link>
+                    <div className='heart me-4' style={{ textAlign: "right" }}>
+                        <input type="checkbox" id={"heart" + id} />
+                        <label htmlFor={"heart" + id} onClick={addWish}>&#9829;</label>
+                    </div>
                 </div>
                 <div className="card-body">
                     <div className="d-flex justify-content-between">

@@ -1,13 +1,15 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../App.css'
 import AllProducts from '../component/AllProducts'
 // import { DataContext } from '../context/DataContext'
 import axios from 'axios'
 import Slides from './Slides'
+import { DataContext } from '../context/DataContext'
 
 const Home = () => {
-    const timeout = useRef(null)
+    const timeout = useRef(null);
+    const { setWishlist } = useContext(DataContext);
     const navigate = useNavigate()
     const checkAuth = () => {
         axios.get("http://localhost:8000/isAuth", {
@@ -41,6 +43,15 @@ const Home = () => {
     //     datafet()
 
     // }, [])
+    useEffect(() => {
+        const id = localStorage.getItem("EcomUserId");
+        axios.get('http://localhost:8000/wishlist/' + id)
+            .then((response) => {
+                setWishlist(response.data);
+            }).catch((err) => {
+                console.log(err);
+            })
+    });
 
     return (
         <>
