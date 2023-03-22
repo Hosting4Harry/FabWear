@@ -30,9 +30,7 @@ const Home = () => {
         debugger;
         setWishlist(res.data);
     }
-    console.log(wishlist)
     useEffect(() => {
-        debugger
         getData();
         timeout.current = setTimeout(checkAuth, 1000)
         return function () {

@@ -1,15 +1,26 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Navbar.css'
 import { NavLink } from 'react-router-dom'
 import { DataContext } from '../context/DataContext'
+import axios from 'axios'
 
 const Navbar = () => {
-  const { cart, wishlist } = useContext(DataContext);
+  const { cart, wishlist, setWishlist } = useContext(DataContext);
+
   const [inputValue, setInputValue] = useState('');
   const submit = (e) => {
     e.preventDefault();
     setInputValue('');
   };
+  const getData = async () => {
+    const userId = localStorage.getItem("EcomUserId");
+    const res = await axios.get('http://localhost:8000/wishlist/' + userId);
+    debugger;
+    setWishlist(res.data);
+  }
+  useEffect(() => {
+    getData();
+  }, [])
   // useEffect(() => {
   // }, [inputValue])
   return (<div className="code-nav flex">
