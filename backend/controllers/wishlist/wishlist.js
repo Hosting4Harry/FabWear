@@ -20,7 +20,7 @@ router.post('/', async (req, res) => {
             productId: req.body.id
         }
     })
-    if (result) return;
+    if (result) return res.send({ message: "already exist" })
     const data = {
         userId: req.body.userId,
         productId: req.body.id,
@@ -35,6 +35,13 @@ router.post('/', async (req, res) => {
         }).catch(error => {
             console.log(error)
         })
+});
+router.delete('/:id', async (req, res) => {
+    await db.wishlists.destroy({
+        where: {
+            id: +req.params.id
+        }
+    })
 })
 
 module.exports = router;

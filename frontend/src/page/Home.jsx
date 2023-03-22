@@ -1,12 +1,14 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../App.css'
 import AllProducts from '../component/AllProducts'
 import axios from 'axios'
 import Slides from './Slides'
+import { DataContext } from '../context/DataContext'
 
 const Home = () => {
     const timeout = useRef(null);
+    const { setWishlist } = useContext(DataContext);
     const navigate = useNavigate()
     const checkAuth = () => {
         axios.get("http://localhost:8000/isAuth", {
@@ -21,8 +23,14 @@ const Home = () => {
             }
         })
     }
-
+    const getData = async () => {
+        const userId = localStorage.getItem("EcomUserId");
+        const res = await axios.get('http://localhost:8000/wishlist/' + userId);
+        debugger;
+        setWishlist(res.data);
+    }
     useEffect(() => {
+        getData();
         timeout.current = setTimeout(checkAuth, 1000)
         return function () {
             if (timeout.current) {

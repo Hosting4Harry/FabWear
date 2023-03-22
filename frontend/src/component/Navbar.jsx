@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './Navbar.css'
 import { NavLink } from 'react-router-dom'
 import { DataContext } from '../context/DataContext'
 import axios from 'axios'
 
 const Navbar = () => {
-  const { cart, wishlist, setWishlist } = useContext(DataContext);
+  const { cart, wishlist } = useContext(DataContext);
   const [inputValue, setInputValue] = useState('');
   const submit = (e) => {
     e.preventDefault();
@@ -27,6 +27,8 @@ const Navbar = () => {
       })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  // useEffect(() => {
+  // }, [inputValue])
   return (<div className="code-nav flex">
     <nav className='right-nav flex'>
       <input type="checkbox" id="check" />

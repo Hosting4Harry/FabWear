@@ -1,16 +1,19 @@
+import axios from 'axios';
 import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { DataContext } from '../context/DataContext'
 const WishlistP = ({ id, name, price, product_image }) => {
     const { wishlist, setWishlist } = useContext(DataContext);
     const navigate = useNavigate();
-    const deleteProduct = (id) => {
+    const deleteProduct = async (id) => {
         const exist = wishlist.find((x) => x.id === id)
         if (exist) {
             setWishlist(
                 wishlist.filter((x) => x.id !== id)
             )
         }
+        await axios.delete('http://localhost:8000/wishlist/' + id);
+
     }
 
 
