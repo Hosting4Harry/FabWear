@@ -7,13 +7,15 @@ import axios from 'axios'
 const Navbar = () => {
   const { cart, wishlist, setWishlist } = useContext(DataContext);
   const [inputValue, setInputValue] = useState('');
-  console.log(wishlist)
   const submit = (e) => {
     e.preventDefault();
     setInputValue('');
   };
-  // useEffect(() => {
-  // }, [inputValue])
+  const onSearch = (searchTerm) => {
+    console.log("@@@", searchTerm);
+    // setInputValue(searchTerm);
+  }
+
 
   useEffect(() => {
     const id = localStorage.getItem("EcomUserId");
@@ -39,7 +41,11 @@ const Navbar = () => {
           <form onSubmit={submit} className="searchForm">
             <div className='d-flex form-group '>
               <input type='text' size={30} id='searchbar' placeholder="Search for products, brands and more" className='form-control form-group-sm' defaultValue={inputValue} onChange={(e) => { setInputValue(e.target.value) }} />
-              <button type='submit' className='btn btn-primary m-0' style={{ padding: "5px 15px", borderRadius: "5px" }}> <i className="fa fa-search"></i></button>
+              <button type='submit' onClick={() => onSearch(inputValue)} className='btn btn-primary m-0' style={{ padding: "5px 15px", borderRadius: "5px" }}> <i className="fa fa-search"></i></button>
+            </div>
+            <div className='dropdown'>
+              {/* read the data using map */}
+
             </div>
           </form>
         </li>
