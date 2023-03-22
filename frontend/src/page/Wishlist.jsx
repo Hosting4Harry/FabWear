@@ -5,7 +5,7 @@ import WishlistP from '../component/WishlistP';
 import { DataContext } from '../context/DataContext'
 
 const Wishlist = () => {
-    const { wishlist } = useContext(DataContext);
+    const { wishlist, setWishlist } = useContext(DataContext);
     const timeout = useRef(null);
     const navigate = useNavigate();
     const checkAuth = () => {
@@ -19,6 +19,19 @@ const Wishlist = () => {
             }
         })
     }
+    const id = localStorage.getItem("EcomUserId")
+    function getWish(id) {
+        axios.get('http://localhost:8000/wishlist/' + id)
+            .then((response) => {
+                setWishlist(response.data);
+            }).catch((err) => {
+                console.log(err);
+            })
+    }
+    useEffect(() => {
+        getWish(id);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [id])
 
     useEffect(() => {
         timeout.current = setTimeout(checkAuth, 100)
@@ -29,7 +42,7 @@ const Wishlist = () => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
+    console.log(wishlist)
     return (<div className="cart">
         {!wishlist.length ? (
             <div className="container">

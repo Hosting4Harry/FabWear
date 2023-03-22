@@ -9,34 +9,55 @@ import "../page/Wishlist.css"
 const CardProducts = ({ id, name, price, product_image }) => {
     const [detdata, setDetdata] = useState([]);
     const { wishlist, setWishlist } = useContext(DataContext);
+    const userId = localStorage.getItem("EcomUserId");
     const addWish = (e) => {
         const data = {
             id: detdata[0].id,
             name: detdata[0].name,
             price: detdata[0].price,
             image: detdata[0].product_image,
+            userId: userId
         }
-        const postWish = async () => {
-            const res = await axios.post('http://localhost:8000/wishlist', data)
-            setWishlist(res.data);
+        const postWish = async (data) => {
+            const response = await axios.post('http://localhost:8000/wishlist', data);
+            debugger
+            const exist = wishlist.find((x) => x.id === data.id);
+            if (exist) {
+                setWishlist(wishlist.map((x) => x.id === data.id ? data : x))
+            } else {
+                setWishlist([...wishlist, data])
+            }
+            if (response.data.message) {
+                toast.success(response.data.message, {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            } else {
+                const res = await axios.get('http://localhost:8000/wishlist/' + userId);
+                debugger
+                localStorage.setItem("WishList", JSON.stringify(res.data));
+                toast.success("Added to the Wishlist", {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            }
         }
-        postWish()
-        const exist = wishlist.find((x) => x.id === data.id);
-        if (exist) {
-            setWishlist(wishlist.map((x) => x.id === data.id ? data : x))
-        } else {
-            setWishlist([...wishlist, data])
-        }
-        toast.success('Added to the Wishlist!', {
-            position: "bottom-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-        });
+        postWish(data);
+
+
+
     }
     const getData = async () => {
         const res = await axios.get(`http://localhost:8000/product/getdata/${id}`);
