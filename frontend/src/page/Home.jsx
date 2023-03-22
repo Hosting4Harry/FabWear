@@ -9,7 +9,7 @@ import { DataContext } from '../context/DataContext'
 
 const Home = () => {
     const timeout = useRef(null);
-    const { wishlist, setWishlist } = useContext(DataContext);
+    const { setWishlist } = useContext(DataContext);
     const navigate = useNavigate()
     const checkAuth = () => {
         axios.get("http://localhost:8000/isAuth", {
@@ -27,7 +27,6 @@ const Home = () => {
     const getData = async () => {
         const userId = localStorage.getItem("EcomUserId");
         const res = await axios.get('http://localhost:8000/wishlist/' + userId);
-        debugger;
         setWishlist(res.data);
     }
     useEffect(() => {

@@ -20,6 +20,7 @@ const Navbar = () => {
   }
   useEffect(() => {
     getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   // useEffect(() => {
   // }, [inputValue])
