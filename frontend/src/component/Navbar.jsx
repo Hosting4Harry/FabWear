@@ -15,7 +15,6 @@ const Navbar = () => {
   const getData = async () => {
     const userId = localStorage.getItem("EcomUserId");
     const res = await axios.get('http://localhost:8000/wishlist/' + userId);
-    debugger;
     setWishlist(res.data);
   }
   useEffect(() => {
