@@ -14,9 +14,7 @@ const WishlistP = ({ id, name, price, product_image, productId }) => {
             )
         }
         await axios.delete('http://localhost:8000/wishlist/' + id);
-
     }
-    console.log(id)
 
     return (
         <div className="card shadow-0 border rounded-3 mb-3">
