@@ -59,7 +59,6 @@ const CardProducts = ({ id, name, price, product_image }) => {
         for (let i = 0; i < wishlist.length; i++) {
             listForWish.push(wishlist[i].productId)
         }
-        console.log(listForWish)
     }
     repeats(wishlist);
     const getData = async (id) => {
@@ -100,7 +99,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
                     </div>
                     <div className="d-flex justify-content-between mb-3">
                         <h5 className="mb-0">Shirts</h5>
-                        <h5 className="text-dark mb-0">₹&nbsp;{price}</h5>
+                        <h5 className="text-dark mb-0">₹&nbsp;{price}.00</h5>
                     </div>
                     <div className="d-flex justify-content-between mb-2">
                         <p className="text-muted mb-0">Available: <span className="fw-bold">6</span></p>
@@ -115,29 +114,6 @@ const CardProducts = ({ id, name, price, product_image }) => {
                 </div>
             </div>
         </div >
-
-
-
-        // <>
-        //     <div className="col-lg-4 col-md-6 col-12  mb-3 products-p">
-        //         <div className="card p-2">
-        //             <div className='heart'>
-        //                 <input type="checkbox" id={"heart" + id} />
-        //                 <label htmlFor={"heart" + id} onClick={addWish}>&#9829;</label>
-        //             </div>
-        //             <img src={`../img/${product_image}`} alt="product" className="img-fluid p-img" />
-        //             <div className="overlay">
-        //                 <div className="price">
-        //                     <p>{name}</p>
-        //                     <p>{price}.00</p>
-        //                 </div>
-        //                 <div className="text-center">
-        //                     <button className="btn btn-info ml-1 mr-1" onClick={() => navigate(`/details/${id}`)}>View Details</button>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     </div>
-        // </>
     )
 }
 
