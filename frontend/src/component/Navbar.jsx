@@ -1,14 +1,39 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Navbar.css'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { DataContext } from '../context/DataContext'
 import axios from 'axios'
 
 const Navbar = () => {
   const { cart, wishlist, setWishlist } = useContext(DataContext);
-  const submit = (e) => {
+  const [searchValue, setSearchValue] = useState('');
+  const [searchResult, setSearchResult] = useState([])
+  const submit = async (e) => {
     e.preventDefault();
+    console.log(searchValue);
+    await axios.get('http://localhost:8000/product/searchProduct/' + searchValue)
+      .then(response => {
+        console.log(response)
+      }).catch(error => {
+        console.log(error)
+      })
   };
+  const submitForm = async (e) => {
+    e.preventDefault();
+    setSearchValue(e.target.value);
+    // console.log(searchValue);
+    // if (!searchValue) return;
+    await axios.get('http://localhost:8000/product/searchProduct/' + e.target.value)
+      .then(response => {
+        setSearchResult(response.data);
+        console.log(response)
+      }).catch(error => {
+        if (error)
+          setSearchResult([{ name: 'No data found' }]);
+        console.log(['No data found'])
+      })
+  };
+  console.log(searchResult)
   const getData = async () => {
     const userId = localStorage.getItem("EcomUserId");
     const res = await axios.get('http://localhost:8000/wishlist/' + userId);
@@ -32,9 +57,17 @@ const Navbar = () => {
       <ul className='flex'>
         <li>
           <form onSubmit={submit} className="searchForm">
-            <div className='d-flex form-group '>
-              <input type='text' size={30} id='searchbar' placeholder="Search for products, brands and more" className='form-control form-group-sm' />
-              <button type='submit' className='btn btn-primary m-0' style={{ padding: "5px 15px", borderRadius: "5px" }}> <i className="fa fa-search"></i></button>
+            <div className=' form-group '>
+              <div className='d-flex'>
+                <input type='text' size={30} id='searchbar' placeholder='Search for products, brands and more' defaultValue={searchValue} onInput={(e) => submitForm(e)} className='form-control form-group-sm' />
+                <button type='submit' className='btn btn-primary m-0' style={{ padding: "5px 15px", borderRadius: "5px" }}> <i className="fa fa-search"></i></button>
+              </div>
+              <div classname='row'>
+                {searchResult.map((item, i) => {
+                  return <div className='col' key={i}>
+                    <Link to='' style={{ position: 'fixed', zIndex: 123 }} > {item.name}</Link> </div>
+                })}
+              </div>
             </div>
           </form>
         </li>

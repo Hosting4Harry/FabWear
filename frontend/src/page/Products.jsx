@@ -130,6 +130,7 @@ const Products = () => {
                     <img src="../img/asics.png" alt="" />
                 </div>
             </div>
+            <p></p>
             <Footer />
         </>
     )

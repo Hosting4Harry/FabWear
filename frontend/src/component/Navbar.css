@@ -53,8 +53,9 @@ body {
 
 }
 
+/* coral */
 .code-nav a:hover {
-  background: #1b9bff;
+  background: coral;
   transition: .5s;
   text-decoration: none;
 }
@@ -173,7 +174,7 @@ body {
   }
 }
 
-.cart-box span {
+/* .cart-box span {
 
   width: 20px !important;
   height: 20px !important;
@@ -181,7 +182,7 @@ body {
   padding: 5px;
   border-radius: 15px;
 
-}
+} */
 
 .logo a {
   color: #fff !important;
