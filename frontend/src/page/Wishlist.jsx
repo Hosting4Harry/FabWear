@@ -42,7 +42,6 @@ const Wishlist = () => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-    console.log(wishlist)
     return (<div className="cart">
         {!wishlist.length ? (
             <div className="container">
