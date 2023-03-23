@@ -17,6 +17,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     const result = await db.wishlists.findOne({
         where: {
+            userId: req.body.userId,
             productId: req.body.id
         }
     })

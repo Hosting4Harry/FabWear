@@ -28,12 +28,13 @@ const Products = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    const getData = async () => {
+    const getDatas = async () => {
         const res = await axios.get('http://localhost:8000/product/getdataall');
         setGetdata(res.data)
     }
     useEffect(() => {
-        getData()
+        getDatas()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const sortData = async (sort) => {
@@ -43,7 +44,7 @@ const Products = () => {
     const sortHandel = (e) => {
         const sort = e.target.value
         if (sort === 'all') {
-            getData()
+            getDatas()
         }
         else {
             sortData(sort)
@@ -70,6 +71,7 @@ const Products = () => {
         </div>
 
     }
+
     // if (!getdata.length) {
     //     return <h1>Loading..</h1>
     // }

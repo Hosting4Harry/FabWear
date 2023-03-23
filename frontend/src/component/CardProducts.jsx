@@ -54,12 +54,12 @@ const CardProducts = ({ id, name, price, product_image, product_status }) => {
         }
         postWish(data);
     }
-    const getData = async () => {
+    const getData = async (id) => {
         const res = await axios.get(`http://localhost:8000/product/getdata/${id}`);
         setDetdata(res.data)
     }
     useEffect(() => {
-        getData()
+        getData(id)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     if (!detdata.length) {
