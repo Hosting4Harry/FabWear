@@ -6,7 +6,7 @@ import "../App.css";
 import { DataContext } from '../context/DataContext';
 import "../page/Wishlist.css"
 
-const CardProducts = ({ id, name, price, product_image }) => {
+const CardProducts = ({ id, name, price, product_image, product_status }) => {
     const [detdata, setDetdata] = useState([]);
     const { wishlist, setWishlist } = useContext(DataContext);
     const userId = localStorage.getItem("EcomUserId");
@@ -20,7 +20,6 @@ const CardProducts = ({ id, name, price, product_image }) => {
         }
         const postWish = async (data) => {
             const response = await axios.post('http://localhost:8000/wishlist', data);
-            debugger
             const exist = wishlist.find((x) => x.id === data.id);
             if (exist) {
                 setWishlist(wishlist.map((x) => x.id === data.id ? data : x))
@@ -40,7 +39,6 @@ const CardProducts = ({ id, name, price, product_image }) => {
                 });
             } else {
                 const res = await axios.get('http://localhost:8000/wishlist/' + userId);
-                debugger
                 localStorage.setItem("WishList", JSON.stringify(res.data));
                 toast.success("Added to the Wishlist", {
                     position: "bottom-right",
@@ -85,7 +83,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
                     </Link>
                     <div className='heart me-4' style={{ textAlign: "right" }}>
                         <input type="checkbox" id={"heart" + id} />
-                        <label htmlFor={"heart" + id} onClick={addWish}>&#9829;</label>
+                        <label htmlFor={"heart" + id} onClick={addWish} style={{ color: product_status ? 'red' : '' }}>&#9829;</label>
                     </div>
                 </div>
                 <div className="card-body">

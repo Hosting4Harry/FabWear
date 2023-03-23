@@ -102,6 +102,7 @@ const Products = () => {
                                             name={val.name}
                                             price={val.price}
                                             product_image={val.product_image}
+                                            product_status={val.product_status}
                                         />
                                         )
                                     })

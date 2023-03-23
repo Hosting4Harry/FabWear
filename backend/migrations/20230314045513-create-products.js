@@ -18,6 +18,9 @@ module.exports = {
       product_image: {
         type: Sequelize.STRING
       },
+      product_status: {
+        type: Sequelize.BOOLEAN
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

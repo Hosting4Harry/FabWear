@@ -23,11 +23,7 @@ router.post('/', async (req, res) => {
     if (result) return res.send({ message: "already exist" })
     const data = {
         userId: req.body.userId,
-        productId: req.body.id,
-        name: req.body.name,
-        price: req.body.price,
-        image: req.body.image,
-        status: req.body.status
+        productId: req.body.id
     }
     await db.wishlists.create(data)
         .then(response => {
@@ -35,8 +31,24 @@ router.post('/', async (req, res) => {
         }).catch(error => {
             console.log(error)
         })
+    await db.products.update({
+        product_status: true
+    },
+        {
+            where: {
+                id: +req.body.id
+            }
+        })
 });
 router.delete('/:id', async (req, res) => {
+    await db.products.update({
+        product_status: false
+    },
+        {
+            where: {
+                id: +req.params.id
+            }
+        })
     await db.wishlists.destroy({
         where: {
             productId: +req.params.id
