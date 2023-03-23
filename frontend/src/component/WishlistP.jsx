@@ -6,7 +6,6 @@ const WishlistP = ({ id, name, price, product_image, productId }) => {
     const { wishlist, setWishlist } = useContext(DataContext);
     const navigate = useNavigate();
     const deleteProduct = async (id) => {
-        debugger
         const exist = wishlist.find((x) => x.id === id)
         if (exist) {
             setWishlist(
