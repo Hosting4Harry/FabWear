@@ -6,6 +6,7 @@ const { QueryTypes } = require("sequelize");
 
 
 router.get("/getdataall", async (req, res) => {
+    console.log('hii');
     await db.products.findAll()
         .then(result => {
             res.send(result)
@@ -21,6 +22,16 @@ router.get("/getdataall", async (req, res) => {
     //             res.send(result)
     //         }
     //     })
+})
+router.get('/getOption/', async (req, res) => {
+    await db.products.findAll({
+
+    }).then(result => {
+        res.send(result)
+        console.log(result);
+    }).catch(err => {
+        console.log(err);
+    })
 })
 router.get("/getdata", async (req, res) => {
     let sql = `select * from products ORDER BY RAND() limit 6`;

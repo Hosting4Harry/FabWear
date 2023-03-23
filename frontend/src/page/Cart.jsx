@@ -43,7 +43,7 @@ const Cart = () => {
                                             <div>
                                                 <h2>Hey, it feels so light!!!</h2>
                                                 <h2>There Is No Items In Your Cart</h2>
-                                                <img src="../img/emptybag.webp" alt="emptybag" />
+                                                <img src="../img/empty-cart2.png" alt="emptybag" />
                                                 <p>There is nothing in your bag,Let's add some items</p>
                                             </div>
                                             <div style={{ textAlign: 'center' }}>

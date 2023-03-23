@@ -6,11 +6,23 @@ import axios from 'axios'
 
 const Navbar = () => {
   const { cart, wishlist, setWishlist } = useContext(DataContext);
-
-  const [inputValue, setInputValue] = useState('');
+  const [option, setOption] = useState([])
+  const getOptionFromAPI = () => {
+    axios.get(`http://localhost:8000/product/getOption`)
+      .then((res) => {
+        debugger
+        for (let i = 0; i < res.data.length; i++) {
+          option.push(res.data[i].name)
+        }
+        setOption(option)
+      }).catch((err) => {
+        console.log(err);
+      })
+    console.log(option);
+    debugger
+  }
   const submit = (e) => {
     e.preventDefault();
-    setInputValue('');
   };
   const getData = async () => {
     const userId = localStorage.getItem("EcomUserId");
@@ -36,14 +48,11 @@ const Navbar = () => {
         <li>
           <form onSubmit={submit} className="searchForm">
             <div className='d-flex form-group '>
-              <input type='text' size={30} id='searchbar' placeholder="Search for products, brands and more" className='form-control form-group-sm' defaultValue={inputValue} onChange={(e) => { setInputValue(e.target.value) }} />
+              <input type='text' size={30} id='searchbar' placeholder="Search for products, brands and more" className='form-control form-group-sm' defaultValue={option} onChange={getOptionFromAPI} />
               <button type='submit' className='btn btn-primary m-0' style={{ padding: "5px 15px", borderRadius: "5px" }}> <i className="fa fa-search"></i></button>
             </div>
-            <div className='dropdown'>
-              {/* read the data using map */}
-
-            </div>
           </form>
+
         </li>
         <li><NavLink to="/Products" className=" position-relative me-3 ms-2">Products</NavLink></li>
         <li>
