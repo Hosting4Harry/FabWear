@@ -6,7 +6,7 @@ import "../App.css";
 import { DataContext } from '../context/DataContext';
 import "../page/Wishlist.css"
 
-const CardProducts = ({ id, name, price, product_image, product_status }) => {
+const CardProducts = ({ id, name, price, product_image }) => {
     const [detdata, setDetdata] = useState([]);
     const { wishlist, setWishlist } = useContext(DataContext);
     const userId = localStorage.getItem("EcomUserId");
@@ -54,6 +54,14 @@ const CardProducts = ({ id, name, price, product_image, product_status }) => {
         }
         postWish(data);
     }
+    var listForWish = []
+    const repeats = (wishlist) => {
+        for (let i = 0; i < wishlist.length; i++) {
+            listForWish.push(wishlist[i].productId)
+        }
+        console.log(listForWish)
+    }
+    repeats(wishlist);
     const getData = async (id) => {
         const res = await axios.get(`http://localhost:8000/product/getdata/${id}`);
         setDetdata(res.data)
@@ -83,7 +91,7 @@ const CardProducts = ({ id, name, price, product_image, product_status }) => {
                     </Link>
                     <div className='heart me-4' style={{ textAlign: "right" }}>
                         <input type="checkbox" id={"heart" + id} />
-                        <label htmlFor={"heart" + id} onClick={addWish} style={{ color: product_status ? 'red' : '' }}>&#9829;</label>
+                        <label htmlFor={"heart" + id} onClick={addWish} style={{ color: listForWish.includes(id) ? 'red' : '' }}>&#9829;</label>
                     </div>
                 </div>
                 <div className="card-body">
