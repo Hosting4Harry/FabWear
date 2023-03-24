@@ -32,8 +32,6 @@ const CardProducts = ({ id, name, price, product_image }) => {
             userId: userId
         }
         const postWish = async (data) => {
-            debugger
-            console.log(wishlist)
             const response = await axios.post('http://localhost:8000/wishlist', data);
             const exist = wishlist.find((x) => x.id === data.id);
             if (exist) {
