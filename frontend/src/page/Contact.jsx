@@ -73,13 +73,13 @@ const Contact = () => {
                             <div className="col-md-6">
                                 <div className="md-form mb-0">
                                     <input type="text" id="name" name="name" className="form-control" required />
-                                    <label for="name" className="">Your name</label>
+                                    <label htmlFor="name" className="">Your name</label>
                                 </div>
                             </div>
                             <div className="col-md-6">
                                 <div className="md-form mb-0">
                                     <input type="text" id="email" name="email" className="form-control" required />
-                                    <label for="email" className="">Your email</label>
+                                    <label htmlFor="email" className="">Your email</label>
                                 </div>
                             </div>
                         </div>

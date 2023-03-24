@@ -48,8 +48,12 @@ const Payment = () => {
         for (let i = 0; i < cart.length; i++) {
             totamo += cart[i].price * cart[i].qty;
         }
-        totamo += 50;
-        setTotal(totamo);
+        if (totamo < 500) {
+            totamo += 50;
+            setTotal(totamo);
+        } else {
+            setTotal(totamo)
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     const getaddress = async () => {
