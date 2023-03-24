@@ -54,6 +54,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
         }
         postWish(data);
     }
+
     var listForWish = []
     const repeats = (wishlist) => {
         for (let i = 0; i < wishlist.length; i++) {

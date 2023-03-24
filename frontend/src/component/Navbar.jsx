@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import './Navbar.css'
 import { Link, NavLink } from 'react-router-dom'
 import { DataContext } from '../context/DataContext'
