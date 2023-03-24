@@ -10,11 +10,10 @@ const Navbar = () => {
   const submit = async (e) => {
     e.preventDefault();
     console.log(searchValue);
-    debugger
     await axios.get('http://localhost:8000/product/searchProduct/' + searchValue)
       .then(response => {
-        debugger
-        console.log(response)
+        setSearchResult(response.data);
+        setSearchValue('')
       }).catch(error => {
         console.log(error);
         setSearchValue('');
@@ -63,13 +62,30 @@ const Navbar = () => {
                 <input type='text' size={30} id='searchbar' placeholder='Search for products, brands and more' defaultValue={searchValue} onInput={(e) => submitForm(e)} className='form-control form-group-sm' />
                 <button type='submit' className='btn btn-primary m-0' style={{ padding: "5px 15px", borderRadius: "5px" }}> <i className="fa fa-search"></i></button>
               </div>
-              <div className='row'>
+              <div className='' style={{ width: '320px', position: 'absolute', zIndex: 999 }}>
+                <ul class="list-group" >
+                  {searchResult.map((item, i) => {
+                    return <li class="list-group-item" style={{ color: 'black', height: '30px', width: '300px' }} >
+                      <Link to={'/details/' + item.id} style={{ position: 'static', zIndex: 123 }}>
+                        {item.name}
+                      </Link>
+                    </li>
+                  })}
+                </ul>
+              </div>
+
+              {/* </div> */}
+              {/* <div className='d-flex'>
+                <input type='text' size={30} id='searchbar' placeholder='Search for products, brands and more' defaultValue={searchValue} onInput={(e) => submitForm(e)} className='form-control form-group-sm' />
+                <button type='submit' className='btn btn-primary m-0' style={{ padding: "5px 15px", borderRadius: "5px" }}> <i className="fa fa-search"></i></button>
+              </div>
+              <div classname='row'>
                 {searchResult.map((item, i) => {
                   return <tr className='' key={i}>
-
+                   
                   </tr>
                 })}
-              </div>
+              </div> */}
             </div>
           </form>
         </li>

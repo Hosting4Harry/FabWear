@@ -29,7 +29,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
             if (response.data.message) {
                 toast.success(response.data.message, {
                     position: "bottom-right",
-                    autoClose: 1500,
+                    autoClose: 5000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
@@ -42,7 +42,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
                 localStorage.setItem("WishList", JSON.stringify(res.data));
                 toast.success("Added to the Wishlist", {
                     position: "bottom-right",
-                    autoClose: 1500,
+                    autoClose: 5000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
