@@ -26,6 +26,7 @@ body {
   color: #000 !important;
   font-family: "Times New Roman", Times, serif !important;
   background-color: #fff !important;
+  text-transform: none !important;
 }
 
 .badge {
@@ -93,6 +94,9 @@ body {
 }
 
 @media (max-width: 1360px) {
+  /* .searchForm {
+    display: none !important;
+  } */
 
   /* ----SEARCHBAR----- */
   .list-group-item {
@@ -126,7 +130,7 @@ body {
     width: 30%;
     height: 100vh;
     background: #000;
-    top: 80px;
+    top: 0px;
     left: -100%;
     z-index: 9998;
     text-align: center;
@@ -135,17 +139,10 @@ body {
 
   .code-nav nav ul li {
     padding-top: 20px;
-
-  }
-
-  .code-nav nav ul li {
     display: block;
-    margin: 25px 25px;
-    line-height: 30px;
+    margin: 5px 5px;
+    line-height: 20px;
     overflow-y: hidden;
-  }
-
-  .code-nav nav ul li a {
     font-size: 15px;
 
   }
@@ -279,13 +276,4 @@ body {
   border-radius: 7px;
   /* padding: 4px 19px; */
   background-color: aliceblue;
-}
-
-/* #list {
-  font-size: 1.5em;
-  margin-left: 90px;
-} */
-
-.animals {
-  display: none;
 }

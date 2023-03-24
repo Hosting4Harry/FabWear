@@ -10,7 +10,6 @@ const Navbar = () => {
   const [searchValue, setSearchValue] = useState('');
 
   const submit = (e) => {
-    debugger
     e.preventDefault();
     navigate('/searchProduct/' + searchValue)
     setSearchValue('')
@@ -37,8 +36,6 @@ const Navbar = () => {
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-  // useEffect(() => {
-  // }, [inputValue])
   return (<div className="code-nav flex">
     <nav className='right-nav flex'>
       <input type="checkbox" id="check" />
@@ -70,19 +67,6 @@ const Navbar = () => {
                   </ul>
                 </div>
               }
-
-              {/* </div> */}
-              {/* <div className='d-flex'>
-                <input type='text' size={30} id='searchbar' placeholder='Search for products, brands and more' defaultValue={searchValue} onInput={(e) => submitForm(e)} className='form-control form-group-sm' />
-                <button type='submit' className='btn btn-primary m-0' style={{ padding: "5px 15px", borderRadius: "5px" }}> <i className="fa fa-search"></i></button>
-              </div>
-              <div classname='row'>
-                {searchResult.map((item, i) => {
-                  return <tr className='' key={i}>
-                   
-                  </tr>
-                })}
-              </div> */}
             </div>
           </form>
         </li>
