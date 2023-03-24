@@ -71,7 +71,7 @@ const ProductDetails = () => {
     useEffect(() => {
         getData()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [id])
     if (!detdata.length) {
         return <h1>Loading..</h1>
     }

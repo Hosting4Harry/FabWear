@@ -28,7 +28,7 @@ const Navbar = () => {
         setSearchValue('');
       }).catch(error => {
         if (error)
-          setSearchResult([{ name: 'No data found' }]);
+          setSearchResult([]);
         setSearchValue('')
       })
   };
@@ -62,17 +62,19 @@ const Navbar = () => {
                 <input type='text' size={30} id='searchbar' placeholder='Search for products, brands and more' defaultValue={searchValue} onInput={(e) => submitForm(e)} className='form-control form-group-sm' />
                 <button type='submit' className='btn btn-primary m-0' style={{ padding: "5px 15px", borderRadius: "5px" }}> <i className="fa fa-search"></i></button>
               </div>
-              <div className='' style={{ width: '320px', position: 'absolute', zIndex: 999 }}>
-                <ul class="list-group" >
-                  {searchResult.map((item, i) => {
-                    return <li class="list-group-item" style={{ color: 'black', height: '30px', width: '300px' }} >
-                      <Link to={'/details/' + item.id} style={{ position: 'static', zIndex: 123 }}>
-                        {item.name}
-                      </Link>
-                    </li>
-                  })}
-                </ul>
-              </div>
+              {searchResult.length > 0 &&
+                <div className='' style={{ width: '320px', position: 'absolute', zIndex: 999 }}>
+                  <ul className="list-group" >
+                    {searchResult.map((item, i) => {
+                      return <li className="list-group-item" key={i} >
+                        <Link to={'/details/' + item.id} style={{ position: 'static', zIndex: 123 }}>
+                          {item.name}
+                        </Link>
+                      </li>
+                    })}
+                  </ul>
+                </div>
+              }
 
               {/* </div> */}
               {/* <div className='d-flex'>
