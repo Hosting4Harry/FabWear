@@ -62,24 +62,24 @@ const Contact = () => {
     };
 
     return (
-        <section className="mb-4 container">
+        <section className="mb-4 container form-control" style={{ marginTop: "48px" }}>
             <h2 className="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
             <p className="text-center w-responsive mx-auto mb-5">Do you have any questions? Please do not hesitate to contact us directly. Our team will come back to you within few
-                matter of hours to help you.</p>
-            <div className="row">
+                matter of minutes to help you.</p>
+            <div className="row ">
                 <div className="col-md-9 mb-md-0 mb-5">
                     <form id="contact-form" name="contact-form" onSubmit={handleSubmit}>
                         <div className="row">
                             <div className="col-md-6">
                                 <div className="md-form mb-0">
                                     <input type="text" id="name" name="name" className="form-control" required />
-                                    <label for="name" className="">Your name</label>
+                                    <label htmlFor="name" className="">Your name</label>
                                 </div>
                             </div>
                             <div className="col-md-6">
                                 <div className="md-form mb-0">
                                     <input type="text" id="email" name="email" className="form-control" required />
-                                    <label for="email" className="">Your email</label>
+                                    <label htmlFor="email" className="">Your email</label>
                                 </div>
                             </div>
                         </div>
@@ -111,7 +111,7 @@ const Contact = () => {
                             <p>Ahmedabad, Ganesh Meridian, India</p>
                         </li>
                         <li><i className="fas fa-phone mt-4 fa-2x"></i>
-                            <p>+91 70775 52981</p>
+                            <p>+91 70775 52981 ,+91 6370017676</p>
                         </li>
                         <li><i className="fas fa-envelope mt-4 fa-2x"></i>
                             <p>cart@gmail.com</p>
