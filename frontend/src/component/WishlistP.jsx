@@ -6,7 +6,6 @@ const WishlistP = ({ id, name, price, product_image, productId }) => {
     const { wishlist, setWishlist } = useContext(DataContext);
     const navigate = useNavigate();
     const deleteProduct = async (id) => {
-        debugger
         const exist = wishlist.find((x) => x.id === id)
         if (exist) {
             setWishlist(
@@ -64,8 +63,8 @@ const WishlistP = ({ id, name, price, product_image, productId }) => {
                     </div>
                     <div className="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
                         <div className="d-flex flex-row align-items-center mb-1">
-                            <h4 className="mb-1 me-1">Price: {price}</h4>
-                            <span className="text-danger"><s>599</s></span>
+                            <h4 className="mb-1 me-1">Price: {price}.00</h4>
+                            <span className="text-danger" style={{ textDecoration: "line-through" }}><s>599.00</s></span>
                         </div>
                         {/* <div className="d-flex flex-row align-items-center mb-1">
                             <h4 className="mb-1 me-1">Qty: {qty}</h4>
