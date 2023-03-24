@@ -22,7 +22,6 @@ router.get('/searchProduct/:name', async (req, res) => {
             }
         }
     }).then(result => {
-        if (result.length == 0) res.send([])
         res.send(result)
     }).catch(error => {
         console.log(error)

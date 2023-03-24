@@ -18,6 +18,7 @@ import Success from './page/Success'
 import Wishlist from './page/Wishlist'
 // import PayNow from './page/PayNow'
 import './App.css'
+import SearchProducts from './page/SearchProducts'
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
           <Navbar />
           <Routes>
             <Route exact path="/home" element={<Home />} />
+            <Route exact path='/searchProduct/:name' element={<SearchProducts />} />
             <Route exact path="/products" element={<Products />} />
             <Route exact path="/contact" element={<Contact />} />
             <Route exact path="/wishlist" element={<Wishlist />} />

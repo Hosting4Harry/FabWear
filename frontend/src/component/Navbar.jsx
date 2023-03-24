@@ -1,23 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './Navbar.css'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { DataContext } from '../context/DataContext'
 import axios from 'axios'
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const { cart, wishlist, setWishlist, searchResult, setSearchResult } = useContext(DataContext);
   const [searchValue, setSearchValue] = useState('');
-  const submit = async (e) => {
+
+  const submit = (e) => {
+    debugger
     e.preventDefault();
-    console.log(searchValue);
-    await axios.get('http://localhost:8000/product/searchProduct/' + searchValue)
-      .then(response => {
-        setSearchResult(response.data);
-        setSearchValue('')
-      }).catch(error => {
-        console.log(error);
-        setSearchValue('');
-      })
+    navigate('/searchProduct/' + searchValue)
+    setSearchValue('')
   };
   const submitForm = async (e) => {
     e.preventDefault();
@@ -25,7 +21,6 @@ const Navbar = () => {
     await axios.get('http://localhost:8000/product/searchProduct/' + e.target.value)
       .then(response => {
         setSearchResult(response.data);
-        setSearchValue('');
       }).catch(error => {
         if (error)
           setSearchResult([]);
