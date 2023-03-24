@@ -17,13 +17,11 @@ const CardProducts = ({ id, name, price, product_image }) => {
         }
     }
     repeats(wishlist);
-    // console.log(wishlist)
     useEffect(() => {
         repeats(wishlist);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [wishlist])
+    }, [])
     const addWish = (e) => {
-        debugger
         const data = {
             id: detdata[0].id,
             name: detdata[0].name,
@@ -32,15 +30,16 @@ const CardProducts = ({ id, name, price, product_image }) => {
             userId: userId
         }
         const postWish = async (data) => {
-            debugger
             console.log(wishlist)
             const response = await axios.post('http://localhost:8000/wishlist', data);
             const exist = wishlist.find((x) => x.id === data.id);
             if (exist) {
+                setWishlist(
+                    wishlist.filter((x) => x.id !== id)
+                )
+                // setWishlist(wishlist.map((x) => x.id === data.id ? data : x))
                 repeats(wishlist);
-                setWishlist(wishlist.map((x) => x.id === data.id ? data : x))
                 await axios.delete('http://localhost:8000/wishlist/' + data.id);
-
             } else {
                 setWishlist([...wishlist, data])
             }
@@ -86,7 +85,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
         return <h1>Loading..</h1>
     }
     return (
-        <div className="col-md-12 col-lg-4 mb-4 mb-lg-0 pb-2">
+        <div className="col-md-4 col-lg-3 mb-4 mb-lg-0 pb-2">
             <div className="card">
                 <div className="d-flex justify-content-between p-3">
                     <p className="lead mb-0">Today's Combo Offer</p>
@@ -108,7 +107,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
                 </div>
                 <div className="card-body">
                     <div className="d-flex justify-content-between">
-                        <p className="small"><a href="#!" className="text-muted">{name}</a></p>
+                        <p className="small"><Link href="#!" className="text-muted">{name}</Link></p>
                     </div>
                     <div className="d-flex justify-content-between mb-3">
                         <h5 className="mb-0">Shirts</h5>
