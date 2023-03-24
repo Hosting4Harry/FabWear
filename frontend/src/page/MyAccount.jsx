@@ -23,7 +23,6 @@ const MyAccount = () => {
                 "x-access-token": localStorage.getItem("Ecomtoken")
             }
         }).then((response) => {
-            //  console.log()
             if (!response.data.login) {
                 navigate("/");
             }
@@ -88,21 +87,13 @@ const MyAccount = () => {
                                 <tbody>
                                     {
                                         order.map((val, ind) => {
+                                            debugger
                                             return (<tr key={ind}>
                                                 <td>{ind + 1}</td>
-                                                <td >
-                                                    {
-                                                        new Date(val.updatedAt).toLocaleDateString()
-                                                    }
-                                                </td>
-
-                                                <td>{val.paymentmode}</td>
-                                                <td>
-                                                    {
-                                                        val.orderstatus
-                                                    }
-                                                </td>
-                                                <td>{val.totalprice}</td>
+                                                <td >{new Date(val.updatedAt).toLocaleDateString()}</td>
+                                                <td>{(val.orderstatus === "cancelled") ? "---" : (val.paymentmode)}</td>
+                                                <td>{val.orderstatus}</td>
+                                                <td>{(val.orderstatus === "cancelled") ? "---" : (val.totalprice)}</td>
                                                 <td>
                                                     <NavLink to={`/myorder/${val.id}`} className="btn btn-info">View</NavLink>
                                                 </td>

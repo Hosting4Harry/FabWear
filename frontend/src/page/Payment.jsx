@@ -79,7 +79,6 @@ const Payment = () => {
         }
         sendData(adddata);
         getaddress();
-        // console.log(data)
     }
 
     useEffect(() => {
