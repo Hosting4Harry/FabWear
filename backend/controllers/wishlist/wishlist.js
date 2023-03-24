@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
             productId: req.body.id
         }
     })
-    if (result) return res.send({ message: "already exist" })
+    if (result) return res.send({ message: "wishlist deleted" })
     const data = {
         userId: req.body.userId,
         productId: req.body.id
