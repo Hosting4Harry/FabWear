@@ -10,7 +10,20 @@ const CardProducts = ({ id, name, price, product_image }) => {
     const [detdata, setDetdata] = useState([]);
     const { wishlist, setWishlist } = useContext(DataContext);
     const userId = localStorage.getItem("EcomUserId");
+    var listForWish = []
+    const repeats = (wishlist) => {
+        for (let i = 0; i < wishlist.length; i++) {
+            listForWish.push(wishlist[i].productId)
+        }
+    }
+    repeats(wishlist);
+    // console.log(wishlist)
+    useEffect(() => {
+        repeats(wishlist);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [wishlist])
     const addWish = (e) => {
+        debugger
         const data = {
             id: detdata[0].id,
             name: detdata[0].name,
@@ -19,10 +32,15 @@ const CardProducts = ({ id, name, price, product_image }) => {
             userId: userId
         }
         const postWish = async (data) => {
+            debugger
+            console.log(wishlist)
             const response = await axios.post('http://localhost:8000/wishlist', data);
             const exist = wishlist.find((x) => x.id === data.id);
             if (exist) {
+                repeats(wishlist);
                 setWishlist(wishlist.map((x) => x.id === data.id ? data : x))
+                await axios.delete('http://localhost:8000/wishlist/' + data.id);
+
             } else {
                 setWishlist([...wishlist, data])
             }
@@ -38,8 +56,8 @@ const CardProducts = ({ id, name, price, product_image }) => {
                     theme: "dark",
                 });
             } else {
+                // eslint-disable-next-line no-unused-vars
                 const res = await axios.get('http://localhost:8000/wishlist/' + userId);
-                localStorage.setItem("WishList", JSON.stringify(res.data));
                 toast.success("Added to the Wishlist", {
                     position: "bottom-right",
                     autoClose: 5000,
@@ -55,13 +73,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
         postWish(data);
     }
 
-    var listForWish = []
-    const repeats = (wishlist) => {
-        for (let i = 0; i < wishlist.length; i++) {
-            listForWish.push(wishlist[i].productId)
-        }
-    }
-    repeats(wishlist);
+
     const getData = async (id) => {
         const res = await axios.get(`http://localhost:8000/product/getdata/${id}`);
         setDetdata(res.data)
