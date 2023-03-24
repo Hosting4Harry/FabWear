@@ -20,7 +20,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
     useEffect(() => {
         repeats(wishlist);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [wishlist])
     const addWish = (e) => {
         const data = {
             id: detdata[0].id,
@@ -71,8 +71,6 @@ const CardProducts = ({ id, name, price, product_image }) => {
         }
         postWish(data);
     }
-
-
     const getData = async (id) => {
         const res = await axios.get(`http://localhost:8000/product/getdata/${id}`);
         setDetdata(res.data)
