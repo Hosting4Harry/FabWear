@@ -10,6 +10,20 @@ body {
   font-family: montserrat;
 }
 
+.list-group-item {
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1.5 !important;
+}
+
+.list-group-item a {
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1.5 !important;
+  color: #000 !important;
+  background-color: #fff !important;
+}
+
 .badge {
   font-size: 15px;
 }
@@ -55,7 +69,7 @@ body {
 
 /* coral */
 .code-nav a:hover {
-  background: coral;
+  background: #08c3f1;
   transition: .5s;
   text-decoration: none;
 }
@@ -75,6 +89,23 @@ body {
 }
 
 @media (max-width: 1360px) {
+
+  /* ----SEARCHBAR----- */
+  .list-group-item {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.5 !important;
+  }
+
+  .list-group-item a {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.5 !important;
+    color: #000 !important;
+    background-color: #fff !important;
+  }
+
+  /* ------- */
   .code-nav nav {
     background: #011727;
     height: 80px;
@@ -93,7 +124,7 @@ body {
     background: #000;
     top: 80px;
     left: -100%;
-    z-index: 9999;
+    z-index: 9998;
     text-align: center;
     transition: all .5s;
   }
@@ -122,6 +153,26 @@ body {
 }
 
 @media (max-width: 952px) {
+
+  /* ----SEARCHBAR----- */
+  .list-group-item {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.5 !important;
+  }
+
+  .list-group-item a {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.5 !important;
+    color: #000 !important;
+    background-color: #fff !important;
+    z-index: 9999 !important;
+
+  }
+
+  /* ------- */
+
   .code-nav label.logo {
     font-size: 30px;
     padding-left: 50px;
@@ -135,6 +186,24 @@ body {
 }
 
 @media (max-width: 860px) {
+
+  /* ----SEARCHBAR----- */
+  .list-group-item {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.5 !important;
+  }
+
+  .list-group-item a {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.5 !important;
+    color: #000 !important;
+    background-color: #fff !important;
+    z-index: 9999 !important;
+  }
+
+  /* ------- */
   .code-nav nav {
     background: #011727;
     height: 80px;

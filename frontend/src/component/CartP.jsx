@@ -66,6 +66,9 @@ const CartP = ({ id, name, price, product_image, qty }) => {
                         <div className="d-flex flex-row align-items-center mb-1">
                             <h4 className="mb-1 me-1">Qty: {qty}</h4>
                         </div>
+                        <div className="d-flex flex-row align-items-center mb-1">
+                            <h4 className="mb-1 me-1">Total Price: {price * qty}</h4>
+                        </div>
                         {price * qty > 500 && <h6 className="text-success">Free shipping</h6>}
                         {price * qty < 500 && <h6 className="text-success">Rs: 50 shipping charges</h6>}
                         <div className="d-flex flex-column mt-4">
