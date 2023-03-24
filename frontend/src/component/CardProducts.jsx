@@ -47,7 +47,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
             if (response.data.message) {
                 toast.success(response.data.message, {
                     position: "bottom-right",
-                    autoClose: 5000,
+                    autoClose: 1500,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
@@ -60,7 +60,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
                 const res = await axios.get('http://localhost:8000/wishlist/' + userId);
                 toast.success("Added to the Wishlist", {
                     position: "bottom-right",
-                    autoClose: 5000,
+                    autoClose: 1500,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
