@@ -61,7 +61,7 @@ const AddProduct = () => {
     }
 
     return (
-        <>
+        <section className='pt-5 mt-5'>
             <div className='container'>
                 <div className="row d-flex justify-content-center aligen-items-center mt-5 h-50">
                     <div className="col-5 border border-yellow">
@@ -76,7 +76,7 @@ const AddProduct = () => {
                                 <input type="text" value={productValues.price} onChange={handelData} name="price" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="exampleInputPassword1" className="form-label">product pic</label>
+                                <label htmlFor="exampleInputPassword1" className="form-label">Product Image</label>
                                 <input type="file" value={productValues.file} onChange={(e) => { setProductValues(productValues => ({ ...productValues, product_image: e.target.files[0] })) }} name="product_image" className="form-control" id="exampleInputPassword1" />
                             </div>
 
@@ -85,7 +85,7 @@ const AddProduct = () => {
                         </form></div>
                 </div>
             </div>
-        </>
+        </section>
     )
 }
 

@@ -3,7 +3,7 @@ import jwt_decode from "jwt-decode";
 
 function PermissionCheck(props) {
     const token = localStorage.getItem('Ecomtoken');
-    if (!token) return;
+
     const checkisClaimExist = (claim) => {
         try {
             var decoded = jwt_decode(token);

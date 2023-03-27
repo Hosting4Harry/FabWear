@@ -87,7 +87,7 @@ const Navbar = () => {
             </NavLink>
           </PermissionCheck>
         </li>
-        <li className=''>
+        <li>
           <PermissionCheck claims={6}>
             <NavLink to="/cart" className=" position-relative badgeCss me-3">Cart
               {cart.length > 0 &&
