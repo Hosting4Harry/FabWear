@@ -63,12 +63,9 @@ const AddProduct = () => {
     return (
         <>
             <div className='container'>
-
                 <div className="row d-flex justify-content-center aligen-items-center mt-5 h-50">
                     <div className="col-5 border border-yellow">
                         <form className="form-group" onSubmit={handelSubmit}>
-                            <h3>userDetails</h3>
-
                             <div className="mb-3">
                                 <label htmlFor="exampleInputEmail1" className="form-label">Product Name</label>
                                 <input type="text" value={productValues.name} onChange={handelData} name="name" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
@@ -82,10 +79,9 @@ const AddProduct = () => {
                                 <label htmlFor="exampleInputPassword1" className="form-label">product pic</label>
                                 <input type="file" value={productValues.file} onChange={(e) => { setProductValues(productValues => ({ ...productValues, product_image: e.target.files[0] })) }} name="product_image" className="form-control" id="exampleInputPassword1" />
                             </div>
-
                             <button type="submi" className="btn btn-primary" >Submit</button>
-
-                        </form></div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </>
