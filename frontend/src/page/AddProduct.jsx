@@ -83,7 +83,7 @@ const AddProduct = () => {
                                 <input type="file" value={productValues.file} onChange={(e) => { setProductValues(productValues => ({ ...productValues, product_image: e.target.files[0] })) }} name="product_image" className="form-control" id="exampleInputPassword1" />
                             </div>
 
-                            <button type="submi" className="btn btn-primary" >Submit</button>
+                            <button type="submit" className="btn btn-primary" >Submit</button>
 
                         </form></div>
                 </div>
