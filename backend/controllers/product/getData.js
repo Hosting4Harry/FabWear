@@ -3,9 +3,10 @@ const router = express();
 const db = require('../../models');
 const { QueryTypes } = require("sequelize");
 const { Op } = require("sequelize");
+const { Sequelize } = require('../../models');
 
 router.get("/getdataall", async (req, res) => {
-    await db.products.findAll()
+    await db.products.findAll({ order: Sequelize.literal('rand()') })
         .then(result => {
             res.send(result)
         }).catch(error => {

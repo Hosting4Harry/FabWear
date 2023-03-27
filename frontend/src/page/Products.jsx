@@ -78,7 +78,7 @@ const Products = () => {
 
     return (
         <>
-            <div className="products">
+            <div className="products" style={{ backgroundColor: "#eee" }}>
                 <div className="container">
                     <h2 className="text-center font-weight-bold mb-5">Best Products</h2>
                     <div className="inp ">
@@ -93,9 +93,12 @@ const Products = () => {
                             </select>
                         </div>
                     </div>
-                    <section style={{ backgroundColor: "#eee" }}>
+                    <section >
                         <div className="container py-5">
                             <div className="row">
+                                {/* <section class="py-5">
+                        <div class="container px-4 px-lg-5 mt-5">
+                            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"> */}
                                 {
                                     getdata.map((val, ind) => {
                                         return (<CardProducts
