@@ -1,12 +1,15 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../App.css'
 import AllProducts from '../component/AllProducts'
-// import { DataContext } from '../context/DataContext'
 import axios from 'axios'
+import Slides from './Slides'
+import { DataContext } from '../context/DataContext'
+
 
 const Home = () => {
-    const timeout = useRef(null)
+    const timeout = useRef(null);
+    const { setWishlist } = useContext(DataContext);
     const navigate = useNavigate()
     const checkAuth = () => {
         axios.get("http://localhost:8000/isAuth", {
@@ -20,18 +23,20 @@ const Home = () => {
                 navigate("/");
             }
         })
-
     }
-
+    const getData = async () => {
+        const userId = localStorage.getItem("EcomUserId");
+        const res = await axios.get('http://localhost:8000/wishlist/' + userId);
+        setWishlist(res.data);
+    }
     useEffect(() => {
+        getData();
         timeout.current = setTimeout(checkAuth, 1000)
         return function () {
             if (timeout.current) {
                 clearTimeout(timeout.current)
             }
         }
-
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     //  setInterval(checkAuth, 1000);
@@ -44,6 +49,7 @@ const Home = () => {
 
     // }, [])
 
+
     return (
         <>
             <div className="home">
@@ -51,15 +57,15 @@ const Home = () => {
                     <div className="row">
                         <div className="col-md-6 col-12 mb-3 mx-auto">
                             <h1>Welcome to <span>Cart.Com</span> </h1>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, quos.</p>
+                            <p>It's a  Big Market out there, Let's Explore with Us.
+                                We always make our costomer happy by providing as many choices as possible. Get Your FREE Shopping Website ,We turn all brands like Yours, Happy!</p>
                             <button className="btn btn-outline-success">Read More</button>
-
                         </div>
                         <div className="col-md-6 col-12 mb-3 mx-auto">
-                            <img src="../img/2593170.png" alt="home " className="img-fluid main-img " style={{
+                            {/* <img src="../img/2593170.png" alt="home " className="img-fluid main-img " style={{
                                 borderRadius: "2em"
-                            }} />
-
+                            }} /> */}
+                            <Slides />
                         </div>
                     </div>
                 </div>
@@ -69,11 +75,12 @@ const Home = () => {
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-md-6 col-12 mx-auto mb-3 ">
-                            <img src="../img/download3.jpg" alt="ok" className="img-fluid side-img" />
+                            <img src="../img/T5.png" alt="ok" className="img-fluid side-img" />
                         </div>
                         <div className=" col-md-6 col-12 mx-auto mb-3 d-flex justify-content-center align-items-center flex-column">
                             <h1>Welcome to <span>Cart.Com</span> </h1>
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat cupiditate aspernatur, aperiam consequatur fugiat nisi! At labore corrupti, non vitae libero obcaecati, necessitatibus, odio facilis aliquid odit nulla porro itaque.</p>
+                            <h3>It's a  Big Market out there, Let's Explore with Us</h3>
+                            <p>   Just take a quick peek & learn about the Amazing Stories of our Valued Clients. Nothing makes us happier than their Beautiful & Successful Journey with Us!</p>
                             <button className="btn btn-outline-success">Read More</button>
                         </div>
                     </div>

@@ -15,11 +15,9 @@ const Payment = () => {
     const [showaddress, setShowaddress] = useState(false);
     const [payment, setPayment] = useState("");
     const [UserId, setUserId] = useState("");
-
-    const { cart, setCart } = useContext(DataContext);
     const [total, setTotal] = useState("");
+    const { cart, setCart } = useContext(DataContext);
     var tot = 0;
-
     const timeout = useRef(null);
 
     const checkAuth = () => {
@@ -50,18 +48,22 @@ const Payment = () => {
         for (let i = 0; i < cart.length; i++) {
             totamo += cart[i].price * cart[i].qty;
         }
-        totamo += 50;
-        setTotal(totamo);
+        if (totamo < 500) {
+            totamo += 50;
+            setTotal(totamo);
+        } else {
+            setTotal(totamo)
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     const getaddress = async () => {
         const dat = localStorage.getItem('EcomUserId');
-        const res = await axios.get(`http://localhost:8000/getaddress/${dat}`);
+        const res = await axios.get(`http://localhost:8000/address/getaddress/${dat}`);
         setYourAddress(res.data);
     }
     const sendData = async (adddata) => {
         // eslint-disable-next-line no-unused-vars
-        const res = await axios.post(`http://localhost:8000/addaddress`, adddata)
+        const res = await axios.post(`http://localhost:8000/address/addaddress`, adddata)
         setShowaddress(false);
     }
 
@@ -77,7 +79,6 @@ const Payment = () => {
         }
         sendData(adddata);
         getaddress();
-        // console.log(data)
     }
 
     useEffect(() => {
@@ -90,7 +91,7 @@ const Payment = () => {
     // }, [yourAddress]);
 
     const OnBuyNow = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         //  console.log(inputAddres + payment)
         const dat = localStorage.getItem('EcomUserId');
         const datemail = localStorage.getItem('EcomEmail');
@@ -106,13 +107,11 @@ const Payment = () => {
             cart: cart
         }
         // console.log(data)
-
-        const res = await axios.post(`http://localhost:8000/buynow`, data);
+        const res = await axios.post(`http://localhost:8000/payment/buynow`, data);
         //   console.log(res.data.payment_request.longurl)
         if (res.data.success) {
             setCart([])
             localStorage.setItem('Ecomlongid', res.data.payment_request?.id);
-
             navigate(`/myaccount`);
         } else {
             console.log("order not placed");
@@ -131,7 +130,6 @@ const Payment = () => {
                 <div className="container p-5">
                     <h2>There is No cart items</h2>
                 </div>
-
             </>
         )
     }
@@ -156,37 +154,31 @@ const Payment = () => {
                                     {
                                         cart.map((val, ind) => {
                                             tot = tot + val.price * val.qty
-                                            return (
-                                                <>
-                                                    <tr key={ind}>
-                                                        <td>{ind + 1}</td>
-                                                        <td className="tab-box">
+                                            return (<tr key={ind}>
+                                                <td>{ind + 1}</td>
+                                                <td className="tab-box">
 
-                                                            <NavLink to={`/details/${val.id}`}>
+                                                    <NavLink to={`/details/${val.id}`}>
 
-                                                                <img src={`../img/${val.image}`} alt={`../img/${val.image}`} className="img-fluid t-img" />
-                                                                <p >{val.name}</p>
-                                                            </NavLink>
-                                                        </td>
-                                                        <td>{val.price}.00</td>
-                                                        <td>{val.qty}</td>
-                                                        <td>{val.price * val.qty}.00</td>
-                                                    </tr>
-                                                </>
+                                                        <img src={`../img/${val.image}`} alt={`../img/${val.image}`} className="img-fluid t-img" />
+                                                        <p >{val.name}</p>
+                                                    </NavLink>
+                                                </td>
+                                                <td>{val.price}.00</td>
+                                                <td>{val.qty}</td>
+                                                <td>{val.price * val.qty}.00</td>
+                                            </tr>
                                             )
                                         })
                                     }
-                                    <div className="pay p-3">
-                                        <h2>Sub Total : {tot}.00</h2>
-                                        <h2>Delivery Fees:{(tot > 500) ? "free" : 50.00}</h2>
-                                        <h2>Total Amount : {tot + 50}.00</h2>
-
-                                    </div>
-
                                 </tbody>
                             </table>
+                            <div className="pay p-3">
+                                <h2>Sub Total : {tot}.00</h2>
+                                <h2>Delivery Fees: {(tot >= 500) ? " free" : 50.00}</h2>
+                                <h2>Total Amount : {(tot >= 500) ? tot : (tot + 50)}</h2>
+                            </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -199,33 +191,27 @@ const Payment = () => {
                                     <>
                                         <div className="card">
                                             <form onSubmit={onSub}>
-                                                <div class="form-group">
+                                                <div className="form-group">
                                                     <label >Name:</label>
-                                                    <input type="text" class="form-control" name='name' placeholder="Enter name" value={name} onChange={(e) => setName(e.target.value)} required />
+                                                    <input type="text" className="form-control" name='name' placeholder="Enter name" value={name} onChange={(e) => setName(e.target.value)} required />
                                                 </div>
-                                                <div class="form-group">
+                                                <div className="form-group">
                                                     <label >Email:</label>
-                                                    <input type="text" class="form-control" name='email' placeholder="Enter Email" readOnly value={email} onChange={(e) => setEmail(e.target.value)} required />
+                                                    <input type="text" className="form-control" name='email' placeholder="Enter Email" readOnly value={email} onChange={(e) => setEmail(e.target.value)} required />
                                                 </div>
-                                                <div class="form-group">
+                                                <div className="form-group">
                                                     <label >Phone:</label>
-                                                    <input type="tel" class="form-control" name='phone' placeholder="Enter Phone" value={phone} onChange={(e) => setPhone(e.target.value)} required />
+                                                    <input type="tel" className="form-control" name='phone' placeholder="Enter Phone" value={phone} onChange={(e) => setPhone(e.target.value)} required />
                                                 </div>
-
-                                                <div class="form-group">
+                                                <div className="form-group">
                                                     <label >Full Address:</label>
-
-                                                    <textarea name="address" id="" class="form-control" rows="3" placeholder="Enter Full Address" value={addr} onChange={(e) => setAddr(e.target.value)} required></textarea>
+                                                    <textarea name="address" id="" className="form-control" rows="3" placeholder="Enter Full Address" value={addr} onChange={(e) => setAddr(e.target.value)} required></textarea>
                                                 </div>
-
-
-
-                                                <div class="text-center mb-5">
-                                                    <input type="submit" class="btn btn-info pt-2 pb-2 pl-5 pr-5" value="Add Address" />
+                                                <div className="text-center mb-5">
+                                                    <input type="submit" className="btn btn-info pt-2 pb-2 pl-5 pr-5" value="Add Address" />
                                                 </div>
                                             </form>
                                         </div>
-
                                     </>
                                 )
                             }
@@ -244,9 +230,9 @@ const Payment = () => {
                                                     yourAddress.map((val, ind) => {
                                                         return (<div key={ind}>
                                                             <button type="button" className="btn btn-info" onClick={() => navigate(`/edit_address/${UserId}`)}>Edit Address</button>
-                                                            <div class="form-check ">
-                                                                <label class="form-check-label p-1 mb-2">
-                                                                    <input type="radio" class="form-check-input" name="gender" value={val.id} onChange={(e) => setInputAddres(e.target.value)} required />
+                                                            <div className="form-check ">
+                                                                <label className="form-check-label p-1 mb-2">
+                                                                    <input type="radio" className="form-check-input" name="gender" value={val.id} onChange={(e) => setInputAddres(e.target.value)} required />
                                                                     {val.name}<br /> {val.email} <br /> {val.phone} <br /> {val.address}
                                                                 </label>
                                                             </div>
@@ -254,34 +240,22 @@ const Payment = () => {
                                                         )
                                                     })
                                                 }
-
-
-
-
-
                                                 <h4>Choose payment option</h4>
 
-                                                {/* <div class="form-check-inline">
-                               <label class="form-check-label">
-                                   <input type="radio" class="form-check-input" name="payment" value="cod" onChange={(e)=>setPayment(e.target.value)}  required/>Cod
+                                                {/* <div className="form-check-inline">
+                               <label className="form-check-label">
+                                   <input type="radio" className="form-check-input" name="payment" value="cod" onChange={(e)=>setPayment(e.target.value)}  required/>Cod
                                </label>
                            </div> */}
-                                                <div class="form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input type="radio" class="form-check-input" name="payment" value="online" onChange={(e) => setPayment(e.target.value)} required />Online
+                                                <div className="form-check-inline">
+                                                    <label className="form-check-label">
+                                                        <input type="radio" className="form-check-input" name="payment" value="online" onChange={(e) => setPayment(e.target.value)} required />Online
                                                     </label>
                                                 </div>
-
-
-                                                <div class="text-center m-3">
-                                                    <input type="submit" class="btn btn-info pt-2 pb-2 pl-5 pr-5" value="Buy Now" />
+                                                <div className="text-center m-3">
+                                                    <input type="submit" className="btn btn-info pt-2 pb-2 pl-5 pr-5" value="Buy Now" />
                                                 </div>
-
-
-
-
                                             </form>
-
                                         </>
                                     ) :
                                         <button className="btn btn-info" onClick={() => setShowaddress(true)}>Add Address</button>
@@ -291,7 +265,6 @@ const Payment = () => {
                     </div>
                 </div>
             </div>
-
         </>
     )
 }

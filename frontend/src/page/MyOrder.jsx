@@ -31,7 +31,7 @@ const MyOrder = () => {
 
     const getData = async () => {
 
-        const { data } = await axios.get(`http://localhost:8000/myorder/${id}`)
+        const { data } = await axios.get(`http://localhost:8000/order/myorder/${id}`)
         setData(data)
     }
     console.log(data)
@@ -70,34 +70,22 @@ const MyOrder = () => {
                                                         </td>
                                                         <td>
                                                             {val.productprice}
-
                                                         </td>
                                                         <td>{val.productqty}</td>
                                                         <td>
                                                             {val.price * val.productqty}
                                                         </td>
                                                     </tr>
-
                                                 </>
                                             )
                                         })
                                     }
-
-
-
-
-
-
-
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
                 </div>
             </div>
-
-
         </>
     )
 }

@@ -4,15 +4,56 @@
   text-decoration: none;
   list-style: none;
   box-sizing: border-box;
+  margin-top: 20px;
 }
 
 body {
   font-family: montserrat;
+  margin-top: 80px;
+}
+
+.list-group-item {
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1.5 !important;
+  color: black;
+  height: 30px;
+  width: 300px;
+}
+
+.list-group-item a {
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1.5 !important;
+  color: #000 !important;
+  font-family: "Times New Roman", Times, serif !important;
+  background-color: #fff !important;
+  text-transform: none !important;
+}
+
+/* .SearchBar {
+  float: left;
+  width: 3px;
+  display: flex;
+  margin-right: 200px;
+} */
+
+.badge {
+  font-size: 15px;
+}
+
+.searchForm {
+  padding-bottom: 8px;
+  justify-content: center;
 }
 
 .code-nav nav {
+  top: 0px;
+  z-index: 9999;
+  position: fixed;
+  overflow-y: hidden;
   background: #011727;
-  height: 70px;
+  height: 80px;
   width: 100%;
 }
 
@@ -22,33 +63,31 @@ body {
   line-height: 80px;
   padding: 0 100px;
   font-weight: bold;
-  /* margin-top: -13px; */
-
 }
 
 .code-nav nav ul {
   float: right;
   margin-right: 20px;
-  /* margin-top: -13px; */
 }
 
 .code-nav nav ul li {
   display: inline-block;
   line-height: 80px;
-  margin: 0 5px;
+  /* margin: 0 5px; */
 }
 
 .code-nav nav ul li a {
   color: white;
-  font-size: 17px;
+  font-size: 14px;
   padding: 10px 15px;
   border-radius: 3px;
   text-transform: uppercase;
 
 }
 
+/* coral */
 .code-nav a:hover {
-  background: #1b9bff;
+  background: #08c3f1;
   transition: .5s;
   text-decoration: none;
 }
@@ -67,7 +106,87 @@ body {
   display: none;
 }
 
+@media (max-width: 1360px) {
+  /* .searchForm {
+    display: none !important;
+  } */
+
+  /* ----SEARCHBAR----- */
+  .list-group-item {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.5 !important;
+  }
+
+  .list-group-item a {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.5 !important;
+    color: #000 !important;
+    background-color: #fff !important;
+  }
+
+  /* ------- */
+  .code-nav nav {
+    background: #011727;
+    height: 80px;
+    width: 100%;
+  }
+
+  .code-nav .checkbtn {
+    display: block;
+  }
+
+  .code-nav ul {
+    opacity: 0.9;
+    position: fixed;
+    width: 30%;
+    height: 100vh;
+    background: #000;
+    top: 80px;
+    left: -100%;
+    z-index: 9998;
+    text-align: center;
+    transition: all .5s;
+  }
+
+  .code-nav nav ul li {
+    padding-top: 20px;
+    display: block;
+    margin: 5px 5px;
+    line-height: 20px;
+    overflow-y: hidden;
+    font-size: 15px;
+
+  }
+
+  .code-nav #check:checked~ul {
+    left: 0;
+  }
+
+}
+
 @media (max-width: 952px) {
+
+  /* ----SEARCHBAR----- */
+  .list-group-item {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.5 !important;
+  }
+
+  .list-group-item a {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.5 !important;
+    color: #000 !important;
+    background-color: #fff !important;
+    z-index: 9999 !important;
+
+  }
+
+  /* ------- */
+
   .code-nav label.logo {
     font-size: 30px;
     padding-left: 50px;
@@ -75,10 +194,36 @@ body {
 
   .code-nav nav ul li a {
     font-size: 16px;
+    overflow-y: hidden;
+
   }
 }
 
-@media (max-width: 858px) {
+@media (max-width: 860px) {
+
+  /* ----SEARCHBAR----- */
+  .list-group-item {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.5 !important;
+  }
+
+  .list-group-item a {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.5 !important;
+    color: #000 !important;
+    background-color: #fff !important;
+    z-index: 9999 !important;
+  }
+
+  /* ------- */
+  .code-nav nav {
+    background: #011727;
+    height: 80px;
+    width: 100%;
+  }
+
   .code-nav .checkbtn {
     display: block;
     /* margin-top: -13px; */
@@ -98,12 +243,13 @@ body {
 
   .code-nav nav ul li {
     display: block;
-    margin: 50px 0;
+    margin: 25px 25px;
     line-height: 30px;
   }
 
   .code-nav nav ul li a {
     font-size: 20px;
+
   }
 
   .code-nav #check:checked~ul {
@@ -111,7 +257,7 @@ body {
   }
 }
 
-.cart-box span {
+/* .cart-box span {
 
   width: 20px !important;
   height: 20px !important;
@@ -119,7 +265,7 @@ body {
   padding: 5px;
   border-radius: 15px;
 
-}
+} */
 
 .logo a {
   color: #fff !important;
@@ -127,5 +273,20 @@ body {
 
 .logo a:hover {
   background-color: transparent !important;
-  color: #fff !important;
+  color: #08c3f1 !important;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  background: white;
+  height: 66px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.searchbar {
+  width: 22vw;
+  border-radius: 7px;
+  /* padding: 4px 19px; */
+  background-color: aliceblue;
 }

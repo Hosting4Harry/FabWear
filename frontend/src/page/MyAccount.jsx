@@ -12,6 +12,7 @@ const MyAccount = () => {
         localStorage.removeItem("EcomUser");
         localStorage.removeItem("Ecompaymentmode");
         localStorage.removeItem("EcomUserId");
+        localStorage.removeItem("WishList");
         window.location.reload();
     }
 
@@ -23,7 +24,6 @@ const MyAccount = () => {
                 "x-access-token": localStorage.getItem("Ecomtoken")
             }
         }).then((response) => {
-            //  console.log()
             if (!response.data.login) {
                 navigate("/");
             }
@@ -43,11 +43,11 @@ const MyAccount = () => {
 
     const getOrderDetails = async (id) => {
         if (!id) return;
-        const res = await axios.get(`http://localhost:8000/account/${id}`);
+        const res = await axios.get(`http://localhost:8000/order/account/${id}`);
         setOrder(res.data);
     }
     useEffect(() => {
-        const dat = localStorage.getItem('EcomUserId');
+        const dat = +localStorage.getItem('EcomUserId');
         getOrderDetails(dat);
     }, [])
     if (!order.length) {
@@ -61,7 +61,6 @@ const MyAccount = () => {
                     <h2>You Not Yet Placed Any Order</h2>
                     <button className="btn btn-info" onClick={() => navigate('/products')}>Continue Shopping</button>
                 </div>
-
             </>
         )
     }
@@ -91,19 +90,10 @@ const MyAccount = () => {
                                         order.map((val, ind) => {
                                             return (<tr key={ind}>
                                                 <td>{ind + 1}</td>
-                                                <td >
-                                                    {
-                                                        new Date(val.updatedAt).toLocaleDateString()
-                                                    }
-                                                </td>
-
-                                                <td>{val.paymentmode}</td>
-                                                <td>
-                                                    {
-                                                        val.orderstatus
-                                                    }
-                                                </td>
-                                                <td>{val.totalprice}</td>
+                                                <td >{new Date(val.updatedAt).toLocaleDateString()}</td>
+                                                <td>{(val.orderstatus === "cancelled") ? "---" : (val.paymentmode)}</td>
+                                                <td>{val.orderstatus}</td>
+                                                <td>{(val.orderstatus === "cancelled") ? "---" : (val.totalprice)}</td>
                                                 <td>
                                                     <NavLink to={`/myorder/${val.id}`} className="btn btn-info">View</NavLink>
                                                 </td>

@@ -12,13 +12,11 @@ const Success = () => {
             const str = loc.search;
             const myArr = str.split("=");
             const pyid = myArr[myArr.length - 1];
-            //   console.log(pyid)
             const data = {
                 pid: pid,
                 pyid: pyid
             }
-            const res = await axios.post(`http://localhost:8000/paydetails`, data)
-            //    console.log(navigate)
+            const res = await axios.post(`http://localhost:8000/payment/paydetails`, data)
             console.log(res)
 
         }
@@ -42,7 +40,6 @@ const Success = () => {
                 navigate("/");
             }
         })
-
     }
 
     useEffect(() => {
@@ -52,12 +49,8 @@ const Success = () => {
                 clearTimeout(timeout.current)
             }
         }
-
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
-
 
     return (
         <>
@@ -69,9 +62,8 @@ const Success = () => {
                     </div>
                 </div>
             </div>
-
         </>
     )
 }
 
-export default Success
+export default Success;

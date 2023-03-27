@@ -1,0 +1,11 @@
+.heart input {
+    display: none;
+}
+
+.heart input:checked~label {
+    color: red;
+}
+
+.heart label {
+    font-size: 2em;
+}

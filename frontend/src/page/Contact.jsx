@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
 import axios from 'axios'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -32,7 +31,6 @@ const Contact = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-
     const [status, setStatus] = useState("Submit");
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -51,7 +49,7 @@ const Contact = () => {
         }).then(response => {
             toast.success(response.data.message || "message send", {
                 position: "bottom-right",
-                autoClose: 5000,
+                autoClose: 1500,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -63,33 +61,65 @@ const Contact = () => {
         setStatus("Submit");
     };
 
-
     return (
-        <div className='address'>
-            <div className="container ">
-                <div className="row">
-                    <div className="col-md-6 col-12 mx-auto">
-                        <div className="card">
-                            <form onSubmit={handleSubmit}>
-                                <div className="form-group">
-                                    <label htmlFor="name">Name:</label>
-                                    <input className="form-control" type="text" id="name" required />
+        <section className="mb-4 container form-control" style={{ marginTop: "100px" }}>
+            <h2 className="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
+
+            <div className="row " >
+                <div className="col-md-9 mb-md-0 mb-5">
+                    <form id="contact-form" name="contact-form" onSubmit={handleSubmit}>
+                        <div className="row">
+                            <p className="text-center w-responsive mx-auto mb-5">Do you have any questions? Please do not hesitate to contact us directly. Our team will come back to you within few minutes to help you.</p>
+                            <div className="col-md-6">
+                                <div className="md-form mb-0">
+                                    <input type="text" id="name" name="name" className="form-control" required />
+                                    <label htmlFor="name" className="">Your name</label>
                                 </div>
-                                <div className="form-group">
-                                    <label htmlFor="email">Email:</label>
-                                    <input className="form-control" type="email" id="email" required />
+                            </div>
+                            <div className="col-md-6">
+                                <div className="md-form mb-0">
+                                    <input type="text" id="email" name="email" className="form-control" required />
+                                    <label htmlFor="email" className="">Your email</label>
                                 </div>
-                                <div className="form-group">
-                                    <label htmlFor="message">Message:</label>
-                                    <textarea className="form-control" id="message" required />
-                                </div>
-                                <button className='btn btn-info pt-2 pb-2 pl-5 pr-5' type="submit">{status}</button>
-                            </form>
+                            </div>
                         </div>
-                    </div>
+                        <div className="row">
+                            <div className="col-md-12">
+                                <div className="md-form mb-0">
+                                    <input type="text" id="subject" name="subject" className="form-control" />
+                                    <label htmlFor="subject" className="">Subject</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-md-12">
+                                <div className="md-form">
+                                    <textarea type="text" id="message" name="message" rows="2" className="form-control md-textarea" required></textarea>
+                                    <label htmlFor="message">Your message</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="text-center text-md-left">
+                            <button type='submit' className="btn btn-primary" >{status}</button>
+                        </div>
+                    </form>
+                    <div className="status"></div>
+                </div>
+                <div className="col-md-3 text-center">
+                    <ul className="list-unstyled mb-0">
+                        <li><i className="fas fa-map-marker-alt fa-2x"></i>
+                            <p>Ahmedabad, Ganesh Meridian, India</p>
+                        </li>
+                        <li><i className="fas fa-phone mt-4 fa-2x"></i>
+                            <p>+91 70775 52981</p>
+                        </li>
+                        <li><i className="fas fa-envelope mt-4 fa-2x"></i>
+                            <p>cart@gmail.com</p>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </div>
+        </section>
     )
 }
 

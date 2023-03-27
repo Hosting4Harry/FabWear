@@ -8,11 +8,7 @@ const EditAdd = () => {
     const [email, setEmail] = useState(datemail)
     const [phone, setPhone] = useState("")
     const [addr, setAddr] = useState("")
-
     const { id } = useParams()
-
-
-
     const timeout = useRef(null)
     const navigate = useNavigate()
     const checkAuth = () => {
@@ -26,7 +22,6 @@ const EditAdd = () => {
                 navigate("/");
             }
         })
-
     }
 
     useEffect(() => {
@@ -36,29 +31,20 @@ const EditAdd = () => {
                 clearTimeout(timeout.current)
             }
         }
-
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-
-
-
     const getaddress = async () => {
-        const res = await axios.get(`http://localhost:8000/getaddress/${id}`)
+        const res = await axios.get(`http://localhost:8000/address/getaddress/${id}`)
         setName(res.data[0].name)
         setEmail(res.data[0].email)
         setPhone(res.data[0].phone)
         setAddr(res.data[0].address)
-        //   console.log(res.data)
-        //     setYourAddress(res.data)
-
     }
     useEffect(() => {
         getaddress()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
 
     const onSub = async (e) => {
         e.preventDefault()
@@ -69,11 +55,9 @@ const EditAdd = () => {
             address: addr,
             userId: id
         }
-
         // eslint-disable-next-line no-unused-vars
-        const res = await axios.post(`http://localhost:8000/editadd`, data)
+        const res = await axios.post(`http://localhost:8000/address/editadd`, data)
         navigate("/payment")
-
     }
 
     return (
@@ -96,15 +80,11 @@ const EditAdd = () => {
                                         <label >Phone:</label>
                                         <input type="tel" class="form-control" name='phone' placeholder="Enter Phone" value={phone} onChange={(e) => setPhone(e.target.value)} required />
                                     </div>
-
                                     <div class="form-group">
                                         <label >Full Address:</label>
 
                                         <textarea name="address" id="" class="form-control" rows="3" placeholder="Enter Full Address" value={addr} onChange={(e) => setAddr(e.target.value)} required></textarea>
                                     </div>
-
-
-
                                     <div class="text-center mb-5">
                                         <input type="submit" class="btn btn-info pt-2 pb-2 pl-5 pr-5" value="Edit Address" />
                                     </div>

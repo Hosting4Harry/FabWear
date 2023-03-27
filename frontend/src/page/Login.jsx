@@ -75,16 +75,13 @@ const Login = () => {
                             <br />
                             <h2 className="text-center">Login Now</h2>
                             <form onSubmit={onSub}>
-
                                 <div className="form-group">
                                     <input type="email" className="form-control" name="email" placeholder="Enter Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
                                 </div>
                                 <div className="form-group">
-
                                     <input type="password" className="form-control" name="password" placeholder="Enter Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
                                 </div>
                                 <button type="submit" className="btn btn-info">Login</button>
-
                             </form>
                             <br />
                             <NavLink to="/register" >Register Now</NavLink>
@@ -93,7 +90,6 @@ const Login = () => {
                 </div>
 
             </div>
-
         </>
     )
 }
