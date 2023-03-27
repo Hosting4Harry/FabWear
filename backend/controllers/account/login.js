@@ -12,9 +12,14 @@ router.post("/", async (req, res) => {
         }
     }).then(result => {
         if (result) {
-            bcrypt.compare(password, result.password, (errr, response) => {
+            bcrypt.compare(password, result.password, async (errr, response) => {
                 if (response) {
                     const id = result.id;
+
+                    // const role = await findOneUserRole(id);
+                    // const claims = await findAllClaimById(role?.roleId);
+
+
                     const token = jwt.sign({ id }, "ecomreact", {
                         expiresIn: 60 * 60 * 24,
                     })

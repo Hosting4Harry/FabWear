@@ -45,4 +45,8 @@ db.products = require("./products")(sequelize, DataTypes);
 db.orders = require("./orders")(sequelize, DataTypes);
 db.orderitems = require("./orderitems")(sequelize, DataTypes);
 db.wishlists = require("./wishlist")(sequelize, DataTypes);
+db.roles = require("./wishlist")(sequelize, DataTypes);
+db.user_roles = require("./wishlist")(sequelize, DataTypes);
+db.claims = require("./wishlist")(sequelize, DataTypes);
+
 module.exports = db;

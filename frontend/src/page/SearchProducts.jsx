@@ -25,11 +25,12 @@ function SearchProducts() {
 
 
     if (!searchResult.length) {
-        return (
+        return (<section className='mt-5 pt-5'>
             <h1>Loading..</h1>
+        </section>
         )
     } else {
-        return <section style={{ backgroundColor: "#eee" }}>
+        return <section className='pt-5' style={{ backgroundColor: "#eee" }}>
             <div className="container py-5">
                 <div className="row">
                     {searchResult.map((item, i) => {
