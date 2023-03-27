@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 import CardProducts from '../component/CardProducts'
+// import { DataContext } from '../context/DataContext'
 import { useNavigate } from 'react-router-dom'
-import Footer from '../component/Footer'
 const Products = () => {
     const [getdata, setGetdata] = useState([])
     const timeout = useRef(null)
@@ -93,48 +93,27 @@ const Products = () => {
                             </select>
                         </div>
                     </div>
-                    <section >
-                        <div className="container py-5">
-                            <div className="row">
-                                {/* <section class="py-5">
-                        <div class="container px-4 px-lg-5 mt-5">
-                            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"> */}
-                                {
-                                    getdata.map((val, ind) => {
-                                        return (<CardProducts
-                                            key={ind}
-                                            id={val.id}
-                                            name={val.name}
-                                            price={val.price}
-                                            product_image={val.product_image}
-                                        />
-                                        )
-                                    })
-                                }
-                            </div>
-                        </div>
-                    </section>
+                    <div className="row">
+                        {
+                            getdata.map((val, ind) => {
+                                return (<CardProducts
+                                    key={ind}
+                                    id={val.id}
+                                    name={val.name}
+                                    price={val.price}
+                                    product_image={val.product_image}
+                                />
+                                )
+                            })
+                        }
+
+
+
+                    </div>
                 </div>
             </div>
-            <div className='row'>
-                <div className='col-lg-2.5 col-sm-6 col-md-4'>
-                    <img src="../img/puma.png" alt="" />
-                </div>
-                <div className='col-lg-2.5 col-sm-6 col-md-4'>
-                    <img src="../img/adidas.png" alt="" />
-                </div>
-                <div className='col-lg-2.5 col-sm-6 col-md-4'>
-                    <img src="../img/bata.png" alt="" />
-                </div>
-                <div className='col-lg-2.5 col-sm-6 col-md-4'>
-                    <img src="../img/nike.png" alt="" />
-                </div>
-                <div className='col-lg-2.5 col-sm-6 col-md-4'>
-                    <img src="../img/asics.png" alt="" />
-                </div>
-            </div>
-            <p></p>
-            <Footer />
+
+
         </>
     )
 }
