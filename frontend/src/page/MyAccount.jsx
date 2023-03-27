@@ -12,6 +12,7 @@ const MyAccount = () => {
         localStorage.removeItem("EcomUser");
         localStorage.removeItem("Ecompaymentmode");
         localStorage.removeItem("EcomUserId");
+        localStorage.removeItem("WishList");
         window.location.reload();
     }
 
@@ -87,7 +88,6 @@ const MyAccount = () => {
                                 <tbody>
                                     {
                                         order.map((val, ind) => {
-                                            debugger
                                             return (<tr key={ind}>
                                                 <td>{ind + 1}</td>
                                                 <td >{new Date(val.updatedAt).toLocaleDateString()}</td>
