@@ -4,6 +4,7 @@
   text-decoration: none;
   list-style: none;
   box-sizing: border-box;
+  margin-top: 20px;
 }
 
 body {
@@ -38,6 +39,8 @@ body {
 }
 
 .code-nav nav {
+  z-index: 9999;
+  position: fixed;
   overflow-y: hidden;
   background: #011727;
   height: 80px;
@@ -130,7 +133,7 @@ body {
     width: 30%;
     height: 100vh;
     background: #000;
-    top: 0px;
+    top: 80px;
     left: -100%;
     z-index: 9998;
     text-align: center;
