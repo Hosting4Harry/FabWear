@@ -46,7 +46,7 @@
 
 /* == */
 .products {
-  padding: 100px 0;
+  padding: 75px 0;
 
 }
 
@@ -88,7 +88,7 @@
 
 
 .desc {
-  padding: 100px 0;
+  padding: 75px 0;
   background: #04292e;
 }
 
@@ -199,7 +199,7 @@ footer ul li a:hover {
 }
 
 .cart {
-  padding: 100px 0;
+  padding: 75px 0;
 }
 
 .cart .card {
@@ -224,7 +224,7 @@ footer ul li a:hover {
 }
 
 .payment {
-  padding: 100px 0;
+  padding: 75px 0;
 }
 
 .t-img {
