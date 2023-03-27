@@ -31,12 +31,20 @@ body {
   text-transform: none !important;
 }
 
+/* .SearchBar {
+  float: left;
+  width: 3px;
+  display: flex;
+  margin-right: 200px;
+} */
+
 .badge {
   font-size: 15px;
 }
 
 .searchForm {
   padding-bottom: 8px;
+  justify-content: center;
 }
 
 .code-nav nav {

@@ -116,20 +116,20 @@ const Products = () => {
                     </section>
                 </div>
             </div>
-            <div className='row bg-info pt-5 pb-4 ps-5'>
-                <div className='col'>
+            <div className='row'>
+                <div className='col-lg-2.5 col-sm-6 col-md-4'>
                     <img src="../img/puma.png" alt="" />
                 </div>
-                <div className='col'>
+                <div className='col-lg-2.5 col-sm-6 col-md-4'>
                     <img src="../img/adidas.png" alt="" />
                 </div>
-                <div className='col'>
+                <div className='col-lg-2.5 col-sm-6 col-md-4'>
                     <img src="../img/bata.png" alt="" />
                 </div>
-                <div className='col'>
+                <div className='col-lg-2.5 col-sm-6 col-md-4'>
                     <img src="../img/nike.png" alt="" />
                 </div>
-                <div className='col'>
+                <div className='col-lg-2.5 col-sm-6 col-md-4'>
                     <img src="../img/asics.png" alt="" />
                 </div>
             </div>

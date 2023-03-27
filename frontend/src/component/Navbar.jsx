@@ -46,31 +46,30 @@ const Navbar = () => {
       <label className="logo">
         <img style={{ width: "50px" }} src="../img/T4.png" alt="box" className="img-fluid" /><NavLink to="/home">Cart.Com</NavLink>
       </label>
-      <ul className='flex'>
-        <li>
-          <form onSubmit={submit} className="searchForm">
-            <div className=' form-group '>
-              {/* <div className='container'> */}
-              <div className='d-flex'>
-                <input type='text' size={30} id='searchbar' placeholder='Search for products, brands and more' defaultValue={searchValue} onInput={(e) => submitForm(e)} className='form-control form-group-sm' />
-                <button type='submit' className='btn btn-primary m-0' style={{ padding: "5px 15px", borderRadius: "5px" }}> <i className="fa fa-search"></i></button>
-              </div>
-              {searchResult.length > 0 &&
-                <div className='' style={{ width: '320px', position: 'absolute', zIndex: 9999 }}>
-                  <ul className="list-group" >
-                    {searchResult.map((item, i) => {
-                      return <li className="list-group-item" key={i} >
-                        <Link to={'/details/' + item.id} style={{ position: 'static', zIndex: 123 }}>
-                          {item.name}
-                        </Link>
-                      </li>
-                    })}
-                  </ul>
-                </div>
-              }
+      <label className='searchBar'>
+        <form onSubmit={submit} className="searchForm">
+          <div className=' form-group '>
+            <div className='d-flex'>
+              <input type='text' size={30} id='searchbar' placeholder='Search for products, brands and more' defaultValue={searchValue} onInput={(e) => submitForm(e)} className='form-control form-group-sm' />
+              <button type='submit' className='btn btn-primary m-0' style={{ padding: "5px 15px", borderRadius: "5px" }}> <i className="fa fa-search"></i></button>
             </div>
-          </form>
-        </li>
+            {searchResult.length > 0 &&
+              <div className='' style={{ width: '320px', position: 'absolute', zIndex: 9999 }}>
+                <ul className="list-group" >
+                  {searchResult.map((item, i) => {
+                    return <li className="list-group-item" key={i} >
+                      <Link to={'/details/' + item.id} style={{ position: 'static', zIndex: 123 }}>
+                        {item.name}
+                      </Link>
+                    </li>
+                  })}
+                </ul>
+              </div>
+            }
+          </div>
+        </form>
+      </label>
+      <ul className='flex'>
         <li>
           <PermissionCheck claims={4}>
             <NavLink to="/Products" className=" position-relative me-3 ms-2">Products</NavLink>
