@@ -19,6 +19,7 @@ import Wishlist from './page/Wishlist'
 // import PayNow from './page/PayNow'
 import './App.css'
 import SearchProducts from './page/SearchProducts'
+import AddProduct from './page/AddProduct'
 
 const App = () => {
   return (
@@ -38,6 +39,7 @@ const App = () => {
             <Route exact path="/myaccount" element={<MyAccount />} />
             <Route exact path="/edit_address/:id" element={<EditAdd />} />
             <Route exact path="/myorder/:id" element={<MyOrder />} />
+            <Route exact path="/addProduct" element={<AddProduct />} />
             <Route exact path="/" element={<Login />} />
             <Route exact path="/register" element={<Register />} />
             <Route exact path="/success" element={<Success />} />

@@ -4,6 +4,27 @@ const db = require('../../models');
 const { QueryTypes } = require("sequelize");
 const { Op } = require("sequelize");
 const { Sequelize } = require('../../models');
+const path = require('path');
+var multer = require('multer');
+var storage = multer.diskStorage({
+    destination: function (req, res, cb) {
+        cb(null, path.join(__dirname, "../.././frontend/public/img"))
+        console.log(__dirname);
+    },
+    filename: function (req, file, cb) {
+        const name = Date.now() + "" + file.originalname;
+        cb(null, name)
+    }
+})
+const upload = multer({ storage: storage });
+
+router.post("/addproduct", upload.single('image'), async (req, res) => {
+    await db.products.create({
+        name: req.body.name,
+        price: +req.body.price,
+        product_image: req.body.file?.filename
+    })
+})
 
 router.get("/getdataall", async (req, res) => {
     await db.products.findAll({ order: Sequelize.literal('rand()') })
