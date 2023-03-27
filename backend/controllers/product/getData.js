@@ -31,7 +31,7 @@ router.get('/searchProduct/:name', async (req, res) => {
 });
 
 router.get("/getdata", async (req, res) => {
-    let sql = `select * from products ORDER BY RAND() limit 6`;
+    let sql = `select * from products ORDER BY RAND() limit 8`;
     await db.sequelize.query(sql, { type: QueryTypes.SELECT })
         .then(result => {
             res.send(result)
