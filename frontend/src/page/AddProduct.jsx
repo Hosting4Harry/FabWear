@@ -79,9 +79,10 @@ const AddProduct = () => {
                                 <label htmlFor="exampleInputPassword1" className="form-label">product pic</label>
                                 <input type="file" value={productValues.file} onChange={(e) => { setProductValues(productValues => ({ ...productValues, product_image: e.target.files[0] })) }} name="product_image" className="form-control" id="exampleInputPassword1" />
                             </div>
-                            <button type="submi" className="btn btn-primary" >Submit</button>
-                        </form>
-                    </div>
+
+                            <button type="submit" className="btn btn-primary" >Submit</button>
+
+                        </form></div>
                 </div>
             </div>
         </>
