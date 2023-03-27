@@ -26,40 +26,39 @@ const AddProduct = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-
-    const [product, setProduct] = useState({
-        name: "",
-        price: "",
+    const [productValues, setProductValues] = useState({
+        name: '',
+        price: '',
+        product_image: ''
     });
-    const [file, setFile] = useState();
     const handelData = (e) => {
         let { name, value } = e.target;
-        let x = { ...product, [name]: value };
-        setProduct(x);
+        let x = { ...productValues, [name]: value };
+        setProductValues(x)
     }
     const handelSubmit = (e) => {
         e.preventDefault();
-        let formData = new FormData();
-        Object.keys(product).map(key => {
-            debugger
-            return formData.append(key, product[key]);
-        });
-        formData.append(file);
-        axios.post("http://localhost:8000/product/addproduct", formData)
-            .then((res) => {
-                if (product.name === "" || product.price === "") {
-                    alert('please fill details')
-                } else {
-                    alert("product added successfully");
-                }
-            }).catch((err) => {
-                console.log(err);
-            })
-        setProduct({
-            name: "", price: ""
+        var data = new FormData();
+        data.append('name', productValues.name);
+        data.append('price', productValues.price);
+        data.append('product_image', productValues.product_image);
+
+        var config = {
+            method: 'post',
+            url: "http://localhost:8000/product/addproduct",
+            headers: {
+                "Content-Type": "multipart/form-data",
+                "Accept": "application/json",
+                "type": "formData"
+            },
+            data: data
+        };
+        axios(config).then(result => {
+            console.log(result)
+        }).catch(error => {
+            console.log(error)
         })
     }
-
 
     return (
         <>
@@ -67,26 +66,24 @@ const AddProduct = () => {
 
                 <div className="row d-flex justify-content-center aligen-items-center mt-5 h-50">
                     <div className="col-5 border border-yellow">
-                        <form className="form-group">
+                        <form className="form-group" onSubmit={handelSubmit}>
                             <h3>userDetails</h3>
 
                             <div className="mb-3">
                                 <label htmlFor="exampleInputEmail1" className="form-label">Product Name</label>
-                                <input type="text" value={product.name} onChange={handelData} name="name" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                                <input type="text" value={productValues.name} onChange={handelData} name="name" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                             </div>
 
                             <div className="mb-3">
                                 <label htmlFor="exampleInputEmail1" className="form-label">Price</label>
-                                <input type="text" value={product.price} onChange={handelData} name="price" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                                <input type="text" value={productValues.price} onChange={handelData} name="price" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                             </div>
-
-
                             <div className="mb-3">
                                 <label htmlFor="exampleInputPassword1" className="form-label">product pic</label>
-                                <input type="file" value={product.file} onChange={handelData} name="file" className="form-control" id="exampleInputPassword1" />
+                                <input type="file" value={productValues.file} onChange={(e) => { setProductValues(productValues => ({ ...productValues, product_image: e.target.files[0] })) }} name="product_image" className="form-control" id="exampleInputPassword1" />
                             </div>
 
-                            <button type="submit" className="btn btn-primary" onClick={handelSubmit}>Submit</button>
+                            <button type="submi" className="btn btn-primary" >Submit</button>
 
                         </form></div>
                 </div>

@@ -6,23 +6,23 @@ const { Op } = require("sequelize");
 const { Sequelize } = require('../../models');
 const path = require('path');
 var multer = require('multer');
-var storage = multer.diskStorage({
-    destination: function (req, res, cb) {
-        cb(null, path.join(__dirname, "../.././frontend/public/img"))
-        console.log(__dirname);
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, path.join(__dirname, "../../../frontend/public/img"))
     },
-    filename: function (req, file, cb) {
-        const name = Date.now() + "" + file.originalname;
-        cb(null, name)
+    filename: (req, file, cb) => {
+        var imageUrl = file.originalname
+        cb(null, imageUrl)
     }
-})
+});
 const upload = multer({ storage: storage });
 
-router.post("/addproduct", upload.single('image'), async (req, res) => {
+
+router.post("/addproduct", upload.single('product_image'), async (req, res) => {
     await db.products.create({
         name: req.body.name,
         price: +req.body.price,
-        product_image: req.body.file?.filename
+        product_image: req.file?.originalname
     })
 })
 
