@@ -1,8 +1,8 @@
 const dataClaims = [
-    "1_EmailTemplate_Add",
-    "2_EmailTemplate_Delete",
-    "3_EmailTemplate_Edit",
-    "4_EmailTemplate_View",
+    "1_Product_Add",
+    "2_Product_Delete",
+    "3_Product_Edit",
+    "4_Product_View",
     "5_Role_Add",
     "6_Role_Delete",
     "7_Role_Edit",

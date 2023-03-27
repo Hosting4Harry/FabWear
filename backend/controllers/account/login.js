@@ -15,12 +15,19 @@ router.post("/", async (req, res) => {
             bcrypt.compare(password, result.password, async (errr, response) => {
                 if (response) {
                     const id = result.id;
-
-                    // const role = await findOneUserRole(id);
-                    // const claims = await findAllClaimById(role?.roleId);
-
-
-                    const token = jwt.sign({ id }, "ecomreact", {
+                    const role = await db.user_roles.findOne({
+                        where: {
+                            userId: id
+                        }
+                    });
+                    const claims = await db.claims.findAll({
+                        where: {
+                            roleId: role.roleId
+                        }
+                    });
+                    var claim = [];
+                    (claims.map((i) => { return (claim.push(+i.claims.split('_')[0])) }));
+                    const token = jwt.sign({ id: id, claims: claim }, "ecomreact", {
                         expiresIn: 60 * 60 * 24,
                     })
                     res.send({ login: true, token: token, user: result.username, userID: result.id, userEmail: result.email })
