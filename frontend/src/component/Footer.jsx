@@ -51,7 +51,7 @@ const Footer = () => {
                 </div>
             </footer>
             <div className="black-box">
-                <p className="copyright">© 2022 Beauty Cosmetic. All Right Reserved. With Love By Elmous</p>
+                <p className="copyright">© {new Date().getFullYear()} Cart.Com. All Right Reserved. With Love By Cart.Com</p>
             </div>
         </>
     )

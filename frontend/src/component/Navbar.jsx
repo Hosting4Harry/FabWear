@@ -70,13 +70,14 @@ const Navbar = () => {
         </form>
       </label>
       <ul className='flex'>
-        <li>
-          <PermissionCheck claims={4}>
+        <PermissionCheck claims={4}>
+          <li>
             <NavLink to="/Products" className=" position-relative me-3 ms-2">Products</NavLink>
-          </PermissionCheck>
-        </li>
-        <li>
-          <PermissionCheck claims={5}>
+          </li>
+        </PermissionCheck>
+
+        <PermissionCheck claims={5}>
+          <li>
             <NavLink to="/wishlist" className="position-relative me-3">Wishlist
               {wishlist.length > 0 &&
                 <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{ overflowY: "hidden" }}>
@@ -84,10 +85,11 @@ const Navbar = () => {
                 </span>
               }
             </NavLink>
-          </PermissionCheck>
-        </li>
-        <li>
-          <PermissionCheck claims={6}>
+          </li>
+        </PermissionCheck>
+
+        <PermissionCheck claims={6}>
+          <li>
             <NavLink to="/cart" className=" position-relative badgeCss me-3">Cart
               {cart.length > 0 &&
                 <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{ overflowY: "hidden" }}>
@@ -95,18 +97,18 @@ const Navbar = () => {
                 </span>
               }
             </NavLink>
-          </PermissionCheck>
-        </li>
-        <li>
-          <PermissionCheck claims={7}>
+          </li>
+        </PermissionCheck>
+        <PermissionCheck claims={7}>
+          <li>
             <NavLink to="/contact" className=" position-relative me-3">Contact</NavLink>
-          </PermissionCheck>
-        </li>
-        <li>
-          <PermissionCheck claims={1}>
+          </li>
+        </PermissionCheck>
+        <PermissionCheck claims={1}>
+          <li>
             <NavLink to="/addproduct" className=" position-relative me-3" >Add Product </NavLink>
-          </PermissionCheck>
-        </li>
+          </li>
+        </PermissionCheck>
         <li>
           <NavLink to="/myaccount" className=" position-relative me-3" >User </NavLink>
         </li>
