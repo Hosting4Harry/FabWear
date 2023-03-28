@@ -9,7 +9,7 @@
 
 body {
   font-family: montserrat;
-  margin-top: 80px;
+  /* margin-top: 80px; */
 }
 
 .list-group-item {
@@ -49,8 +49,8 @@ body {
 
 .code-nav nav {
   top: 0px;
-  z-index: 9999;
-  position: fixed;
+  /* z-index: 9999; */
+  /* position: absolute; */
   overflow-y: hidden;
   background: #011727;
   height: 80px;

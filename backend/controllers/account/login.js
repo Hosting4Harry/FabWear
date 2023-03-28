@@ -5,7 +5,7 @@ const db = require('../../models');
 var jwt = require('jsonwebtoken');
 
 router.post("/", async (req, res) => {
-    const { email, password } = req.body;
+    const { email, password, checked } = req.body;
     await db.users.findOne({
         where: {
             email: email
@@ -28,7 +28,7 @@ router.post("/", async (req, res) => {
                     var claim = [];
                     (claims.map((i) => { return (claim.push(+i.claims.split('_')[0])) }));
                     const token = jwt.sign({ id: id, claims: claim }, "ecomreact", {
-                        expiresIn: 60 * 60 * 24,
+                        expiresIn: checked ? 60 * 60 * 24 : 60,
                     })
                     res.send({ login: true, token: token, user: result.username, userID: result.id, userEmail: result.email })
                     // res.send({login:true,user:result[0].name})

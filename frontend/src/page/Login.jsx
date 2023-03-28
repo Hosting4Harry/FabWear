@@ -4,8 +4,9 @@ import axios from 'axios'
 // import { DataContext } from '../context/DataContext'
 const Login = () => {
 
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [checked, setChecked] = useState(false);
     const [status, setStatus] = useState(false)
     const [msg, setMsg] = useState("")
     const timeout = useRef(null)
@@ -37,7 +38,8 @@ const Login = () => {
         e.preventDefault()
         const data = {
             email: email,
-            password: password
+            password: password,
+            checked: checked
         }
 
         const res = await axios.post("http://localhost:8000/login", data)
@@ -80,6 +82,9 @@ const Login = () => {
                                 </div>
                                 <div className="form-group">
                                     <input type="password" className="form-control" name="password" placeholder="Enter Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                                </div>
+                                <div className="form-group">
+                                    <input type="checkbox" defaultChecked={checked} onChange={(e) => { setChecked(e.target.checked) }} /> Remember Me
                                 </div>
                                 <button type="submit" className="btn btn-info">Login</button>
                             </form>
