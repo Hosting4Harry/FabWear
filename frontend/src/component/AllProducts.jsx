@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import CardProducts from './CardProducts'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 const AllProducts = () => {
     const [getdata, setGetdata] = useState([])
     const getData = async () => {
@@ -32,24 +33,46 @@ const AllProducts = () => {
                     </div>
                 </div>
             </div>
-            <div className='row bg-info pt-5 pb-4 ps-5'>
-                <div className='col-md-2.5 col-12 mx-auto mb-4 mb-lg-0'>
-                    <img src="../img/adidas.png" alt="" />
+            <section className='bg-info'>
+                <div className="row py-2 px-2">
+                    <div className="col-md-6 col-lg-3 mb-4 mb-lg-0 ">
+                        <div className="card">
+                            <div className="bg-image hover-zoom ripple rounded ripple-surface">
+                                <Link to='/searchproduct/adidas'>
+                                    <img src="../img/adidas.png" className='card-img-top p-img' alt="" />
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-6 col-lg-3 mb-4 mb-lg-0 ">
+                        <div className="card">
+                            <div className="bg-image hover-zoom ripple rounded ripple-surface">
+                                <Link to='/searchproduct/adidas'>
+                                    <img src="../img/puma.png" className='card-img-top p-img' alt="" />
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-6 col-lg-3 mb-4 mb-lg-0 ">
+                        <div className="card">
+                            <div className="bg-image hover-zoom ripple rounded ripple-surface">
+                                <Link to='/searchproduct/adidas'>
+                                    <img src="../img/nike.png" className='card-img-top p-img' alt="" />
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-6 col-lg-3 mb-4 mb-lg-0 ">
+                        <div className="card">
+                            <div className="bg-image hover-zoom ripple rounded ripple-surface">
+                                <Link to='/searchproduct/adidas'>
+                                    <img src="../img/bata.png" className='card-img-top p-img' alt="" />
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className='col-md-2.5 col-12 mx-auto mb-3 mb-lg-0'>
-                    <img src="../img/puma.png" alt="" />
-                </div>
-                <div className='col-md-2.5 col-12 mx-auto mb-3 mb-lg-0'>
-                    <img src="../img/asics.png" alt="" />
-                </div>
-                <div className='col-md-2.5 col-12 mx-auto mb-3 mb-lg-0'>
-                    <img src="../img/nike.png" alt="" />
-
-                </div>
-                <div className='col-md-2.5 col-12 mx-auto mb-3 mb-lg-0'>
-                    <img src="../img/bata.png" alt="" />
-                </div>
-            </div>
+            </section>
         </>
     )
 }
