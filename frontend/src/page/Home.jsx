@@ -5,6 +5,7 @@ import AllProducts from '../component/AllProducts'
 import axios from 'axios'
 import Slides from './Slides'
 import { DataContext } from '../context/DataContext'
+import Footer from '../component/Footer'
 
 
 const Home = () => {
@@ -86,6 +87,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+            <Footer />
         </>
     )
 }

@@ -82,7 +82,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
         return <h1>Loading..</h1>
     }
     return (
-        <div className="col-md-4 col-lg-3 mb-4 mb-lg-0 pb-2">
+        <div className="col-md-4 col-lg-3 col-sm-6 mb-4 mb-lg-0 pb-2">
             <div className="card">
                 <div className="xyz d-flex justify-content-between p-3">
                     <p className="lead mb-0">Today's Combo Offer</p>

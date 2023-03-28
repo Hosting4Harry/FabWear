@@ -56,6 +56,17 @@
   }
 }
 
+@media (max-width:575px) {
+  .home {
+    height: auto;
+  }
+
+  .card {
+    margin-left: 25%;
+    margin-right: 25%;
+  }
+}
+
 /* == */
 .products {
   padding: 75px 0;
@@ -265,4 +276,50 @@ footer ul li a:hover {
 
 .login {
   padding: 75px 0;
+}
+
+.social-outer-box {
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  border: 1px solid rgb(8, 8, 8);
+  border-radius: 250px;
+  transform: scale(1.0);
+  transition: all 0.4s ease;
+}
+
+.social-outer-box:hover {
+  transform: scale(0.9);
+}
+
+.social {
+  max-width: 26px;
+  padding-top: 10px;
+  padding-left: 12px;
+}
+
+.social-fb {
+  padding-top: 9px;
+  padding-left: 14px;
+  max-width: 22px;
+}
+
+.socails {
+  display: flex;
+  align-items: center;
+  gap: 10px
+}
+
+.black-box {
+  padding: 30px 0px;
+  background-color: black;
+  line-height: 80px;
+}
+
+.copyright {
+  color: white;
+  line-height: 25px;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
 }

@@ -14,6 +14,20 @@ const Footer = () => {
                             <p><i className="fas fa-envelope mr-3"></i> Cart@gmail.com</p>
                             <p><i className="fas fa-phone mr-3"></i> + 91 70775 52981</p>
                             <p><i className="fas fa-print mr-3"></i> + 01 234 567 89</p>
+                            <div className="socails">
+                                <div className="social-outer-box">
+                                    <i className="fa fa-facebook-official mr-3 social"></i>
+                                </div>
+                                <div className="social-outer-box">
+                                    <i className="fa fa-twitter mr-3 social"></i>
+                                </div>
+                                <div className="social-outer-box">
+                                    <i className="fa fa-youtube mr-3 social"></i>
+                                </div>
+                                <div className="social-outer-box">
+                                    <i className="fa fa-linkedin-square mr-3 social"></i>
+                                </div>
+                            </div>
                         </div>
                         <div className="col-md-4 col-12 mx-auto mb-3 text-center p-3">
                             <h2>NavLinks</h2>
@@ -34,11 +48,11 @@ const Footer = () => {
                             <img src="../img/d4.svg" alt="box" className="img-fluid foot-img" />
                         </div>
                     </div>
-                    <div className='d-flex justify-content-center col-md-6 col-12 mx-auto mb-3 text-dark copy'>
-                        all rights reserved @{new Date().getFullYear()} <NavLink to="/products">Copyrights </NavLink>
-                    </div>
                 </div>
             </footer>
+            <div className="black-box">
+                <p className="copyright">© 2022 Beauty Cosmetic. All Right Reserved. With Love By Elmous</p>
+            </div>
         </>
     )
 }
