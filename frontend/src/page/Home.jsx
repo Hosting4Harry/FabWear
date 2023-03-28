@@ -58,13 +58,10 @@ const Home = () => {
                         <div className="col-md-6 col-12 mb-3 mx-auto">
                             <h1>Welcome to <span>Cart.Com</span> </h1>
                             <p>It's a  Big Market out there, Let's Explore with Us.
-                                We always make our costomer happy by providing as many choices as possible. Get Your FREE Shopping Website ,We turn all brands like Yours, <p>Happy Shopping!</p></p>
+                                We always make our costomer happy by providing as many choices as possible. Get Your FREE Shopping Website ,We turn all brands like Yours, </p><p>Happy Shopping!</p>
                             <button className="btn btn-outline-success">Read More</button>
                         </div>
                         <div className="col-md-6 col-12 mb-3 mx-auto">
-                            {/* <img src="../img/2593170.png" alt="home " className="img-fluid main-img " style={{
-                                borderRadius: "2em"
-                            }} /> */}
                             <Slides />
                         </div>
                     </div>
