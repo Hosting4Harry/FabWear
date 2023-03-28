@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Navbar from './component/Navbar'
-// import Footer from './component/Footer'
+import Footer from './component/Footer'
 import Home from './page/Home'
 import Products from './page/Products'
 import Cart from './page/Cart'
@@ -45,7 +45,7 @@ const App = () => {
             <Route exact path="/success" element={<Success />} />
             {/* <Route exact path="/paynow/:pid" element={PayNow} /> */}
           </Routes>
-          {/* <Footer /> */}
+          <Footer />
         </Router>
       </ConText>
     </>

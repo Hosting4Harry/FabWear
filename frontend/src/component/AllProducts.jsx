@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import CardProducts from './CardProducts'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 const AllProducts = () => {
     const [getdata, setGetdata] = useState([])
     const getData = async () => {
@@ -33,46 +33,6 @@ const AllProducts = () => {
                     </div>
                 </div>
             </div>
-            <section className='bg-info'>
-                <div className="row ">
-                    <div className="col-md-6 col-lg-3 mb-4 mb-lg-0 p-5">
-                        <div className="card">
-                            <div className="bg-image hover-zoom ripple rounded ripple-surface">
-                                <Link to='/searchproduct/adidas'>
-                                    <img src="../img/adidas.png" className='card-img-top p-img p-5' alt="" />
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-6 col-lg-3 mb-4 mb-lg-0 p-5">
-                        <div className="card">
-                            <div className="bg-image hover-zoom ripple rounded ripple-surface">
-                                <Link to='/searchproduct/puma'>
-                                    <img src="../img/puma.png" className='card-img-top p-img p-5' alt="" />
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-6 col-lg-3 mb-4 mb-lg-0 p-5">
-                        <div className="card">
-                            <div className="bg-image hover-zoom ripple rounded ripple-surface">
-                                <Link to='/searchproduct/nike'>
-                                    <img src="../img/nike.png" className='card-img-top p-img p-5' alt="" />
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-6 col-lg-3 mb-4 mb-lg-0 p-5">
-                        <div className="card">
-                            <div className="bg-image hover-zoom ripple rounded ripple-surface">
-                                <Link to='/searchproduct/bata'>
-                                    <img src="../img/bata.png" className='card-img-top p-img p-5' alt="" />
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
         </>
     )
 }

@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useRef } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import '../App.css'
 import AllProducts from '../component/AllProducts'
 import axios from 'axios'
 import Slides from './Slides'
 import { DataContext } from '../context/DataContext'
-import Footer from '../component/Footer'
 
 
 const Home = () => {
@@ -87,7 +86,46 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <Footer />
+            <section className='bg-info brand'>
+                <div className="row ">
+                    <div className="col-md-6 col-lg-3 mb-4 mb-lg-0 p-4">
+                        <div className="card">
+                            <div className="bg-image hover-zoom ripple rounded ripple-surface">
+                                <Link to='/searchproduct/adidas'>
+                                    <img src="../img/adidas.png" className='card-img-top p-img p-5' alt="" />
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-6 col-lg-3 mb-4 mb-lg-0 p-4">
+                        <div className="card">
+                            <div className="bg-image hover-zoom ripple rounded ripple-surface">
+                                <Link to='/searchproduct/puma'>
+                                    <img src="../img/puma.png" className='card-img-top p-img p-5' alt="" />
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-6 col-lg-3 mb-4 mb-lg-0 p-4">
+                        <div className="card">
+                            <div className="bg-image hover-zoom ripple rounded ripple-surface">
+                                <Link to='/searchproduct/nike'>
+                                    <img src="../img/nike.png" className='card-img-top p-img p-5' alt="" />
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-6 col-lg-3 mb-4 mb-lg-0 p-4">
+                        <div className="card">
+                            <div className="bg-image hover-zoom ripple rounded ripple-surface">
+                                <Link to='/searchproduct/bata'>
+                                    <img src="../img/bata.png" className='card-img-top p-img p-5' alt="" />
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </>
     )
 }

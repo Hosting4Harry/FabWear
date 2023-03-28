@@ -25,7 +25,7 @@ function SearchProducts() {
 
 
     if (!searchResult.length) {
-        return (<section className='mt-5 pt-5'>
+        return (<section className='mt-5 pt-5 ps-1 ' style={{ height: "100vh" }}>
             <h1>Loading..</h1>
         </section>
         )

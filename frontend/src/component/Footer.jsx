@@ -45,7 +45,7 @@ const Footer = () => {
                             </ul>
                         </div>
                         <div className="col-md-4 col-12 mx-auto mb-3 img-bg ">
-                            <img src="../img/d4.svg" alt="box" className="img-fluid foot-img" />
+                            <img src="../img/d4.svg" alt="Cart" className="img-fluid foot-img" />
                         </div>
                     </div>
                 </div>

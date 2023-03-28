@@ -69,8 +69,7 @@
 
 /* == */
 .products {
-  padding: 75px 0;
-
+  padding-top: 75px;
 }
 
 .p-img {
@@ -109,9 +108,12 @@
   opacity: 1;
 }
 
+.brand {
+  height: 250px;
+}
 
 .desc {
-  padding: 75px 0;
+  height: 70vh;
   background: #04292e;
 }
 
