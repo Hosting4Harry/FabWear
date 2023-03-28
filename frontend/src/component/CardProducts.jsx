@@ -84,7 +84,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
     return (
         <div className="col-md-4 col-lg-3 mb-4 mb-lg-0 pb-2">
             <div className="card">
-                <div className="d-flex justify-content-between p-3">
+                <div className="xyz d-flex justify-content-between p-3">
                     <p className="lead mb-0">Today's Combo Offer</p>
                     <div
                         className="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
@@ -95,7 +95,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
                 <div className="bg-image hover-zoom ripple rounded ripple-surface">
                     <Link to={`/details/${id}`} >
                         <img src={`../img/${product_image}`}
-                            className="card-img-top p-img" alt="Laptop" />
+                            className="card-img-top p-img" alt={product_image} />
                     </Link>
                     <div className='heart me-4' style={{ textAlign: "right" }}>
                         <input type="checkbox" id={"heart" + id} />

@@ -64,7 +64,7 @@ const WishlistP = ({ id, name, price, product_image, productId }) => {
                     <div className="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
                         <div className="d-flex flex-row align-items-center mb-1">
                             <h4 className="mb-1 me-1">Price: {price}.00</h4>
-                            <span className="text-danger" style={{ textDecoration: "line-through" }}><s>599.00</s></span>
+                            <span className="text-danger" style={{ textDecoration: "line-through" }}><s>{price + 1000}.00</s></span>
                         </div>
                         {/* <div className="d-flex flex-row align-items-center mb-1">
                             <h4 className="mb-1 me-1">Qty: {qty}</h4>

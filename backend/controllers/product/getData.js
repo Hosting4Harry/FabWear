@@ -39,9 +39,16 @@ router.get('/searchProduct/:name', async (req, res) => {
     const name = req.params.name;
     await db.products.findAll({
         where: {
-            name: {
-                [Op.like]: `%${name}%`
-            }
+            [Op.or]: [{
+                name: {
+                    [Op.like]: `%${name}%`
+                }
+            },
+            {
+                product_image: {
+                    [Op.like]: `%${name}%`
+                }
+            }]
         }
     }).then(result => {
         res.send(result)

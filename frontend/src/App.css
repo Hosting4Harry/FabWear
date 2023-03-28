@@ -14,6 +14,18 @@
   /* overflow-x: hidden; */
 }
 
+.heart {
+  float: right;
+  position: absolute;
+  right: -10px;
+  bottom: -12px;
+  z-index: 1000;
+  /* background-color: #92AD40; */
+  /* padding: 2px; */
+  /* color: #000; */
+  font-weight: bold;
+}
+
 .home h1 {
   font-size: 45px;
 }
@@ -52,7 +64,7 @@
 
 .p-img {
   width: 100%;
-  height: 190px;
+  height: 180px;
 }
 
 .products-p .card {
