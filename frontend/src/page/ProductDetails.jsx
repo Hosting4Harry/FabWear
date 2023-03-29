@@ -9,6 +9,7 @@ toast.configure();
 const ProductDetails = () => {
     const { id } = useParams();
     const { cart, setCart } = useContext(DataContext);
+    const userId = localStorage.getItem("EcomUserId");
     const [detdata, setDetdata] = useState([]);
     const [pdetails, setPdetails] = useState("1");
     const timeout = useRef(null);

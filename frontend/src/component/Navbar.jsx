@@ -44,7 +44,7 @@ const Navbar = () => {
   }
   useEffect(() => {
     getData();
-    // cartItems();
+    cartItems();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (<div className="code-nav flex">
