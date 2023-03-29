@@ -27,7 +27,12 @@ const Navbar = () => {
         setSearchValue('')
       })
   };
-
+  const hideList = () => {
+    document.getElementById("searchList").style.display = "none";
+  }
+  const showList = () => {
+    document.getElementById("searchList").style.display = "";
+  }
   const getData = async () => {
     const userId = localStorage.getItem("EcomUserId");
     const res = await axios.get('http://localhost:8000/wishlist/' + userId);
@@ -50,14 +55,14 @@ const Navbar = () => {
         <form onSubmit={submit} className="searchForm">
           <div className=' form-group '>
             <div className='d-flex'>
-              <input type='text' size={30} id='searchbar' placeholder='Search for products, brands and more' defaultValue={searchValue} onInput={(e) => submitForm(e)} className='form-control form-group-sm' />
+              <input type='text' size={30} id='searchbar' placeholder='Search for products, brands and more' defaultValue={searchValue} onMouseEnter={showList} onChange={(e) => submitForm(e)} className='form-control form-group-sm' />
               <button type='submit' className='btn btn-primary m-0' style={{ padding: "5px 15px", borderRadius: "5px" }}> <i className="fa fa-search"></i></button>
             </div>
             {searchResult.length > 0 &&
-              <div className='' style={{ width: '320px', position: 'absolute', zIndex: 9999 }}>
-                <ul className="list-group" >
+              <div className='' id='searchList' onMouseLeave={hideList} style={{ width: '320px', position: 'absolute', zIndex: 9999, display: 'block' }}>
+                <ul className="list-group"  >
                   {searchResult.map((item, i) => {
-                    return <li className="list-group-item" key={i} >
+                    return <li className="list-group-item" key={i}>
                       <Link to={'/details/' + item.id} style={{ position: 'static', zIndex: 123 }}>
                         {item.name}
                       </Link>

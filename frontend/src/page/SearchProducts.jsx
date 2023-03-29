@@ -7,7 +7,6 @@ import { DataContext } from '../context/DataContext';
 function SearchProducts() {
     const { searchResult, setSearchResult } = useContext(DataContext);
     const { name } = useParams();
-    debugger
     const getData = async (name) => {
         await axios.get('http://localhost:8000/product/searchProduct/' + name)
             .then(response => {
@@ -15,14 +14,12 @@ function SearchProducts() {
             }).catch(error => {
                 if (error)
                     setSearchResult([]);
-
             })
     }
     useEffect(() => {
         getData(name)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [name])
-
 
     if (!searchResult.length) {
         return (<section className='mt-5 pt-5 ps-1 ' style={{ height: "100vh" }}>
@@ -46,11 +43,7 @@ function SearchProducts() {
                 </div>
             </div>
         </section>
-
-
     }
-
-
 }
 
 export default SearchProducts

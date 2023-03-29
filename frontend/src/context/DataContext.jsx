@@ -5,7 +5,7 @@ export const ConText = (props) => {
     const [cart, setCart] = useState([]);
     const [wishlist, setWishlist] = useState([]);
     const [isAuth, setIsAuth] = useState(false);
-    const [searchResult, setSearchResult] = useState([]);
+    const [searchResult, setSearchResult] = useState([{ name: "No result found" }]);
     const checkAuth = () => {
         axios.get("http://localhost:8000/isAuth", {
             headers: {
