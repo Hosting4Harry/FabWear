@@ -31,7 +31,7 @@ const Navbar = () => {
     document.getElementById("searchList").style.display = "none";
   }
   const showList = () => {
-    document.getElementById("searchList").style.display = "";
+    document.getElementById("searchList").style.display = "block";
   }
   const userId = localStorage.getItem("EcomUserId");
   const cartItems = async () => {
