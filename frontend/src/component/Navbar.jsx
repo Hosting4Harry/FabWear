@@ -64,7 +64,7 @@ const Navbar = () => {
               <button type='submit' className='btn btn-primary m-0' style={{ padding: "5px 15px", borderRadius: "5px" }}> <i className="fa fa-search"></i></button>
             </div>
             {searchResult.length > 0 &&
-              <div className='' id='searchList' onMouseLeave={hideList} style={{ width: '320px', position: 'absolute', zIndex: 9999, display: 'block' }}>
+              <div className='' id='searchList' onMouseLeave={hideList} style={{ width: '320px', position: 'absolute', zIndex: 9999, display: 'none' }}>
                 <ul className="list-group"  >
                   {searchResult.map((item, i) => {
                     return <li className="list-group-item" key={i}>
