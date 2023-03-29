@@ -5,8 +5,7 @@ import { DataContext } from '../context/DataContext'
 import axios from 'axios'
 // import NewProducts from './NewProducts'
 const Cart = () => {
-
-    const { cart } = useContext(DataContext);
+    const { cart, setCart } = useContext(DataContext);
     const timeout = useRef(null);
     const navigate = useNavigate();
     const checkAuth = () => {
@@ -30,6 +29,20 @@ const Cart = () => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+    const id = localStorage.getItem("EcomUserId");
+    const cartItems = (id) => {
+        axios.get('http://localhost:8000/cart/' + id)
+            .then((response) => {
+                setCart(response.data);
+            }).catch((error) => {
+                console.log(error);
+            })
+    }
+    useEffect(() => {
+        cartItems(id);
+    }, [id])
+
     return (
         <>
             <section style={{ backgroundColor: "#eee" }}>
@@ -53,12 +66,10 @@ const Cart = () => {
                                         </div>
                                     ) : (
                                         <>
-
                                             <div className="container">
                                                 <h2>Your Cart Items</h2>
                                                 <br />
                                                 <div className="row">
-
                                                     {
                                                         cart.map((val, ind) => {
                                                             return (<CartP
@@ -66,8 +77,8 @@ const Cart = () => {
                                                                 id={val.id}
                                                                 name={val.name}
                                                                 price={val.price}
-                                                                product_image={val.image}
-                                                                qty={val.qty}
+                                                                product_image={val.product_image}
+                                                                qty={val.productqty}
                                                             />
                                                             )
                                                         })

@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { DataContext } from '../context/DataContext'
@@ -5,6 +6,7 @@ const CartP = ({ id, name, price, product_image, qty }) => {
     const navigate = useNavigate();
     const { cart, setCart } = useContext(DataContext);
     const deleteProduct = (id) => {
+        axios.delete('http://localhost:8000/cart/' + id);
         const exist = cart.find((x) => x.id === id)
         if (exist) {
             setCart(
@@ -20,7 +22,7 @@ const CartP = ({ id, name, price, product_image, qty }) => {
                         <div className="bg-image hover-zoom ripple rounded ripple-surface">
                             <img src={`../img/${product_image}`} alt=''
                                 className="w-100" />
-                            <Link role='button' onClick={navigate(`/details/${id}`)}>
+                            <Link role='button' onClick={() => navigate(`/details/${id}`)}>
                                 <div className="hover-overlay">
                                     <div className="mask" style={{ backgroundColor: "rgba(253, 253, 253, 0.15)" }}></div>
                                 </div>

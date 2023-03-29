@@ -36,7 +36,6 @@ const CardProducts = ({ id, name, price, product_image }) => {
                 setWishlist(
                     wishlist.filter((x) => x.id !== id)
                 )
-                // setWishlist(wishlist.map((x) => x.id === data.id ? data : x))
                 repeats(wishlist);
                 await axios.delete('http://localhost:8000/wishlist/' + data.id);
             } else {
