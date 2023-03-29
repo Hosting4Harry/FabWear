@@ -27,24 +27,26 @@ const App = () => {
       <ConText>
         <Router>
           <Navbar />
-          <Routes>
-            <Route exact path="/home" element={<Home />} />
-            <Route exact path='/searchProduct/:name' element={<SearchProducts />} />
-            <Route exact path="/products" element={<Products />} />
-            <Route exact path="/contact" element={<Contact />} />
-            <Route exact path="/wishlist" element={<Wishlist />} />
-            <Route exact path="/cart" element={<Cart />} />
-            <Route exact path="/details/:id" element={<ProductDetails />} />
-            <Route exact path="/payment" element={<Payment />} />
-            <Route exact path="/myaccount" element={<MyAccount />} />
-            <Route exact path="/edit_address/:id" element={<EditAdd />} />
-            <Route exact path="/myorder/:id" element={<MyOrder />} />
-            <Route exact path="/addProduct" element={<AddProduct />} />
-            <Route exact path="/" element={<Login />} />
-            <Route exact path="/register" element={<Register />} />
-            <Route exact path="/success" element={<Success />} />
-            {/* <Route exact path="/paynow/:pid" element={PayNow} /> */}
-          </Routes>
+          <div style={{ height: '100vh' }}>
+            <Routes>
+              <Route exact path="/home" element={<Home />} />
+              <Route exact path='/searchProduct/:name' element={<SearchProducts />} />
+              <Route exact path="/products" element={<Products />} />
+              <Route exact path="/contact" element={<Contact />} />
+              <Route exact path="/wishlist" element={<Wishlist />} />
+              <Route exact path="/cart" element={<Cart />} />
+              <Route exact path="/details/:id" element={<ProductDetails />} />
+              <Route exact path="/payment" element={<Payment />} />
+              <Route exact path="/myaccount" element={<MyAccount />} />
+              <Route exact path="/edit_address/:id" element={<EditAdd />} />
+              <Route exact path="/myorder/:id" element={<MyOrder />} />
+              <Route exact path="/addProduct" element={<AddProduct />} />
+              <Route exact path="/" element={<Login />} />
+              <Route exact path="/register" element={<Register />} />
+              <Route exact path="/success" element={<Success />} />
+              {/* <Route exact path="/paynow/:pid" element={PayNow} /> */}
+            </Routes>
+          </div>
           <Footer />
         </Router>
       </ConText>
