@@ -11,7 +11,6 @@ const ProductDetails = () => {
     const { cart, setCart } = useContext(DataContext);
     const [detdata, setDetdata] = useState([]);
     const [pdetails, setPdetails] = useState("1");
-    const userId = localStorage.getItem("EcomUserId")
     const timeout = useRef(null);
     const navigate = useNavigate();
     const checkAuth = () => {
@@ -41,9 +40,6 @@ const ProductDetails = () => {
 
             id: detdata[0].id,
             userId: localStorage.getItem("EcomUserId"),
-            // name: detdata[0].name,
-            // price: detdata[0].price,
-            // image: detdata[0].product_image,
             qty: pdetails
         }
         axios.post('http://localhost:8000/cart', data)
@@ -67,7 +63,6 @@ const ProductDetails = () => {
             theme: "dark",
         });
     }
-
 
     const getData = async () => {
         const res = await axios.get(`http://localhost:8000/product/getdata/${id}`);
