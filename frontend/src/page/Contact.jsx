@@ -62,7 +62,7 @@ const Contact = () => {
     };
 
     return (
-        <section className="mb-4 container form-control" style={{ marginTop: "100px" }}>
+        <section className="mb-4 container form-control" style={{ marginTop: "50px" }}>
             <h2 className="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
 
             <div className="row " >
