@@ -7,7 +7,7 @@ import PermissionCheck from '../context/PermissionCheck'
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { cart, setCart, wishlist, setWishlist, searchResult, setSearchResult } = useContext(DataContext);
+  const { cart, wishlist, setWishlist, searchResult, setSearchResult } = useContext(DataContext);
   const [searchValue, setSearchValue] = useState('');
 
   const submit = (e) => {

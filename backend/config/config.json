@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": "sumit",
-    "database": "ecom-react-db",
-    "host": "localhost",
+    "username": "**your_username**",
+    "password": "****your_password****",
+    "database": "***db_Schema***",
+    "host": "**host**",
     "dialect": "mysql"
   },
   "test": {
