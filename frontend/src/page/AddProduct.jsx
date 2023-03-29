@@ -26,23 +26,25 @@ const AddProduct = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    const [productValues, setProductValues] = useState({
+    const [productDetails, setProductDetails] = useState({
         name: '',
         price: '',
-        product_image: ''
+        product_image: '',
+        category: ''
     });
     const handelData = (e) => {
         let { name, value } = e.target;
-        let x = { ...productValues, [name]: value };
-        setProductValues(x)
+        let x = { ...productDetails, [name]: value };
+        setProductDetails(x)
     }
+    console.log(productDetails)
     const handelSubmit = (e) => {
         e.preventDefault();
         var data = new FormData();
-        data.append('name', productValues.name);
-        data.append('price', productValues.price);
-        data.append('product_image', productValues.product_image);
-
+        data.append('name', productDetails.name);
+        data.append('price', productDetails.price);
+        data.append('category', productDetails.category);
+        data.append('product_image', productDetails.product_image);
         var config = {
             method: 'post',
             url: "http://localhost:8000/product/addproduct",
@@ -54,6 +56,7 @@ const AddProduct = () => {
             data: data
         };
         axios(config).then(result => {
+            window.location.reload(true);
             console.log(result)
         }).catch(error => {
             console.log(error)
@@ -61,23 +64,40 @@ const AddProduct = () => {
     }
 
     return (
-        <section className='pt-5 mt-5'>
+        <section className='pt-4' style={{ height: '100vh' }}>
             <div className='container'>
                 <div className="row d-flex justify-content-center aligen-items-center mt-5 h-50">
                     <div className="col-5 border border-yellow">
                         <form className="form-group" onSubmit={handelSubmit}>
                             <div className="mb-3">
                                 <label htmlFor="exampleInputEmail1" className="form-label">Product Name</label>
-                                <input type="text" value={productValues.name} onChange={handelData} name="name" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                                <input type="text" value={productDetails.name} onChange={handelData} name="name" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                             </div>
 
                             <div className="mb-3">
                                 <label htmlFor="exampleInputEmail1" className="form-label">Price</label>
-                                <input type="text" value={productValues.price} onChange={handelData} name="price" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                                <input type="text" value={productDetails.price} onChange={handelData} name="price" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                            </div>
+                            <div className="form-group w-50 mb-3">
+                                <label htmlFor="sel1">Category:</label>
+                                <select className="form-control" id="" name='category' onChange={handelData} required>
+                                    <option value="select">Select</option>
+                                    <option value="men">Men</option>
+                                    <option value="women">Women</option>
+                                    <option value="shirt">Shirt</option>
+                                    <option value="pant">Pant</option>
+                                    <option value="jacket">Jacket</option>
+                                    <option value="hat">Hat</option>
+                                    <option value="kurta">Kurta</option>
+                                    <option value="plants">Plants</option>
+                                    <option value="tees">Tees</option>
+                                    <option value="sneaker">Sneaker</option>
+                                    <option value="perfume">Perfume</option>
+                                </select>
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="exampleInputPassword1" className="form-label">Product Image</label>
-                                <input type="file" value={productValues.file} onChange={(e) => { setProductValues(productValues => ({ ...productValues, product_image: e.target.files[0] })) }} name="product_image" className="form-control" id="exampleInputPassword1" />
+                                <input type="file" value={productDetails.file} onChange={(e) => { setProductDetails(productDetails => ({ ...productDetails, product_image: e.target.files[0] })) }} name="product_image" className="form-control" id="exampleInputPassword1" />
                             </div>
 
                             <button type="submit" className="btn btn-primary" >Submit</button>
