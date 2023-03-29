@@ -11,6 +11,7 @@ const ProductDetails = () => {
     const { cart, setCart } = useContext(DataContext);
     const [detdata, setDetdata] = useState([]);
     const [pdetails, setPdetails] = useState("1");
+    const userId = localStorage.getItem("EcomUserId")
     const timeout = useRef(null);
     const navigate = useNavigate();
     const checkAuth = () => {
@@ -37,12 +38,15 @@ const ProductDetails = () => {
     const onSub = (e) => {
         e.preventDefault();
         const data = {
+
             id: detdata[0].id,
-            name: detdata[0].name,
-            price: detdata[0].price,
-            image: detdata[0].product_image,
+            userId: localStorage.getItem("EcomUserId"),
+            // name: detdata[0].name,
+            // price: detdata[0].price,
+            // image: detdata[0].product_image,
             qty: pdetails
         }
+        axios.post('http://localhost:8000/cart', data)
         const exist = cart.find((x) => x.id === data.id);
         if (exist) {
             setCart(
@@ -63,6 +67,7 @@ const ProductDetails = () => {
             theme: "dark",
         });
     }
+
 
     const getData = async () => {
         const res = await axios.get(`http://localhost:8000/product/getdata/${id}`);
@@ -109,7 +114,7 @@ const ProductDetails = () => {
                                             </div>
 
                                             <div className="text-left">
-                                                <button type="submit" className="btn btn-info" >Add To Cart</button>&nbsp;
+                                                <button type="submit" className="btn btn-info">Add To Cart</button>&nbsp;
                                                 <button type="button" className="btn btn-info" onClick={() => navigate('/cart')}>Go To Cart</button>
                                             </div>
                                         </form>

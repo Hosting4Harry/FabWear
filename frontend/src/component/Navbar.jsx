@@ -7,7 +7,7 @@ import PermissionCheck from '../context/PermissionCheck'
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { cart, wishlist, setWishlist, searchResult, setSearchResult } = useContext(DataContext);
+  const { cart, setCart, wishlist, setWishlist, searchResult, setSearchResult } = useContext(DataContext);
   const [searchValue, setSearchValue] = useState('');
 
   const submit = (e) => {
@@ -33,13 +33,18 @@ const Navbar = () => {
   const showList = () => {
     document.getElementById("searchList").style.display = "";
   }
+  const userId = localStorage.getItem("EcomUserId");
+  // const cartItems = async () => {
+  //   const res = await axios.get('http://localhost:8000/cart/' + userId);
+  //   setCart(res.data);
+  // }
   const getData = async () => {
-    const userId = localStorage.getItem("EcomUserId");
     const res = await axios.get('http://localhost:8000/wishlist/' + userId);
     setWishlist(res.data);
   }
   useEffect(() => {
     getData();
+    // cartItems();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (<div className="code-nav flex">
