@@ -18,8 +18,10 @@ const Navbar = () => {
   const submitForm = async (e) => {
     e.preventDefault();
     setSearchValue(e.target.value);
+    if (!e.target.value) return;
     await axios.get('http://localhost:8000/product/searchProduct/' + e.target.value)
       .then(response => {
+        debugger
         setSearchResult(response.data);
       }).catch(error => {
         if (error)
@@ -31,7 +33,8 @@ const Navbar = () => {
     document.getElementById("searchList").style.display = "none";
   }
   const showList = () => {
-    document.getElementById("searchList").style.display = "block";
+    document.getElementById("searchList").style.display = "list-item";
+
   }
   const userId = localStorage.getItem("EcomUserId");
   const cartItems = async () => {
@@ -65,7 +68,7 @@ const Navbar = () => {
             </div>
             {searchResult.length > 0 &&
               <div className='' id='searchList' onMouseLeave={hideList} style={{ width: '320px', position: 'absolute', zIndex: 9999, display: 'none' }}>
-                <ul className="list-group"  >
+                <ul className="list-group" style={{}}>
                   {searchResult.map((item, i) => {
                     return <li className="list-group-item" key={i}>
                       <Link to={'/details/' + item.id} style={{ position: 'static', zIndex: 123 }}>
