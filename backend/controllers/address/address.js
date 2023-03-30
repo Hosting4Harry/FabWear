@@ -15,13 +15,15 @@ router.get("/getaddress/:userid", async (req, res) => {
     })
 })
 router.post("/addaddress", async (req, res) => {
-    const { name, email, phone, address } = req.body;
+    const { fname, lname, email, phone, address, user_id, state, city, zip } = req.body;
+    const name = fname + " " + lname
+    const addressData = address + ", " + state + ", " + city
     const data = {
         name,
         email,
         phone,
-        address,
-        user_id: +req.body.userId
+        address: addressData,
+        user_id
     }
     await db.user_data.create(data)
         .then(response => {

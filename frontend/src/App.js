@@ -20,6 +20,9 @@ import Wishlist from './page/Wishlist'
 import './App.css'
 import SearchProducts from './page/SearchProducts'
 import AddProduct from './page/AddProduct'
+import AddAddress from './page/AddAddress'
+import CheckOut from './page/CheckOut'
+import MyAddress from './page/MyAddress'
 
 const App = () => {
   return (
@@ -44,6 +47,9 @@ const App = () => {
               <Route exact path="/" element={<Login />} />
               <Route exact path="/register" element={<Register />} />
               <Route exact path="/success" element={<Success />} />
+              <Route exact path="/addaddress" element={<AddAddress />} />
+              <Route exact path="/checkout" element={<CheckOut />} />
+              <Route exact path="/myaddress" element={<MyAddress />} />
               {/* <Route exact path="/paynow/:pid" element={PayNow} /> */}
             </Routes>
           </div>
