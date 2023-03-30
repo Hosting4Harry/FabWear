@@ -87,9 +87,7 @@ function CheckOut() {
             alert("Razorpay SDK failed to load. Are you online?");
             return;
         }
-
         // creating a new order
-        debugger
         const result = await axios.post("http://localhost:8000/payment/orders", data);
 
         if (!result) {

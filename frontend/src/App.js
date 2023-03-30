@@ -48,6 +48,7 @@ const App = () => {
               <Route exact path="/register" element={<Register />} />
               <Route exact path="/success" element={<Success />} />
               <Route exact path="/addaddress" element={<AddAddress />} />
+              <Route exact path="/addaddress/:id" element={<AddAddress />} />
               <Route exact path="/checkout" element={<CheckOut />} />
               <Route exact path="/myaddress" element={<MyAddress />} />
               {/* <Route exact path="/paynow/:pid" element={PayNow} /> */}

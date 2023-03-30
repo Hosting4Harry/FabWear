@@ -10,7 +10,6 @@ function MyAddress() {
     const getaddress = async () => {
         const dat = localStorage.getItem('EcomUserId');
         const res = await axios.get(`http://localhost:8000/address/getaddress/${dat}`);
-        debugger
         setYourAddress(res.data);
     }
     useEffect(() => {
@@ -22,33 +21,7 @@ function MyAddress() {
                 <div className="row d-flex justify-content-center align-items-center">
                     <div className="col">
                         <div className="card my-4 shadow-3">
-                            <div className="row g-0 " style={{ height: "500px" }}>
-                                {/* <div className="col-xl-6 d-xl-block bg-image">
-                                    <img src="https://mdbcdn.b-cdn.net/img/Others/extended-example/delivery.webp" alt="Sample_photo"
-                                        className="img-fluid" style={{ height: "500px", width: "100%", padding: '0px' }} />
-                                    <div className="mask" style={{ backgroundColor: "rgba(0, 0, 0, 0.6)" }}>
-                                        <div className=" justify-content-center align-items-center h-100">
-                                            <div className=" text-center" style={{ marginTop: "220px" }}>
-                                                <i className="fas fa-truck text-white fa-3x"></i>
-                                                <p className="text-white title-style">Lorem ipsum delivery</p>
-                                                <p className="text-white mb-0"></p>
-
-                                                <figure className="text-center mb-0">
-                                                    <blockquote className="blockquote text-white">
-                                                        <p className="pb-3">
-                                                            <i className="fas fa-quote-left fa-xs text-primary"
-                                                                style={{ color: "hsl(210, 100%, 50%) " }}></i>
-                                                            <span className="lead font-italic">Everything at your doorstep.</span>
-                                                            <i className="fas fa-quote-right fa-xs text-primary"
-                                                                style={{ color: " hsl(210, 100%, 50%)" }}></i>
-                                                        </p>
-                                                    </blockquote>
-
-                                                </figure>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> */}
+                            <div className="row g-0 p-5" style={{ height: "fitContent" }}>
                                 <div className="col-md-3">
                                     <div className="osahan-account-page-left shadow-sm bg-white h-100">
                                         <div className="border-bottom p-4">
@@ -88,7 +61,7 @@ function MyAddress() {
                                                                                 <h6 className="mb-1 text-secondary">Home</h6>
                                                                                 <p className="text-black">{val.address}
                                                                                 </p>
-                                                                                <p className="mb-0 text-black font-weight-bold"><Link className="text-primary mr-3" data-toggle="modal" data-target="#add-address-modal" to="#"><i className="icofont-ui-edit"></i> EDIT</Link> <Link className="text-danger" data-toggle="modal" data-target="#delete-address-modal" to="#"><i className="icofont-ui-delete"></i> DELETE</Link></p>
+                                                                                <p className="mb-0 text-black font-weight-bold"><Link className="text-primary mr-3" data-toggle="modal" data-target="#add-address-modal" to={"/addaddress/" + val.id}><i className="icofont-ui-edit"></i> EDIT</Link> <Link className="text-danger" data-toggle="modal" data-target="#delete-address-modal" to="#"><i className="icofont-ui-delete"></i> DELETE</Link></p>
                                                                             </div>
                                                                         </div>
                                                                     </div>
