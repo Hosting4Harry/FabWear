@@ -55,6 +55,7 @@ const MyAccount = () => {
             <>
                 <div className="container p-5" style={{ height: "100vh" }}>
                     <button className="btn btn-success ml-1 mr-1" disabled>Welcome {userdatast}</button>
+                    <button className="btn btn-success ml-1 mr-1" onClick={() => navigate('/myaddress')}>Manage Address</button>
                     <button className="btn btn-warning ml-1 mr-1" onClick={logout}>LogOut</button>
                     <br /><br />
 
@@ -70,6 +71,7 @@ const MyAccount = () => {
             <div className="payment">
                 <div className="container">
                     <button className="btn btn-success ml-1 mr-1" disabled>Welcome {userdatast}</button>
+                    <button className="btn btn-success ml-1 mr-1" onClick={() => navigate('/myaddress')}>Manage Address</button>
                     <button className="btn btn-warning ml-1 mr-1" onClick={logout}>LogOut</button>
                     <br /><br />
                     <div className="row">
