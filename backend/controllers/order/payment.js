@@ -1,79 +1,100 @@
-const express = require('express');
+const express = require("express");
+const Razorpay = require("razorpay");
+const db = require("../../models");
+const crypto = require('crypto')
 const router = express();
-const db = require('../../models')
-const Insta = require("instamojo-nodejs");
-const API_KEY = process.env.API_KEY || "test_c06b46e28e2a2b035498f4721c5";
-const AUTH_KEY = process.env.AUTH_KEY || "test_11139217a60baaae7ff95692cea";
-Insta.setKeys(API_KEY, AUTH_KEY);
-Insta.isSandboxMode(true);
 
-router.post("/buynow", (req, res) => {
+router.post("/orders", async (req, res) => {
     const { cart, paymentemail, name } = req.body;
-    var insta = new Insta.PaymentData();
+    const data = req.body
+    try {
+        const instance = new Razorpay({
+            key_id: process.env.RAZORPAY_KEY_ID || "rzp_test_T3tAATbEcOqopL",
+            key_secret: process.env.RAZORPAY_SECRET || "IIDn2dhDvH9fIEE83BD6odGI",
+        });
 
-    const REDIRECT_URL = "http://localhost:3000/success";
+        const options = {
+            amount: data.totalprice * 100, // amount in smallest currency unit
+            currency: "INR",
+            receipt: "receipt_order_74394",
+        };
 
-    insta.setRedirectUrl(REDIRECT_URL);
-    insta.send_email = "True";
-    insta.send_sms = "False";
-    insta.purpose = "React Ecom"; // REQUIRED
-    insta.amount = req.body.totalprice;
-    insta.name = name;
-    insta.email = paymentemail; // REQUIRED
+        const order = await instance.orders.create(options);
 
-    Insta.createPayment(insta, function (error, response) {
-        if (error) {
-            console.log("something went wrong")
-        } else {
-            const responseData = JSON.parse(response);
-            const redirectUrl = responseData.payment_request?.longurl;
-            // console.log(redirectUrl)
-            //   open(response.payment_request.longurl);
-            const data = {
-                userid: req.body.userid,
-                totalprice: req.body.totalprice,
-                orderstatus: responseData.payment_request?.status,
-                paymentmode: req.body.paymentmode,
-                paymentid: responseData.payment_request?.id
-            }
-            // let sql = "INSERT INTO `orders` SET ?";
-            db.orders.create(data)
-                .then(result => {
-                    for (let i = 0; i < cart.length; i++) {
-                        // console.log(cart[i].name)
-                        const detailsdata = {
-                            orderid: result.id,
-                            productid: cart[i].id,
-                            productqty: cart[i].qty,
-                            productprice: cart[i].price
-                        }
-                        // let sqll = "INSERT INTO `orderitems` SET ?";
-                        db.orderitems.create(detailsdata)
-                            .then(result => {
-                                console.log(result)
-                            })
-                    }
-                }).catch(error => {
-                    console.log(error)
-                })
-            res.send(response)
-        }
-    })
-})
+        if (!order) return res.status(500).send("Some error occured");
+        // ----------------------------------------order create
 
-router.post("/paydetails", (req, res) => {
-    const pid = req.body.pid
-    const pyid = req.body.pyid
-    if (pid === pyid) {
-        let sql = `update orders set orderstatus="order done" where paymentid='${pid}'`
-        db.sequelize.query(sql)
+        var orderData;
+        await db.orders.create(data)
             .then(result => {
-                res.send({ msg: "order done Successfully" })
+                orderData = result;
+                for (let i = 0; i < cart.length; i++) {
+                    // console.log(cart[i].name)
+                    const detailsdata = {
+                        orderid: result.id,
+                        productid: cart[i].id,
+                        productqty: cart[i].productqty,
+                        productprice: cart[i].price
+                    }
+                    // let sqll = "INSERT INTO `orderitems` SET ?";
+                    db.orderitems.create(detailsdata)
+                        .then(result => {
+                            console.log(result)
+                        })
+                }
             }).catch(error => {
                 console.log(error)
             })
+        console.log(orderData)
+        // --------------------------------------
+        res.json({ orderData: orderData, order: order, });
+    } catch (error) {
+        res.status(500).send(error);
     }
-})
+});
+router.post("/success", async (req, res) => {
+    try {
+        // getting the details back from our font-end
+        const {
+            orderCreationId,
+            razorpayPaymentId,
+            razorpayOrderId,
+            razorpaySignature,
+            orderData
+        } = req.body;
 
+        // Creating our own digest
+        // The format should be like this:
+        // digest = hmac_sha256(orderCreationId + "|" + razorpayPaymentId, secret);
+        const shasum = crypto.createHmac("sha256", "IIDn2dhDvH9fIEE83BD6odGI");
 
+        shasum.update(`${orderCreationId}|${razorpayPaymentId}`);
+
+        const digest = shasum.digest("hex");
+
+        // comaparing our digest with the actual signature
+        if (digest !== razorpaySignature)
+            return res.status(400).json({ msg: "Transaction not legit!" });
+
+        // THE PAYMENT IS LEGIT & VERIFIED
+        // YOU CAN SAVE THE DETAILS IN YOUR DATABASE IF YOU WANT
+
+        db.orders.update({
+            orderstatus: "Order Done"
+        },
+            {
+                where: {
+                    id: orderData.id
+                }
+            });
+
+        res.json({
+            msg: "success",
+            orderId: razorpayOrderId,
+            paymentId: razorpayPaymentId,
+        });
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
 module.exports = router;

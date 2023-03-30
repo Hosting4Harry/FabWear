@@ -1,6 +1,9 @@
+/* eslint-disable no-unused-vars */
 import React, { useContext, useEffect, useState, useRef } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { DataContext } from '../context/DataContext'
+// import logo from "./logo.svg";
+
 import axios from 'axios'
 const Payment = () => {
     const navigate = useNavigate();
@@ -15,7 +18,7 @@ const Payment = () => {
     const [showaddress, setShowaddress] = useState(false);
     const [payment, setPayment] = useState("");
     const [UserId, setUserId] = useState("");
-    const [total, setTotal] = useState("");
+    const [total, setTotal] = useState(0);
     const { cart, setCart } = useContext(DataContext);
     var tot = 0;
     const timeout = useRef(null);
@@ -43,19 +46,12 @@ const Payment = () => {
     }, [])
 
     useEffect(() => {
-        //    console.log()
         let totamo = 0;
         for (let i = 0; i < cart.length; i++) {
-            totamo += cart[i].price * cart[i].qty;
+            totamo += cart[i].price * cart[i].productqty;
         }
-        if (totamo < 500) {
-            totamo += 50;
-            setTotal(totamo);
-        } else {
-            setTotal(totamo)
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+        setTotal(totamo);
+    }, [cart]);
     const getaddress = async () => {
         const dat = localStorage.getItem('EcomUserId');
         const res = await axios.get(`http://localhost:8000/address/getaddress/${dat}`);
@@ -66,7 +62,6 @@ const Payment = () => {
         const res = await axios.post(`http://localhost:8000/address/addaddress`, adddata)
         setShowaddress(false);
     }
-
     const onSub = (e) => {
         e.preventDefault()
         const dat = localStorage.getItem('EcomUserId');
@@ -85,40 +80,98 @@ const Payment = () => {
         getaddress();
     }, [])
 
-    // useEffect(() => {
-    //     debugger
-    //     getaddress()
-    // }, [yourAddress]);
-
-    const OnBuyNow = async (e) => {
+    function loadScript(src) {
+        debugger
+        return new Promise((resolve) => {
+            const script = document.createElement("script");
+            script.src = src;
+            script.onload = () => {
+                resolve(true);
+            };
+            script.onerror = () => {
+                resolve(false);
+            };
+            document.body.appendChild(script);
+        });
+    }
+    const displayRazorpay = async (e) => {
+        debugger
         e.preventDefault();
-        //  console.log(inputAddres + payment)
         const dat = localStorage.getItem('EcomUserId');
         const datemail = localStorage.getItem('EcomEmail');
         const datname = localStorage.getItem('EcomUser');
         localStorage.setItem('Ecompaymentmode', payment);
         const data = {
             userid: dat,
-            totalprice: total,
-            // orderstatus:"order Not Done",
+            totalprice: total < 500 ? total + 50 : total,
+            orderstatus: "Pending",
             paymentmode: payment,
             paymentemail: datemail,
             name: datname,
             cart: cart
         }
-        // console.log(data)
-        const res = await axios.post(`http://localhost:8000/payment/buynow`, data);
-        //   console.log(res.data.payment_request.longurl)
-        if (res.data.success) {
-            setCart([])
-            localStorage.setItem('Ecomlongid', res.data.payment_request?.id);
-            navigate(`/myaccount`);
-        } else {
-            console.log("order not placed");
+        const res = await loadScript(
+            "https://checkout.razorpay.com/v1/checkout.js"
+        );
+
+        if (!res) {
+            alert("Razorpay SDK failed to load. Are you online?");
+            return;
         }
-        window.open(res.data.payment_request?.longurl, '_self');
-        //   window.close('http://localhost:3000/payment')
+
+        // creating a new order
+        debugger
+        const result = await axios.post("http://localhost:8000/payment/orders", data);
+
+        if (!result) {
+            alert("Server error. Are you online?");
+            return;
+        }
+        // Getting the order details back
+        const { order, orderData } = result.data;
+        const { amount, id: order_id, currency } = order;
+
+        const options = {
+            key: "rzp_test_T3tAATbEcOqopL", // Enter the Key ID generated from the Dashboard
+            amount: amount.toString(),
+            currency: currency,
+            name: "Harry Corp.",
+            description: "Test Transaction",
+            image: "../../img/empty-cart.png",
+            order_id: order_id,
+            handler: async function (response) {
+                const data = {
+                    orderCreationId: order_id,
+                    razorpayPaymentId: response.razorpay_payment_id,
+                    razorpayOrderId: response.razorpay_order_id,
+                    razorpaySignature: response.razorpay_signature,
+                    orderData: orderData
+                };
+                debugger
+                const result = await axios.post("http://localhost:8000/payment/success", data);
+                setCart([])
+                localStorage.setItem('Ecomlongid', result.razorpayPaymentId);
+                navigate(`/myaccount`);
+                alert(result.data.msg);
+            },
+            prefill: {
+                name: "Harry",
+                email: "tripathy.hp202@gmail.com",
+                contact: "7077552981",
+            },
+            notes: {
+                address: "Harry Corporate Office",
+            },
+            theme: {
+                color: "#61dafb",
+            },
+        };
+
+        const paymentObject = new window.Razorpay(options);
+        paymentObject.open();
     }
+
+    //---------------------
 
     useEffect(() => {
         const dat = localStorage.getItem('EcomUserId');
@@ -160,13 +213,13 @@ const Payment = () => {
 
                                                     <NavLink to={`/details/${val.id}`}>
 
-                                                        <img src={`../img/${val.image}`} alt={`../img/${val.image}`} className="img-fluid t-img" />
+                                                        <img src={`../img/${val.product_image}`} alt={`../img/${val.product_image}`} className="img-fluid t-img" />
                                                         <p >{val.name}</p>
                                                     </NavLink>
                                                 </td>
                                                 <td>{val.price}.00</td>
-                                                <td>{val.qty}</td>
-                                                <td>{val.price * val.qty}.00</td>
+                                                <td>{val.productqty}</td>
+                                                <td>{val.price * val.productqty}.00</td>
                                             </tr>
                                             )
                                         })
@@ -174,9 +227,9 @@ const Payment = () => {
                                 </tbody>
                             </table>
                             <div className="pay p-3">
-                                <h2>Sub Total : {tot}.00</h2>
-                                <h2>Delivery Fees: {(tot >= 500) ? " free" : 50.00}</h2>
-                                <h2>Total Amount : {(tot >= 500) ? tot : (tot + 50)}</h2>
+                                <h2>Sub Total : {total}.00</h2>
+                                <h2>Delivery Fees: {(total >= 500) ? " free" : 50.00}</h2>
+                                <h2>Total Amount : {(total >= 500) ? total : (total + 50)}</h2>
                             </div>
                         </div>
                     </div>
@@ -224,7 +277,7 @@ const Payment = () => {
                                 {
                                     yourAddress.length ? (
                                         <>
-                                            <form onSubmit={OnBuyNow}>
+                                            <form onSubmit={displayRazorpay}>
 
                                                 {
                                                     yourAddress.map((val, ind) => {
