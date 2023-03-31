@@ -1,7 +1,8 @@
 const express = require("express");
 const Razorpay = require("razorpay");
 const db = require("../../models");
-const crypto = require('crypto')
+const crypto = require('crypto');
+const { QueryTypes } = require("sequelize");
 const router = express();
 
 router.post("/orders", async (req, res) => {
@@ -87,6 +88,20 @@ router.post("/success", async (req, res) => {
                     id: orderData.id
                 }
             });
+
+        let sqll = `SELECT * FROM orderitems,products WHERE orderitems.productid = products.id && orderitems.orderid=${orderData.id}`
+        db.sequelize.query(sqll, { type: QueryTypes.SELECT })
+            .then(result => {
+                result.map(item => {
+                    return db.carts.destroy({
+                        where: {
+                            productId: item.id
+                        }
+                    })
+                })
+            }).catch(error => {
+                console.log(error)
+            })
 
         res.json({
             msg: "success",

@@ -14,6 +14,29 @@ router.get("/getaddress/:userid", async (req, res) => {
         console.log(error);
     })
 })
+router.post("/addaddress/:id", async (req, res) => {
+    const id = req.params.id;
+    const { fname, lname, email, phone, address, user_id, state, city, zip } = req.body;
+    const name = fname + " " + lname;
+    const addressData = address + ", " + state + ", " + city;
+    const data = {
+        name,
+        email,
+        phone,
+        address: addressData,
+        user_id
+    }
+    await db.user_data.update(data, {
+        where: {
+            id: id
+        }
+    })
+        .then(response => {
+            res.send({ msg: "Address inserted Successfully" })
+        }).catch(error => {
+            console.log(error);
+        })
+});
 router.post("/addaddress", async (req, res) => {
     const { fname, lname, email, phone, address, user_id, state, city, zip } = req.body;
     const name = fname + " " + lname
@@ -31,17 +54,7 @@ router.post("/addaddress", async (req, res) => {
         }).catch(error => {
             console.log(error);
         })
-    // let sql = "INSERT INTO `user_data` SET ?";
-    // db.query(sql, data, (err, result) => {
-    //     if (err) {
-    //         console.log(err)
-    //     }
-    //     else {
-    //         res.send({ msg: "Address inserted Successfully" })
-    //     }
-    // })
-    // console.log(data)
-})
+});
 router.post("/editadd", async (req, res) => {
     const { name, email, phone, address } = req.body;
     const user_id = +req.body.userId

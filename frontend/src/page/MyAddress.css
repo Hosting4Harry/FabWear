@@ -1,6 +1,7 @@
 body {
-    margin-top: 20px;
+    /* margin-top: 20px; */
     background: #eee;
+    overflow-y: hidden;
 }
 
 /* My Account */
@@ -20,6 +21,17 @@ body {
     border: none;
     font-weight: 600;
     color: #535665;
+}
+
+.vl {
+    border-left: 6px solid green;
+    height: 500px;
+}
+
+@media (max-width:766px) {
+    .vl {
+        display: none;
+    }
 }
 
 .osahan-account-page-left .nav-link i {
@@ -48,6 +60,7 @@ body {
     width: 90px;
 }
 
+/* 
 .card offer-card h5.card-title {
     border: 2px dotted #000;
 }
@@ -148,4 +161,4 @@ h6 {
 
 a:hover {
     text-decoration: none;
-}
+} */

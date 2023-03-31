@@ -43,10 +43,15 @@ const Cart = () => {
         cartItems(id);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])
-
+    var cartCss;
+    if (!cart.length) {
+        cartCss = { backgroundColor: "#eee", height: "100vh" }
+    } else {
+        cartCss = { backgroundColor: "#eee" }
+    }
     return (
         <>
-            <section style={{ backgroundColor: "#eee", height: "100vh" }}>
+            <section style={cartCss}>
                 <div className="container py-5">
                     <div className="row justify-content-center mb-3">
                         <div className="col-md-12 col-xl-10">

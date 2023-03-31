@@ -42,7 +42,13 @@ const Wishlist = () => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-    return (<div className="cart">
+    var wishListCss;
+    if (!wishlist.length) {
+        wishListCss = { backgroundColor: "#eee", height: "100vh" }
+    } else {
+        wishListCss = { backgroundColor: "#eee" }
+    }
+    return (<div className="cart pt-2" style={wishListCss}>
         {!wishlist.length ? (
             <div className="container">
                 <div className="container" style={{ textAlign: 'center' }}>

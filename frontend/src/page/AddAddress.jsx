@@ -1,13 +1,13 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import "./AddAddress.css"
 
 function AddAddress() {
     const navigate = useNavigate();
     const datemail = localStorage.getItem('EcomEmail');
     const dat = localStorage.getItem('EcomUserId');
-
+    const { id } = useParams();
 
     const [addressDetails, setAddressDetails] = useState({
         fname: "",
@@ -20,8 +20,6 @@ function AddAddress() {
         city: '',
         user_id: dat
     });
-    // eslint-disable-next-line no-unused-vars
-    const [inputAddres, setInputAddres] = useState("");
 
     const handelData = (e) => {
         let { name, value } = e.target;
@@ -31,16 +29,17 @@ function AddAddress() {
 
 
 
-    const sendData = async (addressDetails) => {
-        // eslint-disable-next-line no-unused-vars
-        const res = await axios.post(`http://localhost:8000/address/addaddress`, addressDetails)
-        // setShowaddress(false);
+    const sendData = async (addressDetails, id) => {
+        if (id) {
+            await axios.post(`http://localhost:8000/address/addaddress/` + id);
+        } else {
+            await axios.post(`http://localhost:8000/address/addaddress`, addressDetails);
+        }
     }
     const onSub = (e) => {
         e.preventDefault()
-        sendData(addressDetails);
+        sendData(addressDetails, id);
         navigate('/myaddress')
-        // getaddress();
     }
 
 

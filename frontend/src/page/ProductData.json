@@ -1,0 +1,45 @@
+[
+    {
+    "id": 1,
+    "name":"Tee-tshirt",
+    "price":499,
+    "product_image":"/tees/tshirt_black_480x400.webp"
+},
+    {
+    "id": 2,
+    "name":"Tee-tshirt",
+    "price":499,
+    "product_image":"/tees/ts1.png"
+},
+    {
+    "id": 3,
+    "name":"adidas",
+    "price":2499,
+    "product_image":"/sneakers/adidas-nmd.png"
+},
+    {
+    "id": 4,
+    "name":"shirt",
+    "price":499,
+    "product_image":"/shirt/d1.jpg"
+},
+    {
+    "id": 5,
+    "name":"pant",
+    "price":599,
+    "product_image":"/pant/p1.jpg"
+},
+    {
+    "id": 6,
+    "name":"blue-snapback",
+    "price":599,
+    "product_image":"/hat/blue-snapback.png"
+},
+    {
+    "id": 7,
+    "name":"blue-jean-jacket",
+    "price":999,
+    "product_image":"/jackets/blue-jean-jacket.png"
+}
+
+]

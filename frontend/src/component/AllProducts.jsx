@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import CardProducts from './CardProducts'
 import axios from 'axios'
-// import { Link } from 'react-router-dom'
+import productData from '../page/ProductData.json'
+
 const AllProducts = () => {
-    const [getdata, setGetdata] = useState([])
+    // console.log("first")
+    const [getdata, setGetdata] = useState(productData)
     const getData = async () => {
         const res = await axios.get('http://localhost:8000/product/getdata')
-        setGetdata(res.data)
+        setGetdata(res.data);
     }
     useEffect(() => {
         getData()

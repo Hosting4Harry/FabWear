@@ -4,7 +4,7 @@ import '../App.css'
 const Footer = () => {
     return (
         <>
-            <footer>
+            <footer >
                 <div className="container">
                     <div className="row">
                         <div className="col-md-4 col-12 mx-auto mb-3 img-bg ">

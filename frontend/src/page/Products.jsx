@@ -2,9 +2,10 @@ import React, { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 import CardProducts from '../component/CardProducts'
 // import { DataContext } from '../context/DataContext'
+import productData from './ProductData.json'
 import { Link, useNavigate } from 'react-router-dom'
 const Products = () => {
-    const [getdata, setGetdata] = useState([])
+    const [getdata, setGetdata] = useState(productData)
     const timeout = useRef(null)
     const navigate = useNavigate()
     const checkAuth = () => {
