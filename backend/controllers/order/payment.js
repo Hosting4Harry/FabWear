@@ -46,9 +46,8 @@ router.post("/orders", async (req, res) => {
             }).catch(error => {
                 console.log(error)
             })
-        console.log(orderData)
         // --------------------------------------
-        res.json({ orderData: orderData, order: order, });
+        res.json({ orderData: orderData, order: order });
     } catch (error) {
         res.status(500).send(error);
     }

@@ -73,9 +73,9 @@ const WishlistP = ({ id, name, price, product_image, productId }) => {
                         {price < 500 && <h6 className="text-success">Rs:50 shipping charges</h6>}
                         <div className="d-flex flex-column mt-4">
                             <button className="btn btn-primary btn-sm" type="button" onClick={() => navigate(`/details/${id}`)}>Details</button>
-                            {/* <button className="btn btn-outline-primary btn-sm mt-2" type="button">
-                        Add to wishlist
-                    </button> */}
+                            <button className="btn btn-outline-primary btn-sm mt-2" type="button" onClick={() => navigate('/checkout')}>
+                                Buy Now
+                            </button>
                             <button className="btn btn-outline-primary btn-sm mt-2" onClick={() => deleteProduct(productId)}>Delete</button>
                         </div>
                     </div>

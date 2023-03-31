@@ -1,9 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const MyAccount = () => {
     const [order, setOrder] = useState([]);
+    const location = useLocation();
+    localStorage.setItem('NavLoc', location.pathname);
     const userdatast = localStorage.getItem('EcomUser');
     const logout = () => {
         localStorage.removeItem("Ecomtoken");

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import "./AddAddress.css"
 
@@ -26,12 +26,31 @@ function AddAddress() {
         let x = { ...addressDetails, [name]: value };
         setAddressDetails(x)
     }
+    const getAddressById = async (id) => {
+        const res = await axios(`http://localhost:8000/address/addaddress/` + id);
+        const data = {
+            fname: res.data.name.split(' ')[0],
+            lname: res.data.name.split(' ')[1],
+            email: datemail,
+            phone: res.data.phone,
+            address: res.data.address.split(', ')[0],
+            // zip: res.data.address,
+            state: res.data.address,
+            city: res.data.address,
+            user_id: dat
+        }
+        setAddressDetails(data);
+    }
+    useEffect(() => {
+        getAddressById(id);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [id])
 
-
-
+    console.log(addressDetails)
     const sendData = async (addressDetails, id) => {
         if (id) {
-            await axios.post(`http://localhost:8000/address/addaddress/` + id);
+            await axios.post(`http://localhost:8000/address/addaddress/` + id, addressDetails);
+            debugger
         } else {
             await axios.post(`http://localhost:8000/address/addaddress`, addressDetails);
         }
@@ -82,62 +101,62 @@ function AddAddress() {
                                             <h3 className="mb-4 text-uppercase">Delivery Info</h3>
                                             <div className="row">
                                                 <div className="col-md-6 mb-4">
-                                                    <input type="text" name='fname' id="form3Example1m" className="form-control" placeholder='First name' defaultValue={addressDetails.fname} onChange={handelData} />
-                                                    <label className="form-label" for="form3Example1m"></label>
+                                                    <input type="text" name='fname' id="form3Example1m" className="form-control" placeholder='First name' defaultValue={addressDetails.fname} onChange={handelData} required />
+                                                    <label className="form-label" htmlFor="form3Example1m"></label>
                                                 </div>
                                                 <div className="col-md-6 mb-4">
-                                                    <input type="text" name='lname' id="form3Example1n" className="form-control" placeholder='Last name' defaultValue={addressDetails.lname} onChange={handelData} />
-                                                    <label className="form-label" for="form3Example1n"></label>
+                                                    <input type="text" name='lname' id="form3Example1n" className="form-control" placeholder='Last name' defaultValue={addressDetails.lname} onChange={handelData} required />
+                                                    <label className="form-label" htmlFor="form3Example1n"></label>
                                                 </div>
                                             </div>
                                             <div className="row">
                                                 <div className="col-md-6 mb-4">
-                                                    <input type="text" name='address' id="form3Example8" className="form-control" placeholder='Address' defaultValue={addressDetails.address} onChange={handelData} />
-                                                    <label className="form-label" for="form3Example8"></label>
+                                                    <input type="text" name='address' id="form3Example8" className="form-control" placeholder='Address' defaultValue={addressDetails.address} onChange={handelData} required />
+                                                    <label className="form-label" htmlFor="form3Example8"></label>
                                                 </div>
                                                 <div className="col-md-6 mb-4">
-                                                    <input type="text" name='phone' id="form3Example8" className="form-control" placeholder='Mobile' defaultValue={addressDetails.phone} onChange={handelData} />
-                                                    <label className="form-label" for="form3Example8"></label>
+                                                    <input type="text" name='phone' id="form3Example8" className="form-control" placeholder='Mobile' defaultValue={addressDetails.phone} onChange={handelData} required />
+                                                    <label className="form-label" htmlFor="form3Example8"></label>
                                                 </div>
                                             </div>
                                             <div className="row">
                                                 <div className="col-md-6 mb-4">
                                                     <select className="form-select" defaultValue={addressDetails.state} name='state' onChange={handelData} >
-                                                        <option selected>State</option>
-                                                        <option value="2">Option 1</option>
-                                                        <option value="3">Option 2</option>
-                                                        <option value="4">Option 3</option>
+                                                        <option >State</option>
+                                                        <option defaultValue="2">Option 1</option>
+                                                        <option defaultValue="3">Option 2</option>
+                                                        <option defaultValue="4">Option 3</option>
                                                     </select>
                                                 </div>
 
                                                 <div className="col-md-6 mb-4">
                                                     <select className="form-select" name='city' defaultValue={addressDetails.city} onChange={handelData} >
-                                                        <option selected>City</option>
-                                                        <option value="2">Option 1</option>
-                                                        <option value="3">Option 2</option>
-                                                        <option value="4">Option 3</option>
+                                                        <option >City</option>
+                                                        <option defaultValue="2">Option 1</option>
+                                                        <option defaultValue="3">Option 2</option>
+                                                        <option defaultValue="4">Option 3</option>
                                                     </select>
                                                 </div>
 
                                             </div>
                                             <div className="row">
                                                 <div className="col-md-6 mb-4">
-                                                    <input type="text" name='zip' id="form3Example3" className="form-control" placeholder='Zip' defaultValue={addressDetails.zip} onChange={handelData} />
-                                                    <label className="form-label" for="form3Example3"></label>
+                                                    <input type="text" name='zip' id="form3Example3" className="form-control" placeholder='Zip' defaultValue={addressDetails.zip} onChange={handelData} required />
+                                                    <label className="form-label" htmlFor="form3Example3"></label>
                                                 </div>
 
                                                 <div className="col-md-6 mb-4">
-                                                    <input type="text" name='email' id="form3Example2" className="form-control" placeholder='Email' defaultValue={addressDetails.email} onChange={handelData} />
-                                                    <label className="form-label" for="form3Example2"></label>
+                                                    <input type="text" name='email' id="form3Example2" className="form-control" placeholder='Email' defaultValue={addressDetails.email} onChange={handelData} required />
+                                                    <label className="form-label" htmlFor="form3Example2"></label>
                                                 </div>
                                             </div>
 
                                             <div className="d-flex justify-content-end pt-3">
                                                 <button type="submit" className="btn btn-success btn-lg ms-2"
                                                     style={{ backgroundColor: "hsl(210, 100%, 50%) " }}>Add Address</button>
-                                                <label>Already Added?</label>
+                                                {/* <label>Already Added?</label>
                                                 &nbsp;<button type="button" onClick={() => navigate('/checkout')} className="btn btn-success btn-lg ms-2"
-                                                    style={{ backgroundColor: "hsl(210, 100%, 50%) " }}>Place order</button>
+                                                    style={{ backgroundColor: "hsl(210, 100%, 50%) " }}>Place order</button> */}
                                             </div>
 
                                         </div>

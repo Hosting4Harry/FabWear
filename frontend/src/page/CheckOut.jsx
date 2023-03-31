@@ -1,10 +1,12 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { DataContext } from '../context/DataContext';
+import "./CheckOut.css"
 
 function CheckOut() {
     const timeout = useRef(null);
+    // const loc = localStorage.getItem('NavLoc');
 
     const checkAuth = () => {
         axios.get("http://localhost:8000/isAuth", {
@@ -65,6 +67,7 @@ function CheckOut() {
         });
     }
     const displayRazorpay = async (e) => {
+        debugger;
         e.preventDefault();
         const dat = localStorage.getItem('EcomUserId');
         const datemail = localStorage.getItem('EcomEmail');
@@ -114,6 +117,7 @@ function CheckOut() {
                     razorpaySignature: response.razorpay_signature,
                     orderData: orderData
                 };
+                debugger;
                 const result = await axios.post("http://localhost:8000/payment/success", data);
                 setCart([])
                 localStorage.setItem('Ecomlongid', result.razorpayPaymentId);
@@ -143,6 +147,42 @@ function CheckOut() {
             <div className="container">
                 <div className="row">
                     <div className="col-md-6 col-12 mx-auto mb-3">
+                        <div className="row justify-content-center align-items-center containers">
+                            <div className="col-md-6 col-sm-12 col-lg-6 cards text-center">
+                                <div className="image"><img src="https://i.imgur.com/DC94rZe.png" width="150" alt="" /></div>
+                                <div className="image2"><img src="https://i.imgur.com/DC94rZe.png" width="150" alt="" /></div>
+                                <h1>50% OFF</h1><span className="d-block">On Everything</span><span className="d-block">Today</span>
+                                <div className="mt-4"><small>With Code : bbbootstrap2020</small></div>
+                            </div>
+                            <div className="col-md-6 col-sm-12 col-lg-6 cards text-center">
+
+                                <div className="image"><img src="https://i.imgur.com/DC94rZe.png" width="150" alt="" /></div>
+                                <div className="image2"><img src="https://i.imgur.com/DC94rZe.png" width="150" alt="" /></div>
+                                <h1>50% OFF</h1><span className="d-block">On Selected Items</span><span className="d-block">Today</span>
+                                <div className="mt-4"><small>With Code : newToCart2023</small></div>
+                            </div>
+                            <div className=" row col-md-6 col-sm-12 col-lg-6 cards text-center container">
+                                {/* <div className="row d-flex justify-content-center"> */}
+                                {/* <div className="col-md-6 col-lg-6 col-sm-12"> */}
+                                <div className="cards">
+                                    <div className="text-right p-2"> <img src="https://i.imgur.com/w68MQc4.png" width="120" alt="" /> </div>
+                                    <div className="text-center"> <small className="text-uppercase flat">Flat</small> </div>
+                                    <div className="d-flex justify-content-center px-2">
+                                        <div className="d-flex flex-row">
+                                            <h1 className="mt-0 off">60% OFF</h1> <sup className="mt-2 text-primary star">*</sup>
+                                        </div>
+                                    </div>
+                                    <div className="line">
+                                        <hr />
+                                    </div>
+                                    <div className="text-center mb-5"> <span className="text-uppercase">Valid till 23 august</span> </div>
+                                    <div className="text-right p-1"> <small>*T&C APPLY</small> </div>
+                                </div>
+
+                                {/* </div> */}
+
+                            </div>
+                        </div>
                     </div>
                     <div className="col-md-6 col-12 mx-auto mb-3">
                         <div className="card">
@@ -152,15 +192,25 @@ function CheckOut() {
                                 yourAddress.length ? (
                                     <>
                                         <form onSubmit={displayRazorpay}>
-
+                                            <button className="btn font-weight-bold mt-0 mb-4" onClick={() => navigate('/myaddress')}>Manage Addresses</button>
                                             {
                                                 yourAddress.map((val, ind) => {
-                                                    return (<div key={ind} className="form-check ">
-                                                        <input type="radio" className="form-check-input m-1" name="address" defaultValue={val.id} onChange={(e) => setInputAddres(e.target.value)} required />
-                                                        <label className="form-check-label ms-1">
-                                                            {val.name}<br /> {val.email} <br /> {val.phone} <br /> {val.address}
-                                                        </label>
-
+                                                    return (<div key={ind} className="col-md-12 col-sm-12 col-lg-12">
+                                                        <div className="bg-white card addresses-item mb-4 border border-primary shadow">
+                                                            <div className="gold-members">
+                                                                <div className="media">
+                                                                    <div className="mr-3"><i className="icofont-ui-home icofont-3x"></i></div>
+                                                                    <div className="media-body">
+                                                                        <h6 className="mb-1 text-secondary">Home</h6>
+                                                                        <p className="text-black">{val.address}
+                                                                        </p>
+                                                                        <p className="mb-0 text-black font-weight-bold">
+                                                                            <Link className="text-primary mr-3" data-toggle="modal" data-target="#add-address-modal" to={"/addaddress/" + val.id}> EDIT</Link>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     )
                                                 })

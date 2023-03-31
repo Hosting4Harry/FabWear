@@ -1,12 +1,14 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import "./MyAddress.css"
+import "./MyAddress.css";
+import { GrAdd } from "react-icons/gr";
+
 function MyAddress() {
     const navigate = useNavigate();
     const [yourAddress, setYourAddress] = useState([]);
     // const [inputAddres, setInputAddres] = useState("");
-
+    const loc = localStorage.getItem('NavLoc')
     const getaddress = async () => {
         const dat = localStorage.getItem('EcomUserId');
         const res = await axios.get(`http://localhost:8000/address/getaddress/${dat}`);
@@ -49,7 +51,10 @@ function MyAddress() {
                                 <div className="osahan-account-page-right shadow-sm bg-white p-4 h-100">
                                     <div className="tab-content" id="myTabContent">
                                         <div className="tab-pane fade  active show" id="addresses" role="tabpanel" aria-labelledby="addresses-tab">
-                                            <h4 className="font-weight-bold mt-0 mb-4">Manage Addresses</h4>
+                                            <div className="d-flex py-4">
+                                                <button className='btn bg-light' onClick={() => navigate('/addaddress')}><GrAdd /></button>
+                                                <div className=''>  <h4 className="font-weight-bold pt-3 mt-0 mb-4 ms-1">Add Addresses</h4></div>
+                                            </div>
                                             <div className="row">
                                                 {yourAddress.length ?
                                                     yourAddress.map((val, ind) => {
@@ -62,7 +67,13 @@ function MyAddress() {
                                                                             <h6 className="mb-1 text-secondary">Home</h6>
                                                                             <p className="text-black">{val.address}
                                                                             </p>
-                                                                            <p className="mb-0 text-black font-weight-bold"><Link className="text-primary mr-3" data-toggle="modal" data-target="#add-address-modal" to={"/addaddress/" + val.id}><i className="icofont-ui-edit"></i> EDIT</Link> <Link className="text-danger" data-toggle="modal" data-target="#delete-address-modal" to="#"><i className="icofont-ui-delete"></i> DELETE</Link></p>
+                                                                            <p className="mb-0 text-black font-weight-bold">
+                                                                                <Link className="text-primary mr-3" data-toggle="modal" data-target="#add-address-modal" to={"/addaddress/" + val.id}> EDIT</Link>
+                                                                                <Link className="text-danger mr-3" data-toggle="modal" data-target="#delete-address-modal" to="#">DELETE</Link>
+                                                                                {loc === "/payment" &&
+                                                                                    <Link className="text-success" data-toggle="modal" data-target="#payment-address-modal" to={"/checkout/" + val.id}> NEXT</Link>
+                                                                                }
+                                                                            </p>
                                                                         </div>
                                                                     </div>
                                                                 </div>

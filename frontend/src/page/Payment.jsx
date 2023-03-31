@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext, useEffect, useState, useRef } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { DataContext } from '../context/DataContext'
 // import logo from "./logo.svg";
 
 import axios from 'axios'
 const Payment = () => {
+    const location = useLocation();
     const navigate = useNavigate();
     const datemail = localStorage.getItem('EcomEmail');
     // const [name, setName] = useState("");
@@ -33,7 +34,10 @@ const Payment = () => {
             }
         })
     }
-
+    useEffect(() => {
+        localStorage.setItem('NavLoc', location.pathname);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
     useEffect(() => {
         timeout.current = setTimeout(checkAuth, 1000)
         return function () {
@@ -111,7 +115,7 @@ const Payment = () => {
                                 <h2>Delivery Fees: {(total >= 500) ? " free" : 50.00}</h2>
                                 <h2>Total Amount : {(total >= 500) ? total : (total + 50)}</h2>
                             </div>
-                            <button className="btn btn-info" onClick={() => navigate('/addaddress')}>Continue</button>
+                            <button className="btn btn-info" onClick={() => navigate('/checkout')}>Continue</button>
                         </div>
                     </div>
                 </div>

@@ -14,6 +14,18 @@ router.get("/getaddress/:userid", async (req, res) => {
         console.log(error);
     })
 })
+router.get("/addaddress/:id", async (req, res) => {
+    await db.user_data.findOne({
+        where: {
+            id: +req.params.id
+        }
+    })
+        .then(response => {
+            res.send(response)
+        }).catch(error => {
+            console.log(error);
+        })
+})
 router.post("/addaddress/:id", async (req, res) => {
     const id = req.params.id;
     const { fname, lname, email, phone, address, user_id, state, city, zip } = req.body;

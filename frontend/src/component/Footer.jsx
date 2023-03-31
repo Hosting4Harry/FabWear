@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <>
             <footer >
-                <div className="container">
+                <div className="container" style={{ overflow: "hidden" }}>
                     <div className="row">
                         <div className="col-md-4 col-12 mx-auto mb-3 img-bg ">
                             <h6 className="text-uppercase fw-bold">Contact</h6>

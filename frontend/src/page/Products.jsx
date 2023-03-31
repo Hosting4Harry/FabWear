@@ -5,7 +5,8 @@ import CardProducts from '../component/CardProducts'
 import productData from './ProductData.json'
 import { Link, useNavigate } from 'react-router-dom'
 const Products = () => {
-    const [getdata, setGetdata] = useState(productData)
+    const [getdata, setGetdata] = useState(productData);
+    const [sliceRec, setSliceRec] = useState('20');
     const timeout = useRef(null)
     const navigate = useNavigate()
     const checkAuth = () => {
@@ -83,6 +84,16 @@ const Products = () => {
                 <div className="container">
                     <h2 className="text-center font-weight-bold mb-5">Best Products</h2>
                     <div className="inp ">
+                        <div className="form-group">
+                            <select className="form-control" id="" onChange={(e) => setSliceRec(e.target.value === "all" ? getdata.length : e.target.value)}>
+                                {/* <option value="" selected disabled hidden>Choose By Price</option> */}
+                                <option value="20">20 records</option>
+                                <option value="30">30 records</option>
+                                <option value="40">40 records</option>
+                                <option value="50">50 records</option>
+                                <option value="all">All records</option>
+                            </select>
+                        </div>
                         <p></p>
                         <div className="form-group">
                             <select className="form-control" id="" onChange={sortHandel}>
@@ -96,7 +107,7 @@ const Products = () => {
                     </div>
                     <div className="row">
                         {
-                            getdata.map((val, ind) => {
+                            getdata.slice(0, sliceRec).map((val, ind) => {
                                 return (<CardProducts
                                     key={ind}
                                     id={val.id}
