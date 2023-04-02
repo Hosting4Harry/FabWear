@@ -32,7 +32,12 @@ const Products = () => {
 
     const getDatas = async () => {
         const res = await axios.get('http://localhost:8000/product/getdataall');
-        setGetdata(res.data)
+        if (res.data.length === 0) {
+            setGetdata(productData)
+        } else {
+            setGetdata(res.data)
+        }
+
     }
     useEffect(() => {
         getDatas()
