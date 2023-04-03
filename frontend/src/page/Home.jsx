@@ -68,22 +68,22 @@ const Home = () => {
                 </div>
             </div>
             <AllProducts />
-            <div className="desc">
+            <div className="desc h-100">
                 <div className="container-fluid">
                     <div className="row">
-                        <div className="col-md-6 col-12 mx-auto mb-3 ">
-                            <img src="../img/T5.png" alt="ok" className="img-fluid side-img" />
-                        </div>
                         <div className=" col-md-6 col-12 mx-auto mb-3 d-flex justify-content-center align-items-center flex-column">
                             <h1>Welcome to <span>Cart.Com</span> </h1>
                             <h3>It's a  Big Market out there, Let's Explore with Us</h3>
                             <p>   Just take a quick peek & learn about the Amazing Stories of our Valued Clients. Nothing makes us happier than their Beautiful & Successful Journey with Us!</p>
                             <button className="btn btn-outline-success">Read More</button>
                         </div>
+                        <div className="col-md-6 col-12 mx-auto mb-3 ">
+                            <img src="../img/T5.png" alt="ok" className="img-fluid side-img" />
+                        </div>
                     </div>
                 </div>
             </div>
-            <section className='bg-info brand'>
+            <section className='bg-info brand h-100'>
                 <div className="row ">
                     <div className="col-md-6 col-lg-3 mb-4 mb-lg-0 p-4">
                         <div className="card">

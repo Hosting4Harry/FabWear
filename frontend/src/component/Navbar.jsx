@@ -21,7 +21,6 @@ const Navbar = () => {
     if (!e.target.value) return;
     await axios.get('http://localhost:8000/product/searchProduct/' + e.target.value)
       .then(response => {
-        debugger
         setSearchResult(response.data);
       }).catch(error => {
         if (error)
@@ -34,8 +33,8 @@ const Navbar = () => {
   }
   const showList = () => {
     document.getElementById("searchList").style.display = "list-item";
-
   }
+
   const userId = localStorage.getItem("EcomUserId");
   const cartItems = async () => {
     const res = await axios.get('http://localhost:8000/cart/' + userId);
@@ -82,7 +81,7 @@ const Navbar = () => {
           </div>
         </form>
       </label>
-      <ul className='flex'>
+      <ul className='flex' id='sideBar'>
         <PermissionCheck claims={4}>
           <li>
             <NavLink to="/Products" className=" position-relative me-3 ms-2">Products</NavLink>
