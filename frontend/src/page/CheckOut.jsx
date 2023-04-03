@@ -37,7 +37,7 @@ function CheckOut() {
 
     const [yourAddress, setYourAddress] = useState([]);
     // eslint-disable-next-line no-unused-vars
-    const [inputAddres, setInputAddres] = useState("");
+    const [inputAddres, setInputAddres] = useState({});
     const getaddress = async () => {
         const dat = localStorage.getItem('EcomUserId');
         const res = await axios.get(`http://localhost:8000/address/getaddress/${dat}`);
@@ -67,7 +67,6 @@ function CheckOut() {
         });
     }
     const displayRazorpay = async (e) => {
-        debugger;
         e.preventDefault();
         const dat = localStorage.getItem('EcomUserId');
         const datemail = localStorage.getItem('EcomEmail');
@@ -158,7 +157,7 @@ function CheckOut() {
 
                                 <div className="image"><img src="https://i.imgur.com/DC94rZe.png" width="150" alt="" /></div>
                                 <div className="image2"><img src="https://i.imgur.com/DC94rZe.png" width="150" alt="" /></div>
-                                <h1>50% OFF</h1><span className="d-block">On Selected Items</span><span className="d-block">Today</span>
+                                <h1>60% OFF</h1><span className="d-block">On Selected Items</span><span className="d-block">Today</span>
                                 <div className="mt-4"><small>With Code : newToCart2023</small></div>
                             </div>
                             <div className=" row col-md-6 col-sm-12 col-lg-6 cards text-center container">
@@ -198,6 +197,11 @@ function CheckOut() {
                                                     return (<div key={ind} className="col-md-12 col-sm-12 col-lg-12">
                                                         <div className="bg-white card addresses-item mb-4 border border-primary shadow">
                                                             <div className="gold-members">
+                                                                <div className="form-check-inline">
+                                                                    <label className="form-check-label">
+                                                                        <input type="radio" className="form-check-input" name="payment" value="online" onChange={(e) => setInputAddres(val)} required />
+                                                                    </label>
+                                                                </div>
                                                                 <div className="media">
                                                                     <div className="mr-3"><i className="icofont-ui-home icofont-3x"></i></div>
                                                                     <div className="media-body">

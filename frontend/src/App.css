@@ -46,6 +46,10 @@
   height: 400px;
 }
 
+.form-check-input[type=radio]:after {
+  padding: 0.4rem;
+}
+
 @media (max-width:768px) {
   .home {
     height: auto;
