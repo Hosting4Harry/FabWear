@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useRef } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useContext, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import '../App.css'
 import AllProducts from '../component/AllProducts'
 import axios from 'axios'
@@ -8,22 +8,22 @@ import { DataContext } from '../context/DataContext'
 
 
 const Home = () => {
-    const timeout = useRef(null);
+    // const timeout = useRef(null);
     const { setWishlist } = useContext(DataContext);
-    const navigate = useNavigate()
-    const checkAuth = () => {
-        axios.get("http://localhost:8000/isAuth", {
-            headers: {
-                "x-access-token": localStorage.getItem("Ecomtoken")
-            }
-        }).then((response) => {
-            //  console.log()
-            if (!response.data.login) {
-                // window.location.reload()
-                navigate("/");
-            }
-        })
-    }
+    // const navigate = useNavigate()
+    // const checkAuth = () => {
+    //     axios.get("http://localhost:8000/isAuth", {
+    //         headers: {
+    //             "x-access-token": localStorage.getItem("Ecomtoken")
+    //         }
+    //     }).then((response) => {
+    //         //  console.log()
+    //         if (!response.data.login) {
+    //             // window.location.reload()
+    //             navigate("/");
+    //         }
+    //     })
+    // }
     const getData = async () => {
         const userId = localStorage.getItem("EcomUserId");
         const res = await axios.get('http://localhost:8000/wishlist/' + userId);
@@ -31,12 +31,12 @@ const Home = () => {
     }
     useEffect(() => {
         getData();
-        timeout.current = setTimeout(checkAuth, 1000)
-        return function () {
-            if (timeout.current) {
-                clearTimeout(timeout.current)
-            }
-        }
+        // timeout.current = setTimeout(checkAuth, 1000)
+        // return function () {
+        //     if (timeout.current) {
+        //         clearTimeout(timeout.current)
+        //     }
+        // }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     //  setInterval(checkAuth, 1000);

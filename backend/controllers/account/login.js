@@ -20,14 +20,15 @@ router.post("/", async (req, res) => {
                             userId: id
                         }
                     });
-                    const claims = await db.claims.findAll({
-                        where: {
-                            roleId: role.roleId
-                        }
-                    });
-                    var claim = [];
-                    (claims.map((i) => { return (claim.push(+i.claims.split('_')[0])) }));
-                    const token = jwt.sign({ id: id, claims: claim }, "ecomreact", {
+                    // const claims = await db.claims.findAll({
+                    //     where: {
+                    //         roleId: role.roleId
+                    //     }
+                    // });
+                    // var claim = [];
+                    // (claims.map((i) => { return (claim.push(+i.claims.split('_')[0])) }));
+                    // const token = jwt.sign({ id: id, claims: claim }, "ecomreact", { 
+                    const token = jwt.sign({ id: id, role: role.roleId }, "ecomreact", {
                         expiresIn: checked ? 60 * 60 * 24 : 60,
                     })
                     res.send({ login: true, token: token, user: result.username, userID: result.id, userEmail: result.email })

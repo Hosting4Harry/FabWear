@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useRef } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { DataContext } from '../context/DataContext'
@@ -12,28 +12,28 @@ const ProductDetails = () => {
     const userId = localStorage.getItem("EcomUserId");
     const [detdata, setDetdata] = useState([]);
     const [pdetails, setPdetails] = useState("1");
-    const timeout = useRef(null);
+    // const timeout = useRef(null);
     const navigate = useNavigate();
-    const checkAuth = () => {
-        axios.get("http://localhost:8000/isAuth", {
-            headers: {
-                "x-access-token": localStorage.getItem("Ecomtoken")
-            }
-        }).then((response) => {
-            if (!response.data.login) {
-                navigate("/");
-            }
-        })
-    }
-    useEffect(() => {
-        timeout.current = setTimeout(checkAuth, 100)
-        return function () {
-            if (timeout.current) {
-                clearTimeout(timeout.current)
-            }
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    // const checkAuth = () => {
+    //     axios.get("http://localhost:8000/isAuth", {
+    //         headers: {
+    //             "x-access-token": localStorage.getItem("Ecomtoken")
+    //         }
+    //     }).then((response) => {
+    //         if (!response.data.login) {
+    //             navigate("/");
+    //         }
+    //     })
+    // }
+    // useEffect(() => {
+    //     timeout.current = setTimeout(checkAuth, 100)
+    //     return function () {
+    //         if (timeout.current) {
+    //             clearTimeout(timeout.current)
+    //         }
+    //     }
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [])
 
     const onSub = (e) => {
         e.preventDefault();

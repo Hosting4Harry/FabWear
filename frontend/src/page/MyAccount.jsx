@@ -8,13 +8,7 @@ const MyAccount = () => {
     localStorage.setItem('NavLoc', location.pathname);
     const userdatast = localStorage.getItem('EcomUser');
     const logout = () => {
-        localStorage.removeItem("Ecomtoken");
-        localStorage.removeItem("Ecomlongid");
-        localStorage.removeItem("EcomEmail");
-        localStorage.removeItem("EcomUser");
-        localStorage.removeItem("Ecompaymentmode");
-        localStorage.removeItem("EcomUserId");
-        localStorage.removeItem("WishList");
+        localStorage.clear();
         window.location.reload();
     }
 

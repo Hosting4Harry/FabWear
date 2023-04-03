@@ -1,6 +1,8 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import jwt_decode from "jwt-decode";
 import Navbar from './component/Navbar'
+import AdminNav from './component/AdminNav'
 import Footer from './component/Footer'
 import Home from './page/Home'
 import Products from './page/Products'
@@ -16,7 +18,6 @@ import Register from './page/Register'
 import Login from './page/Login'
 import Success from './page/Success'
 import Wishlist from './page/Wishlist'
-// import PayNow from './page/PayNow'
 import './App.css'
 import SearchProducts from './page/SearchProducts'
 import AddProduct from './page/AddProduct'
@@ -25,11 +26,20 @@ import CheckOut from './page/CheckOut'
 import MyAddress from './page/MyAddress'
 
 const App = () => {
+  const role = () => {
+    const token = localStorage.getItem('Ecomtoken');
+
+    try {
+      var decoded = jwt_decode(token);
+    } catch (error) {
+    }
+    return decoded?.role;
+  }
   return (
     <>
       <ConText>
         <Router>
-          <Navbar />
+          {role === 1 || 2 ? <Navbar /> : <AdminNav />}
           {/* <div style={{ height: '100vh' }}> */}
           <Routes>
             <Route exact path="/home" element={<Home />} />

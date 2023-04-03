@@ -1,34 +1,34 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import CardProducts from '../component/CardProducts'
 // import { DataContext } from '../context/DataContext'
 import productData from './ProductData.json'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 const Products = () => {
     const [getdata, setGetdata] = useState(productData);
     const [sliceRec, setSliceRec] = useState('20');
-    const timeout = useRef(null);
-    const navigate = useNavigate();
-    const checkAuth = () => {
-        axios.get("http://localhost:8000/isAuth", {
-            headers: {
-                "x-access-token": localStorage.getItem("Ecomtoken")
-            }
-        }).then((response) => {
-            if (!response.data.login) {
-                navigate("/");
-            }
-        })
-    }
-    useEffect(() => {
-        timeout.current = setTimeout(checkAuth, 1000)
-        return function () {
-            if (timeout.current) {
-                clearTimeout(timeout.current);
-            }
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    // const timeout = useRef(null);
+    // const navigate = useNavigate();
+    // const checkAuth = () => {
+    //     axios.get("http://localhost:8000/isAuth", {
+    //         headers: {
+    //             "x-access-token": localStorage.getItem("Ecomtoken")
+    //         }
+    //     }).then((response) => {
+    //         if (!response.data.login) {
+    //             navigate("/");
+    //         }
+    //     })
+    // }
+    // useEffect(() => {
+    //     timeout.current = setTimeout(checkAuth, 1000)
+    //     return function () {
+    //         if (timeout.current) {
+    //             clearTimeout(timeout.current);
+    //         }
+    //     }
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, []);
 
     const getDatas = async () => {
         const res = await axios.get('http://localhost:8000/product/getdataall');
