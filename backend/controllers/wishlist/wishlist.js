@@ -8,10 +8,10 @@ router.get('/:id', async (req, res) => {
     const sql = `SELECT * FROM wishlists,products WHERE wishlists.productId = products.id && wishlists.userId=${id}`
     await db.sequelize.query(sql, { type: QueryTypes.SELECT })
         .then(result => {
-            res.send(result)
+            res.send(result);
         }).catch(error => {
             console.log(error);
-        })
+        });
 })
 
 router.post('/', async (req, res) => {
@@ -21,17 +21,17 @@ router.post('/', async (req, res) => {
             productId: req.body.id
         }
     })
-    if (result) return res.send({ message: "wishlist deleted" })
+    if (result) return res.send({ message: "wishlist deleted" });
     const data = {
         userId: req.body.userId,
         productId: req.body.id
     }
     await db.wishlists.create(data)
         .then(response => {
-            res.send(data)
+            res.send(data);
         }).catch(error => {
-            console.log(error)
-        })
+            console.log(error);
+        });
     await db.products.update({
         product_status: true
     },

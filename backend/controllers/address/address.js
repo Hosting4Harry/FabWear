@@ -9,7 +9,7 @@ router.get("/getaddress/:userid", async (req, res) => {
             user_id: userid
         }
     }).then(result => {
-        res.send(result)
+        res.send(result);
     }).catch(error => {
         console.log(error);
     })
@@ -21,7 +21,7 @@ router.get("/addaddress/:id", async (req, res) => {
         }
     })
         .then(response => {
-            res.send(response)
+            res.send(response);
         }).catch(error => {
             console.log(error);
         })
@@ -44,7 +44,7 @@ router.post("/addaddress/:id", async (req, res) => {
         }
     })
         .then(response => {
-            res.send({ msg: "Address inserted Successfully" })
+            res.send({ msg: "Address inserted Successfully" });
         }).catch(error => {
             console.log(error);
         })
@@ -62,10 +62,10 @@ router.post("/addaddress", async (req, res) => {
     }
     await db.user_data.create(data)
         .then(response => {
-            res.send({ msg: "Address inserted Successfully" })
+            res.send({ msg: "Address inserted Successfully" });
         }).catch(error => {
             console.log(error);
-        })
+        });
 });
 router.post("/editadd", async (req, res) => {
     const { name, email, phone, address } = req.body;
@@ -77,9 +77,9 @@ router.post("/editadd", async (req, res) => {
             user_id: user_id
         }
     }).then(result => {
-        res.send({ msg: "edit Successfully" })
+        res.send({ msg: "edit Successfully" });
     }).catch(error => {
-        console.log(error)
+        console.log(error);
     })
 });
 

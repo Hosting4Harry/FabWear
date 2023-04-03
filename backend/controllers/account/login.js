@@ -31,7 +31,7 @@ router.post("/", async (req, res) => {
                     const token = jwt.sign({ id: id, role: role.roleId }, "ecomreact", {
                         expiresIn: checked ? 60 * 60 * 24 : 60,
                     })
-                    res.send({ login: true, token: token, user: result.username, userID: result.id, userEmail: result.email })
+                    res.send({ login: true, token: token, user: result.username, userID: result.id, userEmail: result.email });
                     // res.send({login:true,user:result[0].name})
                 }
                 else {

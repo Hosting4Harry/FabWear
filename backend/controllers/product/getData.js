@@ -29,17 +29,17 @@ router.post("/addproduct", upload.single('product_image'), async (req, res) => {
     }).then(result => {
         res.send({ message: "Product Added" });
     }).catch(error => {
-        console.log(error)
-    })
-})
+        console.log(error);
+    });
+});
 
 router.get("/getdataall", async (req, res) => {
     await db.products.findAll({ order: Sequelize.literal('rand()') })
         .then(result => {
-            res.send(result)
+            res.send(result);
         }).catch(error => {
-            console.log(error)
-        })
+            console.log(error);
+        });
 })
 
 router.get('/searchProduct/:name', async (req, res) => {
@@ -59,10 +59,10 @@ router.get('/searchProduct/:name', async (req, res) => {
         },
         limit: 10
     }).then(result => {
-        res.send(result)
+        res.send(result);
     }).catch(error => {
-        console.log(error)
-    })
+        console.log(error);
+    });
 
 });
 
@@ -70,10 +70,10 @@ router.get("/getdata", async (req, res) => {
     let sql = `select * from products ORDER BY RAND() limit 8`;
     await db.sequelize.query(sql, { type: QueryTypes.SELECT })
         .then(result => {
-            res.send(result)
+            res.send(result);
         }).catch(error => [
             console.log(error)
-        ])
+        ]);
 });
 router.get("/getdata/:id", async (req, res) => {
     const id = req.params.id;
@@ -82,10 +82,10 @@ router.get("/getdata/:id", async (req, res) => {
             id: id
         }
     }).then(result => {
-        res.send(result)
+        res.send(result);
     }).catch(error => {
-        console.log(error)
-    })
+        console.log(error);
+    });
 });
 router.get("/sort/:price", async (req, res) => {
     const price = req.params.price;
@@ -95,14 +95,14 @@ router.get("/sort/:price", async (req, res) => {
             .then(result => {
                 res.send(result);
             }).catch(error => {
-                console.log(error)
-            })
+                console.log(error);
+            });
     }
     else if (price === '200_500') {
         let sqll = `SELECT * FROM products WHERE price >= 200 && price <= 500`;
         db.sequelize.query(sqll, { type: QueryTypes.SELECT })
             .then(result => {
-                res.send(result)
+                res.send(result);
             }).catch(error => {
                 console.log(error);
             })
@@ -111,7 +111,7 @@ router.get("/sort/:price", async (req, res) => {
         let sqll = `SELECT * FROM products WHERE price > 500 && price <= 1000`;
         db.sequelize.query(sqll, { type: QueryTypes.SELECT })
             .then(result => {
-                res.send(result)
+                res.send(result);
             }).catch(error => {
                 console.log(error);
             })

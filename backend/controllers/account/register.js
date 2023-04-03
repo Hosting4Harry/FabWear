@@ -30,7 +30,7 @@ router.post("/", (req, res) => {
                 console.trace('fatal error: ' + er.message);
             }
             else if (result?.length > 0) {
-                res.send({ msg: "User Email Already Present" })
+                res.send({ msg: "User Email Already Present" });
             }
             else {
                 await db.users.create(data)
@@ -39,10 +39,10 @@ router.post("/", (req, res) => {
                         res.send({ userData: response });
                     }).catch(error => {
                         console.log(error);
-                    })
+                    });
             }
         }
-    })
-})
+    });
+});
 
 module.exports = router;
