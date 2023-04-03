@@ -7,8 +7,8 @@ import { Link, useNavigate } from 'react-router-dom'
 const Products = () => {
     const [getdata, setGetdata] = useState(productData);
     const [sliceRec, setSliceRec] = useState('20');
-    const timeout = useRef(null)
-    const navigate = useNavigate()
+    const timeout = useRef(null);
+    const navigate = useNavigate();
     const checkAuth = () => {
         axios.get("http://localhost:8000/isAuth", {
             headers: {
@@ -24,7 +24,7 @@ const Products = () => {
         timeout.current = setTimeout(checkAuth, 1000)
         return function () {
             if (timeout.current) {
-                clearTimeout(timeout.current)
+                clearTimeout(timeout.current);
             }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -33,28 +33,28 @@ const Products = () => {
     const getDatas = async () => {
         const res = await axios.get('http://localhost:8000/product/getdataall');
         if (res.data.length === 0) {
-            setGetdata(productData)
+            setGetdata(productData);
         } else {
-            setGetdata(res.data)
+            setGetdata(res.data);
         }
 
     }
     useEffect(() => {
-        getDatas()
+        getDatas();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const sortData = async (sort) => {
         const res = await axios.get(`http://localhost:8000/product/sort/${sort}`)
-        setGetdata(res.data)
+        setGetdata(res.data);
     }
     const sortHandel = (e) => {
         const sort = e.target.value
         if (sort === 'all') {
-            getDatas()
+            getDatas();
         }
         else {
-            sortData(sort)
+            sortData(sort);
         }
     }
     if (getdata.length === 0) {
