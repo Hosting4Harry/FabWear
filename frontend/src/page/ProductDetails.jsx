@@ -46,26 +46,32 @@ const ProductDetails = () => {
             // image: detdata[0].product_image,
             qty: pdetails
         }
-        axios.post('http://localhost:8000/cart', data)
-        const exist = cart.find((x) => x.id === data.id);
-        if (exist) {
-            setCart(
-                cart.map((x) => x.id === data.id ? data : x)
-            )
+        if (userId == null) {
+            alert("please login into your account,to acces Your cart");
+            navigate('/');
+        } else {
+            axios.post('http://localhost:8000/cart', data)
+            const exist = cart.find((x) => x.id === data.id);
+            if (exist) {
+                setCart(
+                    cart.map((x) => x.id === data.id ? data : x)
+                )
+            }
+            else {
+                setCart([...cart, data])
+            }
+
+            toast.success('Added to the Cart!', {
+                position: "bottom-right",
+                autoClose: 1800,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
         }
-        else {
-            setCart([...cart, data])
-        }
-        toast.success('Added to the Cart!', {
-            position: "bottom-right",
-            autoClose: 1800,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-        });
     }
 
     const getData = async () => {
