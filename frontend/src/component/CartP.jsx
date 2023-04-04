@@ -1,10 +1,12 @@
 import axios from 'axios';
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { DataContext } from '../context/DataContext'
 const CartP = ({ id, name, price, product_image, qty }) => {
     const navigate = useNavigate();
     const { cart, setCart } = useContext(DataContext);
+    const [quantity, setQuantity] = useState("1");
+
     const deleteProduct = (id) => {
         axios.delete('http://localhost:8000/cart/' + id);
         const exist = cart.find((x) => x.id === id)
@@ -69,16 +71,15 @@ const CartP = ({ id, name, price, product_image, qty }) => {
                         <div className="d-flex flex-row align-items-center mb-1">
                             <h4 className="mb-1 me-1">Qty: {qty}</h4>
                         </div>
+
+
                         <div className="d-flex flex-row align-items-center mb-1">
-                            <h4 className="mb-1 me-1">Total Price: {price * qty}</h4>
+                            <h4 className="mb-1 me-1">Total Price: {price * quantity}</h4>
                         </div>
-                        {price * qty > 500 && <h6 className="text-success">Free shipping</h6>}
-                        {price * qty < 500 && <h6 className="text-success">Rs: 50 shipping charges</h6>}
+                        {price * quantity > 500 && <h6 className="text-success">Free shipping</h6>}
+                        {price * quantity < 500 && <h6 className="text-success">Rs: 50 shipping charges</h6>}
                         <div className="d-flex flex-column mt-4">
                             <button className="btn btn-primary btn-sm" type="button" onClick={() => navigate(`/details/${id}`)}>Details</button>
-                            {/* <button className="btn btn-outline-primary btn-sm mt-2" type="button">
-                        Add to wishlist
-                    </button> */}
                             <button className="btn btn-outline-primary btn-sm mt-2" onClick={() => deleteProduct(id)}>Delete</button>
                         </div>
                     </div>

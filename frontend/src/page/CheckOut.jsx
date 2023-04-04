@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { DataContext } from '../context/DataContext';
 import "./CheckOut.css"
 
@@ -43,13 +43,34 @@ function CheckOut() {
         const res = await axios.get(`http://localhost:8000/address/getaddress/${dat}`);
         setYourAddress(res.data);
     }
+
+    const { id: pid } = useParams();
+    const buynow = async () => {
+        debugger
+        const res = await axios.get('http://localhost:8000/product/getdata/' + pid)
+        debugger
+        if (res) {
+            console.log(res.data);
+            setCart(res.data)
+        } else {
+            setCart(cart)
+        }
+    }
     useEffect(() => {
         getaddress();
-    }, [])
+    }, []);
+    useEffect(() => {
+        buynow(pid)
+        // eslint-disable-next-line 
+    }, [pid]);
     useEffect(() => {
         let totamo = 0;
         for (let i = 0; i < cart.length; i++) {
-            totamo += cart[i].price * cart[i].productqty;
+            if (cart[i].productqty == null) {
+                totamo += cart[i].price * 1;
+            } else {
+                totamo += cart[i].price * cart[i].productqty;
+            }
         }
         setTotal(totamo);
     }, [cart]);
@@ -116,7 +137,6 @@ function CheckOut() {
                     razorpaySignature: response.razorpay_signature,
                     orderData: orderData
                 };
-                debugger;
                 const result = await axios.post("http://localhost:8000/payment/success", data);
                 setCart([])
                 localStorage.setItem('Ecomlongid', result.razorpayPaymentId);

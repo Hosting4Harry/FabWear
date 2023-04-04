@@ -3,7 +3,7 @@ import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { DataContext } from '../context/DataContext'
 const WishlistP = ({ id, name, price, product_image, productId }) => {
-    const { wishlist, setWishlist } = useContext(DataContext);
+    const { wishlist, setWishlist, cart, setCart } = useContext(DataContext);
     const navigate = useNavigate();
     const deleteProduct = async (id) => {
         const exist = wishlist.find((x) => x.id === id)
@@ -13,6 +13,24 @@ const WishlistP = ({ id, name, price, product_image, productId }) => {
             )
         }
         await axios.delete('http://localhost:8000/wishlist/' + id);
+    }
+
+    const userId = localStorage.getItem('EcomUserId');
+    const addToCart = async () => {
+        const data = {
+            id, name, price, productId, product_image, qty: 1, userId: userId
+        }
+        await axios.post('http://localhost:8000/cart', data)
+        const exist = cart.find((x) => x.id === data.id);
+        if (exist) {
+            setCart(
+                cart.map((x) => x.id === data.id ? data : x)
+            );
+        }
+        else {
+            setCart([...cart, data]);
+        }
+        console.log(cart);
     }
 
     return (
@@ -55,7 +73,7 @@ const WishlistP = ({ id, name, price, product_image, productId }) => {
                             <span className="text-primary"> • </span>
                             <span>Casual<br /></span>
                         </div>
-                        <p className="text-truncate mb-4 mb-md-0">
+                        <p>
                             There are many variations of passages of Lorem Ipsum available, but the
                             majority have suffered alteration in some form, by injected humour, or
                             randomised words which don't look even slightly believable.
@@ -73,7 +91,10 @@ const WishlistP = ({ id, name, price, product_image, productId }) => {
                         {price < 500 && <h6 className="text-success">Rs:50 shipping charges</h6>}
                         <div className="d-flex flex-column mt-4">
                             <button className="btn btn-primary btn-sm" type="button" onClick={() => navigate(`/details/${id}`)}>Details</button>
-                            <button className="btn btn-outline-primary btn-sm mt-2" type="button" onClick={() => navigate('/checkout')}>
+                            <button className="btn btn-outline-primary btn-sm mt-2" type="button" onClick={addToCart}>
+                                Add to cart
+                            </button>
+                            <button className="btn btn-outline-primary btn-sm mt-2" type="button" onClick={() => navigate('/checkout/' + id)}>
                                 Buy Now
                             </button>
                             <button className="btn btn-outline-primary btn-sm mt-2" onClick={() => deleteProduct(productId)}>Delete</button>

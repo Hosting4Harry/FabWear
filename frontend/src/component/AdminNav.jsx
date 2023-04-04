@@ -24,8 +24,8 @@ const AdminNav = () => {
             }).catch(error => {
                 if (error)
                     setSearchResult([]);
-                setSearchValue('')
-            })
+                setSearchValue('');
+            });
     };
     const hideList = () => {
         document.getElementById("searchList").style.display = "none";

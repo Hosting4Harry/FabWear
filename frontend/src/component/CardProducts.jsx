@@ -11,17 +11,17 @@ const CardProducts = ({ id, name, price, product_image }) => {
     const [detdata, setDetdata] = useState([]);
     const { wishlist, setWishlist } = useContext(DataContext);
     const userId = localStorage.getItem("EcomUserId");
-    var listForWish = []
+    var listForWish = [];
     const repeats = (wishlist) => {
         for (let i = 0; i < wishlist.length; i++) {
-            listForWish.push(wishlist[i].productId)
+            listForWish.push(wishlist[i].productId);
         }
     }
     repeats(wishlist);
     useEffect(() => {
         repeats(wishlist);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [wishlist])
+    }, [wishlist]);
     const addWish = (e) => {
         const data = {
             id: detdata[0].id,
@@ -43,7 +43,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
                     repeats(wishlist);
                     await axios.delete('http://localhost:8000/wishlist/' + data.id);
                 } else {
-                    setWishlist([...wishlist, data])
+                    setWishlist([...wishlist, data]);
                 }
                 if (response.data.message) {
                     toast.success(response.data.message, {
@@ -76,10 +76,10 @@ const CardProducts = ({ id, name, price, product_image }) => {
     }
     const getData = async (id) => {
         const res = await axios.get(`http://localhost:8000/product/getdata/${id}`);
-        setDetdata(res.data)
+        setDetdata(res.data);
     }
     useEffect(() => {
-        getData(id)
+        getData(id);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     if (!id) {
