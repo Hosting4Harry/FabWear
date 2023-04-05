@@ -62,7 +62,7 @@ const Contact = () => {
     };
 
     return (<div className='container' style={{ height: "100vh" }}>
-        <h2 className="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
+        <h2 className="h1-responsive font-weight-bold text-center mt-4">Contact us</h2>
         <div className='row mb-5' >
             <div className="col-lg-4 col-sm-0 col-md-3"></div>
             <div className="col-lg-4 col-sm-0 col-md-6"><hr width="100% " size="10" /></div>
