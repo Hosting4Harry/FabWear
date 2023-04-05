@@ -46,10 +46,8 @@ function CheckOut() {
 
     const { id: pid } = useParams();
     const buynow = async () => {
-        debugger
-        const res = await axios.get('http://localhost:8000/product/getdata/' + pid)
-        debugger
-        if (res) {
+        if (pid) {
+            const res = await axios.get('http://localhost:8000/product/getdata/' + pid)
             console.log(res.data);
             setCart(res.data)
         } else {
@@ -58,12 +56,11 @@ function CheckOut() {
     }
     useEffect(() => {
         getaddress();
-    }, []);
-    useEffect(() => {
-        buynow(pid)
-        // eslint-disable-next-line 
+        buynow(pid);
+        // eslint-disable-next-line
     }, [pid]);
     useEffect(() => {
+        debugger
         let totamo = 0;
         for (let i = 0; i < cart.length; i++) {
             if (cart[i].productqty == null) {
