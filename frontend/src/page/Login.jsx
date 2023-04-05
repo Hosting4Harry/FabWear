@@ -52,7 +52,8 @@ const Login = () => {
             localStorage.setItem("EcomUser", res.data.user)
             localStorage.setItem("EcomUserId", res.data.userID)
             localStorage.setItem("EcomEmail", res.data.userEmail)
-            navigate("/home")
+            navigate("/home");
+            window.location.reload(true);
         }
         // console.log(res)
     }

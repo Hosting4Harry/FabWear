@@ -24,23 +24,15 @@ import AddProduct from './page/AddProduct'
 import AddAddress from './page/AddAddress'
 import CheckOut from './page/CheckOut'
 import MyAddress from './page/MyAddress'
+import PermissionCheck from './context/PermissionCheck';
 
 const App = () => {
-  const role = () => {
-    const token = localStorage.getItem('Ecomtoken');
-
-    try {
-      var decoded = jwt_decode(token);
-    } catch (error) {
-    }
-    return decoded?.role;
-  }
   return (
     <>
       <ConText>
         <Router>
-          {role === 1 || 2 ? <Navbar /> : <AdminNav />}
-          {/* <div style={{ height: '100vh' }}> */}
+          <PermissionCheck >
+          </PermissionCheck>
           <Routes>
             <Route exact path="/home" element={<Home />} />
             <Route exact path='/searchProduct/:name' element={<SearchProducts />} />
@@ -64,7 +56,6 @@ const App = () => {
             <Route exact path="/myaddress" element={<MyAddress />} />
             {/* <Route exact path="/paynow/:pid" element={PayNow} /> */}
           </Routes>
-          {/* </div> */}
           <Footer />
         </Router>
       </ConText>
