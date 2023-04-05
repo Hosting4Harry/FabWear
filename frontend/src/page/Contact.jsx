@@ -76,30 +76,30 @@ const Contact = () => {
                         <p className="text-center w-responsive mx-auto mb-5">Do you have any questions? Please do not hesitate to contact us directly. Our team will come back to you within few minutes to help you.</p>
                         <div className="col-md-6">
                             <div className="md-form mb-0">
-                                <input type="text" id="name" name="name" className="form-control" required />
                                 <label htmlFor="name" className="">Your name</label>
+                                <input type="text" id="name" name="name" className="form-control" required />
                             </div>
                         </div>
                         <div className="col-md-6">
                             <div className="md-form mb-0">
-                                <input type="text" id="email" name="email" className="form-control" required />
                                 <label htmlFor="email" className="">Your email</label>
+                                <input type="text" id="email" name="email" className="form-control" required />
                             </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-12">
                             <div className="md-form mb-0">
-                                <input type="text" id="subject" name="subject" className="form-control" />
                                 <label htmlFor="subject" className="">Subject</label>
+                                <input type="text" id="subject" name="subject" className="form-control" />
                             </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-12">
                             <div className="md-form">
-                                <textarea type="text" id="message" name="message" rows="2" className="form-control md-textarea" required></textarea>
                                 <label htmlFor="message">Your message</label>
+                                <textarea type="text" id="message" name="message" rows="2" className="form-control md-textarea" required></textarea>
                             </div>
                         </div>
                     </div>
