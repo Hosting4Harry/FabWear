@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express();
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
 
 const verifyJwt = (req, res, next) => {
     const token = req.headers["x-access-token"]

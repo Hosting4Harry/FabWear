@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import CardProducts from './CardProducts'
-import axios from 'axios'
-import productData from '../page/ProductData.json'
+import React, { useEffect, useState } from 'react';
+import CardProducts from './CardProducts';
+import axios from 'axios';
+import productData from '../page/ProductData.json';
 
 const AllProducts = () => {
     // console.log("first")
-    const [getdata, setGetdata] = useState(productData)
+    const [getdata, setGetdata] = useState(productData);
     const getData = async () => {
-        const res = await axios.get('http://localhost:8000/product/getdata')
+        const res = await axios.get('http://localhost:8000/product/getdata');
         setGetdata(res.data);
     }
     useEffect(() => {
-        getData()
+        getData();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     return (

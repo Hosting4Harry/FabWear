@@ -8,7 +8,7 @@ router.get("/account/:id", async (req, res) => {
     await db.orders.findAll({
         where: {
             userid: id,
-            [Op.or]: [{ orderstatus: 'order done' }, { orderstatus: "cancelled" }]
+            [Op.or]: [{ orderstatus: 'Order Done' }, { orderstatus: "Cancelled" }]
         }
     }).then(result => {
         res.send(result)

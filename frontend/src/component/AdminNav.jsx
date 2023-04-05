@@ -11,8 +11,8 @@ const AdminNav = () => {
 
     const submit = (e) => {
         e.preventDefault();
-        navigate('/searchProduct/' + searchValue)
-        setSearchValue('')
+        navigate('/searchProduct/' + searchValue);
+        setSearchValue('');
     };
     const submitForm = async (e) => {
         setSearchValue(e.target.value);
@@ -24,8 +24,8 @@ const AdminNav = () => {
             }).catch(error => {
                 if (error)
                     setSearchResult([]);
-                setSearchValue('')
-            })
+                setSearchValue('');
+            });
     };
     const hideList = () => {
         document.getElementById("searchList").style.display = "none";

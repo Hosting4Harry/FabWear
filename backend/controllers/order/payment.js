@@ -7,7 +7,7 @@ const router = express();
 
 router.post("/orders", async (req, res) => {
     const { cart, paymentemail, name } = req.body;
-    const data = req.body
+    const data = req.body;
     try {
         const instance = new Razorpay({
             key_id: process.env.RAZORPAY_KEY_ID || "rzp_test_T3tAATbEcOqopL",
@@ -40,12 +40,12 @@ router.post("/orders", async (req, res) => {
                     // let sqll = "INSERT INTO `orderitems` SET ?";
                     db.orderitems.create(detailsdata)
                         .then(result => {
-                            console.log(result)
+                            console.log(result);
                         })
                 }
             }).catch(error => {
-                console.log(error)
-            })
+                console.log(error);
+            });
         // --------------------------------------
         res.json({ orderData: orderData, order: order });
     } catch (error) {
@@ -96,11 +96,11 @@ router.post("/success", async (req, res) => {
                         where: {
                             productId: item.id
                         }
-                    })
-                })
+                    });
+                });
             }).catch(error => {
-                console.log(error)
-            })
+                console.log(error);
+            });
 
         res.json({
             msg: "success",
