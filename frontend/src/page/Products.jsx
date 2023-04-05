@@ -5,7 +5,7 @@ import CardProducts from '../component/CardProducts'
 import productData from './ProductData.json'
 import { Link } from 'react-router-dom'
 const Products = () => {
-    const [getdata, setGetdata] = useState(productData);
+    const [getdata, setGetdata] = useState([]);
     const [sliceRec, setSliceRec] = useState('20');
     // const timeout = useRef(null);
     // const navigate = useNavigate();
