@@ -46,7 +46,7 @@ const Wishlist = () => {
     if (!wishlist.length) {
         wishListCss = { backgroundColor: "#eee", height: "100vh" }
     } else {
-        wishListCss = { backgroundColor: "#eee" }
+        wishListCss = { backgroundColor: "#eee", height: "100vh" }
     }
     return (<div className="cart pt-2" style={wishListCss}>
         {!wishlist.length ? (

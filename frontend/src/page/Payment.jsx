@@ -19,7 +19,7 @@ const Payment = () => {
     // const [showaddress, setShowaddress] = useState(false);
     // const [UserId, setUserId] = useState("");
     const [total, setTotal] = useState(0);
-    const { cart, setCart } = useContext(DataContext);
+    const { cart, setCart, wishlist } = useContext(DataContext);
     var tot = 0;
     const timeout = useRef(null);
 
@@ -61,19 +61,19 @@ const Payment = () => {
     //     const dat = localStorage.getItem('EcomUserId');
     //     setUserId(dat);
     // }, []);
-    if (!cart.length) {
-        return (
-            <>
-                <div className="container p-5">
-                    <h2>There is No cart items</h2>
-                </div>
-            </>
-        )
-    }
+    // if (!cart.length) {
+    //     return (
+    //         <>
+    //             <div className="container p-5">
+    //                 <h2>There is No cart items</h2>
+    //             </div>
+    //         </>
+    //     )
+    // }
 
     return (
         <>
-            <div className="payment">
+            <div className="payment" style={{ height: "100vh" }}>
                 <div className="container">
                     <div className="row">
                         <div className="table-responsive">
@@ -89,7 +89,7 @@ const Payment = () => {
                                 </thead>
                                 <tbody>
                                     {
-                                        cart.map((val, ind) => {
+                                        wishlist.map((val, ind) => {
                                             tot = tot + val.price * val.qty
                                             return (<tr key={ind}>
                                                 <td>{ind + 1}</td>
@@ -102,7 +102,7 @@ const Payment = () => {
                                                     </NavLink>
                                                 </td>
                                                 <td>{val.price}.00</td>
-                                                <td>{val.productqty}</td>
+                                                <td>{val.productqty || 1}</td>
                                                 <td>{val.price * val.productqty}.00</td>
                                             </tr>
                                             )

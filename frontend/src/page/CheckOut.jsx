@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { DataContext } from '../context/DataContext';
 import "./CheckOut.css"
 
@@ -37,28 +37,28 @@ function CheckOut() {
 
     const [yourAddress, setYourAddress] = useState([]);
     // eslint-disable-next-line no-unused-vars
-    const [inputAddres, setInputAddres] = useState({});
+    const [inputAddress, setInputAddress] = useState({});
     const getaddress = async () => {
         const dat = localStorage.getItem('EcomUserId');
         const res = await axios.get(`http://localhost:8000/address/getaddress/${dat}`);
         setYourAddress(res.data);
     }
 
-    const { id: pid } = useParams();
-    const buynow = async () => {
-        if (pid) {
-            const res = await axios.get('http://localhost:8000/product/getdata/' + pid)
-            console.log(res.data);
-            setCart(res.data)
-        } else {
-            setCart(cart)
-        }
-    }
+    // const { id } = useParams();
+    // const buynow = async () => {
+    //     if (id) {
+    //         const res = await axios.get('http://localhost:8000/product/getdata/' + id)
+    //         console.log(res.data);
+    //         setCart(res.data)
+    //     } else {
+    //         setCart(cart)
+    //     }
+    // }
     useEffect(() => {
         getaddress();
-        buynow(pid);
+        // buynow(id);
         // eslint-disable-next-line
-    }, [pid]);
+    }, []);
     useEffect(() => {
         debugger
         let totamo = 0;
@@ -97,7 +97,8 @@ function CheckOut() {
             paymentmode: payment,
             paymentemail: datemail,
             name: datname,
-            cart: cart
+            cart: cart,
+            address: inputAddress
         }
         const res = await loadScript(
             "https://checkout.razorpay.com/v1/checkout.js"
@@ -208,40 +209,42 @@ function CheckOut() {
                                 yourAddress.length ? (
                                     <>
                                         <form onSubmit={displayRazorpay}>
-                                            <button className="btn font-weight-bold mt-0 mb-4" onClick={() => navigate('/myaddress')}>Manage Addresses</button>
-                                            {
-                                                yourAddress.map((val, ind) => {
-                                                    return (<div key={ind} className="col-md-12 col-sm-12 col-lg-12">
-                                                        <div className="bg-white card addresses-item mb-4 border border-primary shadow">
-                                                            <div className="gold-members">
-                                                                <div className="form-check-inline">
-                                                                    <label className="form-check-label">
-                                                                        <input type="radio" className="form-check-input" name="payment" value="online" onChange={(e) => setInputAddres(val)} required />
-                                                                    </label>
-                                                                </div>
-                                                                <div className="media">
-                                                                    <div className="mr-3"><i className="icofont-ui-home icofont-3x"></i></div>
-                                                                    <div className="media-body">
-                                                                        <h6 className="mb-1 text-secondary">Home</h6>
-                                                                        <p className="text-black">{val.address}
-                                                                        </p>
-                                                                        <p className="mb-0 text-black font-weight-bold">
-                                                                            <Link className="text-primary mr-3" data-toggle="modal" data-target="#add-address-modal" to={"/addaddress/" + val.id}> EDIT</Link>
-                                                                        </p>
+                                            <div>
+                                                <button className="btn font-weight-bold mt-0 mb-4" onClick={() => navigate('/myaddress')}>Manage Addresses</button>
+                                                {
+                                                    yourAddress.map((val, ind) => {
+                                                        return (<div key={ind} className="col-md-12 col-sm-12 col-lg-12">
+                                                            <div className="bg-white card addresses-item mb-4 border border-primary shadow">
+                                                                <div className="gold-members">
+                                                                    <div className="form-check-inline">
+                                                                        <label className="form-check-label">
+                                                                            <input type="radio" className="form-check-input" name="address" value={inputAddress} onChange={(e) => setInputAddress(val)} required />
+                                                                        </label>
+                                                                    </div>
+                                                                    <div className="media">
+                                                                        <div className="mr-3"><i className="icofont-ui-home icofont-3x"></i></div>
+                                                                        <div className="media-body">
+                                                                            <h6 className="mb-1 text-secondary">Home</h6>
+                                                                            <p className="text-black">{val.address}
+                                                                            </p>
+                                                                            <p className="mb-0 text-black font-weight-bold">
+                                                                                <Link className="text-primary mr-3" data-toggle="modal" data-target="#add-address-modal" to={"/addaddress/" + val.id}> EDIT</Link>
+                                                                            </p>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    )
-                                                })
-                                            }
-                                            <h4>Choose payment option</h4>
-                                            <div className="form-check-inline">
-                                                <label className="form-check-label">
-                                                    <input type="radio" className="form-check-input" name="payment" value="online" onChange={(e) => setPayment(e.target.value)} required />Online
-                                                </label>
+                                                        )
+                                                    })
+                                                }
                                             </div>
+                                            <div><h4>Choose payment option</h4>
+                                                <div className="form-check-inline">
+                                                    <label className="form-check-label">
+                                                        <input type="radio" className="form-check-input" name="payment" value="online" onChange={(e) => setPayment(e.target.value)} required />Online
+                                                    </label>
+                                                </div></div>
                                             <div className="text-center m-3">
                                                 <input type="submit" className="btn btn-info pt-2 pb-2 pl-5 pr-5" value="Buy Now" />
                                             </div>
