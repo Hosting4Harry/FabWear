@@ -1,7 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import jwt_decode from "jwt-decode";
-import Navbar from './component/Navbar'
+// eslint-disable-next-line no-unused-vars
 import AdminNav from './component/AdminNav'
 import Footer from './component/Footer'
 import Home from './page/Home'
