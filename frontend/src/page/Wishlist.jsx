@@ -48,37 +48,47 @@ const Wishlist = () => {
     } else {
         wishListCss = { backgroundColor: "#eee", height: "100vh" }
     }
-    return (<div className="cart pt-2" style={wishListCss}>
-        {!wishlist.length ? (
-            <div className="container">
-                <div className="container" style={{ textAlign: 'center' }}>
-                    <h2>There is No Items In the wishlist</h2>
-                    <img src="../img/W1.png" alt="emptybag" />
-                </div>
-                <div className="container" style={{ textAlign: 'center' }}>
-                    <button className="btn-lg btn-info" onClick={() => navigate('/products')}>Continue Shopping</button>
-                </div>
+    return (<>
+        <div className="cart pt-2" style={wishListCss}>
+            {!wishlist.length ? (
+                <div className="container">
+                    <div className="container" style={{ textAlign: 'center' }}>
+                        <h2>There is No Items In the wishlist</h2>
+                        <img src="../img/W1.png" alt="emptybag" />
+                    </div>
+                    <div className="container" style={{ textAlign: 'center' }}>
+                        <button className="btn-lg btn-info" onClick={() => navigate('/products')}>Continue Shopping</button>
+                    </div>
 
+                </div>
+            ) : (<div className="container">
+                <h2>Your have {wishlist.length} Items in your wishlist</h2>
+                <br />
+                <div className="row">
+                    {wishlist.map((val, ind) => {
+                        return (<WishlistP
+                            key={ind}
+                            id={val.id}
+                            name={val.name}
+                            price={val.price}
+                            product_image={val.product_image}
+                            productId={val.productId}
+                        />)
+                    })}
+                </div>
             </div>
-        ) : (<div className="container">
-            <h2>Your have {wishlist.length} Items in your wishlist</h2>
-            <br />
-            <div className="row">
-                {wishlist.map((val, ind) => {
-                    return (<WishlistP
-                        key={ind}
-                        id={val.id}
-                        name={val.name}
-                        price={val.price}
-                        product_image={val.product_image}
-                        productId={val.productId}
-                    />)
-                })}
-            </div>
+            )
+            }
         </div>
-        )
+
+        {
+
         }
-    </div>
+
+
+
+
+    </>
     )
 }
 

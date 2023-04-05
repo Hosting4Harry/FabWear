@@ -11,7 +11,8 @@ const Navbar = () => {
 
   const submit = (e) => {
     e.preventDefault();
-    navigate('/searchProduct/' + searchValue)
+    navigate('/searchProduct/' + searchValue);
+    hideList();
     setSearchValue('')
   };
   const submitForm = async (e) => {
@@ -21,6 +22,8 @@ const Navbar = () => {
       .then(response => {
         setSearchResult(response.data);
         document.getElementById("searchList").style.display = "list-item";
+        document.getElementById("wrapper").style.display = "block";
+
       }).catch(error => {
         if (error)
           setSearchResult([]);
@@ -29,6 +32,7 @@ const Navbar = () => {
   };
   const hideList = () => {
     document.getElementById("searchList").style.display = "none";
+    document.getElementById("wrapper").style.display = "none";
   }
   const userId = localStorage.getItem("EcomUserId");
   const cartItems = async () => {
@@ -61,18 +65,22 @@ const Navbar = () => {
               <input type='text' size={30} id='searchbar' placeholder='Search for products, brands and more' defaultValue={searchValue} onChange={(e) => submitForm(e)} className='form-control form-group-sm' />
               <button type='submit' className='btn btn-primary m-0' style={{ padding: "5px 15px", borderRadius: "5px" }}> <i className="fa fa-search"></i></button>
             </div>
-            {searchResult.length > 0 &&
-              <div className='search_list' id='searchList' onMouseLeave={hideList} style={{ width: '320px', position: 'absolute', zIndex: 9999, display: 'block' }}>
+            {searchResult.length > 0 && <>
+              <div className='search_wrapper' id='wrapper' onClick={hideList}>
+
+              </div>
+              <div className='search_list' id='searchList' style={{ width: '320px', position: 'absolute', zIndex: 9999, display: 'block' }}>
                 <ul className="list-group" style={{}}>
                   {searchResult.map((item, i) => {
                     return <li className="list-group-item" key={i}>
-                      <Link to={'/details/' + item.id} style={{ position: 'static', zIndex: 123 }}>
+                      <Link to={'/details/' + item.id} onClick={hideList} style={{ position: 'static', zIndex: 123 }}>
                         {item.name}
                       </Link>
                     </li>
                   })}
                 </ul>
               </div>
+            </>
             }
           </div>
         </form>

@@ -69,7 +69,7 @@
 
 /* == */
 .products {
-  padding-top: 75px;
+  padding-top: 90px;
 }
 
 .p-img {
@@ -90,6 +90,7 @@
 
 .products-p .card .overlay {
   position: absolute;
+  z-index: 9997;
   bottom: 0;
   background: #04292e;
   /* Black see-through */

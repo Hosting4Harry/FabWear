@@ -58,7 +58,7 @@ const Products = () => {
         }
     }
     if (getdata.length === 0) {
-        return <div className='products '>
+        return <div className='products'>
             <div className="container">
                 <h2 className="text-center font-weight-bold mb-5">Best Products</h2>
                 <div className="inp ">
