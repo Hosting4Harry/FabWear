@@ -130,7 +130,7 @@ const Home = () => {
                 <div className="wrapper" onClick={hideModal}>
 
                 </div>
-                <div className="modal" >
+                <div className="modal rounded" >
                     <div className='card p-5 rounded ripple-surface'>
                         <div className='' style={{ position: "fixed", top: 20, right: 20 }} onClick={hideModal}>
                             &#10006;
