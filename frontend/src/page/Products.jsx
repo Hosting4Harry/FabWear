@@ -12,7 +12,7 @@ const sideModal = {
     right: 0,
     transform: "translate(-0%, -0%)",
     backgroundColor: "#rgb(238, 238, 238)",
-    maxWidth: "20rem",
+    maxWidth: "25rem",
     transition: ".5s ease",
     marginTop: "80px",
     paddingTop: "120px",
@@ -24,32 +24,8 @@ const Products = () => {
     const [getdata, setGetdata] = useState([]);
     const [getmodaldata, setGetModaldata] = useState([]);
     const [sliceRec, setSliceRec] = useState('20');
-    // const timeout = useRef(null);
-    // const navigate = useNavigate();
-    // const checkAuth = () => {
-    //     axios.get("http://localhost:8000/isAuth", {
-    //         headers: {
-    //             "x-access-token": localStorage.getItem("Ecomtoken")
-    //         }
-    //     }).then((response) => {
-    //         if (!response.data.login) {
-    //             navigate("/");
-    //         }
-    //     })
-    // }
-    // useEffect(() => {
-    //     timeout.current = setTimeout(checkAuth, 1000)
-    //     return function () {
-    //         if (timeout.current) {
-    //             clearTimeout(timeout.current);
-    //         }
-    //     }
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, []);
 
     const getDatas = async () => {
-        const resModal = await axios.get('http://localhost:8000/product/getdata');
-        setGetModaldata(resModal.data);
         const res = await axios.get('http://localhost:8000/product/getdataall');
         if (!res.data) {
             setGetdata(productData);
@@ -59,6 +35,10 @@ const Products = () => {
 
     }
     useEffect(() => {
+        setInterval(async () => {
+            const resModal = await axios.get('http://localhost:8000/product/getdata');
+            setGetModaldata(resModal.data);
+        }, 6000)
         getDatas();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -84,7 +64,6 @@ const Products = () => {
                     <p></p>
                     <div className="form-group">
                         <select className="form-control" id="" onChange={sortHandel}>
-                            {/* <option value="" selected disabled hidden>Choose By Price</option> */}
                             <option value="all">All</option>
                             <option value="200">less then 200</option>
                             <option value="200_500">200-500</option>
@@ -101,7 +80,6 @@ const Products = () => {
         document.getElementById("sidemodal").style.display = "none";
     }
 
-
     return (
         <>
             <div className="products" style={{ backgroundColor: "#eee" }}>
@@ -110,7 +88,6 @@ const Products = () => {
                     <div className="inp ">
                         <div className="form-group">
                             <select className="form-control" id="" onChange={(e) => setSliceRec(e.target.value === "all" ? getdata.length : e.target.value)}>
-                                {/* <option value="" selected disabled hidden>Choose By Price</option> */}
                                 <option value="20">20 records</option>
                                 <option value="30">30 records</option>
                                 <option value="40">40 records</option>
@@ -186,7 +163,7 @@ const Products = () => {
                     </div>
                 </section>
             </div>
-            <div className="" id="sidemodal" style={sideModal}>
+            {getmodaldata.length !== 0 && <div className="" id="sidemodal" style={sideModal}>
                 <div className="d-flex" style={{}}>
                     <div><h4>Desired Products</h4></div>
                     <div style={{ position: "absolute", top: 100, right: 10 }} onClick={hideModal}>
@@ -194,19 +171,23 @@ const Products = () => {
                     </div>
                 </div>
                 {
-                    getmodaldata.slice(0, 2).map((item, ind) => {
-                        return <div className='card p-5 rounded ripple-surface' key={ind}>
+                    getmodaldata.slice(0, 3).map((item, ind) => {
+                        return <div className='card p-2 rounded ripple-surface' key={ind} style={{ backgroundColor: "transparent" }}>
                             <div className="bg-image hover-zoom ripple rounded ripple-surface">
                                 {/* <Link to={`/details/${item.id}`} > */}
                                 <img src={`../img/${item.product_image}`}
-                                    className="card-img-top" alt={item.product_image} style={{ height: "100px" }} onClick={() => navigate("/searchProduct/" + getdata[0].product_image.split('/')[1])} />
+                                    className="card-img-top" alt={item.product_image} style={{ width: "150px", height: "150px" }} onClick={() => navigate("/searchProduct/" + getdata[0].product_image.split('/')[1])
+
+                                    } />
                                 {/* </Link> */}
                             </div>
-                            <pre></pre>
+                            {/* <pre></pre> */}
                         </div>
                     })
                 }
             </div>
+            }
+
 
 
         </>
