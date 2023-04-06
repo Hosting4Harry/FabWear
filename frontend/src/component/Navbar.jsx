@@ -20,6 +20,7 @@ const Navbar = () => {
     if (e.target.value === " ") return;
     await axios.get('http://localhost:8000/product/searchProduct/' + e.target.value)
       .then(response => {
+        debugger
         setSearchResult(response.data);
         document.getElementById("searchList").style.display = "list-item";
         document.getElementById("wrapper").style.display = "block";
@@ -69,7 +70,7 @@ const Navbar = () => {
               <div className='search_wrapper' id='wrapper' onClick={hideList}>
 
               </div>
-              <div className='search_list' id='searchList' style={{ width: '320px', position: 'absolute', zIndex: 9999, display: 'block' }}>
+              <div className='search_list' id='searchList' style={{ width: '320px', position: 'absolute', zIndex: 9999 }}>
                 <ul className="list-group" style={{}}>
                   {searchResult.map((item, i) => {
                     return <li className="list-group-item" key={i}>

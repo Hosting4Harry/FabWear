@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import CardProducts from './CardProducts';
 import axios from 'axios';
-import productData from '../page/ProductData.json';
 
 const AllProducts = () => {
-    // console.log("first")
-    const [getdata, setGetdata] = useState(productData);
+    const [getdata, setGetdata] = useState([]);
     const getData = async () => {
         const res = await axios.get('http://localhost:8000/product/getdata');
         setGetdata(res.data);

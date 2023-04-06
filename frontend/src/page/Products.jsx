@@ -3,9 +3,26 @@ import axios from 'axios'
 import CardProducts from '../component/CardProducts'
 // import { DataContext } from '../context/DataContext'
 import productData from './ProductData.json'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+
+const sideModal = {
+    position: "fixed",
+    zIndex: 9999,
+    top: 0,
+    right: 0,
+    transform: "translate(-0%, -0%)",
+    backgroundColor: "#rgb(238, 238, 238)",
+    maxWidth: "20rem",
+    transition: ".5s ease",
+    marginTop: "80px",
+    paddingTop: "120px",
+    display: "block"
+}
+
 const Products = () => {
+    const navigate = useNavigate();
     const [getdata, setGetdata] = useState([]);
+    const [getmodaldata, setGetModaldata] = useState([]);
     const [sliceRec, setSliceRec] = useState('20');
     // const timeout = useRef(null);
     // const navigate = useNavigate();
@@ -31,6 +48,8 @@ const Products = () => {
     // }, []);
 
     const getDatas = async () => {
+        const resModal = await axios.get('http://localhost:8000/product/getdata');
+        setGetModaldata(resModal.data);
         const res = await axios.get('http://localhost:8000/product/getdataall');
         if (!res.data) {
             setGetdata(productData);
@@ -78,10 +97,10 @@ const Products = () => {
         </div>
 
     }
+    const hideModal = () => {
+        document.getElementById("sidemodal").style.display = "none";
+    }
 
-    // if (!getdata.length) {
-    //     return <h1>Loading..</h1>
-    // }
 
     return (
         <>
@@ -166,6 +185,27 @@ const Products = () => {
                         </div>
                     </div>
                 </section>
+            </div>
+            <div className="" id="sidemodal" style={sideModal}>
+                <div className="d-flex" style={{}}>
+                    <div><h4>Desired Products</h4></div>
+                    <div style={{ position: "absolute", top: 100, right: 10 }} onClick={hideModal}>
+                        &#10006;
+                    </div>
+                </div>
+                {
+                    getmodaldata.slice(0, 2).map((item, ind) => {
+                        return <div className='card p-5 rounded ripple-surface' key={ind}>
+                            <div className="bg-image hover-zoom ripple rounded ripple-surface">
+                                {/* <Link to={`/details/${item.id}`} > */}
+                                <img src={`../img/${item.product_image}`}
+                                    className="card-img-top" alt={item.product_image} style={{ height: "100px" }} onClick={() => navigate("/searchProduct/" + getdata[0].product_image.split('/')[1])} />
+                                {/* </Link> */}
+                            </div>
+                            <pre></pre>
+                        </div>
+                    })
+                }
             </div>
 
 

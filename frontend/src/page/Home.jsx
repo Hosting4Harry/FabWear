@@ -1,16 +1,27 @@
-import React, { useContext, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import '../App.css'
 import AllProducts from '../component/AllProducts'
 import axios from 'axios'
 import Slides from './Slides'
 import { DataContext } from '../context/DataContext'
 
-
 const Home = () => {
+    const [modal, setModal] = useState(false);
+    const [getdata, setGetdata] = useState([]);
+    const navigate = useNavigate();
+    window.onload = async () => {
+        const res = await axios.get('http://localhost:8000/product/getdata');
+        if (res.data.length === 0) return;
+        setGetdata(res.data.slice(0, 1))
+        document.getElementById("root").style.overflowY = "hidden"
+        setModal(true);
+    }
+    const hideModal = () => {
+        setModal(false);
+    }
     // const timeout = useRef(null);
     const { setWishlist } = useContext(DataContext);
-    // const navigate = useNavigate()
     // const checkAuth = () => {
     //     axios.get("http://localhost:8000/isAuth", {
     //         headers: {
@@ -40,19 +51,10 @@ const Home = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     //  setInterval(checkAuth, 1000);
-    // useEffect(() => {
-    //     const datafet = async () => {
-    //         const res = await axios.get(`https://open.mapquestapi.com/geocoding/v1/address?key=ccxeu5eQ2pEdTe7UvyQNbbE9XXdeLKdi&street=Hanschara%20M%20D%20High%20School&city=chandipur&state=wb&postalCode=721625`)
-    //         console.log(res)
-    //     }
-    //     datafet()
-
-    // }, [])
-
 
     return (
         <>
-            <div className="home">
+            <div className="home" id="home">
                 <div className="container">
                     <div className="row">
                         <div className="col-md-6 col-12 mb-3 mx-auto">
@@ -123,6 +125,39 @@ const Home = () => {
                     </div>
                 </div>
             </section>
+
+            {modal && <>
+                <div className="wrapper" onClick={hideModal}>
+
+                </div>
+                <div className="modal" >
+                    <div className='card p-5 rounded ripple-surface'>
+                        <div className='' style={{ position: "fixed", top: 20, right: 20 }} onClick={hideModal}>
+                            &#10006;
+                        </div>
+                        <div className=''>
+                            <h4> {getdata[0].name}</h4>
+                        </div>
+                        <div className="bg-image hover-zoom ripple rounded ripple-surface">
+                            <Link to={`/details/${getdata[0].id}`} >
+                                <img src={`../img/${getdata[0].product_image}`}
+                                    className="card-img-top" alt={getdata[0].product_image} style={{ width: "100%", height: "200px" }} />
+                            </Link>
+                        </div>
+                        <pre></pre>
+                        <div className=''>
+                            <button className='btn btn-primary' onClick={() => navigate("/searchProduct/" + getdata[0].product_image.split('/')[1])}>check out</button>
+                        </div>
+                    </div>
+                </div>
+
+            </>
+
+            }
+
+
+
+
         </>
     )
 }

@@ -13,6 +13,30 @@
   padding-top: 100px;
 }
 
+.wrapper {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(189, 189, 189, 0.9);
+  overflow-y: hidden;
+}
+
+.modal {
+  position: fixed;
+  z-index: 99999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  display: block;
+  max-width: 25rem;
+  height: 25rem;
+  transition: .5s ease;
+}
+
 .heart {
   float: right;
   position: absolute;
@@ -69,7 +93,7 @@
 
 /* == */
 .products {
-  padding-top: 90px;
+  padding-top: 70px;
 }
 
 .p-img {
@@ -114,7 +138,7 @@
 }
 
 .desc {
-  height: 70vh;
+  height: 100vh;
   background: #04292e;
 }
 
