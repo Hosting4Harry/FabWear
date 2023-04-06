@@ -33,11 +33,12 @@ const Products = () => {
         }
 
     }
+    const getModalData = async () => {
+        const resModal = await axios.get('http://localhost:8000/product/getdata');
+        setGetModaldata(resModal.data);
+    }
     useEffect(() => {
-        setInterval(async () => {
-            const resModal = await axios.get('http://localhost:8000/product/getdata');
-            setGetModaldata(resModal.data);
-        }, 6000)
+        setInterval(getModalData, 6000);
         getDatas();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -174,9 +175,7 @@ const Products = () => {
                         return <div className='card p-2 rounded ripple-surface' key={ind} style={{ backgroundColor: "transparent" }}>
                             <div className="bg-image hover-zoom ripple rounded ripple-surface">
                                 <img src={`../img/${item.product_image}`}
-                                    className="card-img-top" alt={item.product_image} style={{ width: "150px", height: "150px" }} onClick={() => navigate("/searchProduct/" + getdata[0].product_image.split('/')[1])
-
-                                    } />
+                                    className="card-img-top" alt={item.product_image} style={{ width: "150px", height: "150px" }} onClick={() => navigate("/searchProduct/" + getdata[0].product_image.split('/')[1])} />
                             </div>
                         </div>
                     })
