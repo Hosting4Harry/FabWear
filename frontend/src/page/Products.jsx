@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import CardProducts from '../component/CardProducts'
-// import { DataContext } from '../context/DataContext'
 import productData from './ProductData.json'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -171,17 +170,14 @@ const Products = () => {
                     </div>
                 </div>
                 {
-                    getmodaldata.slice(0, 3).map((item, ind) => {
+                    getmodaldata.slice(0, 2).map((item, ind) => {
                         return <div className='card p-2 rounded ripple-surface' key={ind} style={{ backgroundColor: "transparent" }}>
                             <div className="bg-image hover-zoom ripple rounded ripple-surface">
-                                {/* <Link to={`/details/${item.id}`} > */}
                                 <img src={`../img/${item.product_image}`}
                                     className="card-img-top" alt={item.product_image} style={{ width: "150px", height: "150px" }} onClick={() => navigate("/searchProduct/" + getdata[0].product_image.split('/')[1])
 
                                     } />
-                                {/* </Link> */}
                             </div>
-                            {/* <pre></pre> */}
                         </div>
                     })
                 }
