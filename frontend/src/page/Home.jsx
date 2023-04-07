@@ -59,13 +59,21 @@ const Home = () => {
                     <img src="../img/Slides/slide-01.jpg.webp" className="d-block w-100" alt="..." />
                     <div className='tag'>
                         <h1  >Women Collection {new Date().getFullYear()}</h1>
+                        <div className='typewriter'>
+                            <h1>CheckOut what you want</h1>
+                        </div>
+                        <pre></pre>
                         <button className="btn btn-outline-success ms-5">Shop Now</button>
                     </div>
                 </div>
                 <div className="carousel-item" data-bs-interval="1000">
                     <img src="../img/Slides/slide-02.jpg.webp" className="d-block w-100" alt="..." />
                     <div className='tag'>
-                        <h1  >Trending  {new Date().getFullYear()}</h1>
+                        <h1  >Trending Series  {new Date().getFullYear()}</h1>
+                        <div className='typewriter'>
+                            <h1>Deals that you never seen</h1>
+                        </div>
+                        <pre></pre>
                         <button className="btn btn-outline-success ms-5">Shop Now</button>
                     </div>
                 </div>
@@ -73,6 +81,10 @@ const Home = () => {
                     <img src="../img/Slides/slide-03.jpg.webp" className="d-block w-100" alt="..." />
                     <div className='tag'>
                         <h1  >Men Collection {new Date().getFullYear()}</h1>
+                        <div className='typewriter'>
+                            <h1>Trending for men...</h1>
+                        </div>
+                        <pre></pre>
                         <button className="btn btn-outline-success ms-5">Shop Now</button>
                     </div>
                 </div>
@@ -90,7 +102,7 @@ const Home = () => {
             <div className="desc h-100">
                 <div className="container-fluid">
                     <div className="row">
-                        <div className=" col-md-6 col-12 mx-auto mb-3 d-flex justify-content-center align-items-center flex-column">
+                        <div className=" typewriter col-md-6 col-12 mx-auto mb-3 d-flex justify-content-center align-items-center flex-column">
                             <h1>Welcome to <span>Cart.Com</span> </h1>
                             <h3>It's a  Big Market out there, Let's Explore with Us</h3>
                             <p>   Just take a quick peek & learn about the Amazing Stories of our Valued Clients. Nothing makes us happier than their Beautiful & Successful Journey with Us!</p>

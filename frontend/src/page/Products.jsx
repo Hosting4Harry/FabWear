@@ -59,7 +59,7 @@ const Products = () => {
     if (getdata.length === 0) {
         return <div className='products'>
             <div className="container">
-                <h2 className="text-center font-weight-bold mb-5">Best Products</h2>
+                <h2 className="text-center font-weight-bold mb-5">All Products</h2>
                 <div className="inp ">
                     <p></p>
                     <div className="form-group">
@@ -84,7 +84,7 @@ const Products = () => {
         <>
             <div className="products" style={{ backgroundColor: "#eee" }}>
                 <div className="container">
-                    <h2 className="text-center font-weight-bold mb-5">Best Products</h2>
+                    <h2 className="text-center font-weight-bold mb-5">All Products</h2>
                     <div className="inp ">
                         <div className="form-group">
                             <select className="form-control" id="" onChange={(e) => setSliceRec(e.target.value === "all" ? getdata.length : e.target.value)}>
