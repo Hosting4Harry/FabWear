@@ -34,8 +34,8 @@ router.post("/addproduct", upload.single('product_image'), async (req, res) => {
 });
 
 router.get("/getdataall", async (req, res) => {
-    // await db.products.findAll({ order: Sequelize.literal('rand()') })
-    await db.products.findAll()
+    await db.products.findAll({ order: Sequelize.literal('rand()') })
+        // await db.products.findAll()
         .then(result => {
             res.send(result);
         }).catch(error => {
