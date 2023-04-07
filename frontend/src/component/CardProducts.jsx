@@ -108,7 +108,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
                 </div>
                 <div className="card-body">
                     <div className="d-flex justify-content-between">
-                        <p className="small"><Link href="#!" className="text-muted">{name}</Link></p>
+                        <p className="small"><Link to={`/details/${id}`} className="text-muted"><strong>{name}</strong></Link></p>
                     </div>
                     <div className="d-flex justify-content-between mb-3">
                         <h5 className="mb-0" style={{ color: 'green' }}>Assured</h5>
