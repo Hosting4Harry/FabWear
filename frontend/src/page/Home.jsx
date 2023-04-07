@@ -67,7 +67,7 @@ const Home = () => {
                             <h1>CheckOut what you want</h1>
                         </div>
                         <pre></pre>
-                        <button className="btn btn-outline-success ms-5">Shop Now</button>
+                        <button className="btn btn-outline-success ms-5" onClick={() => navigate('/searchProduct/women')}>Shop Now</button>
                     </div>
                 </div>
                 <div className="carousel-item" data-bs-interval="1000">
@@ -89,7 +89,7 @@ const Home = () => {
                             <h1>Trending for men...</h1>
                         </div>
                         <pre></pre>
-                        <button className="btn btn-outline-success ms-5">Shop Now</button>
+                        <button className="btn btn-outline-success ms-5" onClick={() => navigate('/searchProduct/men')}>Shop Now</button>
                     </div>
                 </div>
             </div>
