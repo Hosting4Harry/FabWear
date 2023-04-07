@@ -24,21 +24,7 @@ const Home = () => {
     const scroll = () => {
         ref.current?.scrollIntoView({ behavior: 'smooth' });
     };
-    // const timeout = useRef(null);
     const { setWishlist } = useContext(DataContext);
-    // const checkAuth = () => {
-    //     axios.get("http://localhost:8000/isAuth", {
-    //         headers: {
-    //             "x-access-token": localStorage.getItem("Ecomtoken")
-    //         }
-    //     }).then((response) => {
-    //         //  console.log()
-    //         if (!response.data.login) {
-    //             // window.location.reload()
-    //             navigate("/");
-    //         }
-    //     })
-    // }
     const getData = async () => {
         const userId = localStorage.getItem("EcomUserId");
         const res = await axios.get('http://localhost:8000/wishlist/' + userId);
@@ -46,18 +32,11 @@ const Home = () => {
     }
     useEffect(() => {
         getData();
-        // timeout.current = setTimeout(checkAuth, 1000)
-        // return function () {
-        //     if (timeout.current) {
-        //         clearTimeout(timeout.current)
-        //     }
-        // }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-    //  setInterval(checkAuth, 1000);
 
     return (
-        <> <div id="carouselExampleInterval" className="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-wrap='true' >
+        <> <div id="carouselExampleInterval" className="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-wrap='true' style={{ overflowY: "hidden" }} >
             <div className="carousel-inner">
                 <div className="carousel-item active" data-bs-interval="1000">
                     <img src="../img/Slides/slide-01.jpg.webp" className="d-block w-100" alt="..." />
