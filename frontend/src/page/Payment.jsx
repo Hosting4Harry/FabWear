@@ -89,7 +89,7 @@ const Payment = () => {
                                 </thead>
                                 <tbody>
                                     {
-                                        wishlist.map((val, ind) => {
+                                        cart.map((val, ind) => {
                                             tot = tot + val.price * val.qty
                                             return (<tr key={ind}>
                                                 <td>{ind + 1}</td>
