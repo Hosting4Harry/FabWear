@@ -89,7 +89,7 @@ const AddProduct = () => {
                                     <option value="jacket">Jacket</option>
                                     <option value="hat">Hat</option>
                                     <option value="kurta">Kurta</option>
-                                    <option value="plants">Plants</option>
+                                    <option value="plant">Plants</option>
                                     <option value="tees">Tees</option>
                                     <option value="sneaker">Sneaker</option>
                                     <option value="perfume">Perfume</option>
