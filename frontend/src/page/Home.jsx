@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import '../App.css'
 import AllProducts from '../component/AllProducts'
@@ -7,6 +7,7 @@ import { DataContext } from '../context/DataContext'
 import "./Home.css"
 
 const Home = () => {
+    const ref = useRef(null);
     const [modal, setModal] = useState(false);
     const [getdata, setGetdata] = useState([]);
     const navigate = useNavigate();
@@ -20,6 +21,9 @@ const Home = () => {
     const hideModal = () => {
         setModal(false);
     }
+    const scroll = () => {
+        ref.current?.scrollIntoView({ behavior: 'smooth' });
+    };
     // const timeout = useRef(null);
     const { setWishlist } = useContext(DataContext);
     // const checkAuth = () => {
@@ -74,7 +78,7 @@ const Home = () => {
                             <h1>Deals that you never seen</h1>
                         </div>
                         <pre></pre>
-                        <button className="btn btn-outline-success ms-5">Shop Now</button>
+                        <button className="btn btn-outline-success ms-5" onClick={scroll}>Shop Now</button>
                     </div>
                 </div>
                 <div className="carousel-item " data-bs-interval="1000">
@@ -98,7 +102,9 @@ const Home = () => {
                 <span className="visually-hidden">Next</span>
             </button>
         </div>
-            <AllProducts />
+            <div ref={ref}>
+                <AllProducts />
+            </div>
             <div className="desc h-100">
                 <div className="container-fluid">
                     <div className="row">
