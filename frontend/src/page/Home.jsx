@@ -53,8 +53,28 @@ const Home = () => {
     //  setInterval(checkAuth, 1000);
 
     return (
-        <>
-            <div className="home" id="home">
+        <> <div id="carouselExampleInterval" className="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-wrap='true' >
+            <div className="carousel-inner">
+                <div className="carousel-item active" data-bs-interval="1000">
+                    <img src="../img/Slides/slide-01.jpg.webp" className="d-block w-100" style={{ borderRadius: "" }} alt="..." />
+                </div>
+                <div className="carousel-item" data-bs-interval="1000">
+                    <img src="../img/Slides/slide-02.jpg.webp" className="d-block w-100" style={{ borderRadius: "" }} alt="..." />
+                </div>
+                <div className="carousel-item " data-bs-interval="1000">
+                    <img src="../img/Slides/slide-03.jpg.webp" className="d-block w-100" style={{ borderRadius: "" }} alt="..." />
+                </div>
+            </div>
+            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                <span className="fa fa-chevron-circle-left" aria-hidden="true" ></span>
+                <span className="visually-hidden">Previous</span>
+            </button>
+            <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                <span className="fa fa-chevron-circle-right" aria-hidden="true"></span>
+                <span className="visually-hidden">Next</span>
+            </button>
+        </div>
+            {/* <div className="home" id="home">
                 <div className="container">
                     <div className="row">
                         <div className="col-md-6 col-12 mb-3 mx-auto">
@@ -68,7 +88,7 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
             <AllProducts />
             <div className="desc h-100">
                 <div className="container-fluid">
@@ -131,8 +151,8 @@ const Home = () => {
 
                 </div>
                 <div className="modal rounded" >
-                    <div className='card p-5 rounded ripple-surface'>
-                        <div className='' style={{ position: "fixed", top: 20, right: 20 }} onClick={hideModal}>
+                    <div className='card p-5 rounded ripple-surface' style={{ backgroundColor: "transparent", border: "none" }}>
+                        <div className='rounded-circle ps-1' style={{ position: "fixed", top: 86, right: 60, zIndex: 99999, backgroundColor: "#fff", width: '20px' }} onClick={hideModal}>
                             &#10006;
                         </div>
                         <div className=''>

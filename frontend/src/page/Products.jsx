@@ -7,14 +7,14 @@ import { Link, useNavigate } from 'react-router-dom'
 const sideModal = {
     position: "fixed",
     zIndex: 9999,
-    top: 0,
+    top: "20%",
     right: 0,
     transform: "translate(-0%, -0%)",
     backgroundColor: "#rgb(238, 238, 238)",
     maxWidth: "25rem",
     transition: ".5s ease",
-    marginTop: "80px",
-    paddingTop: "120px",
+    // marginTop: "80px",
+    // paddingTop: "120px",
     display: "block"
 }
 
@@ -165,8 +165,8 @@ const Products = () => {
             </div>
             {getmodaldata.length !== 0 && <div className="" id="sidemodal" style={sideModal}>
                 <div className="d-flex" style={{}}>
-                    <div><h4>Desired Products</h4></div>
-                    <div style={{ position: "absolute", top: 100, right: 10 }} onClick={hideModal}>
+                    <div><h5>Desired Products</h5></div>
+                    <div style={{ position: "absolute", top: -5, right: 10 }} onClick={hideModal}>
                         &#10006;
                     </div>
                 </div>
