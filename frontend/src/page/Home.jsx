@@ -3,8 +3,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import '../App.css'
 import AllProducts from '../component/AllProducts'
 import axios from 'axios'
-import Slides from './Slides'
 import { DataContext } from '../context/DataContext'
+import "./Home.css"
 
 const Home = () => {
     const [modal, setModal] = useState(false);
@@ -56,13 +56,25 @@ const Home = () => {
         <> <div id="carouselExampleInterval" className="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-wrap='true' >
             <div className="carousel-inner">
                 <div className="carousel-item active" data-bs-interval="1000">
-                    <img src="../img/Slides/slide-01.jpg.webp" className="d-block w-100" style={{ borderRadius: "" }} alt="..." />
+                    <img src="../img/Slides/slide-01.jpg.webp" className="d-block w-100" alt="..." />
+                    <div className='tag'>
+                        <h1  >Women Collection {new Date().getFullYear()}</h1>
+                        <button className="btn btn-outline-success ms-5">Shop Now</button>
+                    </div>
                 </div>
                 <div className="carousel-item" data-bs-interval="1000">
-                    <img src="../img/Slides/slide-02.jpg.webp" className="d-block w-100" style={{ borderRadius: "" }} alt="..." />
+                    <img src="../img/Slides/slide-02.jpg.webp" className="d-block w-100" alt="..." />
+                    <div className='tag'>
+                        <h1  >Trending  {new Date().getFullYear()}</h1>
+                        <button className="btn btn-outline-success ms-5">Shop Now</button>
+                    </div>
                 </div>
                 <div className="carousel-item " data-bs-interval="1000">
-                    <img src="../img/Slides/slide-03.jpg.webp" className="d-block w-100" style={{ borderRadius: "" }} alt="..." />
+                    <img src="../img/Slides/slide-03.jpg.webp" className="d-block w-100" alt="..." />
+                    <div className='tag'>
+                        <h1  >Men Collection {new Date().getFullYear()}</h1>
+                        <button className="btn btn-outline-success ms-5">Shop Now</button>
+                    </div>
                 </div>
             </div>
             <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
@@ -74,21 +86,6 @@ const Home = () => {
                 <span className="visually-hidden">Next</span>
             </button>
         </div>
-            {/* <div className="home" id="home">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-6 col-12 mb-3 mx-auto">
-                            <h1>Welcome to <span>Cart.Com</span> </h1>
-                            <p>It's a  Big Market out there, Let's Explore with Us.
-                                We always make our costomer happy by providing as many choices as possible. Get Your FREE Shopping Website ,We turn all brands like Yours, </p><p>Happy Shopping!</p>
-                            <button className="btn btn-outline-success">Read More</button>
-                        </div>
-                        <div className="col-md-6 col-12 mb-3 mx-auto">
-                            <Slides />
-                        </div>
-                    </div>
-                </div>
-            </div> */}
             <AllProducts />
             <div className="desc h-100">
                 <div className="container-fluid">

@@ -1,0 +1,33 @@
+@keyframes example {
+    0% {
+        left: 0px;
+        top: 90px;
+    }
+
+    25% {
+        left: 200px;
+        top: 90px;
+    }
+
+    50% {
+        left: 200px;
+        top: 90px;
+    }
+
+    75% {
+        left: 200px;
+        top: 90px;
+    }
+
+    100% {
+        left: 200px;
+        top: 90px;
+    }
+}
+
+.tag {
+    position: fixed;
+    animation-name: example;
+    animation-duration: 10s;
+    animation-timing-function: ease;
+}
