@@ -79,7 +79,7 @@ const AdminNav = () => {
             </label>
             <ul className='flex' id='sideBar'>
                 <li>
-                    <NavLink to="/Products" className=" position-relative me-3 ms-2">Products</NavLink>
+                    <NavLink to="/ProductsAdminSide" className=" position-relative me-3 ms-2">Products</NavLink>
                 </li>
                 <li>
                     <NavLink to="/addproduct" className=" position-relative me-3" >Add Product </NavLink>

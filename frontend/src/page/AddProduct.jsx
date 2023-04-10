@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const AddProduct = () => {
+    const { id } = useParams();
     const navigate = useNavigate()
     const timeout = useRef(null)
     const checkAuth = () => {
@@ -32,6 +33,17 @@ const AddProduct = () => {
         product_image: '',
         category: ''
     });
+
+    const getData = async () => {
+        if (id) {
+            const res = await axios.get("http://localhost:8000/product/getdata/" + id)
+            debugger
+            setProductDetails(res.data);
+        } else {
+            console.log("u can add new product");
+        }
+    }
+
     const handelData = (e) => {
         let { name, value } = e.target;
         let x = { ...productDetails, [name]: value };
@@ -39,29 +51,53 @@ const AddProduct = () => {
     }
     console.log(productDetails)
     const handelSubmit = (e) => {
+        debugger
         e.preventDefault();
         var data = new FormData();
         data.append('name', productDetails.name);
         data.append('price', productDetails.price);
         data.append('category', productDetails.category);
         data.append('product_image', productDetails.product_image);
-        var config = {
-            method: 'post',
-            url: "http://localhost:8000/product/addproduct",
-            headers: {
-                "Content-Type": "multipart/form-data",
-                "Accept": "application/json",
-                "type": "formData"
-            },
-            data: data
-        };
-        axios(config).then(result => {
-            window.location.reload(true);
-            console.log(result)
-        }).catch(error => {
-            console.log(error)
-        })
+        if (!id) {
+            var config = {
+                method: 'post',
+                url: "http://localhost:8000/product/addproduct",
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                    "Accept": "application/json",
+                    "type": "formData"
+                },
+                data: data
+            };
+            axios(config).then(result => {
+                window.location.reload(true);
+                console.log(result)
+            }).catch(error => {
+                console.log(error)
+            })
+        } else {
+            config = {
+                method: 'put',
+                url: "http://localhost:8000/product/edit/" + id,
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                    "Accept": "application/json",
+                    "type": "formData"
+                },
+                data: data
+            };
+            axios(config).then(result => {
+                window.location.reload(true);
+                console.log(result)
+            }).catch(error => {
+                console.log(error)
+            })
+        }
     }
+    useEffect(() => {
+        getData(id);
+        // eslint-disable-next-line
+    }, [id]);
 
     return (
         <section className='pt-4' style={{ height: '100vh' }}>
@@ -71,7 +107,7 @@ const AddProduct = () => {
                         <form className="form-group" onSubmit={handelSubmit}>
                             <div className="mb-3">
                                 <label htmlFor="exampleInputEmail1" className="form-label">Product Name</label>
-                                <input type="text" value={productDetails.name} onChange={handelData} name="name" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                                <input type="text" value={productDetails[0].name} onChange={handelData} name="name" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                             </div>
 
                             <div className="mb-3">

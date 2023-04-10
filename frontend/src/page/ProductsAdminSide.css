@@ -1,0 +1,3 @@
+tbody .scrollbar::-webkit-scrollbar {
+    display: none;
+}

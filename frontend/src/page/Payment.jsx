@@ -80,7 +80,7 @@ const Payment = () => {
                             <table className="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
+                                        <t h>#</t>
                                         <th>Product</th>
                                         <th>Price</th>
                                         <th>Qty</th>
