@@ -69,6 +69,7 @@ router.get("/getdataall", async (req, res) => {
 router.get('/searchProduct/:name', async (req, res) => {
     const name = req.params.name;
     await db.products.findAll({
+        order: Sequelize.literal('rand()'),
         where: {
             [Op.or]: [{
                 name: {

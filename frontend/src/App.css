@@ -395,3 +395,23 @@ footer ul li a:hover {
 .next:hover {
   opacity: 0.5;
 }
+
+@media (max-width:990px) {
+  .prev {
+    top: 950px;
+  }
+
+  .next {
+    top: 950px;
+  }
+}
+
+@media (max-width:967px) {
+  .prev {
+    top: 1250px;
+  }
+
+  .next {
+    top: 1250px;
+  }
+}
