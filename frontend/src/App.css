@@ -354,3 +354,44 @@ footer ul li a:hover {
   text-align: center;
   padding-top: 2.5vh;
 }
+
+.scrollmenu {
+  background-color: #eee;
+  overflow: scroll;
+  white-space: nowrap;
+}
+
+.scrollmenu::-webkit-scrollbar {
+  display: none;
+}
+
+.prev {
+  background: url('https://res.cloudinary.com/milairagny/image/upload/v1487938188/left-arrow_rlxamy.png') left center no-repeat;
+  height: 54px;
+  position: absolute;
+  top: 850px;
+  width: 27px;
+  z-index: 1000;
+  left: 10%;
+  cursor: pointer;
+  color: transparent;
+  margin-top: -27px;
+}
+
+.next {
+  background: url('https://res.cloudinary.com/milairagny/image/upload/v1487938220/right-arrow_zwe9sf.png') right center no-repeat;
+  height: 54px;
+  position: absolute;
+  top: 850px;
+  width: 27px;
+  z-index: 1000;
+  right: 10%;
+  cursor: pointer;
+  color: transparent;
+  margin-top: -27px;
+}
+
+.prev:hover,
+.next:hover {
+  opacity: 0.5;
+}

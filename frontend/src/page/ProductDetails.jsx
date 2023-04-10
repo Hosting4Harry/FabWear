@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import React, { useContext, useEffect, useRef, useState } from 'react'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
 import { DataContext } from '../context/DataContext'
 import { toast } from 'react-toastify';
@@ -7,35 +7,15 @@ import 'react-toastify/dist/ReactToastify.css';
 toast.configure();
 
 const ProductDetails = () => {
+    const scrl = useRef(null);
     const { id } = useParams();
     const { cart, setCart } = useContext(DataContext);
     const userId = localStorage.getItem("EcomUserId");
     const [detdata, setDetdata] = useState([]);
     const [pdetails, setPdetails] = useState("1");
     const [size, setSize] = useState("L");
-    // const timeout = useRef(null);
+    const [getdata, setData] = useState([]);
     const navigate = useNavigate();
-    // const checkAuth = () => {
-    //     axios.get("http://localhost:8000/isAuth", {
-    //         headers: {
-    //             "x-access-token": localStorage.getItem("Ecomtoken")
-    //         }
-    //     }).then((response) => {
-    //         if (!response.data.login) {
-    //             navigate("/");
-    //         }
-    //     })
-    // }
-    // useEffect(() => {
-    //     timeout.current = setTimeout(checkAuth, 100)
-    //     return function () {
-    //         if (timeout.current) {
-    //             clearTimeout(timeout.current)
-    //         }
-    //     }
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [])
-
     const onSub = async (e) => {
         e.preventDefault();
         const data = {
@@ -77,8 +57,15 @@ const ProductDetails = () => {
     }
 
     const getData = async () => {
-        const res = await axios.get(`http://localhost:8000/product/getdata/${id}`);
-        setDetdata(res.data)
+        const res = await axios(`http://localhost:8000/product/getdata/${id}`);
+        setDetdata(res.data);
+        await axios('http://localhost:8000/product/searchProduct/' + res.data[0].product_image.split('/')[1])
+            .then(response => {
+                setData(response.data);
+            }).catch(error => {
+                if (error)
+                    setData([]);
+            })
     }
     useEffect(() => {
         getData()
@@ -87,9 +74,13 @@ const ProductDetails = () => {
     if (!detdata.length) {
         return <h1>Loading..</h1>
     }
+    const slide = (shift) => {
+        scrl.current.scrollLeft += shift;
+    };
+
     return (
         <> <section style={{ backgroundColor: "#eee" }}>
-            <div className="container py-5">
+            <div className="container">
                 <div className="row justify-content-center mb-3">
                     <div className="col-md-12 col-xl-10">
                         <div className="details">
@@ -140,7 +131,41 @@ const ProductDetails = () => {
                     </div>
                 </div>
             </div>
+            <div className="container scrollmenu owl-carousel scrolling-wrapper" ref={scrl}>
+                <h3>Similar Products</h3>
+                {
+                    getdata.map((val, ind) => {
+                        return (<div className='card d-inline-block' key={ind} style={{ padding: "20px", margin: '10px' }}>
+                            <div className="bg-image hover-zoom ripple rounded ripple-surface">
+                                <Link to={`/details/${val.id}`} >
+                                    <img src={`../img/${val.product_image}`}
+                                        className="card-img-top p-img" alt={val.product_image} />
+                                </Link>
+                            </div>
+                            <div className="card-body">
+                                <div className="d-flex justify-content-between mb-3">
+                                    <h5 className="text-dark mb-0">₹&nbsp;{val.price}.00</h5>
+                                </div>
+                                <div className="d-flex justify-content-between mb-2">
+                                    <h5 className="mb-0" style={{ color: 'green' }}>Assured</h5>
+                                    <div className="ms-auto text-warning ms-2">
+                                        <i className="fa fa-star"></i>
+                                        <i className="fa fa-star"></i>
+                                        <i className="fa fa-star"></i>
+                                        <i className="fa fa-star"></i>
+                                        <i className="fa fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        )
+                    })
+                }
+                <div className='prev' onClick={() => slide(-300)} ></div>
+                <div className='next' onClick={() => slide(+300)}></div>
+            </div>
         </section>
+
         </>
     )
 }
