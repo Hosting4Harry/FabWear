@@ -59,7 +59,7 @@ const Register = () => {
 
     return (
         <>
-            <div className="login">
+            <div className="login" style={{ height: "100vh" }}>
                 <div className="container">
                     <div className="row">
                         <div className="col-md-6 col-12 mx-auto mb-3">
