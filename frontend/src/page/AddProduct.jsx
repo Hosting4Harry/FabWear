@@ -96,6 +96,7 @@ const AddProduct = () => {
     }
     useEffect(() => {
         getData(id);
+        // eslint-disable-next-line
     }, [id]);
 
     return (
@@ -106,7 +107,7 @@ const AddProduct = () => {
                         <form className="form-group" onSubmit={handelSubmit}>
                             <div className="mb-3">
                                 <label htmlFor="exampleInputEmail1" className="form-label">Product Name</label>
-                                <input type="text" value={productDetails.name} onChange={handelData} name="name" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                                <input type="text" value={productDetails[0].name} onChange={handelData} name="name" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                             </div>
 
                             <div className="mb-3">

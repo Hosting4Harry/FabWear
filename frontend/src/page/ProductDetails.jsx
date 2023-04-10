@@ -40,7 +40,7 @@ const ProductDetails = () => {
         e.preventDefault();
         const data = {
 
-            productId: detdata[0].id,
+            productId: detdata.id,
             userId: userId,
             // name: detdata[0].name,
             // price: detdata[0].price,
@@ -78,13 +78,14 @@ const ProductDetails = () => {
 
     const getData = async () => {
         const res = await axios.get(`http://localhost:8000/product/getdata/${id}`);
+        debugger
         setDetdata(res.data)
     }
     useEffect(() => {
         getData()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])
-    if (!detdata.length) {
+    if (!detdata) {
         return <h1>Loading..</h1>
     }
     return (
@@ -96,14 +97,14 @@ const ProductDetails = () => {
                             <div className="container">
                                 <div className="row">
                                     <div className="col-md-6 col-12 mx-auto mb-3">
-                                        <img src={`../img/${detdata[0].product_image}`} alt={detdata[0].product_image} className="img-fluid p-im" />
+                                        <img src={`../img/${detdata.product_image}`} alt={detdata.product_image} className="img-fluid p-im" />
                                     </div>
                                     <div className="col-md-6 col-12 mx-auto mb-3 d-flex  flex-column mt-5">
-                                        <h2>{detdata[0].name}</h2>
-                                        <h4>Price : <strong>{detdata[0].price}.00</strong> </h4>
+                                        <h2>{detdata.name}</h2>
+                                        <h4>Price : <strong>{detdata.price}.00</strong> </h4>
                                         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab quisquam quae ex maiores possimus nihil eum assumenda asperiores! Autem maxime incidunt voluptatibus quidem quaerat corrupti ex natus sed mollitia modi.</p>
                                         <form onSubmit={onSub}>
-                                            <input type="hidden" value={detdata[0].id} />
+                                            <input type="hidden" value={detdata.id} />
                                             <div className="form-group d-flex">
                                                 <label htmlFor="sel1">Choose Qty:&nbsp;</label>
                                                 <select className="form-control" style={{ width: "10%", height: "32px" }} id="" onChange={(e) => setPdetails(e.target.value)} required>
@@ -118,7 +119,6 @@ const ProductDetails = () => {
                                                     <option value="9">9</option>
                                                     <option value="10">10</option>
                                                 </select>&nbsp;
-                                                {/* {if(detdata[0].name)} */}
                                                 <label htmlFor="sel1">size:&nbsp;</label>
                                                 <select className="form-control" style={{ width: "14%", height: "32px" }} id="" onChange={(e) => setSize(e.target.value)} required>
                                                     <option value="S">S</option>
