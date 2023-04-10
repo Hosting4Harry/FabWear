@@ -140,7 +140,7 @@ const ProductDetails = () => {
                             <div className="bg-image hover-zoom ripple rounded ripple-surface">
                                 <Link to={`/details/${val.id}`} >
                                     <img src={`../img/${val.product_image}`}
-                                        className="card-img-top p-img" alt={val.product_image} />
+                                        className="card-img-top p-img m-2 " alt={val.product_image} />
                                 </Link>
                             </div>
                             <div className="card-body">
@@ -149,7 +149,7 @@ const ProductDetails = () => {
                                 </div>
                                 <div className="d-flex justify-content-between mb-2">
                                     <h5 className="mb-0" style={{ color: 'green' }}>Assured</h5>
-                                    <div className="ms-auto text-warning ms-2">
+                                    <div className="ms-auto text-warning ">
                                         <i className="fa fa-star"></i>
                                         <i className="fa fa-star"></i>
                                         <i className="fa fa-star"></i>
