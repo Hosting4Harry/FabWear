@@ -59,7 +59,7 @@ const ProductDetails = () => {
     const getData = async () => {
         const res = await axios(`http://localhost:8000/product/getdata/${id}`);
         setDetdata(res.data);
-        await axios('http://localhost:8000/product/searchProduct/' + res.data[0].product_image.split('/')[1])
+        await axios('http://localhost:8000/product/searchProduct/' + res.data.product_image.split('/')[1])
             .then(response => {
                 setData(response.data);
             }).catch(error => {
