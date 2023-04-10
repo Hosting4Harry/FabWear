@@ -24,6 +24,7 @@ import AddAddress from './page/AddAddress'
 import CheckOut from './page/CheckOut'
 import MyAddress from './page/MyAddress'
 import PermissionCheck from './context/PermissionCheck';
+import ProductsAdminSide from './page/ProductsAdminSide'
 
 const App = () => {
   return (
@@ -35,6 +36,7 @@ const App = () => {
           <Routes>
             <Route exact path="/home" element={<Home />} />
             <Route exact path='/searchProduct/:name' element={<SearchProducts />} />
+            <Route exact path="/productsadminside" element={<ProductsAdminSide />} />
             <Route exact path="/products" element={<Products />} />
             <Route exact path="/contact" element={<Contact />} />
             <Route exact path="/wishlist" element={<Wishlist />} />
@@ -45,6 +47,7 @@ const App = () => {
             <Route exact path="/edit_address/:id" element={<EditAdd />} />
             <Route exact path="/myorder/:id" element={<MyOrder />} />
             <Route exact path="/addProduct" element={<AddProduct />} />
+            <Route exact path="/addProduct/edit/:id" element={<AddProduct />} />
             <Route exact path="/" element={<Login />} />
             <Route exact path="/register" element={<Register />} />
             <Route exact path="/success" element={<Success />} />

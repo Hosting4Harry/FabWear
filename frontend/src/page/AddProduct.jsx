@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const AddProduct = () => {
+    const { id } = useParams();
     const navigate = useNavigate()
     const timeout = useRef(null)
     const checkAuth = () => {
@@ -32,6 +33,11 @@ const AddProduct = () => {
         product_image: '',
         category: ''
     });
+    const getData = (id) => {
+        const res = axios.get("http://localhost:8000/product/getdata/" + id)
+        debugger
+        setProductDetails(res.data);
+    }
     const handelData = (e) => {
         let { name, value } = e.target;
         let x = { ...productDetails, [name]: value };
@@ -45,22 +51,42 @@ const AddProduct = () => {
         data.append('price', productDetails.price);
         data.append('category', productDetails.category);
         data.append('product_image', productDetails.product_image);
-        var config = {
-            method: 'post',
-            url: "http://localhost:8000/product/addproduct",
-            headers: {
-                "Content-Type": "multipart/form-data",
-                "Accept": "application/json",
-                "type": "formData"
-            },
-            data: data
-        };
-        axios(config).then(result => {
-            window.location.reload(true);
-            console.log(result)
-        }).catch(error => {
-            console.log(error)
-        })
+        if (!id) {
+            var config = {
+                method: 'post',
+                url: "http://localhost:8000/product/addproduct",
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                    "Accept": "application/json",
+                    "type": "formData"
+                },
+                data: data
+            };
+            axios(config).then(result => {
+                window.location.reload(true);
+                console.log(result)
+            }).catch(error => {
+                console.log(error)
+            })
+        } else {
+            getData(id);
+            var config = {
+                method: 'put',
+                url: "http://localhost:8000/product/edit/" + id,
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                    "Accept": "application/json",
+                    "type": "formData"
+                },
+                data: data
+            };
+            axios(config).then(result => {
+                window.location.reload(true);
+                console.log(result)
+            }).catch(error => {
+                console.log(error)
+            })
+        }
     }
 
     return (

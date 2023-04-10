@@ -6,6 +6,7 @@ const { Op } = require("sequelize");
 const { Sequelize } = require('../../models');
 const path = require('path');
 var multer = require('multer');
+const { log } = require('console');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -32,7 +33,29 @@ router.post("/addproduct", upload.single('product_image'), async (req, res) => {
         console.log(error);
     });
 });
-
+router.put("/edit/:id", async (req, res) => {
+    await db.products.update({
+        name: req.body.name,
+        price: +req.body.price,
+        product_image: "/" + req.body.category + "/" + req.file?.originalname
+    }).then(result => {
+        res.send({ message: "Product Added" });
+    }).catch(error => {
+        console.log(error);
+    });
+})
+router.post('/deleteProduct/:id', async (req, res) => {
+    const id = +req.params.id;
+    await db.products.destroy({
+        where: {
+            id: id
+        }
+    }).then(result => {
+        res.send({ msg: "deleted successfully" });
+    }).catch(err => {
+        console.log(err);
+    })
+})
 router.get("/getdataall", async (req, res) => {
     await db.products.findAll({ order: Sequelize.literal('rand()') })
         // await db.products.findAll()
