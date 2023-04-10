@@ -25,6 +25,7 @@ import CheckOut from './page/CheckOut'
 import MyAddress from './page/MyAddress'
 import PermissionCheck from './context/PermissionCheck';
 import ProductsAdminSide from './page/ProductsAdminSide'
+import ResetPassword from './page/ResetPassword'
 
 const App = () => {
   return (
@@ -50,6 +51,7 @@ const App = () => {
             <Route exact path="/addProduct/edit/:id" element={<AddProduct />} />
             <Route exact path="/" element={<Login />} />
             <Route exact path="/register" element={<Register />} />
+            <Route exact path="/resetpassword" element={<ResetPassword />} />
             <Route exact path="/success" element={<Success />} />
             <Route exact path="/addaddress" element={<AddAddress />} />
             <Route exact path="/addaddress/:id" element={<AddAddress />} />

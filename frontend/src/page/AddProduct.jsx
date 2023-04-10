@@ -107,9 +107,8 @@ const AddProduct = () => {
                         <form className="form-group" onSubmit={handelSubmit}>
                             <div className="mb-3">
                                 <label htmlFor="exampleInputEmail1" className="form-label">Product Name</label>
-                                <input type="text" value={productDetails[0].name} onChange={handelData} name="name" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                                <input type="text" value={productDetails.name} onChange={handelData} name="name" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                             </div>
-
                             <div className="mb-3">
                                 <label htmlFor="exampleInputEmail1" className="form-label">Price</label>
                                 <input type="text" value={productDetails.price} onChange={handelData} name="price" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
@@ -135,9 +134,7 @@ const AddProduct = () => {
                                 <label htmlFor="exampleInputPassword1" className="form-label">Product Image</label>
                                 <input type="file" value={productDetails.file} onChange={(e) => { setProductDetails(productDetails => ({ ...productDetails, product_image: e.target.files[0] })) }} name="product_image" className="form-control" id="exampleInputPassword1" />
                             </div>
-
                             <button type="submit" className="btn btn-primary" >Submit</button>
-
                         </form></div>
                 </div>
             </div>

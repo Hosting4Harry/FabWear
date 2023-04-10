@@ -22,9 +22,6 @@ const ProductDetails = () => {
 
             productId: detdata.id,
             userId: userId,
-            // name: detdata[0].name,
-            // price: detdata[0].price,
-            // image: detdata[0].product_image,
             qty: pdetails,
             size: size
         }

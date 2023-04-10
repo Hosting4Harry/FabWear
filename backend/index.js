@@ -6,6 +6,7 @@ const cors = require("cors");
 require('dotenv').config();
 const PORT = process.env.PORT || 8000;
 const registerRouter = require('./controllers/account/register');
+const resetPasswordRouter = require('./controllers/account/resetPassword');
 const loginRouter = require('./controllers/account/login');
 const productRouter = require('./controllers/product/getData');
 const addressRouter = require('./controllers/address/address');
@@ -37,6 +38,7 @@ app.post("/contact", (req, res) => {
     res.send({ message: " message sent successfully !! Thank You" })
 })
 app.use('/register', registerRouter);
+app.use('/resetPassword', resetPasswordRouter);
 app.use('/login', loginRouter);
 app.use('/isAuth', authRouter);
 app.use('/wishlist', wishlistRouter);
