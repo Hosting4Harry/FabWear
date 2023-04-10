@@ -372,7 +372,7 @@ footer ul li a:hover {
   top: 850px;
   width: 27px;
   z-index: 1000;
-  left: 10%;
+  left: 5%;
   cursor: pointer;
   color: transparent;
   margin-top: -27px;
@@ -385,7 +385,7 @@ footer ul li a:hover {
   top: 850px;
   width: 27px;
   z-index: 1000;
-  right: 10%;
+  right: 5%;
   cursor: pointer;
   color: transparent;
   margin-top: -27px;

@@ -130,8 +130,10 @@ const ProductDetails = () => {
                     </div>
                 </div>
             </div>
-            <div className="container scrollmenu owl-carousel scrolling-wrapper" ref={scrl}>
+            <div className="container">
                 <h3>Similar Products</h3>
+            </div>
+            <div className="container scrollmenu owl-carousel scrolling-wrapper" ref={scrl}>
                 {
                     getdata.map((val, ind) => {
                         return (<div className='card d-inline-block' key={ind} style={{ padding: "20px", margin: '10px' }}>
