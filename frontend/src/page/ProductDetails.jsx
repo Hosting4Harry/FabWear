@@ -12,6 +12,7 @@ const ProductDetails = () => {
     const userId = localStorage.getItem("EcomUserId");
     const [detdata, setDetdata] = useState([]);
     const [pdetails, setPdetails] = useState("1");
+    const [size, setSize] = useState("");
     // const timeout = useRef(null);
     const navigate = useNavigate();
     // const checkAuth = () => {
@@ -102,9 +103,9 @@ const ProductDetails = () => {
                                         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab quisquam quae ex maiores possimus nihil eum assumenda asperiores! Autem maxime incidunt voluptatibus quidem quaerat corrupti ex natus sed mollitia modi.</p>
                                         <form onSubmit={onSub}>
                                             <input type="hidden" value={detdata[0].id} />
-                                            <div className="form-group w-50">
-                                                <label htmlFor="sel1">Choose Qty:</label>
-                                                <select className="form-control" id="" onChange={(e) => setPdetails(e.target.value)} required>
+                                            <div className="form-group d-flex">
+                                                <label htmlFor="sel1">Choose Qty:&nbsp;</label>
+                                                <select className="form-control" style={{ width: "10%", height: "32px" }} id="" onChange={(e) => setPdetails(e.target.value)} required>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
                                                     <option value="3">3</option>
@@ -115,9 +116,17 @@ const ProductDetails = () => {
                                                     <option value="8">8</option>
                                                     <option value="9">9</option>
                                                     <option value="10">10</option>
+                                                </select>&nbsp;
+                                                {/* {if(detdata[0].name)} */}
+                                                <label htmlFor="sel1">size:&nbsp;</label>
+                                                <select className="form-control" style={{ width: "14%", height: "32px" }} id="" onChange={(e) => setSize(e.target.value)} required>
+                                                    <option value="S">SM</option>
+                                                    <option value="M">M</option>
+                                                    <option value="L">L</option>
+                                                    <option value="XL">XL</option>
+                                                    <option value="XXL">XXL</option>
                                                 </select>
                                             </div>
-
                                             <div className="text-left">
                                                 <button type="submit" className="btn btn-info">Add To Cart</button>&nbsp;
                                                 <button type="button" className="btn btn-info" onClick={() => navigate('/cart')}>Go To Cart</button>

@@ -94,9 +94,7 @@ const Payment = () => {
                                             return (<tr key={ind}>
                                                 <td>{ind + 1}</td>
                                                 <td className="tab-box">
-
                                                     <NavLink to={`/details/${val.id}`}>
-
                                                         <img src={`../img/${val.product_image}`} alt={`../img/${val.product_image}`} className="img-fluid t-img" />
                                                         <p >{val.name}</p>
                                                     </NavLink>
@@ -120,7 +118,6 @@ const Payment = () => {
                     </div>
                 </div>
             </div>
-
         </>
     )
 }
