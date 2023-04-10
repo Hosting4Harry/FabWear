@@ -100,8 +100,8 @@ router.get("/getdata", async (req, res) => {
         ]);
 });
 router.get("/getdata/:id", async (req, res) => {
-    const id = req.params.id;
-    await db.products.findAll({
+    const id = +req.params.id;
+    await db.products.findOne({
         where: {
             id: id
         }

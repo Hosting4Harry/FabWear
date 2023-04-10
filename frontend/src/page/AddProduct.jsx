@@ -33,11 +33,17 @@ const AddProduct = () => {
         product_image: '',
         category: ''
     });
-    const getData = (id) => {
-        const res = axios.get("http://localhost:8000/product/getdata/" + id)
-        debugger
-        setProductDetails(res.data);
+
+    const getData = async () => {
+        if (id) {
+            const res = await axios.get("http://localhost:8000/product/getdata/" + id)
+            debugger
+            setProductDetails(res.data);
+        } else {
+            console.log("u can add new product");
+        }
     }
+
     const handelData = (e) => {
         let { name, value } = e.target;
         let x = { ...productDetails, [name]: value };
@@ -45,6 +51,7 @@ const AddProduct = () => {
     }
     console.log(productDetails)
     const handelSubmit = (e) => {
+        debugger
         e.preventDefault();
         var data = new FormData();
         data.append('name', productDetails.name);
@@ -69,8 +76,7 @@ const AddProduct = () => {
                 console.log(error)
             })
         } else {
-            getData(id);
-            var config = {
+            config = {
                 method: 'put',
                 url: "http://localhost:8000/product/edit/" + id,
                 headers: {
@@ -88,6 +94,9 @@ const AddProduct = () => {
             })
         }
     }
+    useEffect(() => {
+        getData(id);
+    }, [id]);
 
     return (
         <section className='pt-4' style={{ height: '100vh' }}>
