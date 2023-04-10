@@ -5,7 +5,7 @@ const db = require('../../models')
 
 router.get('/:id', async (req, res) => {
     const id = req.params.id;
-    const sql = `SELECT * FROM wishlists,products WHERE wishlists.productId = products.id && wishlists.userId=${id}`
+    const sql = `SELECT * FROM products,wishlists WHERE wishlists.productId = products.id && wishlists.userId=${id}`
     await db.sequelize.query(sql, { type: QueryTypes.SELECT })
         .then(result => {
             res.send(result);

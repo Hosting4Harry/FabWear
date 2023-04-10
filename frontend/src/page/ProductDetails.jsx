@@ -12,7 +12,7 @@ const ProductDetails = () => {
     const userId = localStorage.getItem("EcomUserId");
     const [detdata, setDetdata] = useState([]);
     const [pdetails, setPdetails] = useState("1");
-    const [size, setSize] = useState("");
+    const [size, setSize] = useState("L");
     // const timeout = useRef(null);
     const navigate = useNavigate();
     // const checkAuth = () => {
@@ -36,22 +36,23 @@ const ProductDetails = () => {
     //     // eslint-disable-next-line react-hooks/exhaustive-deps
     // }, [])
 
-    const onSub = (e) => {
+    const onSub = async (e) => {
         e.preventDefault();
         const data = {
 
-            id: detdata[0].id,
+            productId: detdata[0].id,
             userId: userId,
             // name: detdata[0].name,
             // price: detdata[0].price,
             // image: detdata[0].product_image,
-            qty: pdetails
+            qty: pdetails,
+            size: size
         }
         if (userId == null) {
             alert("please login into your account,to acces Your cart");
             navigate('/');
         } else {
-            axios.post('http://localhost:8000/cart', data)
+            await axios.post('http://localhost:8000/cart', data)
             const exist = cart.find((x) => x.id === data.id);
             if (exist) {
                 setCart(
@@ -120,7 +121,7 @@ const ProductDetails = () => {
                                                 {/* {if(detdata[0].name)} */}
                                                 <label htmlFor="sel1">size:&nbsp;</label>
                                                 <select className="form-control" style={{ width: "14%", height: "32px" }} id="" onChange={(e) => setSize(e.target.value)} required>
-                                                    <option value="S">SM</option>
+                                                    <option value="S">S</option>
                                                     <option value="M">M</option>
                                                     <option value="L">L</option>
                                                     <option value="XL">XL</option>

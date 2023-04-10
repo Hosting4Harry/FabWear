@@ -19,7 +19,6 @@ const Cart = () => {
             }
         })
     }
-
     useEffect(() => {
         timeout.current = setTimeout(checkAuth, 100)
         return function () {
@@ -81,10 +80,12 @@ const Cart = () => {
                                                             return (<CartP
                                                                 key={ind}
                                                                 id={val.id}
+                                                                productId={val.productId}
                                                                 name={val.name}
                                                                 price={val.price}
                                                                 product_image={val.product_image}
                                                                 qty={val.productqty}
+                                                                size={val.size}
                                                             />
                                                             )
                                                         })

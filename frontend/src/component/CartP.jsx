@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { DataContext } from '../context/DataContext'
-const CartP = ({ id, name, price, product_image, qty }) => {
+const CartP = ({ id, productId, name, price, product_image, qty, size }) => {
     const navigate = useNavigate();
     const { cart, setCart } = useContext(DataContext);
 
@@ -64,11 +64,12 @@ const CartP = ({ id, name, price, product_image, qty }) => {
                     <div className="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
                         <div className="d-flex flex-row align-items-center mb-1">
                             <h4 className="mb-1 me-1">Price: {price}.00</h4>
-                            <span className="text-danger" style={{ textDecoration: "line-through" }}><s>
-                                {price > 500 ? price + 1000 : price + 500}.00</s></span>
+                            <small className="text-danger" style={{ textDecoration: "line-through" }}><s>
+                                {price > 500 ? price + 1000 : price + 500}.00</s></small>
                         </div>
                         <div className="d-flex flex-row align-items-center mb-1">
                             <h4 className="mb-1 me-1">Qty: {qty}</h4>
+                            <h4 className="mb-1 me-1">Size: {size}</h4>
                         </div>
 
 
@@ -78,7 +79,7 @@ const CartP = ({ id, name, price, product_image, qty }) => {
                         {price * qty > 500 && <h6 className="text-success">Free shipping</h6>}
                         {price * qty < 500 && <h6 className="text-success">Rs: 50 shipping charges</h6>}
                         <div className="d-flex flex-column mt-4">
-                            <button className="btn btn-primary btn-sm" type="button" onClick={() => navigate(`/details/${id}`)}>Details</button>
+                            <button className="btn btn-primary btn-sm" type="button" onClick={() => navigate(`/details/${productId}`)}>Details</button>
                             <button className="btn btn-outline-primary btn-sm mt-2" onClick={() => deleteProduct(id)}>Delete</button>
                         </div>
                     </div>

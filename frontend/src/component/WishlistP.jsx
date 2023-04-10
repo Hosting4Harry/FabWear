@@ -5,20 +5,20 @@ import { DataContext } from '../context/DataContext'
 const WishlistP = ({ id, name, price, product_image, productId }) => {
     const { wishlist, setWishlist, cart, setCart } = useContext(DataContext);
     const navigate = useNavigate();
-    const deleteProduct = async (id) => {
-        const exist = wishlist.find((x) => x.id === id)
+    const deleteProduct = async (productId) => {
+        const exist = wishlist.find((x) => x.productId === productId)
         if (exist) {
             setWishlist(
-                wishlist.filter((x) => x.id !== id)
+                wishlist.filter((x) => x.productId !== productId)
             )
         }
-        await axios.delete('http://localhost:8000/wishlist/' + id);
+        await axios.delete('http://localhost:8000/wishlist/' + productId);
     }
 
     const userId = localStorage.getItem('EcomUserId');
     const addToCart = async () => {
         const data = {
-            id, name, price, productId, product_image, qty: 1, userId: userId
+            productId: productId, qty: 1, userId: userId
         }
         await axios.post('http://localhost:8000/cart', data)
         const exist = cart.find((x) => x.id === data.id);
@@ -82,7 +82,7 @@ const WishlistP = ({ id, name, price, product_image, productId }) => {
                     <div className="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
                         <div className="d-flex flex-row align-items-center mb-1">
                             <h4 className="mb-1 me-1">Price: {price}.00</h4>
-                            <span className="text-danger" style={{ textDecoration: "line-through" }}><s>{price >= 500 ? price + 1000 : price + 500}.00</s></span>
+                            <small className="text-danger" style={{ textDecoration: "line-through" }}><s>{price >= 500 ? price + 1000 : price + 500}.00</s></small>
                         </div>
                         {/* <div className="d-flex flex-row align-items-center mb-1">
                             <h4 className="mb-1 me-1">Qty: {qty}</h4>
