@@ -20,7 +20,6 @@ const Navbar = () => {
     if (e.target.value === " ") return;
     await axios.get('http://localhost:8000/product/searchProduct/' + e.target.value)
       .then(response => {
-        debugger
         setSearchResult(response.data);
         document.getElementById("searchList").style.display = "list-item";
         document.getElementById("wrapper").style.display = "block";

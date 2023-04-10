@@ -17,7 +17,7 @@ function SearchProducts() {
             })
     }
     useEffect(() => {
-        getData(name)
+        getData(name);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [name])
 

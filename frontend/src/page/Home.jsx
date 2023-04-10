@@ -38,6 +38,17 @@ const Home = () => {
     return (
         <> <div id="carouselExampleInterval" className="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-wrap='true'  >
             <div className="carousel-inner">
+                <div className="carousel-item " data-bs-interval="1000" style={{ overflowY: "hidden" }} >
+                    <img src="../img/Slides/slide-03.jpg.webp" className="d-block w-100" alt="..." />
+                    <div className='tag'>
+                        <h1  >Men Collection {new Date().getFullYear()}</h1>
+                        <div className='typewriter'>
+                            <h1>Trending for men...</h1>
+                        </div>
+                        <pre></pre>
+                        <button className="btn btn-outline-success ms-5" onClick={() => navigate('/searchProduct/men')}>Shop Now</button>
+                    </div>
+                </div>
                 <div className="carousel-item active" data-bs-interval="1000" style={{ overflowY: "hidden" }}>
                     <img src="../img/Slides/slide-01.jpg.webp" className="d-block w-100" alt="..." />
                     <div className='tag'>
@@ -49,7 +60,7 @@ const Home = () => {
                         <button className="btn btn-outline-success ms-5" onClick={() => navigate('/searchProduct/women')}>Shop Now</button>
                     </div>
                 </div>
-                <div className="carousel-item" data-bs-interval="1000">
+                <div className="carousel-item" data-bs-interval="1000" style={{ overflowY: "hidden" }} >
                     <img src="../img/Slides/slide-02.jpg.webp" className="d-block w-100" alt="..." />
                     <div className='tag'>
                         <h1  >Trending Series  {new Date().getFullYear()}</h1>
@@ -58,17 +69,6 @@ const Home = () => {
                         </div>
                         <pre></pre>
                         <button className="btn btn-outline-success ms-5" onClick={scroll}>Shop Now</button>
-                    </div>
-                </div>
-                <div className="carousel-item " data-bs-interval="1000">
-                    <img src="../img/Slides/slide-03.jpg.webp" className="d-block w-100" alt="..." />
-                    <div className='tag'>
-                        <h1  >Men Collection {new Date().getFullYear()}</h1>
-                        <div className='typewriter'>
-                            <h1>Trending for men...</h1>
-                        </div>
-                        <pre></pre>
-                        <button className="btn btn-outline-success ms-5" onClick={() => navigate('/searchProduct/men')}>Shop Now</button>
                     </div>
                 </div>
             </div>
