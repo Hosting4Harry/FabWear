@@ -56,12 +56,7 @@ const Navbar = () => {
         <i className="fa fa-bars"></i>
       </label>
       <label className="logo">
-        <img style={{ width: "50px" }} src="../img/T4.png" alt="box" className="img-fluid" />
-        <NavLink to="/home">
-          B<small>
-            lick
-          </small>
-        </NavLink>F<small>ang</small>
+        <img style={{ width: "50px" }} src="../img/T4.png" alt="box" className="img-fluid" /><NavLink to="/home">Cart.Com</NavLink>
       </label>
       <label className='searchBar'>
         <form onSubmit={submit} className="searchForm">

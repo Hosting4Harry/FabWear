@@ -1,3 +1,25 @@
 tbody .scrollbar::-webkit-scrollbar {
     display: none;
 }
+
+.card-header i {
+    /* line-height: 20px; */
+    padding-top: 5px;
+}
+
+.card-header {
+    position: relative;
+}
+
+.card-body::-webkit-scrollbar {
+    display: none;
+}
+
+.t-img {
+    transition: transform 0.2s ease;
+}
+
+.t-img:hover {
+    transform: scale(2);
+    display: none
+}

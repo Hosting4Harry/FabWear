@@ -26,11 +26,11 @@ function ProductsAdminSide() {
       {/* <div className="row d-flex w-100 h-100"> */}
       {/* <div className="col-md-12 col-xl-10"> */}
       <div className="card">
-        <div className="card-header d-flex p-3">
-          <div>
-            <h5 className="mb-0"><i className="fas fa-tasks me-2"></i>product List</h5>
+        <div className="card-header row d-flex p-3">
+          <div className='d-flex col-6'>
+            <i className="fas fa-tasks me-2"></i> <h5>product List</h5>
           </div>
-          <div className="d-flex justify-content-end align-items-center  pt-2 pb-3 pr-5" style={{ position: 'fixed', right: "0px", top: "80px" }}>
+          <div className="d-flex col-6 justify-content-end align-items-center  " style={{ position: 'absolute', right: "0px" }}>
             <p className="small mb-0 me-2 text-muted">Filter</p>
             <select className="select" onChange={handelChange} >
               <option value="1">All</option>
@@ -44,7 +44,7 @@ function ProductsAdminSide() {
               <option value="sneakers">sneakers</option>
               <option value="tees">tees</option>
             </select>&nbsp; &nbsp;
-            <button className="btn btn-primary" onClick={() => navigate('/addproduct')}>Add Product</button>
+            <button className="btn btn-light" onClick={() => navigate('/addproduct')}>Add Product</button>
 
           </div>
         </div>
@@ -54,7 +54,8 @@ function ProductsAdminSide() {
           <table className="table mb-0">
             <thead>
               <tr>
-                <th >Product</th>
+                <th >Product Image</th>
+                <th >Name</th>
                 <th >price</th>
                 <th >Available</th>
                 <th>Actions</th>
@@ -64,7 +65,10 @@ function ProductsAdminSide() {
               {getProducts.map((val, ind) => {
                 return (
                   <tr kay={ind} className="fw-normal">
-                    <td><img src={`../img/${val.product_image}`} alt={`../img/${val.product_image}`} className="img-fluid t-img" />{val.name}</td>
+                    <td>
+                      <img src={`../img/${val.product_image}`} alt={`../img/${val.product_image}`} className="img-fluid t-img" />
+                    </td>
+                    <td>{val.name}</td>
                     <td>{val.price}</td>
                     <td>120</td>
                     <td>&nbsp; <span className="fas fa-trash-alt text-danger" onClick={() => deleteProduct(val.id)}></span>&nbsp;&nbsp;&nbsp;
