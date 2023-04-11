@@ -41,6 +41,7 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 db.users = require("./users")(sequelize, DataTypes);
 db.user_data = require("./user_data")(sequelize, DataTypes);
+db.user_otps = require("./user_otps")(sequelize, DataTypes);
 db.products = require("./products")(sequelize, DataTypes);
 db.orders = require("./orders")(sequelize, DataTypes);
 db.orderitems = require("./orderitems")(sequelize, DataTypes);

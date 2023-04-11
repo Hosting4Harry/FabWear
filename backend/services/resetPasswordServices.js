@@ -7,7 +7,11 @@ async function resetPassword(req, res, next) {
     const sentOtp = Math.floor(Math.random() * 899999 + 100000);
     const obj = req.body;
     const email = obj.email;
-    // await deleteOtp(email);
+    await db.user_otps.destroy({
+        where: {
+            email: email
+        }
+    });
     if (email) {
         const account = await db.users.findOne({
             where: {
@@ -20,7 +24,7 @@ async function resetPassword(req, res, next) {
                 otp: sentOtp,
                 user_id: account.id
             });
-            // await send2faOTP(email, sentOtp);
+            // send2faOTP(email, sentOtp);
             res.send({ message: "OTP Sent....", otp: sentOtp, status: false })
         } else {
             res.send({ message: "account not found", status: false });
@@ -33,7 +37,6 @@ async function resetPassword(req, res, next) {
                 otp: otp
             }
         });
-
         bcrypt.hash(password, saltRounds, async (errr, hash) => {
             const data = {
                 password: hash,
@@ -42,23 +45,7 @@ async function resetPassword(req, res, next) {
                 console.log(errr);
             }
             else {
-                // let result;
-                // await db.users.findAll({
-                //     where: {
-                //         email: otpDetails.email
-                //     }
-                // }).then(response => {
-                //     result = response;
-                // }).catch(error => {
-                //     result = error
-                // })
-                // if (result?.fatal) {
-                //     console.trace('fatal error: ' + er.message);
-                // }
-                // else if (result?.length > 0) {
-                //     res.send({ msg: "User Email Already Present" });
-                // }
-                // else {
+
                 await db.users.update(data, {
                     where: {
                         email: otpDetails.email
