@@ -29,7 +29,7 @@
     position: fixed;
     animation-name: example;
     animation-duration: 10s;
-    animation-timing-function: ease;
+    animation-timing-function: ease-in-out;
 }
 
 .typewriter h1 {
