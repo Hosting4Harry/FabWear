@@ -69,7 +69,7 @@ const Navbar = () => {
               <div className='search_wrapper' id='wrapper' onClick={hideList}>
 
               </div>
-              <div className='search_list' id='searchList' style={{ width: '320px', position: 'absolute', zIndex: 9999 }}>
+              <div className='search_list' id='searchList' style={{ width: '320px', position: 'absolute', zIndex: 9999, display: 'none' }}>
                 <ul className="list-group" style={{}}>
                   {searchResult.map((item, i) => {
                     return <li className="list-group-item" key={i}>
@@ -107,9 +107,9 @@ const Navbar = () => {
             }
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink to="/contact" className=" position-relative me-3">Contact</NavLink>
-        </li>
+        </li> */}
         <li>
           <NavLink to="/myaccount" className=" position-relative me-3" >User </NavLink>
         </li>

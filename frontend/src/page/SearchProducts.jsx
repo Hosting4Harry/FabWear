@@ -21,7 +21,6 @@ function SearchProducts() {
         // document.getElementById("searchList").style.display = "none";
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [name])
-
     if (!searchResult.length) {
         return (<section className='mt-5 pt-5 ps-1 ' style={{ height: "100vh" }}>
             <h1>Loading..</h1>
@@ -32,14 +31,18 @@ function SearchProducts() {
             <div className="container py-5">
                 <div className="row">
                     {searchResult.map((item, i) => {
-                        return (<CardProducts
-                            key={i}
-                            id={item.id}
-                            name={item.name}
-                            price={item.price}
-                            product_image={item.product_image}
-                        />
-                        )
+                        if (item.product_image.split('/')[1] === name.toLowerCase() || item.product_image.split('/')[2] === name.toLowerCase()) {
+                            return (<CardProducts
+                                key={i}
+                                id={item.id}
+                                name={item.name}
+                                price={item.price}
+                                product_image={item.product_image}
+                            />
+                            )
+                        } else {
+                            return <></>
+                        }
                     })}
                 </div>
             </div>

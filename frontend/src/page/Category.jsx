@@ -11,19 +11,19 @@ function Category() {
             name: "Women",
             image: "/women/banner-01.jpg",
         },
-        // {
-        //     name: "Kids",
-        //     image: "banner-02.jpg.webp",
-        // },
         {
-            name: "Assessories",
-            image: "/hat/banner-03.jpg.webp",
+            name: "Kids",
+            image: "/kids/banner-04.jpg",
+        },
+        {
+            name: "Accessories",
+            image: "/accessories/hat/banner-03.jpg.webp",
         }
     ]
     return (<>
         {
             values.map((val, ind) => {
-                return <div key={ind} className='hove col-lg-3 col-sm-12 col-md-4 border' style={{ margin: '10px', backgroundColor: "#fff" }}>
+                return <div key={ind} className='col-xl-3 col-sm-12 col-md-4 border' style={{ margin: '10px', backgroundColor: "#fff" }}>
                     <div className="bg-image hover-zoom ripple rounded ripple-surface">
                         <Link to={`/searchProduct/${val.name}`} >
                             <img src={`../img/${val.image}`}

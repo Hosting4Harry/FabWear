@@ -37,9 +37,9 @@ const Home = () => {
     }, [])
 
     return (
-        <> <div id="carouselExampleInterval" className="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-wrap='true'  >
+        <> <div id="carouselExampleInterval" className="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-wrap='true' data-bs-pause="false" >
             <div className="carousel-inner">
-                <div className="carousel-item active" data-bs-interval="1000" style={{ overflowY: "hidden" }} >
+                <div className="carousel-item active" data-bs-interval="3000" style={{ overflowY: "hidden" }} >
                     <img src="../img/Slides/slide-03.jpg.webp" className="d-block w-100" alt="..." />
                     <div className='tag'>
                         <h1  >Men Collection {new Date().getFullYear()}</h1>
@@ -50,7 +50,7 @@ const Home = () => {
                         <button className="btn btn-outline-success ms-5" onClick={() => navigate('/searchProduct/men')}>Shop Now</button>
                     </div>
                 </div>
-                <div className="carousel-item" data-bs-interval="1000" style={{ overflowY: "hidden" }}>
+                <div className="carousel-item" data-bs-interval="3000" style={{ overflowY: "hidden" }}>
                     <img src="../img/Slides/slide-01.jpg.webp" className="d-block w-100" alt="..." />
                     <div className='tag'>
                         <h1  >Women Collection {new Date().getFullYear()}</h1>
@@ -61,7 +61,7 @@ const Home = () => {
                         <button className="btn btn-outline-success ms-5" onClick={() => navigate('/searchProduct/women')}>Shop Now</button>
                     </div>
                 </div>
-                <div className="carousel-item" data-bs-interval="1000" style={{ overflowY: "hidden" }} >
+                <div className="carousel-item" data-bs-interval="3000" style={{ overflowY: "hidden" }} >
                     <img src="../img/Slides/slide-02.jpg.webp" className="d-block w-100" alt="..." />
                     <div className='tag'>
                         <h1  >Trending Series  {new Date().getFullYear()}</h1>
@@ -82,7 +82,7 @@ const Home = () => {
                 <span className="visually-hidden">Next</span>
             </button>
         </div>
-            <div className='row justify-content-center px-4' style={{ backgroundColor: "#eee" }}>
+            <div className='row justify-content-center ' style={{ backgroundColor: "#eee" }}>
                 <Category></Category>
             </div>
             <div ref={ref}>
@@ -151,7 +151,7 @@ const Home = () => {
                 <div className="modal rounded" >
                     <div className='card p-5 rounded ripple-surface' style={{ backgroundColor: "transparent", border: "none" }}>
                         <div className='rounded-circle ps-1' style={{ position: "fixed", top: 86, right: 60, zIndex: 99999, backgroundColor: "#fff", width: '20px' }} onClick={hideModal}>
-                            &#10006;
+                            &#30006;
                         </div>
                         <div className=''>
                             <h4> {getdata[0].name}</h4>

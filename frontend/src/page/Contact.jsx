@@ -68,7 +68,7 @@ const Contact = () => {
             <div className="col-lg-4 col-sm-0 col-md-6"><hr width="100% " size="10" /></div>
             <div className="col-lg-4 col-sm-0 col-md-3"></div>
         </div>
-        <section className=" form-control p-5" style={{ marginTop: "20px", marginBottom: "250px", border: "none" }}>
+        <section className=" form-control p-5" style={{ marginBottom: "250px", border: "none" }}>
             <div className="row " >
                 <div className="col-md-9 mb-md-0 mb-5">
                     <form id="contact-form" name="contact-form" onSubmit={handleSubmit}>
