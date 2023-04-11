@@ -127,41 +127,45 @@ const ProductDetails = () => {
                     </div>
                 </div>
             </div>
-            <div className="container">
-                <h3>Similar Products</h3>
-            </div>
-            <div className="container scrollmenu owl-carousel scrolling-wrapper" ref={scrl}>
-                {
-                    getdata.map((val, ind) => {
-                        return (<div className='card d-inline-block' key={ind} style={{ padding: "20px", margin: '10px' }}>
-                            <div className="bg-image hover-zoom ripple rounded ripple-surface">
-                                <Link to={`/details/${val.id}`} >
-                                    <img src={`../img/${val.product_image}`}
-                                        className="card-img-top p-img m-2 " alt={val.product_image} />
-                                </Link>
-                            </div>
-                            <div className="card-body">
-                                <div className="d-flex justify-content-between mb-3">
-                                    <h5 className="text-dark mb-0">₹&nbsp;{val.price}.00</h5>
+            {getdata.length > 0 && <>
+                <div className="container">
+                    <h3>Similar Products</h3>
+                </div>
+                <div className="container scrollmenu owl-carousel scrolling-wrapper" ref={scrl}>
+                    {
+                        getdata.map((val, ind) => {
+                            return (<div className='card d-inline-block' key={ind} style={{ padding: "20px", margin: '10px' }}>
+                                <div className="bg-image hover-zoom ripple rounded ripple-surface">
+                                    <Link to={`/details/${val.id}`} >
+                                        <img src={`../img/${val.product_image}`}
+                                            className="card-img-top p-img m-2 " alt={val.product_image} />
+                                    </Link>
                                 </div>
-                                <div className="d-flex justify-content-between mb-2">
-                                    <h5 className="mb-0" style={{ color: 'green' }}>Assured</h5>
-                                    <div className="ms-auto text-warning ">
-                                        <i className="fa fa-star"></i>
-                                        <i className="fa fa-star"></i>
-                                        <i className="fa fa-star"></i>
-                                        <i className="fa fa-star"></i>
-                                        <i className="fa fa-star"></i>
+                                <div className="card-body">
+                                    <div className="d-flex justify-content-between mb-3">
+                                        <h5 className="text-dark mb-0">₹&nbsp;{val.price}.00</h5>
+                                    </div>
+                                    <div className="d-flex justify-content-between mb-2">
+                                        <h5 className="mb-0" style={{ color: 'green' }}>Assured</h5>
+                                        <div className="ms-auto text-warning ">
+                                            <i className="fa fa-star"></i>
+                                            <i className="fa fa-star"></i>
+                                            <i className="fa fa-star"></i>
+                                            <i className="fa fa-star"></i>
+                                            <i className="fa fa-star"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        )
-                    })
-                }
-                <div className='prev' onClick={() => slide(-300)} ></div>
-                <div className='next' onClick={() => slide(+300)}></div>
-            </div>
+                            )
+                        })
+                    }
+                    <div className='prev' onClick={() => slide(-300)} ></div>
+                    <div className='next' onClick={() => slide(+300)}></div>
+                </div>
+            </>
+            }
+
         </section>
 
         </>

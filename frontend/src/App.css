@@ -369,7 +369,7 @@ footer ul li a:hover {
   background: url('https://res.cloudinary.com/milairagny/image/upload/v1487938188/left-arrow_rlxamy.png') left center no-repeat;
   height: 54px;
   position: absolute;
-  top: 850px;
+  top: 880px;
   width: 27px;
   z-index: 1000;
   left: 5%;
@@ -382,7 +382,7 @@ footer ul li a:hover {
   background: url('https://res.cloudinary.com/milairagny/image/upload/v1487938220/right-arrow_zwe9sf.png') right center no-repeat;
   height: 54px;
   position: absolute;
-  top: 850px;
+  top: 880px;
   width: 27px;
   z-index: 1000;
   right: 5%;
@@ -406,7 +406,7 @@ footer ul li a:hover {
   }
 }
 
-@media (max-width:967px) {
+@media (max-width:765px) {
   .prev {
     top: 1250px;
   }
@@ -414,4 +414,11 @@ footer ul li a:hover {
   .next {
     top: 1250px;
   }
+}
+
+.banner-content {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  display: block;
 }

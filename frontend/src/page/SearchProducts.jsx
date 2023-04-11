@@ -18,6 +18,7 @@ function SearchProducts() {
     }
     useEffect(() => {
         getData(name);
+        // document.getElementById("searchList").style.display = "none";
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [name])
 

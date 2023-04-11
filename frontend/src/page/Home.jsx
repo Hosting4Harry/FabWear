@@ -5,6 +5,7 @@ import AllProducts from '../component/AllProducts'
 import axios from 'axios'
 import { DataContext } from '../context/DataContext'
 import "./Home.css"
+import Category from './Category'
 
 const Home = () => {
     const ref = useRef(null);
@@ -81,6 +82,9 @@ const Home = () => {
                 <span className="visually-hidden">Next</span>
             </button>
         </div>
+            <div className='row justify-content-center px-4' style={{ backgroundColor: "#eee" }}>
+                <Category></Category>
+            </div>
             <div ref={ref}>
                 <AllProducts />
             </div>

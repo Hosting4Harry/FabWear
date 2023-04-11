@@ -1,10 +1,44 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Category() {
-    return (
-        <div>
+    const values = [
+        {
+            name: "Men",
+            image: "/men/banner-02.jpg.webp",
+        },
+        {
+            name: "Women",
+            image: "/women/banner-01.jpg",
+        },
+        // {
+        //     name: "Kids",
+        //     image: "banner-02.jpg.webp",
+        // },
+        {
+            name: "Assessories",
+            image: "/hat/banner-03.jpg.webp",
+        }
+    ]
+    return (<>
+        {
+            values.map((val, ind) => {
+                return <div key={ind} className='hove col-lg-3 col-sm-12 col-md-4 border' style={{ margin: '10px', backgroundColor: "#fff" }}>
+                    <div className="bg-image hover-zoom ripple rounded ripple-surface">
+                        <Link to={`/searchProduct/${val.name}`} >
+                            <img src={`../img/${val.image}`}
+                                className="card-img-top  " alt={val.image} />
+                        </Link>
+                        <div className='banner-content'>
+                            <h3>{val.name}</h3>
+                        </div>
+                    </div>
+                </div >
 
-        </div>
+            })
+        }
+    </>
+
     )
 }
 
