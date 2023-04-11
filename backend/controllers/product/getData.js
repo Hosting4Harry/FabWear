@@ -81,8 +81,7 @@ router.get('/searchProduct/:name', async (req, res) => {
                     [Op.like]: `%${name}%`
                 }
             }]
-        },
-        limit: 10
+        }
     }).then(result => {
         res.send(result);
     }).catch(error => {
