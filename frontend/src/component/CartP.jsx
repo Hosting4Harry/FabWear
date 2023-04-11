@@ -71,8 +71,6 @@ const CartP = ({ id, productId, name, price, product_image, qty, size }) => {
                             <h4 className="mb-1 me-1">Qty: {qty}</h4>
                             <h4 className="mb-1 me-1">Size: {size}</h4>
                         </div>
-
-
                         <div className="d-flex flex-row align-items-center mb-1">
                             <h4 className="mb-1 me-1">Total Price: {price * qty}</h4>
                         </div>
@@ -86,28 +84,6 @@ const CartP = ({ id, productId, name, price, product_image, qty, size }) => {
                 </div>
             </div>
         </div>
-        // <>
-        //     <div className="col-lg-4 col-md-6 col-12  mb-3">
-        //         <div className="card">
-        //             <img src={`../img/${product_image}`} alt={product_image} className="img-fluid cart-img" />
-        //             <div className="p-3">
-        //                 <div className="cartbox">
-        //                     <div>
-        //                         <p>{name}</p>
-        //                         <p>({price}.00) * ({qty})</p>
-        //                     </div>
-        //                     <div>
-        //                         <br />
-        //                         <p> {price * qty}.00</p>
-        //                     </div>
-        //                 </div>
-        //                 <div className="text-right">
-        //                     <button className="btn-lg btn-info" onClick={() => deleteProduct(id)}>Delete</button>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     </div>
-        // </>
     )
 }
 

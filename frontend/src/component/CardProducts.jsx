@@ -24,10 +24,10 @@ const CardProducts = ({ id, name, price, product_image }) => {
     }, [wishlist]);
     const addWish = (e) => {
         const data = {
-            id: detdata[0].id,
-            name: detdata[0].name,
-            price: detdata[0].price,
-            image: detdata[0].product_image,
+            id: detdata.id,
+            name: detdata.name,
+            price: detdata.price,
+            image: detdata.product_image,
             userId: userId
         }
         if (userId == null) {
