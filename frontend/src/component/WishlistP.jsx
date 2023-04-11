@@ -87,7 +87,7 @@ const WishlistP = ({ id, name, price, product_image, productId }) => {
                         {price >= 500 && <h6 className="text-success">Free shipping</h6>}
                         {price < 500 && <h6 className="text-success">Rs:50 shipping charges</h6>}
                         <div className="d-flex flex-column mt-4">
-                            <button className="btn btn-primary btn-sm" type="button" onClick={() => navigate(`/details/${id}`)}>Details</button>
+                            <button className="btn btn-primary btn-sm" type="button" onClick={() => navigate(`/details/${productId}`)}>Details</button>
                             <button className="btn btn-outline-primary btn-sm mt-2" type="button" onClick={addToCart}>
                                 Add to cart
                             </button>

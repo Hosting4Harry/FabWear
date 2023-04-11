@@ -30,7 +30,7 @@ const Footer = () => {
                             </div>
                         </div>
                         <div className="col-md-4 col-12 mx-auto mb-3 text-center p-3">
-                            <h2>NavLinks</h2>
+                            <h2>Cart.com</h2>
                             <hr />
                             <ul>
                                 <li className="foot-link">

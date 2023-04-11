@@ -55,7 +55,7 @@ const CartP = ({ id, productId, name, price, product_image, qty, size }) => {
                             <span className="text-primary"> • </span>
                             <span>Casual<br /></span>
                         </div>
-                        <p className="text-truncate mb-4 mb-md-0">
+                        <p>
                             There are many variations of passages of Lorem Ipsum available, but the
                             majority have suffered alteration in some form, by injected humour, or
                             randomised words which don't look even slightly believable.
