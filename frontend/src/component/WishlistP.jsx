@@ -84,9 +84,6 @@ const WishlistP = ({ id, name, price, product_image, productId }) => {
                             <h4 className="mb-1 me-1">Price: {price}.00</h4>
                             <small className="text-danger" style={{ textDecoration: "line-through" }}><s>{price >= 500 ? price + 1000 : price + 500}.00</s></small>
                         </div>
-                        {/* <div className="d-flex flex-row align-items-center mb-1">
-                            <h4 className="mb-1 me-1">Qty: {qty}</h4>
-                        </div> */}
                         {price >= 500 && <h6 className="text-success">Free shipping</h6>}
                         {price < 500 && <h6 className="text-success">Rs:50 shipping charges</h6>}
                         <div className="d-flex flex-column mt-4">
@@ -94,36 +91,12 @@ const WishlistP = ({ id, name, price, product_image, productId }) => {
                             <button className="btn btn-outline-primary btn-sm mt-2" type="button" onClick={addToCart}>
                                 Add to cart
                             </button>
-                            {/* <button className="btn btn-outline-primary btn-sm mt-2" type="button" onClick={() => navigate('/checkout/' + id)}>
-                                Buy Now
-                            </button> */}
                             <button className="btn btn-outline-primary btn-sm mt-2" onClick={() => deleteProduct(productId)}>Delete</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        // <div className="col-lg-4 col-md-6 col-12 mb-3">
-        //     <div className="card">
-        //         <div className='heart'>
-        //             <input type="checkbox" id={"heart" + id} />
-        //             <label htmlFor={"heart" + id} style={{ color: "red" }}>&nbsp; &#9829;</label>
-        //         </div>
-        //         <img src={`../img/${product_image}`} alt={product_image} className="img-fluid cart-img" />
-        //         <div className="p-3">
-        //             <div className="cartbox">
-        //                 <div>
-        //                     <p>{name}</p>
-        //                     <p>{price}.00</p>
-        //                 </div>
-        //             </div>
-        //             <div className="text-right">
-        //                 <button className="btn-lg btn-info" onClick={() => navigate(`/details/${id}`)} > view product</button>&nbsp;
-        //                 <button className="btn-lg btn-info" onClick={() => deleteProduct(id)}>Delete</button>
-        //             </div>
-        //         </div>
-        //     </div>
-        // </div>
     )
 }
 
