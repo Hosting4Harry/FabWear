@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import "./ProductsAdminSide.css"
 
 function ProductsAdminSide() {
@@ -23,8 +23,6 @@ function ProductsAdminSide() {
   }, []);
   return (
     <>
-      {/* <div className="row d-flex w-100 h-100"> */}
-      {/* <div className="col-md-12 col-xl-10"> */}
       <div className="card">
         <div className="card-header row d-flex p-3">
           <div className='d-flex col-6'>
@@ -45,12 +43,9 @@ function ProductsAdminSide() {
               <option value="tees">tees</option>
             </select>&nbsp; &nbsp;
             <button className="btn btn-light" onClick={() => navigate('/addproduct')}>Add Product</button>
-
           </div>
         </div>
-
         <div className="card-body" data-mdb-perfect-scrollbar="true" style={{ position: "relative", height: "50rem" }}>
-
           <table className="table mb-0">
             <thead>
               <tr>
@@ -66,7 +61,9 @@ function ProductsAdminSide() {
                 return (
                   <tr kay={ind} className="fw-normal">
                     <td>
-                      <img src={`../img/${val.product_image}`} alt={`../img/${val.product_image}`} className="img-fluid t-img" />
+                      <Link to={`/details/${val.id}`}>
+                        <img src={`../img/${val.product_image}`} alt={`../img/${val.product_image}`} className="img-fluid t-img" />
+                      </Link>
                     </td>
                     <td>{val.name}</td>
                     <td>{val.price}</td>

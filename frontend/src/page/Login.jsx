@@ -3,7 +3,6 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 // import { DataContext } from '../context/DataContext'
 const Login = () => {
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [checked, setChecked] = useState(false);
@@ -17,7 +16,6 @@ const Login = () => {
                 "x-access-token": localStorage.getItem("Ecomtoken")
             }
         }).then((response) => {
-            //  console.log()
             if (response.data.login) {
                 navigate("/home");
             }
@@ -55,7 +53,6 @@ const Login = () => {
             navigate("/home");
             window.location.reload(true);
         }
-        // console.log(res)
     }
 
     return (
@@ -90,7 +87,11 @@ const Login = () => {
                                 <button type="submit" className="btn btn-info">Login</button>
                             </form>
                             <br />
-                            <NavLink to="/register" >Register Now</NavLink>
+                            <span>
+                                Don't have an account? <NavLink to="/register" >Register Now</NavLink>
+                            </span>
+                            <br />
+                            <NavLink to="/resetpassword">Forgot Password</NavLink>
                         </div>
                     </div>
                 </div>

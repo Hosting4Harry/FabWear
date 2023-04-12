@@ -15,11 +15,11 @@ tbody .scrollbar::-webkit-scrollbar {
     display: none;
 }
 
-.t-img {
+/* .t-img {
     transition: transform 0.2s ease;
-}
+} */
 
-.t-img:hover {
+/* .t-img:hover {
     transform: scale(2);
     display: none
-}
+} */
