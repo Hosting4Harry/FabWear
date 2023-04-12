@@ -19,9 +19,6 @@ const Home = () => {
         document.getElementById("root").style.overflowY = "hidden"
         setModal(true);
     }
-    const hideModal = () => {
-        setModal(false);
-    }
     const scroll = () => {
         ref.current?.scrollIntoView({ behavior: 'smooth' });
     };
@@ -145,12 +142,12 @@ const Home = () => {
             </section>
 
             {modal && <>
-                <div className="wrapper" onClick={hideModal}>
+                <div className="wrapper" onClick={() => setModal(false)}>
 
                 </div>
                 <div className="modal rounded" >
                     <div className='card p-5 rounded ripple-surface' style={{ backgroundColor: "transparent", border: "none" }}>
-                        <div className='rounded-circle ps-1' style={{ position: "fixed", top: 86, right: 60, zIndex: 99999, backgroundColor: "#fff", width: '20px' }} onClick={hideModal}>
+                        <div className='rounded-circle ps-1' style={{ position: "fixed", top: 86, right: 60, zIndex: 99999, backgroundColor: "#fff", width: '20px' }} onClick={() => setModal(false)}>
                             &#30006;
                         </div>
                         <div className=''>
