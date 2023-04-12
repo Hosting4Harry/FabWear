@@ -6,6 +6,7 @@ import axios from 'axios'
 import { DataContext } from '../context/DataContext'
 import "./Home.css"
 import Category from './Category'
+import Offers from './AddOn/Offers'
 
 const Home = () => {
     const ref = useRef(null);
@@ -85,6 +86,9 @@ const Home = () => {
             <div ref={ref}>
                 <AllProducts />
             </div>
+            <div className='mx-5' style={{ height: "" }}>
+                <Offers></Offers>
+            </div>
             <div className="desc h-100">
                 <div className="container-fluid">
                     <div className="row">
@@ -148,7 +152,7 @@ const Home = () => {
                 <div className="modal rounded" >
                     <div className='card p-5 rounded ripple-surface' style={{ backgroundColor: "transparent", border: "none" }}>
                         <div className='rounded-circle ps-1' style={{ position: "fixed", top: 86, right: 60, zIndex: 99999, backgroundColor: "#fff", width: '20px' }} onClick={() => setModal(false)}>
-                            &#30006;
+                            &#10006;
                         </div>
                         <div className=''>
                             <h4> {getdata[0].name}</h4>
