@@ -8,16 +8,17 @@ function AddAddress() {
     const datemail = localStorage.getItem('EcomEmail');
     const dat = localStorage.getItem('EcomUserId');
     const { id } = useParams();
-
+    const [city, setCity] = useState([])
+    const [state, setState] = useState([])
+    const [searchPin, setSearchPin] = useState(null);
     const [addressDetails, setAddressDetails] = useState({
         fname: "",
         lname: '',
         email: datemail,
         phone: '',
         address: '',
-        zip: '',
+        // zip: '',
         state: '',
-        city: '',
         user_id: dat
     });
 
@@ -25,6 +26,14 @@ function AddAddress() {
         let { name, value } = e.target;
         let x = { ...addressDetails, [name]: value };
         setAddressDetails(x)
+    }
+    const getAdd = async (val) => {
+        if (val.length === 6) {
+            const res = await axios.get(`https://api.postalpincode.in/pincode/` + val)
+            debugger
+            setCity(res.data[0].PostOffice)
+            setState(res.data[0].PostOffice[0].Circle);
+        }
     }
     const getAddressById = async (id) => {
         const res = await axios(`http://localhost:8000/address/addaddress/` + id);
@@ -115,36 +124,38 @@ function AddAddress() {
                                                     <label className="form-label" htmlFor="form3Example8"></label>
                                                 </div>
                                                 <div className="col-md-6 mb-4">
-                                                    <input type="text" name='phone' id="form3Example8" className="form-control" placeholder='Mobile' defaultValue={addressDetails.phone} onChange={handelData} required />
-                                                    <label className="form-label" htmlFor="form3Example8"></label>
+                                                    <input type="text" name='zip' id="form3Example3" className="form-control" placeholder='Zip' defaultValue={searchPin} onChange={(e) => getAdd(e.target.value)} required />
+                                                    <label className="form-label" htmlFor="form3Example3"></label>
                                                 </div>
                                             </div>
                                             <div className="row">
                                                 <div className="col-md-6 mb-4">
-                                                    <select className="form-select" defaultValue={addressDetails.state} name='state' onChange={handelData} >
-                                                        <option >State</option>
-                                                        <option defaultValue="2">Option 1</option>
-                                                        <option defaultValue="3">Option 2</option>
-                                                        <option defaultValue="4">Option 3</option>
+                                                    <select className="form-select" name='state' defaultValue={addressDetails.state} onChange={handelData} >
+                                                        <option value={state} >{state}</option>
+
                                                     </select>
+
                                                 </div>
 
                                                 <div className="col-md-6 mb-4">
                                                     <select className="form-select" name='city' defaultValue={addressDetails.city} onChange={handelData} >
                                                         <option >City</option>
-                                                        <option defaultValue="2">Option 1</option>
-                                                        <option defaultValue="3">Option 2</option>
-                                                        <option defaultValue="4">Option 3</option>
+                                                        {city && <>
+                                                            {city.map((val, ind) => {
+                                                                return <option key={ind} defaultValue={val.Name}>{val.Name}</option>
+                                                            })
+                                                            }
+                                                        </>}
                                                     </select>
                                                 </div>
 
                                             </div>
                                             <div className="row">
-                                                <div className="col-md-6 mb-4">
-                                                    <input type="text" name='zip' id="form3Example3" className="form-control" placeholder='Zip' defaultValue={addressDetails.zip} onChange={handelData} required />
-                                                    <label className="form-label" htmlFor="form3Example3"></label>
-                                                </div>
 
+                                                <div className="col-md-6 mb-4">
+                                                    <input type="text" name='phone' id="form3Example8" className="form-control" placeholder='Mobile' defaultValue={addressDetails.phone} onChange={handelData} required />
+                                                    <label className="form-label" htmlFor="form3Example8"></label>
+                                                </div>
                                                 <div className="col-md-6 mb-4">
                                                     <input type="text" name='email' id="form3Example2" className="form-control" placeholder='Email' defaultValue={addressDetails.email} onChange={handelData} required />
                                                     <label className="form-label" htmlFor="form3Example2"></label>
@@ -162,7 +173,6 @@ function AddAddress() {
                                         </div>
                                     </form>
                                 </div>
-
                             </div>
                         </div>
                     </div>
