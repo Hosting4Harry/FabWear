@@ -14,6 +14,18 @@ router.get("/getaddress/:userid", async (req, res) => {
         console.log(error);
     })
 })
+router.delete("/deleteAddress/:id", async (req, res) => {
+    const id = +req.params.id;
+    await db.user_data.destroy({
+        where: {
+            id: id
+        }
+    }).then(result => {
+        res.send(result);
+    }).catch(err => {
+        console.log(err);
+    })
+})
 router.get("/addaddress/:id", async (req, res) => {
     await db.user_data.findOne({
         where: {

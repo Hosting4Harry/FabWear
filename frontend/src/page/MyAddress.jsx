@@ -14,6 +14,10 @@ function MyAddress() {
         const res = await axios.get(`http://localhost:8000/address/getaddress/${dat}`);
         setYourAddress(res.data);
     }
+
+    const deleteAddress = async (id) => {
+        axios.delete("http://localhost:8000/address/deleteAddress/" + id)
+    }
     useEffect(() => {
         getaddress();
     }, [])
@@ -69,7 +73,7 @@ function MyAddress() {
                                                                             </p>
                                                                             <p className="mb-0 text-black font-weight-bold">
                                                                                 <Link className="text-primary mr-3" data-toggle="modal" data-target="#add-address-modal" to={"/addaddress/" + val.id}> EDIT</Link>
-                                                                                <Link className="text-danger mr-3" data-toggle="modal" data-target="#delete-address-modal" to="#">DELETE</Link>
+                                                                                <Link className="text-danger mr-3" data-toggle="modal" data-target="#delete-address-modal" to="#" onClick={() => deleteAddress(val.id)}>DELETE</Link>
                                                                                 {loc === "/payment" &&
                                                                                     <Link className="text-success" data-toggle="modal" data-target="#payment-address-modal" to={"/checkout/" + val.id}> NEXT</Link>
                                                                                 }

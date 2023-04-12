@@ -10,6 +10,7 @@ function AddAddress() {
     const { id } = useParams();
     const [city, setCity] = useState([])
     const [state, setState] = useState([])
+    // eslint-disable-next-line
     const [searchPin, setSearchPin] = useState(null);
     const [addressDetails, setAddressDetails] = useState({
         fname: "",
@@ -130,11 +131,7 @@ function AddAddress() {
                                             </div>
                                             <div className="row">
                                                 <div className="col-md-6 mb-4">
-                                                    <select className="form-select" name='state' defaultValue={addressDetails.state} onChange={handelData} >
-                                                        <option value={state} >{state}</option>
-
-                                                    </select>
-
+                                                    <input className="form-control" placeholder='State' name='state' defaultValue={state} onChange={handelData} />
                                                 </div>
 
                                                 <div className="col-md-6 mb-4">

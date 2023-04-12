@@ -19,7 +19,6 @@ const ProductDetails = () => {
     const onSub = async (e) => {
         e.preventDefault();
         const data = {
-
             productId: detdata.id,
             userId: userId,
             qty: pdetails,
@@ -66,6 +65,7 @@ const ProductDetails = () => {
     }
     useEffect(() => {
         getData()
+        console.log(detdata.product_image);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])
     if (!detdata) {
@@ -93,7 +93,7 @@ const ProductDetails = () => {
                                         <form onSubmit={onSub}>
                                             <input type="hidden" value={detdata.id} />
                                             <div className="form-group d-flex">
-                                                <label htmlFor="sel1">Choose Qty:&nbsp;</label>
+                                                <label htmlFor="sel1">Qty:&nbsp;</label>
                                                 <select className="form-control" style={{ width: "10%", height: "32px" }} id="" onChange={(e) => setPdetails(e.target.value)} required>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
@@ -106,14 +106,19 @@ const ProductDetails = () => {
                                                     <option value="9">9</option>
                                                     <option value="10">10</option>
                                                 </select>&nbsp;
-                                                <label htmlFor="sel1">size:&nbsp;</label>
-                                                <select className="form-control" style={{ width: "14%", height: "32px" }} id="" onChange={(e) => setSize(e.target.value)} required>
-                                                    <option value="S">S</option>
-                                                    <option value="M">M</option>
-                                                    <option value="L">L</option>
-                                                    <option value="XL">XL</option>
-                                                    <option value="XXL">XXL</option>
-                                                </select>
+                                                {/* {(detdata.product_image).includes("men" || "women" || "kid") ? */}
+                                                <div className="form-group d-flex">
+                                                    <label htmlFor="sel1">size:&nbsp;</label>
+                                                    <select className="form-control" style={{ width: "14%", height: "32px" }} id="" onChange={(e) => setSize(e.target.value)} required>
+                                                        <option value="S">S</option>
+                                                        <option value="M">M</option>
+                                                        <option value="L">L</option>
+                                                        <option value="XL">XL</option>
+                                                        <option value="XXL">XXL</option>
+                                                    </select>
+                                                </div>
+                                                {/* : null */}
+                                                {/* } */}
                                             </div>
                                             <div className="text-left">
                                                 <button type="submit" className="btn btn-info">Add To Cart</button>&nbsp;
