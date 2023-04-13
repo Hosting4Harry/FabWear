@@ -84,9 +84,8 @@ function AddAddress() {
                                         <div className=" justify-content-center align-items-center h-100">
                                             <div className=" text-center" style={{ marginTop: "220px" }}>
                                                 <i className="fas fa-truck text-white fa-3x"></i>
-                                                <p className="text-white title-style">Lorem ipsum delivery</p>
+                                                <p className="text-white title-style">Cart fast delivery</p>
                                                 <p className="text-white mb-0"></p>
-
                                                 <figure className="text-center mb-0">
                                                     <blockquote className="blockquote text-white">
                                                         <p className="pb-3">
@@ -97,7 +96,6 @@ function AddAddress() {
                                                                 style={{ color: " hsl(210, 100%, 50%)" }}></i>
                                                         </p>
                                                     </blockquote>
-
                                                 </figure>
                                             </div>
                                         </div>

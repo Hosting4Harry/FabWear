@@ -16,11 +16,11 @@ function MyAddress() {
     }
 
     const deleteAddress = async (id) => {
-        axios.delete("http://localhost:8000/address/deleteAddress/" + id)
+        axios.post("http://localhost:8000/address/deleteAddress/" + id)
     }
     useEffect(() => {
         getaddress();
-    }, [])
+    }, [yourAddress])
     return (<>
         <section>
             <div className="row justify-content-center mb-3" style={{ height: "100vh" }} >
