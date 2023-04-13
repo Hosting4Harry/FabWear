@@ -131,7 +131,8 @@ function AddAddress() {
                                             </div>
                                             <div className="row">
                                                 <div className="col-md-6 mb-4">
-                                                    <input className="form-control" placeholder='State' name='state' defaultValue={state} onChange={handelData} />
+                                                    <input type="text" name='zip' id="form3Example3" className="form-control" placeholder='state' defaultValue={addressDetails.state = state} onChange={handelData} required />
+                                                    <label className="form-label" htmlFor="form3Example3"></label>
                                                 </div>
 
                                                 <div className="col-md-6 mb-4">

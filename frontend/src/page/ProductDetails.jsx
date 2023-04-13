@@ -65,7 +65,6 @@ const ProductDetails = () => {
     }
     useEffect(() => {
         getData()
-        console.log(detdata.product_image);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])
     if (!detdata) {
@@ -109,7 +108,7 @@ const ProductDetails = () => {
                                                 {/* {(detdata.product_image).includes("men" || "women" || "kid") ? */}
                                                 <div className="form-group d-flex">
                                                     <label htmlFor="sel1">size:&nbsp;</label>
-                                                    <select className="form-control" style={{ width: "14%", height: "32px" }} id="" onChange={(e) => setSize(e.target.value)} required>
+                                                    <select className="form-control" style={{ width: "min-content", height: "32px" }} id="" onChange={(e) => setSize(e.target.value)} required>
                                                         <option value="S">S</option>
                                                         <option value="M">M</option>
                                                         <option value="L">L</option>
