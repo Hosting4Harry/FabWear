@@ -8,8 +8,8 @@ function AddAddress() {
     const datemail = localStorage.getItem('EcomEmail');
     const dat = localStorage.getItem('EcomUserId');
     const { id } = useParams();
-    const [city, setCity] = useState([])
-    const [state, setState] = useState([])
+    const [city, setCity] = useState([]);
+    const [state, setState] = useState([]);
     // eslint-disable-next-line
     const [searchPin, setSearchPin] = useState(null);
     const [addressDetails, setAddressDetails] = useState({
@@ -55,8 +55,6 @@ function AddAddress() {
         getAddressById(id);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])
-
-    console.log(addressDetails)
     const sendData = async (addressDetails, id) => {
         if (id) {
             await axios.post(`http://localhost:8000/address/addaddress/` + id, addressDetails);
@@ -136,8 +134,8 @@ function AddAddress() {
                                                 </div>
 
                                                 <div className="col-md-6 mb-4">
-                                                    <select className="form-select" name='city' defaultValue={addressDetails.city} onChange={handelData} >
-                                                        <option >City</option>
+                                                    <select className="form-select" name='city' defaultValue={addressDetails.city} onChange={handelData} required>
+                                                        <option value="">City</option>
                                                         {city && <>
                                                             {city.map((val, ind) => {
                                                                 return <option key={ind} defaultValue={val.Name}>{val.Name}</option>
