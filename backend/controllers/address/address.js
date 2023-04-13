@@ -37,7 +37,7 @@ router.post("/addaddress/:id", async (req, res) => {
     const id = req.params.id;
     const { fname, lname, email, phone, address, user_id, state, city, zip } = req.body;
     const name = fname + " " + lname;
-    const addressData = address + ", " + state + ", " + city;
+    const addressData = address + ", " + city + ", " + state + ", " + zip
     const data = {
         name,
         email,
@@ -59,7 +59,7 @@ router.post("/addaddress/:id", async (req, res) => {
 router.post("/addaddress", async (req, res) => {
     const { fname, lname, email, phone, address, user_id, state, city, zip } = req.body;
     const name = fname + " " + lname
-    const addressData = address + ", " + state + ", " + city
+    const addressData = address + ", " + state + ", " + city + ", " + zip
     const data = {
         name,
         email,

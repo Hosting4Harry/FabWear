@@ -112,7 +112,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
                     </div>
                     <div className="d-flex justify-content-between mb-3">
                         <h5 className="mb-0" style={{ color: 'green' }}>Assured</h5>
-                        <h5 className="text-dark mb-0">₹&nbsp;{price}.00</h5>
+                        <h5 className="text-dark mb-0">₹{price}.00</h5>
                     </div>
                     <div className="d-flex justify-content-between mb-2">
                         <p className="text-muted mb-0">Available: <span className="fw-bold">6</span></p>

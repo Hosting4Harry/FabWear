@@ -8,19 +8,17 @@ function AddAddress() {
     const datemail = localStorage.getItem('EcomEmail');
     const dat = localStorage.getItem('EcomUserId');
     const { id } = useParams();
-    const [city, setCity] = useState([]);
-    const [state, setState] = useState([]);
-    // eslint-disable-next-line
-    const [searchPin, setSearchPin] = useState(null);
     const [addressDetails, setAddressDetails] = useState({
         fname: "",
         lname: '',
         email: datemail,
         phone: '',
         address: '',
-        // zip: '',
+        zip: '',
         state: '',
-        user_id: dat
+        user_id: dat,
+        city: '',
+        cityData: []
     });
 
     const handelData = (e) => {
@@ -30,10 +28,12 @@ function AddAddress() {
     }
     const getAdd = async (val) => {
         if (val.length === 6) {
-            const res = await axios.get(`https://api.postalpincode.in/pincode/` + val)
-            debugger
-            setCity(res.data[0].PostOffice)
-            setState(res.data[0].PostOffice[0].Circle);
+            const res = await axios.get(`https://api.postalpincode.in/pincode/` + val);
+            if (res.data[0].PostOffice !== null) {
+                setAddressDetails(addressDetails => ({ ...addressDetails, state: res.data[0].PostOffice[0].Circle, cityData: res.data[0].PostOffice, zip: val }))
+            } else {
+                alert("Enter a valid Pin")
+            }
         }
     }
     const getAddressById = async (id) => {
@@ -44,9 +44,9 @@ function AddAddress() {
             email: datemail,
             phone: res.data.phone,
             address: res.data.address.split(', ')[0],
-            // zip: res.data.address,
-            state: res.data.address,
-            city: res.data.address,
+            zip: res.data.address.split(', ')[3],
+            state: res.data.address.split(', ')[2],
+            city: res.data.address.split(', ')[1],
             user_id: dat
         }
         setAddressDetails(data);
@@ -58,7 +58,6 @@ function AddAddress() {
     const sendData = async (addressDetails, id) => {
         if (id) {
             await axios.post(`http://localhost:8000/address/addaddress/` + id, addressDetails);
-            debugger
         } else {
             await axios.post(`http://localhost:8000/address/addaddress`, addressDetails);
         }
@@ -121,28 +120,26 @@ function AddAddress() {
                                                     <label className="form-label" htmlFor="form3Example8"></label>
                                                 </div>
                                                 <div className="col-md-6 mb-4">
-                                                    <input type="text" name='zip' id="form3Example3" className="form-control" placeholder='Zip' defaultValue={searchPin} onChange={(e) => getAdd(e.target.value)} required />
+                                                    <input type="text" name='state' id="form3Example3" className="form-control" placeholder='state' defaultValue={addressDetails.state} onChange={handelData} required />
                                                     <label className="form-label" htmlFor="form3Example3"></label>
                                                 </div>
                                             </div>
                                             <div className="row">
                                                 <div className="col-md-6 mb-4">
-                                                    <input type="text" name='zip' id="form3Example3" className="form-control" placeholder='state' defaultValue={addressDetails.state = state} onChange={handelData} required />
-                                                    <label className="form-label" htmlFor="form3Example3"></label>
-                                                </div>
-
-                                                <div className="col-md-6 mb-4">
                                                     <select className="form-select" name='city' defaultValue={addressDetails.city} onChange={handelData} required>
-                                                        <option value="">City</option>
-                                                        {city && <>
-                                                            {city.map((val, ind) => {
+                                                        <option value="" disabled>{addressDetails.city.length > 0 ? "--select--" : "Enter Zip Code"}</option>
+                                                        {addressDetails.cityData && <>
+                                                            {addressDetails.cityData.map((val, ind) => {
                                                                 return <option key={ind} defaultValue={val.Name}>{val.Name}</option>
                                                             })
                                                             }
                                                         </>}
                                                     </select>
                                                 </div>
-
+                                                <div className="col-md-6 mb-4">
+                                                    <input type="number" name='zip' minLength={0} maxLength="6" id="form3Example3" className="form-control" placeholder='Zip' defaultValue={addressDetails.zip} onChange={(e) => getAdd(e.target.value)} required />
+                                                    <label className="form-label" htmlFor="form3Example3"></label>
+                                                </div>
                                             </div>
                                             <div className="row">
 
@@ -157,7 +154,8 @@ function AddAddress() {
                                             </div>
 
                                             <div className="d-flex justify-content-end pt-3">
-                                                <button type="submit" className="btn btn-success btn-lg ms-2"
+                                                <button type="button" onClick={() => navigate(-1)} className="btn bg-secondary  ms-2">Go Back</button>
+                                                <button type="submit" className="btn btn-success ms-2"
                                                     style={{ backgroundColor: "hsl(210, 100%, 50%) " }}>Add Address</button>
                                                 {/* <label>Already Added?</label>
                                                 &nbsp;<button type="button" onClick={() => navigate('/checkout')} className="btn btn-success btn-lg ms-2"

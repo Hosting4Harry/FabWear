@@ -21,9 +21,9 @@ function MyAddress() {
     useEffect(() => {
         getaddress();
     }, [yourAddress])
-    return (<>
-        <section>
-            <div className="row justify-content-center mb-3" style={{ height: "100vh" }} >
+    return (
+        <section className='container'>
+            <div className="row justify-content-center mb-3" style={{}} >
                 <div className="row d-flex justify-content-center align-items-center" >
                     {/* <div className="col"> */}
                     <div className="card my-4 shadow-3">
@@ -51,18 +51,18 @@ function MyAddress() {
                                 </div>
                             </div>
                             <div className="col-md-1 vl"></div>
-                            <div className="col-md-8">
+                            <div className="col-md-8 col-sm-12">
                                 <div className="osahan-account-page-right shadow-sm bg-white p-4 h-100">
                                     <div className="tab-content" id="myTabContent">
                                         <div className="tab-pane fade  active show" id="addresses" role="tabpanel" aria-labelledby="addresses-tab">
                                             <div className="d-flex py-4">
-                                                <button className='btn bg-light' onClick={() => navigate('/addaddress')}><GrAdd /></button>
+                                                <button className='btn bg-light' style={{ height: "50px", width: "80px" }} onClick={() => navigate('/addaddress')}><GrAdd /></button>
                                                 <div className=''>  <h4 className="font-weight-bold pt-3 mt-0 mb-4 ms-1">Add Addresses</h4></div>
                                             </div>
                                             <div className="row">
                                                 {yourAddress.length ?
                                                     yourAddress.map((val, ind) => {
-                                                        return (<div key={ind} className="col-md-6 col-sm-12 col-lg-6">
+                                                        return (<div key={ind} className="col-md-6 col-lg-6">
                                                             <div className="bg-white card addresses-item mb-4 border border-primary shadow">
                                                                 <div className="gold-members p-4">
                                                                     <div className="media">
@@ -88,10 +88,9 @@ function MyAddress() {
 
 
                                                     :
-                                                    <div className="col-xl-6">
-                                                        <button type="button" onClick={() => navigate('/addaddress')} className="btn btn-success btn-lg ms-2"
-                                                            style={{ backgroundColor: "hsl(210, 100%, 50%) " }}>Add Address</button>
-                                                    </div>
+                                                    <>
+                                                        <h1>Add Your Desired Address</h1>
+                                                    </>
                                                 }
                                             </div>
                                         </div>
@@ -106,14 +105,6 @@ function MyAddress() {
                 </div>
             </div>
         </section>
-
-
-
-
-
-
-
-    </>
     )
 }
 
