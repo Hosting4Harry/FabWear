@@ -42,6 +42,7 @@ const MyAccount = () => {
     }, [])
 
     const getOrderDetails = async (id) => {
+        setModal(true);
         setLoading(true);
         if (!id) return;
         await axios.get(`http://localhost:8000/order/account/${id}`)
@@ -49,10 +50,24 @@ const MyAccount = () => {
                 setLoading(false);
                 setOrder(response.data);
             })
+        setLoading(false);
     }
+    const getPendingOrderDetails = async (id) => {
+        setModal(true);
+        setLoading(true);
+        if (!id) {
+            setLoading(false);
+            return;
+        }
+        await axios.get(`http://localhost:8000/order/pendingOrder/${id}`)
+            .then(response => {
+                setLoading(false);
+                setOrder(response.data);
+            })
+
+    }
+    const dat = +localStorage.getItem('EcomUserId');
     useEffect(() => {
-        const dat = +localStorage.getItem('EcomUserId');
-        getOrderDetails(dat);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -64,35 +79,40 @@ const MyAccount = () => {
                     <button className="btn btn-warning ml-1 mr-1" onClick={logout}>LogOut</button>
                     <br /><br />
                     <div className='row mb-3  ' >
-                        <div className='col-sm-12 me-1 col-md-3 col-lg-3 d-flex my-3 shadow ' onClick={() => setModal(true)}>
+                        <div className='col-sm-12 me-2 col-md-3 col-lg-3 d-flex my-3 py-3 shadow ' onClick={() => getOrderDetails(dat)}>
                             <div className=' pt-3'>
                                 <h4 font-weight="600" font-size="17px" class="sc-96a18268-0 kgqhgk">Your Orders</h4>
                                 <span font-size="16px" color="grey.600" class="sc-96a18268-0 gUjlsQ"></span>
                             </div>
                         </div>
-                        <div className='col-sm-12  me-1 col-md-3 col-lg-3 d-flex my-3 shadow' onClick={() => navigate('/myaddress')}>
+                        <div className='col-sm-12  me-2 col-md-3 col-lg-3 d-flex my-3 py-3 shadow' onClick={() => navigate('/myaddress')}>
                             <div className='pt-3'>
                                 <h4 font-weight="600" font-size="17px" class="sc-96a18268-0 kgqhgk">Your Address</h4>
                                 <span font-size="16px" color="grey.600" class="sc-96a18268-0 gUjlsQ">7 Days Back</span>
                             </div>
                         </div>
-                        <div className='col-sm-12 col-md-3 me-1  col-lg-3 d-flex border-left my-3 shadow'>
-                            <div className='pt-3'>
-                                <h4 font-weight="600" font-size="17px" class="sc-96a18268-0 kgqhgk">365 Days</h4>
+                        <div className='col-sm-12 col-md-3 me-2  col-lg-3 d-flex border-left my-3 py-3 shadow' onClick={() => navigate('/wishlist')}>
+                            <div className='pt-3' >
+                                <h4 font-weight="600" font-size="17px" class="sc-96a18268-0 kgqhgk">Wish List</h4>
                                 <span font-size="16px" color="grey.600" class="sc-96a18268-0 gUjlsQ">For free return</span>
                             </div>
                         </div>
-                        <div className='col-sm-12 col-md-3 me-1  col-lg-3 d-flex border-left my-3 pt-1 shadow'>
+                        <div className='col-sm-12 col-md-3 me-2  col-lg-3 d-flex border-left py-3 my-3 pt-1 shadow' onClick={() => { getPendingOrderDetails(dat) }}>
                             <div className='pt-3'>
-                                <h4 font-weight="600" font-size="17px" class="sc-96a18268-0 kgqhgk">Pending</h4>
+                                <h4 font-weight="600" font-size="17px" class="sc-96a18268-0 kgqhgk" >Pending Orders</h4>
+                                <span font-size="16px" color="grey.600" class="sc-96a18268-0 gUjlsQ">Secure system</span>
+                            </div>
+                        </div>
+                        <div className='col-sm-12 col-md-3 me-2  col-lg-3 d-flex border-left py-3 my-3 pt-1 shadow' onClick={() => navigate('/contact')}>
+                            <div className='pt-3'>
+                                <h4 font-weight="600" font-size="17px" class="sc-96a18268-0 kgqhgk">Contact Us</h4>
                                 <span font-size="16px" color="grey.600" class="sc-96a18268-0 gUjlsQ">Secure system</span>
                             </div>
                         </div>
 
                     </div>
                     <div className=''>
-                        <button className="btn btn-info" onClick={() => navigate('/products')}>Continue Shopping</button>&nbsp;
-                        <button className="btn btn-light shadow-lg" onClick={() => navigate('/contact')}>Contact Us</button>
+                        <button className="btn btn-info" onClick={() => navigate('/products')}>Continue Shopping</button>
                     </div>
                 </div>
             </div>

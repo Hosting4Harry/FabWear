@@ -16,6 +16,19 @@ router.get("/account/:id", async (req, res) => {
         console.log(error);
     })
 });
+router.get("/pendingOrder/:id", async (req, res) => {
+    const id = +req.params.id;
+    await db.orders.findAll({
+        where: {
+            userid: id,
+            [Op.or]: [{ orderstatus: 'Pending' }, { orderstatus: "Cancelled" }]
+        }
+    }).then(result => {
+        res.send(result)
+    }).catch(error => {
+        console.log(error);
+    })
+});
 router.get("/myorder/:id", (req, res) => {
     const id = +req.params.id;
     let sqll = `SELECT * FROM orderitems,products WHERE orderitems.productid = products.id && orderitems.orderid=${id}`
