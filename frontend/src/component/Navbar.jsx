@@ -3,6 +3,7 @@ import './Navbar.css'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { DataContext } from '../context/DataContext'
 import axios from 'axios'
+import '../page/AddOn/Loader.css'
 const Navbar = () => {
   const navigate = useNavigate();
   const { cart, setCart, wishlist, setWishlist, searchResult, setSearchResult, loading } = useContext(DataContext);
@@ -117,9 +118,8 @@ const Navbar = () => {
       </nav>
     </div>
     {loading &&
-      <div className="wrapper d-flex justify-content-center align-items-center position-fixed">
-        <div class="spinner-border text-primary" role="status">
-          <span class="visually-hidden">Loading...</span>
+      <div className=" wrapper wrapper-spin ">
+        <div class="container-spin spinner text-primary">
         </div>
       </div>
     }
