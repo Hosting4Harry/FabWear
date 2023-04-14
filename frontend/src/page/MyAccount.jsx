@@ -5,6 +5,7 @@ import axios from 'axios'
 const MyAccount = () => {
     const [order, setOrder] = useState([]);
     const location = useLocation();
+    const [modal, setModal] = useState(false);
     localStorage.setItem('NavLoc', location.pathname);
     const userdatast = localStorage.getItem('EcomUser');
     const logout = () => {
@@ -46,66 +47,98 @@ const MyAccount = () => {
         const dat = +localStorage.getItem('EcomUserId');
         getOrderDetails(dat);
     }, [])
-    if (!order.length) {
-        return (
-            <>
-                <div className="container p-5" style={{ height: "100vh" }}>
-                    <button className="btn btn-success ml-1 mr-1" disabled>Welcome {userdatast}</button>
-                    <button className="btn btn-success ml-1 mr-1" onClick={() => navigate('/myaddress')}>Manage Address</button>
-                    <button className="btn btn-warning ml-1 mr-1" onClick={logout}>LogOut</button>
-                    <br /><br />
-
-                    <h2>You Not Yet Placed Any Order</h2>
-                    <button className="btn btn-info" onClick={() => navigate('/products')}>Continue Shopping</button>&nbsp;
-                    <button className="btn btn-light" onClick={() => navigate('/contact')}>Contact Us</button>
-                </div>
-            </>
-        )
-    }
 
     return (
         <>
-            <div className="payment">
+            <div className="payment" style={{ marginBottom: "200px" }}>
                 <div className="container">
                     <button className="btn btn-success ml-1 mr-1" disabled>Welcome {userdatast}</button>
-                    <button className="btn btn-success ml-1 mr-1" onClick={() => navigate('/myaddress')}>Manage Address</button>
                     <button className="btn btn-warning ml-1 mr-1" onClick={logout}>LogOut</button>
                     <br /><br />
-                    <div className="row">
-                        <div className="table-responsive">
-                            <table className="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Order Date</th>
-                                        <th>Payment Method</th>
-                                        <th>Order Status</th>
-                                        <th>Amount</th>
-                                        <th>Operation</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        order.map((val, ind) => {
-                                            return (<tr key={ind}>
-                                                <td>{ind + 1}</td>
-                                                <td >{new Date(val.updatedAt).toLocaleDateString()}</td>
-                                                <td>{(val.orderstatus === "cancelled") ? "---" : (val.paymentmode)}</td>
-                                                <td>{val.orderstatus}</td>
-                                                <td>{(val.orderstatus === "cancelled") ? "---" : (val.totalprice)}</td>
-                                                <td>
-                                                    <NavLink to={`/myorder/${val.id}`} className="btn btn-info">View</NavLink>
-                                                </td>
-                                            </tr>
-                                            )
-                                        })
-                                    }
-                                </tbody>
-                            </table>
+                    <div className='row mb-3 shadow ' >
+                        <div className='col-sm-12 col-md-3 col-lg-3 d-flex my-3' onClick={() => setModal(true)}>
+                            <div className=' pt-3'>
+                                <h4 font-weight="600" font-size="17px" class="sc-96a18268-0 kgqhgk">Your Orders</h4>
+                                <span font-size="16px" color="grey.600" class="sc-96a18268-0 gUjlsQ">Start from ₹50</span>
+                            </div>
                         </div>
+                        <div className='col-sm-12 col-md-3 col-lg-3 d-flex border-left my-3' onClick={() => navigate('/myaddress')}>
+                            <div className='pt-3'>
+                                <h4 font-weight="600" font-size="17px" class="sc-96a18268-0 kgqhgk">Your Address</h4>
+                                <span font-size="16px" color="grey.600" class="sc-96a18268-0 gUjlsQ">7 Days Back</span>
+                            </div>
+                        </div>
+                        <div className='col-sm-12 col-md-3 col-lg-3 d-flex border-left my-3'>
+                            <div className='pt-3'>
+                                <h4 font-weight="600" font-size="17px" class="sc-96a18268-0 kgqhgk">365 Days</h4>
+                                <span font-size="16px" color="grey.600" class="sc-96a18268-0 gUjlsQ">For free return</span>
+                            </div>
+                        </div>
+                        <div className='col-sm-12 col-md-3 col-lg-3 d-flex border-left my-3 pt-1'>
+                            <div className='pt-3'>
+                                <h4 font-weight="600" font-size="17px" class="sc-96a18268-0 kgqhgk">Pending</h4>
+                                <span font-size="16px" color="grey.600" class="sc-96a18268-0 gUjlsQ">Secure system</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div className=''>
+                        <button className="btn btn-info" onClick={() => navigate('/products')}>Continue Shopping</button>&nbsp;
+                        <button className="btn btn-light shadow-lg" onClick={() => navigate('/contact')}>Contact Us</button>
                     </div>
                 </div>
             </div>
+
+            {modal && <>
+                <div className='wrapper rounded' onClick={() => setModal(false)}></div>
+                <div className="row order" >
+                    <div className='ps-1' style={{ position: "fixed", top: 0, right: 0, zIndex: 99999, width: '20px' }} onClick={() => setModal(false)}>
+                        &#10006;
+                    </div>
+                    <div>
+                        {order.length &&
+                            <div className="table-responsive">
+                                <table className="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Order Date</th>
+                                            <th>Payment Method</th>
+                                            <th>Order Status</th>
+                                            <th>Amount</th>
+                                            <th>Operation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            order.map((val, ind) => {
+                                                return (<tr key={ind}>
+                                                    <td>{ind + 1}</td>
+                                                    <td >{new Date(val.updatedAt).toLocaleDateString()}</td>
+                                                    <td>{(val.orderstatus === "cancelled") ? "---" : (val.paymentmode)}</td>
+                                                    <td>{val.orderstatus}</td>
+                                                    <td>{(val.orderstatus === "cancelled") ? "---" : (val.totalprice)}</td>
+                                                    <td>
+                                                        <NavLink to={`/myorder/${val.id}`} className="btn btn-info">View</NavLink>
+                                                    </td>
+                                                </tr>
+                                                )
+                                            })
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                        {!order.length && <>
+                            <h2>Not Yet Placed Any Order</h2>
+                            <div>
+                                <button className="btn btn-info" onClick={() => navigate('/products')}>Continue Shopping</button>
+                            </div>
+                        </>
+                        }
+                    </div>
+                </div></>
+            }
         </>
     )
 }

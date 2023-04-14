@@ -12,8 +12,8 @@ const Navbar = () => {
   const submit = (e) => {
     e.preventDefault();
     navigate('/searchProduct/' + searchValue);
-    hideList();
-    setSearchValue('')
+    // hideList();
+    // setSearchValue('')
   };
   const submitForm = async (e) => {
     setSearchValue(e.target.value);
@@ -56,7 +56,7 @@ const Navbar = () => {
         <i className="fa fa-bars"></i>
       </label>
       <label className="logo">
-        <img style={{ width: "50px" }} src="../img/T4.png" alt="box" className="img-fluid" /><NavLink to="/home">Cart.Com</NavLink>
+        <img style={{ width: "50px" }} src="../img/T4.png" alt="box" className="img-fluid" /><NavLink to="/home">FabWear</NavLink>
       </label>
       <label className='searchBar'>
         <form onSubmit={submit} className="searchForm">

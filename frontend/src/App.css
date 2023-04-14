@@ -277,6 +277,7 @@ footer ul li a:hover {
 
 .payment {
   padding: 75px 0;
+  overflow-y: scroll;
 }
 
 .t-img {
@@ -299,8 +300,8 @@ footer ul li a:hover {
 }
 
 .or-img {
-  width: 150px;
-  height: 130px;
+  width: 100px;
+  height: 80px;
 }
 
 .login {
@@ -421,4 +422,25 @@ footer ul li a:hover {
   top: 5px;
   left: 5px;
   display: block;
+}
+
+.order {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99999;
+  background-color: #fff;
+  transition: .5s ease;
+  padding: 20px 0px 20px 0px;
+}
+
+.order table th,
+td {
+  font-size: 20px;
+}
+
+.order>.btn-light,
+.order>.btn {
+  font-size: 10px;
 }

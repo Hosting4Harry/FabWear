@@ -10,6 +10,7 @@ function SearchProducts() {
     const getData = async (name) => {
         await axios.get('http://localhost:8000/product/searchProduct/' + name)
             .then(response => {
+                debugger
                 setSearchResult(response.data);
             }).catch(error => {
                 if (error)
@@ -31,19 +32,19 @@ function SearchProducts() {
             <div className="container py-5">
                 <div className="row">
                     {searchResult.map((item, i) => {
-                        if (item.product_image.split('/')[1] === name.toLowerCase() || item.product_image.split('/')[2] === name.toLowerCase()) {
-                            return (<CardProducts
-                                key={i}
-                                id={item.id}
-                                name={item.name}
-                                price={item.price}
-                                product_image={item.product_image}
-                            />
-                            )
-                        } else {
-                            return <></>
-                        }
+                        return (<CardProducts
+                            key={i}
+                            id={item.id}
+                            name={item.name}
+                            price={item.price}
+                            product_image={item.product_image}
+                        />
+                        )
                     })}
+                    {/* if (item.product_image.split('/')[1] === name.toLowerCase() || item.product_image.split('/')[2] === name.toLowerCase()) { */}
+                    {/* } else {
+                            return <></>
+                        } */}
                 </div>
             </div>
         </section>

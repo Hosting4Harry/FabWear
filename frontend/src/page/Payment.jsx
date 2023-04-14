@@ -73,7 +73,7 @@ const Payment = () => {
 
     return (
         <>
-            <div className="payment" style={{ height: "100vh" }}>
+            <div className="payment" style={{}}>
                 <div className="container">
                     <div className="row">
                         <div className="table-responsive">

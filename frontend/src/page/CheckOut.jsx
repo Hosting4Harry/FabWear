@@ -110,7 +110,7 @@ function CheckOut() {
         }
         // creating a new order
         const result = await axios.post("http://localhost:8000/payment/orders", data);
-
+        debugger
         if (!result) {
             alert("Server error. Are you online?");
             return;

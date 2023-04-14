@@ -33,7 +33,7 @@ router.post("/orders", async (req, res) => {
                     // console.log(cart[i].name)
                     const detailsdata = {
                         orderid: result.id,
-                        productid: cart[i].id,
+                        productid: cart[i].productId,
                         productqty: cart[i].productqty,
                         productprice: cart[i].price
                     }
