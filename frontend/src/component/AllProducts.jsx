@@ -1,12 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import CardProducts from './CardProducts';
 import axios from 'axios';
+import { DataContext } from '../context/DataContext';
 
 const AllProducts = () => {
+    const { setLoading } = useContext(DataContext)
     const [getdata, setGetdata] = useState([]);
     const getData = async () => {
-        const res = await axios.get('http://localhost:8000/product/getdata');
-        setGetdata(res.data);
+        setLoading(true);
+
+        await axios.get('http://localhost:8000/product/getdata')
+            .then(response => {
+                setLoading(false);
+                setGetdata(response.data);
+
+            })
+
     }
     useEffect(() => {
         getData();

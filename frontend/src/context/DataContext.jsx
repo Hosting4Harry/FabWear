@@ -6,6 +6,7 @@ export const ConText = (props) => {
     const [wishlist, setWishlist] = useState([]);
     const [isAuth, setIsAuth] = useState(false);
     const [searchResult, setSearchResult] = useState([]);
+    const [loading, setLoading] = useState(false);
     const checkAuth = () => {
         axios.get("http://localhost:8000/isAuth", {
             headers: {
@@ -26,7 +27,7 @@ export const ConText = (props) => {
 
     return (
         <>
-            <DataContext.Provider value={{ cart, setCart, wishlist, setWishlist, isAuth, searchResult, setSearchResult }}>
+            <DataContext.Provider value={{ cart, setCart, wishlist, setWishlist, isAuth, searchResult, setSearchResult, loading, setLoading }}>
                 {props.children}
             </DataContext.Provider>
         </>

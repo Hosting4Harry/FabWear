@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import CardProducts from '../component/CardProducts'
 import productData from './ProductData.json'
 import { Link, useNavigate } from 'react-router-dom'
+import { DataContext } from '../context/DataContext'
 
 const sideModal = {
     position: "fixed",
@@ -23,12 +24,15 @@ const Products = () => {
     const [getdata, setGetdata] = useState([]);
     const [getmodaldata, setGetModaldata] = useState([]);
     const [sliceRec, setSliceRec] = useState('20');
+    const { setLoading } = useContext(DataContext)
 
     const getDatas = async () => {
+        setLoading(true);
         const res = await axios.get('http://localhost:8000/product/getdataall');
         if (!res.data) {
             setGetdata(productData);
         } else {
+            setLoading(false);
             setGetdata(res.data);
         }
 

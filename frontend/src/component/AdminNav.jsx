@@ -6,7 +6,7 @@ import axios from 'axios'
 
 const AdminNav = () => {
     const navigate = useNavigate();
-    const { setCart, setWishlist, searchResult, setSearchResult } = useContext(DataContext);
+    const { setCart, setWishlist, searchResult, setSearchResult, setLoading } = useContext(DataContext);
     const [searchValue, setSearchValue] = useState("");
 
     const submit = (e) => {
@@ -16,9 +16,11 @@ const AdminNav = () => {
     };
     const submitForm = async (e) => {
         setSearchValue(e.target.value);
+        setLoading(true);
         if (e.target.value === " ") return;
         await axios.get('http://localhost:8000/product/searchProduct/' + e.target.value)
             .then(response => {
+                setLoading(false);
                 setSearchResult(response.data);
                 document.getElementById("searchList").style.display = "list-item";
             }).catch(error => {

@@ -5,12 +5,13 @@ import CardProducts from '../component/CardProducts';
 import { DataContext } from '../context/DataContext';
 
 function SearchProducts() {
-    const { searchResult, setSearchResult } = useContext(DataContext);
+    const { searchResult, setSearchResult, setLoading } = useContext(DataContext);
     const { name } = useParams();
     const getData = async (name) => {
+        setLoading(true);
         await axios.get('http://localhost:8000/product/searchProduct/' + name)
             .then(response => {
-                debugger
+                setLoading(false);
                 setSearchResult(response.data);
             }).catch(error => {
                 if (error)

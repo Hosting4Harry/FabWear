@@ -1,8 +1,10 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef, useContext } from 'react'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { DataContext } from '../context/DataContext'
 
 const MyAccount = () => {
+    const { setLoading } = useContext(DataContext);
     const [order, setOrder] = useState([]);
     const location = useLocation();
     const [modal, setModal] = useState(false);
@@ -39,9 +41,13 @@ const MyAccount = () => {
     }, [])
 
     const getOrderDetails = async (id) => {
+        setLoading(true);
         if (!id) return;
-        const res = await axios.get(`http://localhost:8000/order/account/${id}`);
-        setOrder(res.data);
+        await axios.get(`http://localhost:8000/order/account/${id}`)
+            .then(response => {
+                setLoading(false);
+                setOrder(response.data);
+            })
     }
     useEffect(() => {
         const dat = +localStorage.getItem('EcomUserId');
@@ -56,13 +62,13 @@ const MyAccount = () => {
                     <button className="btn btn-warning ml-1 mr-1" onClick={logout}>LogOut</button>
                     <br /><br />
                     <div className='row mb-3 shadow ' >
-                        <div className='col-sm-12 col-md-3 col-lg-3 d-flex my-3' onClick={() => setModal(true)}>
+                        <div className='col-sm-12 col-md-3 col-lg-2 me-2 d-flex my-3 bg-light ' onClick={() => setModal(true)}>
                             <div className=' pt-3'>
                                 <h4 font-weight="600" font-size="17px" class="sc-96a18268-0 kgqhgk">Your Orders</h4>
                                 <span font-size="16px" color="grey.600" class="sc-96a18268-0 gUjlsQ">Start from ₹50</span>
                             </div>
                         </div>
-                        <div className='col-sm-12 col-md-3 col-lg-3 d-flex border-left my-3' onClick={() => navigate('/myaddress')}>
+                        <div className='col-sm-12 col-md-3 col-lg-3 d-flex my-3' onClick={() => navigate('/myaddress')}>
                             <div className='pt-3'>
                                 <h4 font-weight="600" font-size="17px" class="sc-96a18268-0 kgqhgk">Your Address</h4>
                                 <span font-size="16px" color="grey.600" class="sc-96a18268-0 gUjlsQ">7 Days Back</span>

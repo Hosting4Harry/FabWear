@@ -5,10 +5,11 @@ import { DataContext } from '../context/DataContext'
 import axios from 'axios'
 // import NewProducts from './NewProducts'
 const Cart = () => {
-    const { cart, setCart } = useContext(DataContext);
+    const { cart, setCart, setLoading } = useContext(DataContext);
     const timeout = useRef(null);
     const navigate = useNavigate();
     const checkAuth = () => {
+        setLoading(true);
         axios.get("http://localhost:8000/isAuth", {
             headers: {
                 "x-access-token": localStorage.getItem("Ecomtoken")
@@ -17,6 +18,7 @@ const Cart = () => {
             if (!response.data.login) {
                 navigate("/");
             }
+            setLoading(false);
         })
     }
     useEffect(() => {

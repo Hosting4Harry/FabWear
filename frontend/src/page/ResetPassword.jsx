@@ -12,7 +12,6 @@ function ResetPassword() {
     const [generatedOtp, setGeneratedOtp] = useState(null);
     const submit = (e) => {
         e.preventDefault();
-        debugger
         const config = {
             method: 'post',
             url: "http://localhost:8000/resetPassword",
