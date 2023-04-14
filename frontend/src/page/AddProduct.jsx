@@ -107,18 +107,19 @@ const AddProduct = () => {
                         <form className="form-group" onSubmit={handelSubmit}>
                             <div className="mb-3">
                                 <label htmlFor="exampleInputEmail1" className="form-label">Product Name</label>
-                                <input type="text" value={productDetails.name} onChange={handelData} name="name" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                                <input type="text" value={productDetails.name} onChange={handelData} name="name" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required />
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="exampleInputEmail1" className="form-label">Price</label>
-                                <input type="text" value={productDetails.price} onChange={handelData} name="price" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                                <input type="text" value={productDetails.price} onChange={handelData} name="price" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required />
                             </div>
                             <div className="form-group w-50 mb-3">
                                 <label htmlFor="sel1">Category:</label>
                                 <select className="form-control" id="" name='category' onChange={handelData} required>
-                                    <option value="select">Select</option>
+                                    <option value="">Select</option>
                                     <option value="men">Men</option>
                                     <option value="women">Women</option>
+                                    <option value="kids">Kid</option>
                                     <option value="shirt">Shirt</option>
                                     <option value="pant">Pant</option>
                                     <option value="jacket">Jacket</option>
@@ -132,7 +133,7 @@ const AddProduct = () => {
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="exampleInputPassword1" className="form-label">Product Image</label>
-                                <input type="file" value={productDetails.file} onChange={(e) => { setProductDetails(productDetails => ({ ...productDetails, product_image: e.target.files[0] })) }} name="product_image" className="form-control" id="exampleInputPassword1" />
+                                <input type="file" value={productDetails.file} onChange={(e) => { setProductDetails(productDetails => ({ ...productDetails, product_image: e.target.files[0] })) }} name="product_image" className="form-control" id="exampleInputPassword1" required />
                             </div>
                             <button type="submit" className="btn btn-primary" >Submit</button>
                         </form></div>

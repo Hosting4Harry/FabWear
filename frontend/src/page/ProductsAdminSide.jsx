@@ -11,8 +11,12 @@ function ProductsAdminSide() {
     setProducts(res.data);
   }
   const handelChange = async (e) => {
-    const res = await axios.get('http://localhost:8000/product/searchProduct/' + e.target.value);
-    setProducts(res.data);
+    if (e.target.value === "all") {
+      getData();
+    } else {
+      const res = await axios.get('http://localhost:8000/product/searchProduct/' + e.target.value);
+      setProducts(res.data);
+    }
   }
   const deleteProduct = async (id) => {
     await axios.post("http://localhost:8000/product/deleteProduct" + id)
@@ -31,9 +35,10 @@ function ProductsAdminSide() {
           <div className="d-flex col-6 justify-content-end align-items-center  " style={{ position: 'absolute', right: "0px" }}>
             <p className="small mb-0 me-2 text-muted">Filter</p>
             <select className="select" onChange={handelChange} >
-              <option value="1">All</option>
+              <option value="all">All</option>
               <option value="men">Men</option>
               <option value="women">women</option>
+              <option value="kids">Kids</option>
               <option value="hat">Hat</option>
               <option value="jackets">jackets</option>
               <option value="kurta">kurta</option>
@@ -77,10 +82,6 @@ function ProductsAdminSide() {
           </table>
         </div>
       </div>
-
-      {/* </div> */}
-      {/* </div> */}
-
     </>
   )
 }

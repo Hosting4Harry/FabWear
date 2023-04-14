@@ -13,8 +13,8 @@ function Offers() {
             <div className='col d-flex border-left my-3'>
                 <div className=''><img src="../img/logo/return-1.png" alt=""></img></div>
                 <div className='pt-3'>
-                    <h4 font-weight="600" font-size="17px" class="sc-96a18268-0 kgqhgk">Money Guarantee</h4>
-                    <span font-size="16px" color="grey.600" class="sc-96a18268-0 gUjlsQ">7 Days Back</span>
+                    <h4 font-weight="600" font-size="17px" class="sc-96a18268-0 kgqhgk">Money Back Guarantee</h4>
+                    <span font-size="16px" color="grey.600" class="sc-96a18268-0 gUjlsQ">7 Days</span>
                 </div>
             </div>
             <div className='col d-flex border-left my-3'>

@@ -8,7 +8,9 @@ function MyAddress() {
     const navigate = useNavigate();
     const [yourAddress, setYourAddress] = useState([]);
     // const [inputAddres, setInputAddres] = useState("");
-    const loc = localStorage.getItem('NavLoc')
+    const loc = localStorage.getItem('NavLoc');
+    const user = localStorage.getItem('EcomUser');
+    const userEmail = localStorage.getItem('EcomEmail');
     const getaddress = async () => {
         const dat = localStorage.getItem('EcomUserId');
         const res = await axios.get(`http://localhost:8000/address/getaddress/${dat}`);
@@ -35,9 +37,9 @@ function MyAddress() {
                                             <div className="osahan-user-media">
                                                 <img className="mb-3 rounded-pill shadow-sm mt-1" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="gurdeep singh osahan" />
                                                 <div className="osahan-user-media-body">
-                                                    <h6 className="mb-2">Harry</h6>
+                                                    <h6 className="mb-2">{user}</h6>
                                                     <p className="mb-1">+91 70775-52981</p>
-                                                    <p>something@gmail.com</p>
+                                                    <p>{userEmail}</p>
                                                     <p className="mb-0 text-black font-weight-bold"><Link className="text-primary mr-3" data-toggle="modal" data-target="#edit-profile-modal" to="#"><i className="icofont-ui-edit"></i> EDIT</Link></p>
                                                 </div>
                                             </div>
@@ -69,7 +71,7 @@ function MyAddress() {
                                                                         <div className="mr-3"><i className="icofont-ui-home icofont-3x"></i></div>
                                                                         <div className="media-body">
                                                                             <h6 className="mb-1 text-secondary">Home</h6>
-                                                                            <p className="text-black">{val.address}
+                                                                            <p className="text-black">{val.address}<br />{val.phone}
                                                                             </p>
                                                                             <p className="mb-0 text-black font-weight-bold">
                                                                                 <Link className="text-primary mr-3" data-toggle="modal" data-target="#add-address-modal" to={"/addaddress/" + val.id}> EDIT</Link>
