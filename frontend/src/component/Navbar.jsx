@@ -12,8 +12,6 @@ const Navbar = () => {
   const submit = (e) => {
     e.preventDefault();
     navigate('/searchProduct/' + searchValue);
-    // hideList();
-    // setSearchValue('')
   };
   const submitForm = async (e) => {
     setSearchValue(e.target.value);
@@ -108,9 +106,6 @@ const Navbar = () => {
               }
             </NavLink>
           </li>
-          {/* <li>
-          <NavLink to="/contact" className=" position-relative me-3">Contact</NavLink>
-        </li> */}
           <li>
             <NavLink to="/myaccount" className=" position-relative me-3" >User </NavLink>
           </li>
@@ -119,8 +114,14 @@ const Navbar = () => {
     </div>
     {loading &&
       <div className=" wrapper wrapper-spin ">
-        <div class="container-spin spinner text-primary">
-        </div>
+        <figure>
+          <div class="dot white"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </figure>
+        <div className='text text-light'></div>
       </div>
     }
   </>

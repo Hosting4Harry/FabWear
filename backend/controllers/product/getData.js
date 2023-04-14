@@ -60,7 +60,9 @@ router.get("/getdataall", async (req, res) => {
     await db.products.findAll({ order: Sequelize.literal('rand()') })
         // await db.products.findAll()
         .then(result => {
-            res.send(result);
+            setTimeout(() => {
+                res.send(result);
+            }, 2000);
         }).catch(error => {
             console.log(error);
         });
