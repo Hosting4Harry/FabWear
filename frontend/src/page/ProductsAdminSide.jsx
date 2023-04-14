@@ -38,6 +38,7 @@ function ProductsAdminSide() {
               <option value="all">All</option>
               <option value="men">Men</option>
               <option value="women">women</option>
+              <option value="kids">Kids</option>
               <option value="hat">Hat</option>
               <option value="jackets">jackets</option>
               <option value="kurta">kurta</option>
