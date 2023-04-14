@@ -9,6 +9,17 @@ const Navbar = () => {
   const { cart, setCart, wishlist, setWishlist, searchResult, setSearchResult, loading } = useContext(DataContext);
   const [searchValue, setSearchValue] = useState("");
 
+  window.onscroll = () => {
+    if (window.scrollY <= 150) {
+      document.getElementById('nav').style.backgroundColor = '#000';
+      document.querySelector('nav > label > form').style.display = 'block';
+    } else {
+      document.getElementById('nav').style.backgroundColor = 'transparent';
+      document.querySelector('nav > label > form').style.display = 'none';
+    }
+  }
+
+
   const submit = (e) => {
     e.preventDefault();
     navigate('/searchProduct/' + searchValue);
@@ -48,8 +59,8 @@ const Navbar = () => {
   }, [loading]);
   console.log(loading)
   return (<>
-    <div className="code-nav flex">
-      <nav className='right-nav flex'>
+    <div className="code-nav flex ">
+      <nav id='nav' className='right-nav flex'>
         <input type="checkbox" id="check" />
         <label htmlFor="check" className="checkbtn">
           <i className="fa fa-bars"></i>
@@ -57,7 +68,7 @@ const Navbar = () => {
         <label className="logo">
           <img style={{ width: "50px" }} src="../img/T4.png" alt="box" className="img-fluid" /><NavLink to="/home">FabWear</NavLink>
         </label>
-        <label className='searchBar'>
+        <label className='searchBar' id='searchBar' style={{}}>
           <form onSubmit={submit} className="searchForm">
             <div className=' form-group '>
               <div className='d-flex'>
