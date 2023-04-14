@@ -17,6 +17,7 @@ const Cart = () => {
         }).then((response) => {
             if (!response.data.login) {
                 navigate("/");
+                setLoading(false);
             }
             setLoading(false);
         })
