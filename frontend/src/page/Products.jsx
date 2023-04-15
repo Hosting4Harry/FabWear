@@ -30,8 +30,10 @@ const Products = () => {
         setLoading(true);
         const res = await axios.get('http://localhost:8000/product/getdataall');
         if (!res.data) {
+            debugger
             setGetdata(productData);
         } else {
+            debugger
             setLoading(false);
             setGetdata(res.data);
         }

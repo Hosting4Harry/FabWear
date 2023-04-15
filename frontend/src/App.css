@@ -160,7 +160,7 @@
 }
 
 footer {
-  height: 80vh;
+  height: 70vh;
   padding: 30px 0;
   background-color: azure;
   width: 100%;
@@ -168,6 +168,19 @@ footer {
   display: flex;
   opacity: 0.8;
   bottom: 0px;
+}
+
+@media (max-width: 860px) {
+  footer {
+    height: fit-content;
+    padding: 30px 0;
+    background-color: azure;
+    width: 100%;
+    margin: auto 0;
+    display: flex;
+    opacity: 0.8;
+    bottom: 0px;
+  }
 }
 
 .foot-img {

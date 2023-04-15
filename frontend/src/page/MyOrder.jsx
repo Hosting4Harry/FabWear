@@ -30,14 +30,11 @@ const MyOrder = () => {
     }, [])
 
     const getData = async () => {
-
         const { data } = await axios.get(`http://localhost:8000/order/myorder/${id}`);
-        debugger
         setData(data)
     }
-    console.log(data)
     useEffect(() => {
-        getData()
+        getData();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     return (

@@ -63,6 +63,9 @@ const MyAccount = () => {
             .then(response => {
                 setLoading(false);
                 setOrder(response.data);
+            }).catch(error => {
+                setLoading(false);
+                console.log(error);
             })
 
     }
@@ -81,32 +84,32 @@ const MyAccount = () => {
                     <div className='row mb-3  ' >
                         <div className='col-sm-12 me-2 col-md-3 col-lg-3 d-flex my-3 py-3 shadow ' onClick={() => getOrderDetails(dat)}>
                             <div className=' pt-3'>
-                                <h4 font-weight="600" font-size="17px" >Your Orders</h4>
-                                <span font-size="16px" color="grey.600" ></span>
+                                <h4 fontWeight="600" fontSize="17px" >Your Orders</h4>
+                                <span fontSize="16px" color="grey.600" ></span>
                             </div>
                         </div>
                         <div className='col-sm-12  me-2 col-md-3 col-lg-3 d-flex my-3 py-3 shadow' onClick={() => navigate('/myaddress')}>
                             <div className='pt-3'>
-                                <h4 font-weight="600" font-size="17px" >Your Address</h4>
-                                <span font-size="16px" color="grey.600" >Manage your address</span>
+                                <h4 fontWeight="600" fontSize="17px" >Your Address</h4>
+                                <span fontSize="16px" color="grey.600" >Manage your address</span>
                             </div>
                         </div>
                         <div className='col-sm-12 col-md-3 me-2  col-lg-3 d-flex border-left my-3 py-3 shadow' onClick={() => navigate('/wishlist')}>
                             <div className='pt-3' >
-                                <h4 font-weight="600" font-size="17px" >Wish List</h4>
-                                <span font-size="16px" color="grey.600" >See what you wish for</span>
+                                <h4 fontWeight="600" fontSize="17px" >Wish List</h4>
+                                <span fontSize="16px" color="grey.600" >See what you wish for</span>
                             </div>
                         </div>
                         <div className='col-sm-12 col-md-3 me-2  col-lg-3 d-flex border-left py-3 my-3 pt-1 shadow' onClick={() => { getPendingOrderDetails(dat) }}>
                             <div className='pt-3'>
-                                <h4 font-weight="600" font-size="17px"  >Pending Orders</h4>
-                                <span font-size="16px" color="grey.600" >Check Your Pending Orders</span>
+                                <h4 fontWeight="600" fontSize="17px"  >Pending Orders</h4>
+                                <span fontSize="16px" color="grey.600" >Check Your Pending Orders</span>
                             </div>
                         </div>
                         <div className='col-sm-12 col-md-3 me-2  col-lg-3 d-flex border-left py-3 my-3 pt-1 shadow' onClick={() => navigate('/contact')}>
                             <div className='pt-3'>
-                                <h4 font-weight="600" font-size="17px" >Contact Us</h4>
-                                <span font-size="16px" color="grey.600" >Secure system</span>
+                                <h4 fontWeight="600" fontSize="17px" >Contact Us</h4>
+                                <span fontSize="16px" color="grey.600" >Secure system</span>
                             </div>
                         </div>
 

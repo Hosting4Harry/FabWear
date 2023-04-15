@@ -11,10 +11,11 @@ const Navbar = () => {
 
   window.onscroll = () => {
     if (window.scrollY <= 150) {
+      document.getElementById('sideBar').style.top = '0px';
       document.getElementById('nav').style.backgroundColor = '#000';
       document.querySelector('nav > label > form').style.display = 'block';
     } else {
-      document.getElementById('nav').style.backgroundColor = 'transparent';
+      document.getElementById('nav').style.backgroundColor = 'rgb(152, 158, 158)';
       document.querySelector('nav > label > form').style.display = 'none';
     }
   }
@@ -126,11 +127,11 @@ const Navbar = () => {
     {loading &&
       <div className=" wrapper wrapper-spin ">
         <figure>
-          <div class="dot white"></div>
-          <div class="dot"></div>
-          <div class="dot"></div>
-          <div class="dot"></div>
-          <div class="dot"></div>
+          <div className="dot white"></div>
+          <div className="dot"></div>
+          <div className="dot"></div>
+          <div className="dot"></div>
+          <div className="dot"></div>
         </figure>
         <div className='text text-light'></div>
       </div>
