@@ -99,7 +99,7 @@ const Home = () => {
                             <button className="btn btn-outline-success">Read More</button>
                         </div>
                         <div className="col-md-6 col-12 mx-auto mb-3 ">
-                            <img src="../img/T5.png" alt="ok" className="img-fluid side-img" />
+                            <img src="../img/logo/Fab-Wear4.png" alt="ok" className="img-fluid side-img" />
                         </div>
                     </div>
                 </div>

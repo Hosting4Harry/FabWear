@@ -11,12 +11,15 @@ const Navbar = () => {
 
   window.onscroll = () => {
     if (window.scrollY <= 150) {
-      document.getElementById('sideBar').style.top = '0px';
-      document.getElementById('nav').style.backgroundColor = '#000';
+      document.getElementById('sideBar').style.display = 'block';
+      document.getElementById('nav').style.backgroundColor = '#012946';
       document.querySelector('nav > label > form').style.display = 'block';
+      document.querySelector('nav > label > i').style.display = 'initial';
     } else {
-      document.getElementById('nav').style.backgroundColor = 'rgb(152, 158, 158)';
+      document.getElementById('sideBar').style.display = 'none';
+      document.getElementById('nav').style.backgroundColor = 'transparent';
       document.querySelector('nav > label > form').style.display = 'none';
+      document.querySelector('nav > label > i').style.display = 'none';
     }
   }
 
@@ -67,7 +70,8 @@ const Navbar = () => {
           <i className="fa fa-bars"></i>
         </label>
         <label className="logo">
-          <img style={{ width: "50px" }} src="../img/T4.png" alt="box" className="img-fluid" /><NavLink to="/home">FabWear</NavLink>
+          {/* <img style={{ width: "50px" }} src="../img/logo/Fab wear3.png" alt="box" className="img-fluid" /> */}
+          <NavLink to="/home">Fab Wear</NavLink>
         </label>
         <label className='searchBar' id='searchBar' style={{}}>
           <form onSubmit={submit} className="searchForm">
