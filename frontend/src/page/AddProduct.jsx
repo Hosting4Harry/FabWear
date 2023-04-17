@@ -115,12 +115,17 @@ const AddProduct = () => {
         // eslint-disable-next-line
     }, [id]);
     console.log(productDetails)
-    console.log(productDetails.product_image)
+    console.log(productDetails.product_image);
+    console.log("../img/" + productDetails?.product_image);
+
     return (
-        <section className='pt-4' >
-            <div className=''>
-                <div className="row d-flex justify-content-center aligen-items-center mt-5 h-50">
-                    <div className="col-5 border border-yellow">
+        <section className='pt-4 mb-5' >
+            <div className='container mb-5'>
+                <div className="row  justify-content-center aligen-items-center mt-5 h-50">
+                    <div className='col-lg-5 col-md-8 col-sm-10'>
+                        <img src={`../../img/${id ? productDetails.product_image : 'logo/AddImage.png'}`} alt='dsd' className="img-fluid" />
+                    </div>
+                    <div className="col-lg-5 col-md-12 col-sm-10 border border-yellow">
                         <form className="form-group" onSubmit={handelSubmit}>
                             <div className='row'>
                                 <div className="col mb-3">
@@ -165,15 +170,13 @@ const AddProduct = () => {
                             <div className='row'>
                                 <div className="col mb-3">
                                     <label htmlFor="exampleInputPassword1" className="form-label">Product Image</label>
-                                    <input type="file" value={productDetails.file} onChange={(e) => { setProductDetails(productDetails => ({ ...productDetails, product_image: e.target.files[0] })) }} name="product_image" className="form-control" id="exampleInputPassword1" required />
+                                    <input type="file" value={productDetails.file} onChange={(e) => { setProductDetails(productDetails => ({ ...productDetails, product_image: e.target.files[0] })) }} name="product_image" className="form-control" id="exampleInputPassword1" />
                                 </div>
                             </div>
                             <button type="submit" className="btn btn-primary" >Submit</button>
-                        </form></div>
-                    <div className='col'>
-                        <img src={`../img/${productDetails.product_image}`} alt='dsd' className="img-fluid t-img" />
-
+                        </form>
                     </div>
+
                 </div>
             </div>
         </section>
