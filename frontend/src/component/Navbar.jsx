@@ -10,7 +10,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { cart, setCart, wishlist, setWishlist, searchResult, setSearchResult, loading } = useContext(DataContext);
   const [searchValue, setSearchValue] = useState("");
-  const btn = document.getElementById('button')
+  const btn = document.getElementById('button');
 
   window.onscroll = () => {
     if (window.scrollY <= 150) {

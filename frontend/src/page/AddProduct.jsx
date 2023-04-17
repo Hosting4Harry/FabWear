@@ -31,13 +31,13 @@ const AddProduct = () => {
         name: '',
         price: '',
         product_image: '',
-        category: ''
+        category: '',
+        accessories: false
     });
 
     const getData = async () => {
         if (id) {
-            const res = await axios.get("http://localhost:8000/product/getdata/" + id)
-            debugger
+            const res = await axios.get("http://localhost:8000/product/getdata/" + id);
             setProductDetails(res.data);
         } else {
             console.log("u can add new product");
@@ -47,7 +47,7 @@ const AddProduct = () => {
     const handelData = (e) => {
         let { name, value } = e.target;
         let x = { ...productDetails, [name]: value };
-        setProductDetails(x)
+        setProductDetails(x);
     }
     console.log(productDetails)
     const handelSubmit = (e) => {
@@ -58,6 +58,7 @@ const AddProduct = () => {
         data.append('price', productDetails.price);
         data.append('category', productDetails.category);
         data.append('product_image', productDetails.product_image);
+        data.append('accessories', productDetails.accessories);
         if (!id) {
             var config = {
                 method: 'post',
@@ -112,6 +113,10 @@ const AddProduct = () => {
                             <div className="mb-3">
                                 <label htmlFor="exampleInputEmail1" className="form-label">Price</label>
                                 <input type="text" value={productDetails.price} onChange={handelData} name="price" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required />
+                            </div>
+                            <div className="mb-3">
+                                <input type="checkbox" defaultValue={productDetails.accessories} onChange={(e) => { setProductDetails(productDetails => ({ ...productDetails, accessories: !productDetails.accessories })) }} name="accessories" className="form-check" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                                <label htmlFor="exampleInputEmail1" className="form-label">Accessories</label>
                             </div>
                             <div className="form-group w-50 mb-3">
                                 <label htmlFor="sel1">Category:</label>
