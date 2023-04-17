@@ -119,11 +119,11 @@ const AddProduct = () => {
     console.log("../img/" + productDetails?.product_image);
 
     return (
-        <section className='pt-4 mb-5' >
+        <section className='pt-2 mb-5' >
             <div className='container mb-5'>
                 <div className="row  justify-content-center aligen-items-center mt-5 h-50">
                     <div className='col-lg-5 col-md-8 col-sm-10'>
-                        <img src={`../../img/${id ? productDetails.product_image : 'logo/AddImage.png'}`} alt='dsd' className="img-fluid" />
+                        <img src={`../../img/${id ? productDetails.product_image : 'NO_IMG.png'}`} alt='dsd' className="img-fluid" />
                     </div>
                     <div className="col-lg-5 col-md-12 col-sm-10 border border-yellow">
                         <form className="form-group" onSubmit={handelSubmit}>
@@ -139,7 +139,7 @@ const AddProduct = () => {
                             </div>
                             <div className='row'>
                                 <div className="col mb-3">
-                                    <input type="checkbox" checked={productDetails.accessories} onChange={(e) => { setProductDetails(productDetails => ({ ...productDetails, accessories: !productDetails.accessories })) }} name="accessories" />Accessories
+                                    <input type="checkbox" checked={productDetails.accessories} onChange={(e) => { setProductDetails(productDetails => ({ ...productDetails, accessories: !productDetails.accessories })) }} name="accessories" />Add to Accessories
                                 </div>
                                 <div className="col form-group w-50 mb-3">
                                     <label htmlFor="sel1">Category:</label>
