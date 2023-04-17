@@ -296,7 +296,7 @@ body {
 } */
 
 .logo a {
-  color: #fff !important;
+  color: #fff;
 }
 
 .logo a:hover {

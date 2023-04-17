@@ -44,6 +44,7 @@ const Products = () => {
         setGetModaldata(resModal.data);
     }
     useEffect(() => {
+        window.scrollTo(0, 0)
         setInterval(getModalData, 6000);
         getDatas();
         // eslint-disable-next-line react-hooks/exhaustive-deps

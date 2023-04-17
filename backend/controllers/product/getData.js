@@ -62,7 +62,7 @@ router.get("/getdataall", async (req, res) => {
         .then(result => {
             setTimeout(() => {
                 res.send(result);
-            }, 2000);
+            }, 500);
         }).catch(error => {
             console.log(error);
         });

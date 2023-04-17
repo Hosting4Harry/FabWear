@@ -29,6 +29,7 @@ const Wishlist = () => {
             })
     }
     useEffect(() => {
+        window.scrollTo(0, 0)
         getWish(id);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])
@@ -42,14 +43,9 @@ const Wishlist = () => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-    var wishListCss;
-    if (!wishlist.length) {
-        wishListCss = { backgroundColor: "#eee", height: "100vh" }
-    } else {
-        wishListCss = { backgroundColor: "#eee", height: "100vh" }
-    }
+
     return (<>
-        <div className="cart pt-2" style={wishListCss}>
+        <div className="cart pt-2" style={{ backgroundColor: "#eee", marginBottom: "200px" }}>
             {!wishlist.length ? (
                 <div className="container">
                     <div className="container" style={{ textAlign: 'center' }}>

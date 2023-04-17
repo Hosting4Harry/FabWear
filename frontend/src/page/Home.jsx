@@ -30,6 +30,7 @@ const Home = () => {
         setWishlist(res.data);
     }
     useEffect(() => {
+        window.scrollTo(0, 0)
         getData();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])

@@ -9,7 +9,7 @@ toast.configure();
 const ProductDetails = () => {
     const scrl = useRef(null);
     const { id } = useParams();
-    const { cart, setCart } = useContext(DataContext);
+    const { cart, setCart, setLoading } = useContext(DataContext);
     const userId = localStorage.getItem("EcomUserId");
     const [detdata, setDetdata] = useState([]);
     const [pdetails, setPdetails] = useState("1");
@@ -39,28 +39,32 @@ const ProductDetails = () => {
                 setCart([...cart, data])
             }
 
-            toast.success('Added to the Cart!', {
-                position: "bottom-right",
-                autoClose: 1800,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            });
+            // toast.success('Added to the Cart!', {
+            //     position: "bottom-right",
+            //     autoClose: 1800,
+            //     hideProgressBar: true,
+            //     closeOnClick: true,
+            //     pauseOnHover: true,
+            //     draggable: true,
+            //     progress: undefined,
+            //     theme: "dark",
+            // });
         }
     }
 
     const getData = async () => {
-        const res = await axios(`http://localhost:8000/product/getdata/${id}`);
-        setDetdata(res.data);
-        await axios('http://localhost:8000/product/searchProduct/' + res.data.product_image.split('/')[1])
-            .then(response => {
-                setData(response.data);
-            }).catch(error => {
-                if (error)
-                    setData([]);
+        setLoading(true);
+        await axios(`http://localhost:8000/product/getdata/${id}`)
+            .then(async response => {
+                setLoading(false);
+                setDetdata(response.data);
+                await axios('http://localhost:8000/product/searchProduct/' + response.data.product_image.split('/')[3 || 2 || 1])
+                    .then(response => {
+                        setData(response.data);
+                    }).catch(error => {
+                        if (error)
+                            setData([]);
+                    })
             })
     }
     useEffect(() => {
