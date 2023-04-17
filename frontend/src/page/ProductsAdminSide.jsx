@@ -22,7 +22,11 @@ function ProductsAdminSide() {
     }
   }
   const deleteProduct = async (id) => {
-    await axios.post("http://localhost:8000/product/deleteProduct" + id)
+    const deleteProduct = window.confirm("Do you want to delete the product?");
+    if (deleteProduct) {
+      await axios.post("http://localhost:8000/product/deleteProduct/" + id);
+      window.location.reload(true)
+    }
   }
 
   useEffect(() => {

@@ -8,7 +8,6 @@ const AdminNav = () => {
     const navigate = useNavigate();
     const { setCart, setWishlist, searchResult, setSearchResult, setLoading } = useContext(DataContext);
     const [searchValue, setSearchValue] = useState("");
-    const btn = document.getElementById('button');
 
     const submit = (e) => {
         e.preventDefault();
@@ -43,11 +42,13 @@ const AdminNav = () => {
         setWishlist(res.data);
     }
     useEffect(() => {
+        window.scrollTo(0, 0);
         getData();
         cartItems();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     window.onscroll = () => {
+        const btn = document.getElementById('button');
         if (window.scrollY <= 150) {
             document.getElementById('logo').style.color = 'inherit';
             document.getElementById('sideBar').style.display = 'block';
