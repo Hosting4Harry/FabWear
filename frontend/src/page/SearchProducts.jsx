@@ -20,6 +20,7 @@ function SearchProducts() {
             })
     }
     useEffect(() => {
+        window.scrollTo(0, 0);
         getData(name);
         // document.getElementById("searchList").style.display = "none";
         // eslint-disable-next-line react-hooks/exhaustive-deps
