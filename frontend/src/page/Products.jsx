@@ -190,9 +190,6 @@ const Products = () => {
                 }
             </div>
             }
-
-
-
         </>
     )
 }

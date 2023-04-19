@@ -56,11 +56,9 @@ function CheckOut() {
     // }
     useEffect(() => {
         getaddress();
-        // buynow(id);
         // eslint-disable-next-line
     }, []);
     useEffect(() => {
-        debugger
         let totamo = 0;
         for (let i = 0; i < cart.length; i++) {
             if (cart[i].productqty == null) {
@@ -157,7 +155,6 @@ function CheckOut() {
         const paymentObject = new window.Razorpay(options);
         paymentObject.open();
     }
-
 
     return (
         <div className="address">
