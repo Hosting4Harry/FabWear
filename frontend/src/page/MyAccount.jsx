@@ -1,11 +1,10 @@
 import React, { useEffect, useState, useRef, useContext } from 'react'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import jwt_decode from "jwt-decode";
 import { DataContext } from '../context/DataContext'
 
 const MyAccount = () => {
-    const { setLoading } = useContext(DataContext);
+    const { setLoading, roleId } = useContext(DataContext);
     const [order, setOrder] = useState([]);
     const location = useLocation();
     const [modal, setModal] = useState(false);
@@ -30,7 +29,6 @@ const MyAccount = () => {
             }
         })
     }
-    const token = localStorage.getItem('Ecomtoken');
 
 
 
@@ -76,18 +74,8 @@ const MyAccount = () => {
     useEffect(() => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-    const checkRole = () => {
-        try {
-            var decoded = jwt_decode(token);
-        } catch (error) {
-        }
-        if (decoded?.role === 1 || decoded?.role === 2) {
-            return true
-        } else {
-            return false
-        }
-    }
-    if (checkRole()) {
+
+    if (roleId === 1 || roleId === 3) {
         return <div className="payment" style={{ marginBottom: "400px" }}>
             <div className="container">
                 <button className="btn btn-success ml-1 mr-1" disabled>Welcome {userdatast}</button>
