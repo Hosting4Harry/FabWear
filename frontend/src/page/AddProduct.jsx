@@ -114,9 +114,6 @@ const AddProduct = () => {
         getData(id);
         // eslint-disable-next-line
     }, [id]);
-    console.log(productDetails)
-    console.log(productDetails.product_image);
-    console.log("../img/" + productDetails?.product_image);
 
     return (
         <section className='pt-2 mb-5' >
