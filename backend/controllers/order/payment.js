@@ -80,7 +80,8 @@ router.post("/success", async (req, res) => {
         // YOU CAN SAVE THE DETAILS IN YOUR DATABASE IF YOU WANT
 
         db.orders.update({
-            orderstatus: "Order Done"
+            orderstatus: "Order Done",
+            paymentid: razorpayPaymentId
         },
             {
                 where: {

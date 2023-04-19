@@ -116,11 +116,14 @@ const AddProduct = () => {
     }, [id]);
 
     return (
-        <section className='pt-2 mb-5' >
-            <div className='container mb-5'>
+        <section className='pt-2' style={{ marginBottom: "200px" }}>
+            <div className='container '>
+                <div className=''>
+                    <h2>{id ? "Edit " : "Add "}Product</h2>
+                </div>
                 <div className="row  justify-content-center aligen-items-center mt-5 h-50">
                     <div className='col-lg-5 col-md-8 col-sm-10'>
-                        <img src={`../../img/${id ? productDetails.product_image : 'NO_IMG.png'}`} alt='dsd' className="img-fluid" />
+                        <img src={`../../img/${id ? productDetails.product_image : 'NO_IMG.png'}`} alt='dsd' className="img-fluid" style={{ height: '400px', width: "100%" }} />
                     </div>
                     <div className="col-lg-5 col-md-12 col-sm-10 border border-yellow">
                         <form className="form-group" onSubmit={handelSubmit}>

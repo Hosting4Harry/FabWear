@@ -74,7 +74,7 @@ function ProductsAdminSide() {
                   return (
                     <tr kay={ind} className="fw-normal">
                       <td>
-                        <Link to={`/details/${val.id}`}>
+                        <Link to={`/addproduct/edit/${val.id}`}>
                           <img src={`../img/${val.product_image}`} alt={`../img/${val.product_image}`} className="img-fluid t-img" />
                         </Link>
                       </td>
@@ -89,7 +89,7 @@ function ProductsAdminSide() {
                   return (
                     <tr kay={ind} className="fw-normal">
                       <td>
-                        <Link to={`/details/${val.id}`}>
+                        <Link to={`/addproduct/edit/${val.id}`}>
                           <img src={`../img/${val.product_image}`} alt={`../img/${val.product_image}`} className="img-fluid t-img" />
                         </Link>
                       </td>
@@ -104,7 +104,7 @@ function ProductsAdminSide() {
                   return (
                     <tr kay={ind} className="fw-normal">
                       <td>
-                        <Link to={`/details/${val.id}`}>
+                        <Link to={`/addproduct/edit/${val.id}`}>
                           <img src={`../img/${val.product_image}`} alt={`../img/${val.product_image}`} className="img-fluid t-img" />
                         </Link>
                       </td>
@@ -119,7 +119,7 @@ function ProductsAdminSide() {
                   return (
                     <tr kay={ind} className="fw-normal">
                       <td>
-                        <Link to={`/details/${val.id}`}>
+                        <Link to={`/addproduct/edit/${val.id}`}>
                           <img src={`../img/${val.product_image}`} alt={`../img/${val.product_image}`} className="img-fluid t-img" />
                         </Link>
                       </td>
@@ -134,7 +134,7 @@ function ProductsAdminSide() {
                   return (
                     <tr kay={ind} className="fw-normal">
                       <td>
-                        <Link to={`/details/${val.id}`}>
+                        <Link to={`/addproduct/edit/${val.id}`}>
                           <img src={`../img/${val.product_image}`} alt={`../img/${val.product_image}`} className="img-fluid t-img" />
                         </Link>
                       </td>
