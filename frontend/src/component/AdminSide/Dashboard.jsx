@@ -5,16 +5,16 @@ function Dashboard() {
     return (
         <section>
             <div className="container">
+                <h1>Dashboard</h1>
                 <div className='row mb-3  ' >
-
-                    <div className='col-sm-12 me-2 col-md-3 col-lg-3 d-flex my-5 py-3 shadow '>
+                    <div className='col-sm-12 me-2 col-md-4 col-lg-3  my-5 py-3 shadow '>
                         <div className=' pt-3 d-flex'>
                             <div>
                                 <img src="/img/dollar_icon.png" alt="" height="50px" />
                             </div>
                             <div style={{ marginLeft: "20px" }}>
-                                <h4 fontWeight="600" fontSize="17px" >Revenue</h4>
-                                <span fontSize="16px" color="grey.600" >$ 13,456.50</span>
+                                <h4 fontWeight="600" fontSize="17px" >Revenue <br />$ 13,456.50</h4>
+                                <span fontSize="16px" color="grey.600" >Shipping fees are not included</span>
 
                             </div>
                         </div>
@@ -59,25 +59,26 @@ function Dashboard() {
                         </div>
                     </div>
                 </div>
-                <div className="row">
-                    <div className='col'>
-
-                    </div>
-                    <div className='col'>
-                        <div className='container' style={{ height: "400px", width: "400px" }}>
+                <div className="row d-flex card" style={{ height: "600px", width: "600px" }}>
+                    <h3>Sale statistics</h3>
+                    <div className='col card-body'>
+                        <div className='container' >
                             <CChart
-                                type="doughnut"
+                                type="line"
                                 data={{
-                                    labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
+                                    labels: ['shirt', 'pant', 'tees', 'jacket', 'hat', 'kurta', 'sneakers', 'perfume', 'oil'],
                                     datasets: [
                                         {
                                             backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
-                                            data: [40, 20, 80, 10],
+                                            data: [40, 20, 80, 10, 50, 30, 65, 40, 20],
                                         },
                                     ],
                                 }}
                             />
                         </div>
+                    </div>
+                    <div>
+
                     </div>
                 </div>
             </div>
