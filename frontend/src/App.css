@@ -292,7 +292,7 @@ footer ul li a:hover {
 
 .payment {
   padding: 75px 0;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 
 .t-img {

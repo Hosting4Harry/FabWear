@@ -39,7 +39,7 @@ const MyOrder = () => {
     }, [])
     return (
         <>
-            <div className="payment">
+            <div className="payment" style={{ overflowY: "scroll" }}>
                 <div className="container">
                     <div className="row">
                         <div className="table-responsive">
