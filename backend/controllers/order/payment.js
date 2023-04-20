@@ -7,7 +7,15 @@ const router = express();
 
 router.post("/orders", async (req, res) => {
     const { cart, paymentemail, name } = req.body;
-    const data = req.body;
+    const data = {
+        name: req.body.name,
+        orderstatus: req.body.orderstatus,
+        paymentemail: req.body.paymentemail,
+        paymentmode: req.body.paymentmode,
+        totalprice: req.body.totalprice,
+        userid: req.body.userid,
+        address: req.body.address.address
+    }
     try {
         const instance = new Razorpay({
             key_id: process.env.RAZORPAY_KEY_ID || "rzp_test_T3tAATbEcOqopL",
