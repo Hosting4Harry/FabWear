@@ -51,4 +51,5 @@ db.user_roles = require("./user_role")(sequelize, DataTypes);
 db.claims = require("./claims")(sequelize, DataTypes);
 db.carts = require('./cart')(sequelize, DataTypes);
 db.reviews = require('./reviews')(sequelize, DataTypes);
+db.feedbacks = require('./feedbacks')(sequelize, DataTypes);
 module.exports = db;

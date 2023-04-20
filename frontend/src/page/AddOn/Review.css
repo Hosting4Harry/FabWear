@@ -1,0 +1,14 @@
+.container2 {
+    width: 800px;
+
+}
+
+.card {
+    background-color: #f7f5f5;
+}
+
+@media (max-width :570px) {
+    .container2 {
+        width: 600px;
+    }
+}
