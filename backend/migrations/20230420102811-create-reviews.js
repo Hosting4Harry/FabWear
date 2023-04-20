@@ -21,6 +21,9 @@ module.exports = {
       userName: {
         type: Sequelize.STRING
       },
+      stars: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

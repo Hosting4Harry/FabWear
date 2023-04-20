@@ -1,9 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
+import StarRating from './StarRating';
 
 function Review() {
     const [review, setReview] = useState('');
+    const [rating, setRating] = useState(0);
     const [reviewData, setReviewData] = useState([]);
     const { id: productId } = useParams();
     const onSub = (e) => {
@@ -12,7 +14,8 @@ function Review() {
             productId: +productId,
             userId: localStorage.getItem('EcomUserId'),
             review: review,
-            userName: localStorage.getItem('EcomUser')
+            userName: localStorage.getItem('EcomUser'),
+            stars: rating
         }
         axios.post('http://localhost:8000/review', data)
             .then(response => {
@@ -29,6 +32,7 @@ function Review() {
                 setReviewData(response.data.reviewData)
             })
     }
+    console.log(rating)
     useEffect(() => {
         getReviews();
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -53,21 +57,14 @@ function Review() {
                                         <i className="fas fa-quote-left pe-2"></i>{item.review}
                                     </td>
                                     <td>  <ul className="list-unstyled d-flex justify-content-center mb-0">
-                                        <li>
-                                            <i className="fas fa-star fa-sm text-warning"></i>
-                                        </li>
-                                        <li>
-                                            <i className="fas fa-star fa-sm text-warning"></i>
-                                        </li>
-                                        <li>
-                                            <i className="fas fa-star fa-sm text-warning"></i>
-                                        </li>
-                                        <li>
-                                            <i className="fas fa-star fa-sm text-warning"></i>
-                                        </li>
-                                        <li>
-                                            <i className="fas fa-star-half-alt fa-sm text-warning"></i>
-                                        </li>
+                                        {[...Array(item.stars)].map((star, index) => {
+                                            return (
+                                                <li>
+                                                    <i className="fas fa-star fa-sm text-warning"></i>
+                                                </li>
+                                            )
+                                        })
+                                        }
                                     </ul>
                                     </td>
                                 </tr>
@@ -93,7 +90,9 @@ function Review() {
                         <div className="card-body">
                             <h1>Write a review</h1>
                             <p className="text-center"><strong>What do you think about the product?</strong></p>
-
+                            <h1 className='text-center'>
+                                <StarRating rating={rating} setRating={setRating}></StarRating>
+                            </h1>
                             <div className="">
                                 <textarea className="form-control bordered border-black" id="form4Example6" rows="7" placeholder='Type your valueable review here:' defaultValue={review} onChange={(e) => setReview(e.target.value)}></textarea>
                                 <label className="form-label" for="form4Example6"></label>

@@ -17,7 +17,8 @@ module.exports = (sequelize, DataTypes) => {
     productId: DataTypes.INTEGER,
     userId: DataTypes.INTEGER,
     review: DataTypes.STRING,
-    userName: DataTypes.STRING
+    userName: DataTypes.STRING,
+    stars: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'reviews',
