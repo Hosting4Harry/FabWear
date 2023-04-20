@@ -4,6 +4,7 @@ import axios from 'axios'
 import { DataContext } from '../context/DataContext'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Review from './AddOn/Review';
 toast.configure();
 
 const ProductDetails = () => {
@@ -68,7 +69,7 @@ const ProductDetails = () => {
             })
     }
     useEffect(() => {
-        getData()
+        getData();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])
     if (!detdata) {
@@ -79,14 +80,14 @@ const ProductDetails = () => {
     };
 
     return (
-        <> <section style={{ backgroundColor: "#eee" }}>
+        <> <section style={{ backgroundColor: "#eee", marginBottom: "100px", marginTop: "50px" }}>
             <div className="container">
-                <div className="row justify-content-center mb-3">
+                <div className="row justify-content-center mb-3 ">
                     <div className="col-md-12 col-xl-10">
                         <div className="details">
                             <div className="container">
-                                <div className="row">
-                                    <div className="col-md-6 col-12 mx-auto mb-3">
+                                <div className="row border bg-light">
+                                    <div className="col-md-6 col-12 mx-auto mb-3 mt-3">
                                         <img src={`../img/${detdata.product_image}`} alt={detdata.product_image} className="img-fluid p-im" />
                                     </div>
                                     <div className="col-md-6 col-12 mx-auto mb-3 d-flex  flex-column mt-5">
@@ -173,6 +174,9 @@ const ProductDetails = () => {
                 </div>
             </>
             }
+            <div>
+                <Review></Review>
+            </div>
 
         </section>
 

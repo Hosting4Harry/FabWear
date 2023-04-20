@@ -64,15 +64,15 @@ function Dashboard() {
                     <div className='col card-body'>
                         <div className='container' >
                             <CChart
-                                type="line"
+                                type="doughnut"
                                 data={{
-                                    labels: ['shirt', 'pant', 'tees', 'jacket', 'hat', 'kurta', 'sneakers', 'perfume', 'oil'],
+
+                                    labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
                                     datasets: [
                                         {
                                             backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
-                                            data: [40, 20, 80, 10, 50, 30, 65, 40, 20],
-                                        },
-                                    ],
+                                            data: [40, 20, 80, 10],
+                                        },]
                                 }}
                             />
                         </div>
