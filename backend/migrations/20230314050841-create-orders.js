@@ -24,8 +24,13 @@ module.exports = {
       paymentid: {
         type: Sequelize.STRING
       },
-      address: {
-        type: Sequelize.STRING
+      addressId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'user-data',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,

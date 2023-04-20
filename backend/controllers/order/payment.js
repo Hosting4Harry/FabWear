@@ -14,7 +14,7 @@ router.post("/orders", async (req, res) => {
         paymentmode: req.body.paymentmode,
         totalprice: req.body.totalprice,
         userid: req.body.userid,
-        address: req.body.address.address
+        addressId: +req.body.address.id
     }
     try {
         const instance = new Razorpay({
