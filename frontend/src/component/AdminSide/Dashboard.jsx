@@ -6,7 +6,7 @@ function Dashboard() {
         <section>
             <div className="container">
                 <h1>Dashboard</h1>
-                <div className='row mb-3  ' >
+                <div className='row mb-3'>
                     <div className='col-sm-12 me-2 col-md-4 col-lg-3  my-5 py-3 shadow '>
                         <div className=' pt-3 d-flex'>
                             <div>
