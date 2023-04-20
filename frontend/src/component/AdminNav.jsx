@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from 'react'
 import './Navbar.css'
 import { NavLink } from 'react-router-dom'
 import { DataContext } from '../context/DataContext'
-import axios from 'axios';
 // import './AdminSide/Dashboard.css'
 
 const AdminNav = () => {
@@ -34,19 +33,8 @@ const AdminNav = () => {
     // const hideList = () => {
     //     document.getElementById("searchList").style.display = "none";
     // }
-    const userId = localStorage.getItem("EcomUserId");
-    const cartItems = async () => {
-        const res = await axios.get('http://localhost:8000/cart/' + userId);
-        setCart(res.data);
-    }
-    const getData = async () => {
-        const res = await axios.get('http://localhost:8000/wishlist/' + userId);
-        setWishlist(res.data);
-    }
     useEffect(() => {
         window.scrollTo(0, 0);
-        getData();
-        cartItems();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     window.onscroll = () => {
@@ -108,10 +96,10 @@ const AdminNav = () => {
                 </label>
                 <ul className='flex' id='sideBar'>
                     <li>
-                        <NavLink to="/ProductsAdminSide" className=" position-relative me-3 ms-2">Products</NavLink>
+                        <NavLink to="/admin/products" className=" position-relative me-3 ms-2">Products</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/addproduct" className=" position-relative me-3" >Add Product </NavLink>
+                        <NavLink to="/admin/addproduct" className=" position-relative me-3" >Add Product </NavLink>
                     </li>
                     <li>
                         <NavLink to="/myaccount" className=" position-relative me-3" >User </NavLink>
