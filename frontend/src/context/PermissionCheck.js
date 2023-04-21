@@ -4,8 +4,8 @@ import AdminNav from '../component/AdminNav';
 import { DataContext } from './DataContext';
 
 function PermissionCheck(props) {
-    const { roleId } = useContext(DataContext)
-    if (roleId === 1 || roleId === 3) {
+    const { roleId } = useContext(DataContext);
+    if (roleId === 1 || roleId === 2) {
         return <AdminNav />
     }
 

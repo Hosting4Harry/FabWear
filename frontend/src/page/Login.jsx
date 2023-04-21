@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useContext } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import jwt_decode from "jwt-decode";
@@ -50,7 +50,6 @@ const Login = () => {
             setMsg(res.data.msg)
         }
         else {
-            debugger
             localStorage.setItem("Ecomtoken", res.data.token)
             localStorage.setItem("EcomUser", res.data.user)
             localStorage.setItem("EcomUserId", res.data.userID)
@@ -63,7 +62,8 @@ const Login = () => {
                 }
             }
             checkRole();
-            if (decoded.role === 1 || decoded.role === 3) {
+            debugger
+            if (decoded.role === 1 || decoded.role === 2) {
                 navigate("/dashboard");
             } else {
                 navigate("/home");

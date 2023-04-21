@@ -75,7 +75,7 @@ const MyAccount = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    if (roleId === 1 || roleId === 3) {
+    if (roleId === 1 || roleId === 2) {
         return <div className="payment" style={{ marginBottom: "400px" }}>
             <div className="container">
                 <button className="btn btn-success ml-1 mr-1" disabled>Welcome {userdatast}</button>
