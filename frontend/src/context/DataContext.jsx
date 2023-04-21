@@ -22,10 +22,11 @@ export const ConText = (props) => {
         })
     }
     const checkRole = () => {
+        debugger
         const token = localStorage.getItem('Ecomtoken');
         try {
             var decoded = jwt_decode(token);
-            setRoleId(decoded.id)
+            setRoleId(decoded.role)
         } catch (error) {
         }
     }

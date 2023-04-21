@@ -37,8 +37,8 @@ const AdminNav = () => {
         window.scrollTo(0, 0);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+    const btn = document.getElementById('button');
     window.onscroll = () => {
-        const btn = document.getElementById('button');
         if (window.scrollY <= 150) {
             document.getElementById('logo').style.color = 'inherit';
             document.getElementById('sideBar').style.display = 'block';

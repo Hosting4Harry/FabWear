@@ -1,4 +1,4 @@
-.code-nav .checkbtn {
+/* .code-nav .checkbtn {
     font-size: 30px;
     color: white;
     float: right;
@@ -45,7 +45,7 @@
 @media (max-width: 952px) {
 
     /* ----SEARCHBAR----- */
-    .list-group-item {
+/* .list-group-item {
         margin: 0 !important;
         padding: 0 !important;
         line-height: 1.5 !important;
@@ -59,11 +59,11 @@
         background-color: #fff !important;
         z-index: 9999 !important;
 
-    }
+    } */
 
-    /* ------- */
+/* ------- */
 
-    .code-nav label.logo {
+/* .code-nav label.logo {
         font-size: 30px;
         padding-left: 50px;
     }
@@ -76,11 +76,11 @@
     .code-nav nav ul {
         position: absolute;
     }
-}
+}  */
 
-@media (max-width: 860px) {
+/* @media (max-width: 860px) {
 
-    /* ----SEARCHBAR----- */
+    /* ----SEARCHBAR----- 
     .list-group-item {
         margin: 0 !important;
         padding: 0 !important;
@@ -94,10 +94,10 @@
         color: #000 !important;
         background-color: #fff !important;
         z-index: 9999 !important;
-    }
+    } */
 
-    /* ------- */
-    .code-nav nav {
+/* ------- */
+/* .code-nav nav {
         background: #011727;
         height: 80px;
         width: 100%;
@@ -106,32 +106,70 @@
     .code-nav .checkbtn {
         display: block;
         /* margin-top: -13px; */
+/* } */
+/* 
+.code-nav ul {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background: #04292e;
+    top: 80px;
+    left: -100%;
+    z-index: 9999;
+    text-align: center;
+    transition: all .5s;
+}
+
+.code-nav nav ul li {
+    display: block;
+    margin: 25px 25px;
+    line-height: 30px;
+}
+
+.code-nav nav ul li a {
+    font-size: 20px;
+
+}
+
+.code-nav #check:checked~ul {
+    left: 0;
+}
+} */
+
+@media (max-width:1169px) {
+    .card1 {
+        margin-left: 20px;
     }
 
-    .code-nav ul {
+    .card2 {
+        margin-left: 20px;
+    }
+
+    .card3 {
+        margin-left: 20px;
+    }
+
+    .card4 {
         position: absolute;
-        width: 100%;
-        height: 100vh;
-        background: #04292e;
-        top: 80px;
-        left: -100%;
-        z-index: 9999;
-        text-align: center;
-        transition: all .5s;
+        top: 350px;
+        right: 10px;
+    }
+}
+
+@media (max-width:992px) {
+    .card1 {
+        position: initial;
     }
 
-    .code-nav nav ul li {
-        display: block;
-        margin: 25px 25px;
-        line-height: 30px;
+    .card2 {
+        position: initial;
     }
 
-    .code-nav nav ul li a {
-        font-size: 20px;
-
+    .card3 {
+        position: initial;
     }
 
-    .code-nav #check:checked~ul {
-        left: 0;
+    .card4 {
+        position: initial;
     }
 }
