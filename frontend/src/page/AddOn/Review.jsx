@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import StarRating from './StarRating';
+import './Review.css'
 
 function Review() {
     const [review, setReview] = useState('');
@@ -83,18 +84,22 @@ function Review() {
                 <h3>Be the first one to review</h3>
             </div>
         }
-        <div className='container w-50'>
-            <div className="mx-0 mx-sm-auto">
+        <div className='container container2'>
+            <div className="mx-12 mx-sm-auto">
                 <div className="card bordered">
                     <form className="px-2" onSubmit={onSub}>
                         <div className="card-body">
-                            <h1>Write a review</h1>
+                            <div className='d-flex'>
+                                <i className="fas fa-star fa-2x mb-3 text-warning"> </i>
+                                <h2>Write a review</h2>
+                            </div>
+
                             <p className="text-center"><strong>What do you think about the product?</strong></p>
                             <h1 className='text-center'>
                                 <StarRating rating={rating} setRating={setRating}></StarRating>
                             </h1>
                             <div className="">
-                                <textarea className="form-control bordered border-black" id="form4Example6" rows="7" placeholder='Type your valueable review here:' defaultValue={review} onChange={(e) => setReview(e.target.value)}></textarea>
+                                <textarea className="form-control bordered border-black" id="form4Example6" rows="7" placeholder='Type your valueable review here:' defaultValue={review} onChange={(e) => setReview(e.target.value)} required></textarea>
                                 <label className="form-label" for="form4Example6"></label>
                             </div>
                             <div className=" text-end mb-2">

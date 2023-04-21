@@ -119,6 +119,12 @@ const MyAccount = () => {
                         <div className='col-sm-12 col-md-3 me-2  col-lg-3 d-flex border-left py-3 my-3 pt-1 shadow' onClick={() => navigate('/contact')}>
                             <div className='pt-3'>
                                 <h4 fontWeight="600" fontSize="17px" >Contact Us</h4>
+                                <span fontSize="16px" color="grey.600" >Have Query?</span>
+                            </div>
+                        </div>
+                        <div className='col-sm-12 col-md-3 me-2  col-lg-3 d-flex border-left py-3 my-3 pt-1 shadow' onClick={() => navigate('/feedback')}>
+                            <div className='pt-3'>
+                                <h4 fontWeight="600" fontSize="17px" >FeedBack</h4>
                                 <span fontSize="16px" color="grey.600" >Secure system</span>
                             </div>
                         </div>

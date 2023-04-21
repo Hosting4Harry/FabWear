@@ -27,6 +27,7 @@ import PermissionCheck from './context/PermissionCheck';
 import ProductsAdminSide from './page/ProductsAdminSide'
 import ResetPassword from './page/ResetPassword'
 import Dashboard from './component/AdminSide/Dashboard'
+import FeedBack from './page/AddOn/FeedBack'
 
 const App = () => {
   return (
@@ -41,6 +42,7 @@ const App = () => {
             <Route exact path="/admin/products" element={<ProductsAdminSide />} />
             <Route exact path="/products" element={<Products />} />
             <Route exact path="/contact" element={<Contact />} />
+            <Route exact path="/feedback" element={<FeedBack />} />
             <Route exact path="/wishlist" element={<Wishlist />} />
             <Route exact path="/cart" element={<Cart />} />
             <Route exact path="/details/:id" element={<ProductDetails />} />
