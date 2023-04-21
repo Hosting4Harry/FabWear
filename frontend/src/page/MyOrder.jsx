@@ -51,11 +51,13 @@ const MyOrder = () => {
                                         <th>Price</th>
                                         <th>Qty</th>
                                         <th>Amount</th>
+                                        <th>Address</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {
                                         data.map((val, ind) => {
+                                            debugger
                                             return (
                                                 <>
                                                     <tr key={ind}>
@@ -73,6 +75,7 @@ const MyOrder = () => {
                                                         <td>
                                                             {val.price * val.productqty}
                                                         </td>
+                                                        <td>{val.address}</td>
                                                     </tr>
                                                 </>
                                             )
