@@ -1,12 +1,12 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import './Navbar.css'
 import { NavLink } from 'react-router-dom'
-import { DataContext } from '../context/DataContext'
+// import { DataContext } from '../context/DataContext'
 // import './AdminSide/Dashboard.css'
 
 const AdminNav = () => {
     // const navigate = useNavigate();
-    const { setCart, setWishlist } = useContext(DataContext);
+    // const { setCart, setWishlist } = useContext(DataContext);
     // , searchResult, setSearchResult, setLoading
     // const [searchValue, setSearchValue] = useState("");
 
