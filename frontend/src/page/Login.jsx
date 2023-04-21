@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useContext } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import jwt_decode from "jwt-decode";
@@ -19,8 +19,6 @@ const Login = () => {
             }
         }).then((response) => {
             if (response.data.login) {
-                // debugger
-                // navigate("/home");
             }
         })
     }
@@ -63,7 +61,7 @@ const Login = () => {
                 }
             }
             checkRole();
-            if (decoded.role === 1 || decoded.role === 3) {
+            if (decoded.role === 1 || decoded.role === 2) {
                 navigate("/dashboard");
             } else {
                 navigate("/home");
@@ -85,7 +83,6 @@ const Login = () => {
                                             <button type="button" className="close" data-dismiss="alert" onClick={() => setStatus(false)}>&times;</button>
                                             <p>{msg}</p>
                                         </div>
-
                                     </>
                                 ) : null
                             }
