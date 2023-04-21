@@ -1,7 +1,8 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef, useContext } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-// import { DataContext } from '../context/DataContext'
+import jwt_decode from "jwt-decode";
+
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -9,7 +10,8 @@ const Login = () => {
     const [status, setStatus] = useState(false)
     const [msg, setMsg] = useState("")
     const timeout = useRef(null)
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
     const checkAuth = () => {
         axios.get("http://localhost:8000/isAuth", {
             headers: {
@@ -17,10 +19,12 @@ const Login = () => {
             }
         }).then((response) => {
             if (response.data.login) {
-                navigate("/home");
+                // debugger
+                // navigate("/home");
             }
         })
     }
+
     useEffect(() => {
         timeout.current = setTimeout(checkAuth, 1000)
         return function () {
@@ -46,11 +50,24 @@ const Login = () => {
             setMsg(res.data.msg)
         }
         else {
+            debugger
             localStorage.setItem("Ecomtoken", res.data.token)
             localStorage.setItem("EcomUser", res.data.user)
             localStorage.setItem("EcomUserId", res.data.userID)
-            localStorage.setItem("EcomEmail", res.data.userEmail)
-            navigate("/home");
+            localStorage.setItem("EcomEmail", res.data.userEmail);
+            var decoded;
+            const checkRole = () => {
+                try {
+                    decoded = jwt_decode(res.data.token);
+                } catch (error) {
+                }
+            }
+            checkRole();
+            if (decoded.role === 1 || decoded.role === 3) {
+                navigate("/dashboard");
+            } else {
+                navigate("/home");
+            }
             window.location.reload(true);
         }
     }
