@@ -27,7 +27,6 @@ function AddAddress() {
         setAddressDetails(x)
     }
     const getAdd = async (val) => {
-        debugger
         if (val.length === 6) {
             const res = await axios.get('https://api.postalpincode.in/pincode/' + val, {
                 headers: {
@@ -35,7 +34,6 @@ function AddAddress() {
                 }
             })
             if (res.data[0].PostOffice !== null) {
-                debugger
                 setAddressDetails(addressDetails => ({ ...addressDetails, state: res.data[0].PostOffice[0].Circle, cityData: res.data[0].PostOffice, zip: val }))
             } else {
                 debugger

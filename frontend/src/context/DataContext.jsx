@@ -26,7 +26,7 @@ export const ConText = (props) => {
         const token = localStorage.getItem('Ecomtoken');
         try {
             var decoded = jwt_decode(token);
-            setRoleId(decoded.role)
+            setRoleId(decoded.id)
         } catch (error) {
         }
     }

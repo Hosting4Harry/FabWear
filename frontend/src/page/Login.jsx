@@ -19,8 +19,6 @@ const Login = () => {
             }
         }).then((response) => {
             if (response.data.login) {
-                // debugger
-                // navigate("/home");
             }
         })
     }
@@ -62,8 +60,7 @@ const Login = () => {
                 }
             }
             checkRole();
-            debugger
-            if (decoded.role === 1 || decoded.role === 2) {
+            if (decoded.role === 1 || decoded.role === 3) {
                 navigate("/dashboard");
             } else {
                 navigate("/home");
@@ -85,7 +82,6 @@ const Login = () => {
                                             <button type="button" className="close" data-dismiss="alert" onClick={() => setStatus(false)}>&times;</button>
                                             <p>{msg}</p>
                                         </div>
-
                                     </>
                                 ) : null
                             }

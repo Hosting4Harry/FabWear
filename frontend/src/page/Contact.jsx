@@ -30,15 +30,15 @@ const Contact = () => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
+    const userName = localStorage.getItem('EcomUser');
+    const userEmail = localStorage.getItem('EcomEmail');
     const [status, setStatus] = useState("Submit");
     const handleSubmit = async (e) => {
         e.preventDefault();
         setStatus("Sending...");
-        const { name, email, message } = e.target.elements;
+        const { message } = e.target.elements;
         let details = {
-            name: name.value,
-            email: email.value,
+
             message: message.value,
         };
         axios.post("http://localhost:8000/contact", {
@@ -77,13 +77,13 @@ const Contact = () => {
                             <div className="col-md-6">
                                 <div className="md-form mb-0">
                                     <label htmlFor="name" className="">Your name</label>
-                                    <input type="text" id="name" name="name" className="form-control" required />
+                                    <input type="text" id="name" name="name" value={userName} className="form-control" readOnly />
                                 </div>
                             </div>
                             <div className="col-md-6">
                                 <div className="md-form mb-0">
                                     <label htmlFor="email" className="">Your email</label>
-                                    <input type="text" id="email" name="email" className="form-control" required />
+                                    <input type="text" id="email" name="email" value={userEmail} className="form-control" readOnly />
                                 </div>
                             </div>
                         </div>
@@ -118,7 +118,7 @@ const Contact = () => {
                             <p>+91 70775 52981</p>
                         </li>
                         <li><i className="fas fa-envelope mt-4 fa-2x"></i>
-                            <p>cart@gmail.com</p>
+                            <p>fabwear@gmail.com</p>
                         </li>
                     </ul>
                 </div>
