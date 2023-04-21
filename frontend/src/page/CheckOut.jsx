@@ -140,12 +140,12 @@ function CheckOut() {
                 alert(result.data.msg);
             },
             prefill: {
-                name: "Harry",
-                email: "tripathy.hp202@gmail.com",
+                name: "Fabwear",
+                email: "favwear@gmail.com",
                 contact: "7077552981",
             },
             notes: {
-                address: "Harry Corporate Office",
+                address: "Fabwear",
             },
             theme: {
                 color: "#61dafb",
