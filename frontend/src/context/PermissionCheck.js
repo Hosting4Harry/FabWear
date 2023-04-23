@@ -5,6 +5,7 @@ import { DataContext } from './DataContext';
 
 function PermissionCheck(props) {
     const { roleId } = useContext(DataContext);
+    console.log(roleId)
     if (roleId === 1 || roleId === 2) {
         return <AdminNav />
     }

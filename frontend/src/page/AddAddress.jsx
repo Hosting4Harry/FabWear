@@ -83,14 +83,14 @@ function AddAddress() {
                             <div className="row g-0">
                                 <div className="col-xl-6 d-xl-block bg-image">
                                     <img src="https://mdbcdn.b-cdn.net/img/Others/extended-example/delivery.webp" alt="Sample_photo"
-                                        className="img-fluid" style={{ height: "500px", width: "100%", padding: '0px' }} />
+                                        className="" style={{ height: "600px", width: "900px", padding: '0px' }} />
                                     <div className="mask" style={{ backgroundColor: "rgba(0, 0, 0, 0.6)" }}>
                                         <div className=" justify-content-center align-items-center h-100">
                                             <div className=" text-center" style={{ marginTop: "220px" }}>
                                                 <i className="fas fa-truck text-white fa-3x"></i>
                                                 <p className="text-white title-style">Cart fast delivery</p>
                                                 <p className="text-white mb-0"></p>
-                                                <figure className="text-center mb-0">
+                                                <span className="text-center mb-0">
                                                     <blockquote className="blockquote text-white">
                                                         <p className="pb-3">
                                                             <i className="fas fa-quote-left fa-xs text-primary"
@@ -100,7 +100,7 @@ function AddAddress() {
                                                                 style={{ color: " hsl(210, 100%, 50%)" }}></i>
                                                         </p>
                                                     </blockquote>
-                                                </figure>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>

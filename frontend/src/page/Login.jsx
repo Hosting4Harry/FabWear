@@ -60,7 +60,7 @@ const Login = () => {
                 }
             }
             checkRole();
-            if (decoded.role === 1 || decoded.role === 3) {
+            if (decoded.role === 1 || decoded.role === 2) {
                 navigate("/dashboard");
             } else {
                 navigate("/home");

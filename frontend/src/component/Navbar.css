@@ -84,7 +84,8 @@ body {
   line-height: 80px;
   padding: 0 100px;
   font-weight: bold;
-  font-family: Gistesy;
+  font-family: 'Gistesy';
+  src: local('Gistesy'), url('https://fonts.cdnfonts.com/s/39344/Gistesy.woff') format('woff');
 }
 
 .code-nav nav ul {

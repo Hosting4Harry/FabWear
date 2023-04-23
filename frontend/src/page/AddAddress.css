@@ -10,3 +10,7 @@
     font-weight: 400;
     color: hsl(52, 0%, 98%);
 }
+
+figure {
+    animation: none;
+}
