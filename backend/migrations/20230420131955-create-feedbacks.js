@@ -2,35 +2,24 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('orders', {
+    await queryInterface.createTable('feedbacks', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      userid: {
+      userId: {
         type: Sequelize.INTEGER
       },
-      totalprice: {
+      feedBack: {
+        type: Sequelize.STRING
+      },
+      stars: {
         type: Sequelize.INTEGER
       },
-      orderstatus: {
+      userName: {
         type: Sequelize.STRING
-      },
-      paymentmode: {
-        type: Sequelize.STRING
-      },
-      paymentid: {
-        type: Sequelize.STRING
-      },
-      addressId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'user-data',
-          key: 'id'
-        }
       },
       createdAt: {
         allowNull: false,
@@ -43,6 +32,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('orders');
+    await queryInterface.dropTable('feedbacks');
   }
 };

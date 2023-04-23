@@ -7,7 +7,15 @@ const router = express();
 
 router.post("/orders", async (req, res) => {
     const { cart, paymentemail, name } = req.body;
-    const data = req.body;
+    const data = {
+        name: req.body.name,
+        orderstatus: req.body.orderstatus,
+        paymentemail: req.body.paymentemail,
+        paymentmode: req.body.paymentmode,
+        totalprice: req.body.totalprice,
+        userid: req.body.userid,
+        addressId: +req.body.address.id
+    }
     try {
         const instance = new Razorpay({
             key_id: process.env.RAZORPAY_KEY_ID || "rzp_test_T3tAATbEcOqopL",
@@ -80,7 +88,8 @@ router.post("/success", async (req, res) => {
         // YOU CAN SAVE THE DETAILS IN YOUR DATABASE IF YOU WANT
 
         db.orders.update({
-            orderstatus: "Order Done"
+            orderstatus: "Order Done",
+            paymentid: razorpayPaymentId
         },
             {
                 where: {

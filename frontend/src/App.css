@@ -139,12 +139,13 @@
 
 .desc {
   height: 100vh;
-  background: #04292e;
+  background: #06234b;
 }
 
 .side-img {
-  height: 300px;
+  height: 400px;
   margin: 50px;
+  opacity: 2px;
 }
 
 .desc h1 {
@@ -160,8 +161,8 @@
 }
 
 footer {
-  height: 70vh;
-  padding: 30px 0;
+  height: 80vh;
+  padding: 70px 0;
   background-color: azure;
   width: 100%;
   margin: auto 0;
@@ -174,21 +175,22 @@ footer {
   footer {
     height: fit-content;
     padding: 30px 0;
-    background-color: azure;
+    background-color: #f0ffff;
     width: 100%;
     margin: auto 0;
-    display: flex;
-    opacity: 0.8;
+    /* display: flex; */
+    /* opacity: 0.8; */
     bottom: 0px;
   }
 }
 
 .foot-img {
-  width: 50%;
-  height: 250px;
+  width: 100%;
+  height: 350px;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  opacity: 1;
 }
 
 .copy {
@@ -255,7 +257,7 @@ footer ul li a:hover {
 }
 
 .details {
-  padding: 100px 0;
+  padding: 50px 0;
 }
 
 .p-im {
@@ -290,7 +292,7 @@ footer ul li a:hover {
 
 .payment {
   padding: 75px 0;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 
 .t-img {

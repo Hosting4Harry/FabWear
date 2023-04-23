@@ -42,6 +42,7 @@ const Cart = () => {
             })
     }
     useEffect(() => {
+        window.scrollTo(0, 0)
         cartItems(id);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])

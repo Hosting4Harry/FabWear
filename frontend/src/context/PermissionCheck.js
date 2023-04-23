@@ -1,23 +1,11 @@
-import React from 'react'
-import jwt_decode from "jwt-decode";
+import React, { useContext } from 'react'
 import Navbar from '../component/Navbar';
 import AdminNav from '../component/AdminNav';
+import { DataContext } from './DataContext';
 
 function PermissionCheck(props) {
-    const token = localStorage.getItem('Ecomtoken');
-
-    const checkRole = () => {
-        try {
-            var decoded = jwt_decode(token);
-        } catch (error) {
-        }
-        if (decoded?.role === 1 || decoded?.role === 2) {
-            return true
-        } else {
-            return false
-        }
-    }
-    if (checkRole()) {
+    const { roleId } = useContext(DataContext);
+    if (roleId === 1 || roleId === 2) {
         return <AdminNav />
     }
 

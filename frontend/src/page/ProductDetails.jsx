@@ -4,12 +4,13 @@ import axios from 'axios'
 import { DataContext } from '../context/DataContext'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Review from './AddOn/Review';
 toast.configure();
 
 const ProductDetails = () => {
     const scrl = useRef(null);
     const { id } = useParams();
-    const { cart, setCart } = useContext(DataContext);
+    const { cart, setCart, setLoading } = useContext(DataContext);
     const userId = localStorage.getItem("EcomUserId");
     const [detdata, setDetdata] = useState([]);
     const [pdetails, setPdetails] = useState("1");
@@ -39,32 +40,36 @@ const ProductDetails = () => {
                 setCart([...cart, data])
             }
 
-            toast.success('Added to the Cart!', {
-                position: "bottom-right",
-                autoClose: 1800,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            });
+            // toast.success('Added to the Cart!', {
+            //     position: "bottom-right",
+            //     autoClose: 1800,
+            //     hideProgressBar: true,
+            //     closeOnClick: true,
+            //     pauseOnHover: true,
+            //     draggable: true,
+            //     progress: undefined,
+            //     theme: "dark",
+            // });
         }
     }
 
     const getData = async () => {
-        const res = await axios(`http://localhost:8000/product/getdata/${id}`);
-        setDetdata(res.data);
-        await axios('http://localhost:8000/product/searchProduct/' + res.data.product_image.split('/')[1])
-            .then(response => {
-                setData(response.data);
-            }).catch(error => {
-                if (error)
-                    setData([]);
+        setLoading(true);
+        await axios(`http://localhost:8000/product/getdata/${id}`)
+            .then(async response => {
+                setLoading(false);
+                setDetdata(response.data);
+                await axios('http://localhost:8000/product/searchProduct/' + response.data.product_image.split('/')[3 || 2 || 1])
+                    .then(response => {
+                        setData(response.data);
+                    }).catch(error => {
+                        if (error)
+                            setData([]);
+                    })
             })
     }
     useEffect(() => {
-        getData()
+        getData();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])
     if (!detdata) {
@@ -75,14 +80,14 @@ const ProductDetails = () => {
     };
 
     return (
-        <> <section style={{ backgroundColor: "#eee" }}>
+        <> <section style={{ backgroundColor: "#eee", marginBottom: "100px", marginTop: "50px" }}>
             <div className="container">
-                <div className="row justify-content-center mb-3">
+                <div className="row justify-content-center mb-3 ">
                     <div className="col-md-12 col-xl-10">
                         <div className="details">
                             <div className="container">
-                                <div className="row">
-                                    <div className="col-md-6 col-12 mx-auto mb-3">
+                                <div className="row border bg-light">
+                                    <div className="col-md-6 col-12 mx-auto mb-3 mt-3">
                                         <img src={`../img/${detdata.product_image}`} alt={detdata.product_image} className="img-fluid p-im" />
                                     </div>
                                     <div className="col-md-6 col-12 mx-auto mb-3 d-flex  flex-column mt-5">
@@ -169,6 +174,9 @@ const ProductDetails = () => {
                 </div>
             </>
             }
+            <div>
+                <Review></Review>
+            </div>
 
         </section>
 

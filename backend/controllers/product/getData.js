@@ -6,11 +6,10 @@ const { Op } = require("sequelize");
 const { Sequelize } = require('../../models');
 const path = require('path');
 var multer = require('multer');
-const { log } = require('console');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        const dest = req.body.category;
+        const dest = req.body.image_path;
         cb(null, path.join(__dirname, "../../../frontend/public/img/" + dest))
     },
     filename: (req, file, cb) => {
@@ -26,19 +25,24 @@ router.post("/addproduct", upload.single('product_image'), async (req, res) => {
     await db.products.create({
         name: req.body.name,
         price: +req.body.price,
-        product_image: "/" + req.body.category + "/" + req.file?.originalname
+        product_image: req.body.image_path + req.file?.originalname
     }).then(result => {
         res.send({ message: "Product Added" });
     }).catch(error => {
         console.log(error);
     });
 });
-router.put("/edit/:id", async (req, res) => {
+router.put("/edit/:id", upload.single('product_image'), async (req, res) => {
     await db.products.update({
         name: req.body.name,
         price: +req.body.price,
-        product_image: "/" + req.body.category + "/" + req.file?.originalname
-    }).then(result => {
+        product_image: req.body.image_path + req.file?.originalname
+    }, {
+        where: {
+            id: +req.params.id
+        }
+    }
+    ).then(result => {
         res.send({ message: "Product Added" });
     }).catch(error => {
         console.log(error);
@@ -62,7 +66,7 @@ router.get("/getdataall", async (req, res) => {
         .then(result => {
             setTimeout(() => {
                 res.send(result);
-            }, 2000);
+            }, 500);
         }).catch(error => {
             console.log(error);
         });

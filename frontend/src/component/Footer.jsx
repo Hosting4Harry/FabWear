@@ -7,7 +7,7 @@ const Footer = () => {
             <footer >
                 <div className="container" style={{ overflow: "hidden" }}>
                     <div className="row">
-                        <div className="col-md-4 col-12 mx-auto mb-3 img-bg ">
+                        <div className="col-md-6 col-lg-4 col-12 mx-auto mb-3 img-bg ">
                             <h6 className="text-uppercase fw-bold">Contact</h6>
                             <hr className="mb-4 mt-0 d-inline-block mx-auto" style={{ width: "60px", backgroundColor: " #7c4dff", height: "2px" }} />
                             <p><i className="fas fa-home mr-3"></i> New York, NY 10012, US</p>
@@ -29,7 +29,7 @@ const Footer = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-4 col-12 mx-auto mb-3 text-center p-3">
+                        <div className="col-md-6 col-lg-4 col-12 mx-auto mb-3 text-center p-3">
                             <h2>Cart.com</h2>
                             <hr />
                             <ul>
@@ -44,14 +44,14 @@ const Footer = () => {
                                 </li>
                             </ul>
                         </div>
-                        <div className="col-md-4 col-12 mx-auto mb-3 img-bg ">
-                            <img src="../img/d4.svg" alt="Cart" className="img-fluid foot-img" />
+                        <div className="col-md-6 col-lg-4 col-12 mx-auto mb-3 img-bg ">
+                            <img src="../img/logo/Fab-Wear1.png" alt="Cart" className="img-fluid foot-img" />
                         </div>
                     </div>
                 </div>
             </footer>
             <div className="black-box">
-                <p className="copyright">© {new Date().getFullYear()} Cart.Com. All Right Reserved. With Love By Cart.Com</p>
+                <p className="copyright">© {new Date().getFullYear()} Fab Wear. All Right Reserved. With Love By Fab Wear</p>
             </div>
         </>
     )

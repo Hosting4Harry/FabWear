@@ -5,6 +5,7 @@ import "./ProductsAdminSide.css"
 
 function ProductsAdminSide() {
   const [getProducts, setProducts] = useState([]);
+  const [search, setSearch] = useState('');
   const navigate = useNavigate();
   const getData = async () => {
     const res = await axios.get('http://localhost:8000/product/getdataall')
@@ -12,14 +13,20 @@ function ProductsAdminSide() {
   }
   const handelChange = async (e) => {
     if (e.target.value === "all") {
+      setSearch('all');
       getData();
     } else {
+      setSearch(e.target.value);
       const res = await axios.get('http://localhost:8000/product/searchProduct/' + e.target.value);
       setProducts(res.data);
     }
   }
   const deleteProduct = async (id) => {
-    await axios.post("http://localhost:8000/product/deleteProduct" + id)
+    const deleteProduct = window.confirm("Do you want to delete the product?");
+    if (deleteProduct) {
+      await axios.post("http://localhost:8000/product/deleteProduct/" + id);
+      window.location.reload(true)
+    }
   }
 
   useEffect(() => {
@@ -63,21 +70,88 @@ function ProductsAdminSide() {
             </thead>
             <tbody className='scrollbar'>
               {getProducts.map((val, ind) => {
-                return (
-                  <tr kay={ind} className="fw-normal">
-                    <td>
-                      <Link to={`/details/${val.id}`}>
-                        <img src={`../img/${val.product_image}`} alt={`../img/${val.product_image}`} className="img-fluid t-img" />
-                      </Link>
-                    </td>
-                    <td>{val.name}</td>
-                    <td>{val.price}</td>
-                    <td>120</td>
-                    <td>&nbsp; <span className="fas fa-trash-alt text-danger" onClick={() => deleteProduct(val.id)}></span>&nbsp;&nbsp;&nbsp;
-                      <span className="fa fa-edit text-primery" onClick={() => navigate("/addproduct/edit/" + val.id)}></span></td>
-                  </tr>
-                )
-              })}
+                if ('all' === search.toLocaleLowerCase()) {
+                  return (
+                    <tr kay={ind} className="fw-normal">
+                      <td>
+                        <Link to={`/addproduct/edit/${val.id}`}>
+                          <img src={`../img/${val.product_image}`} alt={`../img/${val.product_image}`} className="img-fluid t-img" />
+                        </Link>
+                      </td>
+                      <td>{val.name}</td>
+                      <td>{val.price}</td>
+                      <td>120</td>
+                      <td>&nbsp; <span className="fas fa-trash-alt text-danger" onClick={() => deleteProduct(val.id)}></span>&nbsp;&nbsp;&nbsp;
+                        <span className="fa fa-edit text-primery" onClick={() => navigate("/addproduct/edit/" + val.id)}></span></td>
+                    </tr>
+                  )
+                } else if (val.product_image.split('/')[0] === search.toLocaleLowerCase()) {
+                  return (
+                    <tr kay={ind} className="fw-normal">
+                      <td>
+                        <Link to={`/addproduct/edit/${val.id}`}>
+                          <img src={`../img/${val.product_image}`} alt={`../img/${val.product_image}`} className="img-fluid t-img" />
+                        </Link>
+                      </td>
+                      <td>{val.name}</td>
+                      <td>{val.price}</td>
+                      <td>120</td>
+                      <td>&nbsp; <span className="fas fa-trash-alt text-danger" onClick={() => deleteProduct(val.id)}></span>&nbsp;&nbsp;&nbsp;
+                        <span className="fa fa-edit text-primery" onClick={() => navigate("/addproduct/edit/" + val.id)}></span></td>
+                    </tr>
+                  )
+                } else if (val.product_image.split('/')[1] === search.toLocaleLowerCase()) {
+                  return (
+                    <tr kay={ind} className="fw-normal">
+                      <td>
+                        <Link to={`/addproduct/edit/${val.id}`}>
+                          <img src={`../img/${val.product_image}`} alt={`../img/${val.product_image}`} className="img-fluid t-img" />
+                        </Link>
+                      </td>
+                      <td>{val.name}</td>
+                      <td>{val.price}</td>
+                      <td>120</td>
+                      <td>&nbsp; <span className="fas fa-trash-alt text-danger" onClick={() => deleteProduct(val.id)}></span>&nbsp;&nbsp;&nbsp;
+                        <span className="fa fa-edit text-primery" onClick={() => navigate("/addproduct/edit/" + val.id)}></span></td>
+                    </tr>
+                  )
+                } else if (val.product_image.split('/')[2] === search.toLocaleLowerCase()) {
+                  return (
+                    <tr kay={ind} className="fw-normal">
+                      <td>
+                        <Link to={`/addproduct/edit/${val.id}`}>
+                          <img src={`../img/${val.product_image}`} alt={`../img/${val.product_image}`} className="img-fluid t-img" />
+                        </Link>
+                      </td>
+                      <td>{val.name}</td>
+                      <td>{val.price}</td>
+                      <td>120</td>
+                      <td>&nbsp; <span className="fas fa-trash-alt text-danger" onClick={() => deleteProduct(val.id)}></span>&nbsp;&nbsp;&nbsp;
+                        <span className="fa fa-edit text-primery" onClick={() => navigate("/addproduct/edit/" + val.id)}></span></td>
+                    </tr>
+                  )
+                } else if (val.product_image.split('/')[3] === search.toLocaleLowerCase()) {
+                  return (
+                    <tr kay={ind} className="fw-normal">
+                      <td>
+                        <Link to={`/addproduct/edit/${val.id}`}>
+                          <img src={`../img/${val.product_image}`} alt={`../img/${val.product_image}`} className="img-fluid t-img" />
+                        </Link>
+                      </td>
+                      <td>{val.name}</td>
+                      <td>{val.price}</td>
+                      <td>120</td>
+                      <td>&nbsp; <span className="fas fa-trash-alt text-danger" onClick={() => deleteProduct(val.id)}></span>&nbsp;&nbsp;&nbsp;
+                        <span className="fa fa-edit text-primery" onClick={() => navigate("/addproduct/edit/" + val.id)}></span></td>
+                    </tr>
+                  )
+                }
+                else {
+                  return <></>
+                }
+              })
+              }
+
             </tbody>
           </table>
         </div>

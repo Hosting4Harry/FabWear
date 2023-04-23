@@ -1,7 +1,9 @@
 import React, { createContext, useState, useEffect } from 'react'
+import jwt_decode from "jwt-decode";
 import axios from 'axios'
 export const DataContext = createContext()
 export const ConText = (props) => {
+    const [roleId, setRoleId] = useState(null);
     const [cart, setCart] = useState([]);
     const [wishlist, setWishlist] = useState([]);
     const [isAuth, setIsAuth] = useState(false);
@@ -19,15 +21,26 @@ export const ConText = (props) => {
             }
         })
     }
+    const checkRole = () => {
+        debugger
+        const token = localStorage.getItem('Ecomtoken');
+        try {
+            var decoded = jwt_decode(token);
+            setRoleId(decoded.id)
+        } catch (error) {
+        }
+    }
 
     useEffect(() => {
+        checkRole();
         checkAuth();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     setInterval(checkAuth, 1000);
 
     return (
         <>
-            <DataContext.Provider value={{ cart, setCart, wishlist, setWishlist, isAuth, searchResult, setSearchResult, loading, setLoading }}>
+            <DataContext.Provider value={{ roleId, cart, setCart, wishlist, setWishlist, isAuth, searchResult, setSearchResult, loading, setLoading }}>
                 {props.children}
             </DataContext.Provider>
         </>

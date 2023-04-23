@@ -11,6 +11,7 @@ function SearchProducts() {
         setLoading(true);
         await axios.get('http://localhost:8000/product/searchProduct/' + name)
             .then(response => {
+                debugger
                 setLoading(false);
                 setSearchResult(response.data);
             }).catch(error => {
@@ -19,6 +20,7 @@ function SearchProducts() {
             })
     }
     useEffect(() => {
+        window.scrollTo(0, 0);
         getData(name);
         // document.getElementById("searchList").style.display = "none";
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -33,14 +35,46 @@ function SearchProducts() {
             <div className="container py-5">
                 <div className="row">
                     {searchResult.map((item, i) => {
-                        return (<CardProducts
-                            key={i}
-                            id={item.id}
-                            name={item.name}
-                            price={item.price}
-                            product_image={item.product_image}
-                        />
-                        )
+                        if (item.product_image.split('/')[0] === name.toLocaleLowerCase()) {
+                            return (<CardProducts
+                                key={i}
+                                id={item.id}
+                                name={item.name}
+                                price={item.price}
+                                product_image={item.product_image}
+                            />
+                            )
+                        } else if ((item.product_image.split('/')[1] === name.toLocaleLowerCase())) {
+                            return (<CardProducts
+                                key={i}
+                                id={item.id}
+                                name={item.name}
+                                price={item.price}
+                                product_image={item.product_image}
+                            />
+                            )
+                        } else if ((item.product_image.split('/')[2] === name.toLocaleLowerCase())) {
+                            return (<CardProducts
+                                key={i}
+                                id={item.id}
+                                name={item.name}
+                                price={item.price}
+                                product_image={item.product_image}
+                            />
+                            )
+                        } else if ((item.product_image.split('/')[3] === name.toLocaleLowerCase())) {
+                            return (<CardProducts
+                                key={i}
+                                id={item.id}
+                                name={item.name}
+                                price={item.price}
+                                product_image={item.product_image}
+                            />
+                            )
+                        } else {
+                            return <></>
+                        }
+
                     })}
                     {/* if (item.product_image.split('/')[1] === name.toLowerCase() || item.product_image.split('/')[2] === name.toLowerCase()) { */}
                     {/* } else {

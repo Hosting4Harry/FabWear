@@ -56,11 +56,9 @@ function CheckOut() {
     // }
     useEffect(() => {
         getaddress();
-        // buynow(id);
         // eslint-disable-next-line
     }, []);
     useEffect(() => {
-        debugger
         let totamo = 0;
         for (let i = 0; i < cart.length; i++) {
             if (cart[i].productqty == null) {
@@ -142,12 +140,12 @@ function CheckOut() {
                 alert(result.data.msg);
             },
             prefill: {
-                name: "Harry",
-                email: "tripathy.hp202@gmail.com",
+                name: "Fabwear",
+                email: "favwear@gmail.com",
                 contact: "7077552981",
             },
             notes: {
-                address: "Harry Corporate Office",
+                address: "Fabwear",
             },
             theme: {
                 color: "#61dafb",
@@ -157,7 +155,6 @@ function CheckOut() {
         const paymentObject = new window.Razorpay(options);
         paymentObject.open();
     }
-
 
     return (
         <div className="address">

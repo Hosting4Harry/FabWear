@@ -4,20 +4,36 @@ import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { DataContext } from '../context/DataContext'
 import axios from 'axios'
 import '../page/AddOn/Loader.css'
+import '../page/AddOn/BackToTop.css'
+
 const Navbar = () => {
   const navigate = useNavigate();
   const { cart, setCart, wishlist, setWishlist, searchResult, setSearchResult, loading } = useContext(DataContext);
   const [searchValue, setSearchValue] = useState("");
+  const btn = document.getElementById('button');
 
   window.onscroll = () => {
     if (window.scrollY <= 150) {
-      document.getElementById('sideBar').style.top = '0px';
-      document.getElementById('nav').style.backgroundColor = '#000';
+      document.getElementById('logo').style.color = 'inherit';
+      document.getElementById('sideBar').style.display = 'block';
+      document.getElementById('nav').style.backgroundColor = '#012946';
       document.querySelector('nav > label > form').style.display = 'block';
+      document.querySelector('nav > label > i').style.display = 'initial';
     } else {
-      document.getElementById('nav').style.backgroundColor = 'rgb(152, 158, 158)';
+      document.getElementById('sideBar').style.display = 'none';
+      document.getElementById('logo').style.color = '#08c3f1';
+      document.getElementById('nav').style.backgroundColor = 'transparent';
       document.querySelector('nav > label > form').style.display = 'none';
+      document.querySelector('nav > label > i').style.display = 'none';
     }
+    if (window.scrollY > 300) {
+      btn.classList.add('show');
+    } else {
+      btn.classList.remove('show');
+    }
+  }
+  const scrollTop = () => {
+    window.scrollTo(0, 0)
   }
 
 
@@ -67,9 +83,10 @@ const Navbar = () => {
           <i className="fa fa-bars"></i>
         </label>
         <label className="logo">
-          <img style={{ width: "50px" }} src="../img/T4.png" alt="box" className="img-fluid" /><NavLink to="/home">FabWear</NavLink>
+          {/* <img style={{ width: "50px" }} src="../img/logo/Fab wear3.png" alt="box" className="img-fluid" /> */}
+          <NavLink id='logo' to="/home">Fab Wear</NavLink>
         </label>
-        <label className='searchBar' id='searchBar' style={{}}>
+        <label className='searchBar' id='searchBar' style={{ marginLeft: "50px" }}>
           <form onSubmit={submit} className="searchForm">
             <div className=' form-group '>
               <div className='d-flex'>
@@ -136,6 +153,8 @@ const Navbar = () => {
         <div className='text text-light'></div>
       </div>
     }
+    <i id='button' onClick={scrollTop}></i>
+
   </>
   )
 }
