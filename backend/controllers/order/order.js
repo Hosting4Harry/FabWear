@@ -40,5 +40,8 @@ router.get("/myorder/:id", (req, res) => {
             console.log(error)
         })
 });
-
+router.get("/allOrder", async (req, res) => {
+    const result = await db.orderitems.findAll();
+    res.send(result);
+})
 module.exports = router;
