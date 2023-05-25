@@ -28,7 +28,6 @@ function Dashboard() {
             .then(res => {
                 setOrder(res.data);
                 res.data.map((item) => {
-                    console.log(total);
                     switch (item.createdAt.split('-')[1]) {
                         case '01':
                             setData(data => ({ ...data, jan: data.jan + 1 }))
@@ -70,11 +69,9 @@ function Dashboard() {
                             break;
                     }
                     return setTotal(total + item.productprice);
-
                 })
-            })
+            });
     }
-
     useEffect(() => {
         orders();
     }, []);
@@ -91,7 +88,6 @@ function Dashboard() {
                             <div style={{ marginLeft: "20px" }}>
                                 <h4 fontWeight="600" fontSize="17px" >Revenue <br />₹{total}.00</h4>
                                 <span fontSize="16px" color="grey.600" >Shipping fees are not included</span>
-
                             </div>
                         </div>
                     </div>

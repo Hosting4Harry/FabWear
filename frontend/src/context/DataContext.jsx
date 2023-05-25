@@ -1,7 +1,7 @@
-import React, { createContext, useState, useEffect } from 'react'
+import React, { createContext, useState, useEffect } from 'react';
 import jwt_decode from "jwt-decode";
-import axios from 'axios'
-export const DataContext = createContext()
+import axios from 'axios';
+export const DataContext = createContext();
 export const ConText = (props) => {
     const [roleId, setRoleId] = useState(null);
     const [cart, setCart] = useState([]);
@@ -15,9 +15,8 @@ export const ConText = (props) => {
                 "x-access-token": localStorage.getItem("Ecomtoken")
             }
         }).then((response) => {
-            //  console.log()
             if (response.data.login) {
-                setIsAuth(true)
+                setIsAuth(true);
             }
         })
     }
@@ -25,7 +24,7 @@ export const ConText = (props) => {
         const token = localStorage.getItem('Ecomtoken');
         try {
             var decoded = jwt_decode(token);
-            setRoleId(decoded.role)
+            setRoleId(decoded.role);
         } catch (error) {
         }
     }
