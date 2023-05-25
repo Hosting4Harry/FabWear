@@ -4,8 +4,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 const AddProduct = () => {
     const { id } = useParams();
-    const navigate = useNavigate()
-    const timeout = useRef(null)
+    const navigate = useNavigate();
+    const timeout = useRef(null);
     const checkAuth = () => {
         axios.get("http://localhost:8000/isAuth", {
             headers: {
@@ -15,17 +15,17 @@ const AddProduct = () => {
             if (!response.data.login) {
                 navigate("/");
             }
-        })
+        });
     }
     useEffect(() => {
         timeout.current = setTimeout(checkAuth, 1000)
         return function () {
             if (timeout.current) {
-                clearTimeout(timeout.current)
+                clearTimeout(timeout.current);
             }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, []);
 
     const [productDetails, setProductDetails] = useState({
         name: '',
@@ -48,9 +48,8 @@ const AddProduct = () => {
                         category: response.data.product_image.split('/')[2],
                         subcategory: response.data.product_image.split('/')[3],
                         accessories: response.data.product_image.split('/')[1] === "accessories" ? true : false
-                    }))
-                })
-
+                    }));
+                });
         } else {
             console.log("u can add new product");
         }
@@ -71,10 +70,10 @@ const AddProduct = () => {
         data.append('price', productDetails.price);
         data.append('category', productDetails.category);
         data.append('subcategory', productDetails.subcategory);
-        data.append("image_path", image_path)
+        data.append("image_path", image_path);
         data.append('accessories', productDetails.accessories);
         data.append('product_image', productDetails.product_image);
-        console.log(data)
+        console.log(data);
         if (!id) {
             var config = {
                 method: 'post',
@@ -88,10 +87,9 @@ const AddProduct = () => {
             };
             axios(config).then(result => {
                 window.location.reload(true);
-                console.log(result)
             }).catch(error => {
-                console.log(error)
-            })
+                console.log(error);
+            });
         } else {
             config = {
                 method: 'put',
@@ -104,10 +102,10 @@ const AddProduct = () => {
                 data: data
             };
             axios(config).then(result => {
-                console.log(result)
+                console.log(result);
             }).catch(error => {
-                console.log(error)
-            })
+                console.log(error);
+            });
         }
     }
     useEffect(() => {

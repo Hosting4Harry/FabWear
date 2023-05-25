@@ -1,10 +1,10 @@
 
-import React, { useEffect, useRef } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
-import axios from 'axios'
+import React, { useEffect, useRef } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import axios from 'axios';
 const Success = () => {
-    const navigate = useNavigate()
-    const loc = useLocation()
+    const navigate = useNavigate();
+    const loc = useLocation();
     const pid = localStorage.getItem('Ecomlongid')
     useEffect(() => {
         const paydet = async () => {
@@ -16,26 +16,19 @@ const Success = () => {
                 pid: pid,
                 pyid: pyid
             }
-            const res = await axios.post(`http://localhost:8000/payment/paydetails`, data)
-            console.log(res)
-
+            await axios.post(`http://localhost:8000/payment/paydetails`, data)
         }
-        paydet()
-
+        paydet();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, []);
 
-
-
-    const timeout = useRef(null)
-    //  const navigate= useNavigate()
+    const timeout = useRef(null);
     const checkAuth = () => {
         axios.get("http://localhost:8000/isAuth", {
             headers: {
                 "x-access-token": localStorage.getItem("Ecomtoken")
             }
         }).then((response) => {
-            //  console.log()
             if (!response.data.login) {
                 navigate("/");
             }

@@ -35,7 +35,6 @@ const Products = () => {
             setLoading(false);
             setGetdata(res.data);
         }
-
     }
     const getModalData = async () => {
         const resModal = await axios.get('http://localhost:8000/product/getdata');
@@ -53,7 +52,7 @@ const Products = () => {
         setGetdata(res.data);
     }
     const sortHandel = (e) => {
-        const sort = e.target.value
+        const sort = e.target.value;
         if (sort === 'all') {
             getDatas();
         }
@@ -104,7 +103,6 @@ const Products = () => {
                         <p></p>
                         <div className="form-group">
                             <select className="form-control" id="" onChange={sortHandel}>
-                                {/* <option value="" selected disabled hidden>Choose By Price</option> */}
                                 <option value="all">All</option>
                                 <option value="200">less then 200</option>
                                 <option value="200_500">200-500</option>
@@ -125,7 +123,6 @@ const Products = () => {
                                 )
                             })
                         }
-
                     </div>
                 </div>
                 <section className='bg-info'>

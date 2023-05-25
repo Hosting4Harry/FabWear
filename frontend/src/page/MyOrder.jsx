@@ -3,10 +3,10 @@ import React, { useEffect, useState, useRef } from 'react'
 import { NavLink, useParams, useNavigate } from 'react-router-dom'
 
 const MyOrder = () => {
-    const [data, setData] = useState([])
-    const { id } = useParams()
-    const timeout = useRef(null)
-    const navigate = useNavigate()
+    const [data, setData] = useState([]);
+    const { id } = useParams();
+    const timeout = useRef(null);
+    const navigate = useNavigate();
     const checkAuth = () => {
         axios.get("http://localhost:8000/isAuth", {
             headers: {
@@ -16,7 +16,7 @@ const MyOrder = () => {
             if (!response.data.login) {
                 navigate("/");
             }
-        })
+        });
     }
 
     useEffect(() => {
@@ -27,11 +27,11 @@ const MyOrder = () => {
             }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, []);
 
     const getData = async () => {
         const { data } = await axios.get(`http://localhost:8000/order/myorder/${id}`);
-        setData(data)
+        setData(data);
     }
     useEffect(() => {
         getData();
@@ -74,10 +74,9 @@ const MyOrder = () => {
                                                             <td>
                                                                 {val.price * val.productqty}
                                                             </td>
-
                                                         </tr>
                                                     </>
-                                                )
+                                                );
                                             })
                                         }
                                     </tbody>

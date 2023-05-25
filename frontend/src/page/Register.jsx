@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import React, { useState, useRef, useEffect } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 // import { DataContext } from '../context/DataContext'
 const Register = () => {
     const [username, setUserName] = useState("")
@@ -16,12 +16,10 @@ const Register = () => {
                 "x-access-token": localStorage.getItem("Ecomtoken")
             }
         }).then((response) => {
-            //  console.log()
             if (response.data.login) {
                 navigate("/home");
             }
         })
-
     }
 
     useEffect(() => {
@@ -31,9 +29,6 @@ const Register = () => {
                 clearTimeout(timeout.current)
             }
         }
-        //   checkAuth()
-
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -44,16 +39,13 @@ const Register = () => {
             email: email,
             password: password
         }
-        // console.log(data)
         const res = await axios.post("http://localhost:8000/register", data)
-        //  console.log(res)
         if (res.data.msg) {
-            setStatus(true)
-            setMsg(res.data.msg)
-
+            setStatus(true);
+            setMsg(res.data.msg);
         }
         else {
-            navigate("/")
+            navigate("/");
         }
     }
 
@@ -75,7 +67,6 @@ const Register = () => {
                                 ) : null
                             }
                             <br />
-
                             <h2 className="text-center">Register Now</h2>
                             <form onSubmit={onSub}>
                                 <div className="form-group">
@@ -89,16 +80,13 @@ const Register = () => {
                                     <input type="password" className="form-control" name="password" placeholder="Enter Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
                                 </div>
                                 <button type="submit" className="btn btn-info">Register</button>
-
                             </form>
                             <br />
                             <NavLink to="/" >Login Now</NavLink>
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </>
     )
 }

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import "./MyAddress.css";
 import { GrAdd } from "react-icons/gr";
@@ -18,11 +18,11 @@ function MyAddress() {
     }
 
     const deleteAddress = async (id) => {
-        axios.post("http://localhost:8000/address/deleteAddress/" + id)
+        axios.post("http://localhost:8000/address/deleteAddress/" + id);
     }
     useEffect(() => {
         getaddress();
-    }, [yourAddress])
+    }, [yourAddress]);
     return (
         <section className='container'>
             <div className="row justify-content-center mb-3" style={{}} >

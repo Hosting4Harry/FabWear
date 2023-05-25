@@ -14,7 +14,6 @@ const MyAccount = () => {
         localStorage.clear();
         window.location.reload();
     }
-
     const timeout = useRef(null);
     const navigate = useNavigate();
     const checkAuth = () => {
@@ -27,20 +26,18 @@ const MyAccount = () => {
                 navigate("/");
                 setLoading(false);
             }
-        })
+        });
     }
-
-
 
     useEffect(() => {
         timeout.current = setTimeout(checkAuth, 10)
         return function () {
             if (timeout.current) {
-                clearTimeout(timeout.current)
+                clearTimeout(timeout.current);
             }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, []);
 
     const getOrderDetails = async (id) => {
         setModal(true);
@@ -66,14 +63,12 @@ const MyAccount = () => {
                 setOrder(response.data);
             }).catch(error => {
                 setLoading(false);
-                console.log(error);
-            })
-
+            });
     }
     const dat = +localStorage.getItem('EcomUserId');
     useEffect(() => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, []);
 
     if (roleId === 1 || roleId === 2) {
         return <div className="payment" style={{ marginBottom: "400px" }}>
@@ -83,7 +78,6 @@ const MyAccount = () => {
             </div>
         </div>
     }
-
     else return (
         <>
             <div className="payment" style={{ marginBottom: "200px" }}>
@@ -128,14 +122,12 @@ const MyAccount = () => {
                                 <span fontSize="16px" color="grey.600" >Secure system</span>
                             </div>
                         </div>
-
                     </div>
                     <div className=''>
                         <button className="btn btn-info" onClick={() => navigate('/products')}>Continue Shopping</button>
                     </div>
                 </div>
             </div>
-
             {modal && <>
                 <div className='wrapper rounded' onClick={() => setModal(false)}></div>
                 <div className="row order" >

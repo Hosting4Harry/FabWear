@@ -24,5 +24,4 @@ function StarRating(props) {
     );
 };
 
-
 export default StarRating;

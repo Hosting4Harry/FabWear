@@ -4,28 +4,26 @@ import axios from 'axios'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 toast.configure();
-
 const Contact = () => {
-    const timeout = useRef(null)
-    const navigate = useNavigate()
+    const timeout = useRef(null);
+    const navigate = useNavigate();
     const checkAuth = () => {
         axios.get("http://localhost:8000/isAuth", {
             headers: {
                 "x-access-token": localStorage.getItem("Ecomtoken")
             }
         }).then((response) => {
-            //  console.log()
             if (!response.data.login) {
                 navigate("/");
             }
-        })
+        });
     }
 
     useEffect(() => {
         timeout.current = setTimeout(checkAuth, 1000)
         return function () {
             if (timeout.current) {
-                clearTimeout(timeout.current)
+                clearTimeout(timeout.current);
             }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -38,7 +36,6 @@ const Contact = () => {
         setStatus("Sending...");
         const { message } = e.target.elements;
         let details = {
-
             message: message.value,
         };
         axios.post("http://localhost:8000/contact", {

@@ -27,11 +27,11 @@ function ResetPassword() {
                 setAllValues({ ...allValues, email: "", otp: null, password: '' })
                 alert(response.data.message);
                 if (response.data.status) {
-                    navigate('/')
+                    navigate('/');
                 }
             }).catch((error) => {
                 console.log(error);
-            })
+            });
     }
     return (
         <div>
@@ -40,11 +40,9 @@ function ResetPassword() {
                     <div className="row">
                         <div className="col-md-6 col-12 mx-auto mb-3">
                             <form onSubmit={submit}>
-
                                 {
                                     !generatedOtp &&
                                     <>
-
                                         <div className="form-group">
                                             <input type="email" className="form-control" name="email" placeholder="Enter Email" defaultValue={allValues.email} onChange={(e) => { setAllValues(allValues => ({ ...allValues, email: e.target.value })) }} required />
                                         </div>
@@ -73,8 +71,6 @@ function ResetPassword() {
                 </div>
             </div>
         </div>
-
-
     )
 }
 

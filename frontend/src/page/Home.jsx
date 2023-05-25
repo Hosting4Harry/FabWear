@@ -1,12 +1,12 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import '../App.css'
-import AllProducts from '../component/AllProducts'
-import axios from 'axios'
-import { DataContext } from '../context/DataContext'
-import "./Home.css"
-import Category from './Category'
-import Offers from './AddOn/Offers'
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import '../App.css';
+import AllProducts from '../component/AllProducts';
+import axios from 'axios';
+import { DataContext } from '../context/DataContext';
+import "./Home.css";
+import Category from './Category';
+import Offers from './AddOn/Offers';
 
 const Home = () => {
     const ref = useRef(null);

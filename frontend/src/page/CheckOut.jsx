@@ -7,7 +7,6 @@ import "./CheckOut.css"
 function CheckOut() {
     const timeout = useRef(null);
     // const loc = localStorage.getItem('NavLoc');
-
     const checkAuth = () => {
         axios.get("http://localhost:8000/isAuth", {
             headers: {
@@ -17,14 +16,14 @@ function CheckOut() {
             if (!response.data.login) {
                 navigate("/");
             }
-        })
+        });
     }
 
     useEffect(() => {
         timeout.current = setTimeout(checkAuth, 1000)
         return function () {
             if (timeout.current) {
-                clearTimeout(timeout.current)
+                clearTimeout(timeout.current);
             }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -43,7 +42,6 @@ function CheckOut() {
         const res = await axios.get(`http://localhost:8000/address/getaddress/${dat}`);
         setYourAddress(res.data);
     }
-
     // const { id } = useParams();
     // const buynow = async () => {
     //     if (id) {
@@ -108,7 +106,6 @@ function CheckOut() {
         }
         // creating a new order
         const result = await axios.post("http://localhost:8000/payment/orders", data);
-        debugger
         if (!result) {
             alert("Server error. Are you online?");
             return;
@@ -116,12 +113,11 @@ function CheckOut() {
         // Getting the order details back
         const { order, orderData } = result.data;
         const { amount, id: order_id, currency } = order;
-
         const options = {
             key: "rzp_test_T3tAATbEcOqopL", // Enter the Key ID generated from the Dashboard
             amount: amount.toString(),
             currency: currency,
-            name: "Harry Corp.",
+            name: "Favware",
             description: "Test Transaction",
             image: "../../img/empty-cart.png",
             order_id: order_id,
@@ -134,7 +130,7 @@ function CheckOut() {
                     orderData: orderData
                 };
                 const result = await axios.post("http://localhost:8000/payment/success", data);
-                setCart([])
+                setCart([]);
                 localStorage.setItem('Ecomlongid', result.razorpayPaymentId);
                 navigate(`/myaccount`);
                 alert(result.data.msg);
@@ -192,9 +188,6 @@ function CheckOut() {
                                     <div className="text-center mb-5"> <span className="text-uppercase">Valid till 23 august</span> </div>
                                     <div className="text-right p-1"> <small>*T&C APPLY</small> </div>
                                 </div>
-
-                                {/* </div> */}
-
                             </div>
                         </div>
                     </div>
@@ -257,5 +250,4 @@ function CheckOut() {
         </div>
     )
 }
-
 export default CheckOut

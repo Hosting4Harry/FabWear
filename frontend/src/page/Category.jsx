@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Category() {
     const values = [
@@ -34,12 +34,9 @@ function Category() {
                         </div>
                     </div>
                 </div >
-
             })
         }
     </>
-
     )
 }
-
 export default Category

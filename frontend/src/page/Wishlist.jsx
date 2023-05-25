@@ -1,8 +1,8 @@
 import axios from 'axios';
-import React, { useContext, useRef, useEffect } from 'react'
+import React, { useContext, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import WishlistP from '../component/WishlistP';
-import { DataContext } from '../context/DataContext'
+import { DataContext } from '../context/DataContext';
 
 const Wishlist = () => {
     const { wishlist, setWishlist } = useContext(DataContext);
@@ -17,7 +17,7 @@ const Wishlist = () => {
             if (!response.data.login) {
                 navigate("/");
             }
-        })
+        });
     }
     const id = localStorage.getItem("EcomUserId")
     function getWish(id) {
@@ -26,7 +26,7 @@ const Wishlist = () => {
                 setWishlist(response.data);
             }).catch((err) => {
                 console.log(err);
-            })
+            });
     }
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -42,7 +42,7 @@ const Wishlist = () => {
             }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, []);
 
     return (<>
         <div className="cart pt-2" style={{ backgroundColor: "#eee", marginBottom: "200px" }}>
@@ -55,7 +55,6 @@ const Wishlist = () => {
                     <div className="container" style={{ textAlign: 'center' }}>
                         <button className="btn-lg btn-info" onClick={() => navigate('/products')}>Continue Shopping</button>
                     </div>
-
                 </div>
             ) : (<div className="container">
                 <h2>Your have {wishlist.length} Items in your wishlist</h2>
@@ -76,14 +75,6 @@ const Wishlist = () => {
             )
             }
         </div>
-
-        {
-
-        }
-
-
-
-
     </>
     )
 }

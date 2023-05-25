@@ -7,9 +7,9 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [checked, setChecked] = useState(false);
-    const [status, setStatus] = useState(false)
-    const [msg, setMsg] = useState("")
-    const timeout = useRef(null)
+    const [status, setStatus] = useState(false);
+    const [msg, setMsg] = useState("");
+    const timeout = useRef(null);
     const navigate = useNavigate();
 
     const checkAuth = () => {
@@ -20,14 +20,14 @@ const Login = () => {
         }).then((response) => {
             if (response.data.login) {
             }
-        })
+        });
     }
 
     useEffect(() => {
-        timeout.current = setTimeout(checkAuth, 1000)
+        timeout.current = setTimeout(checkAuth, 1000);
         return function () {
             if (timeout.current) {
-                clearTimeout(timeout.current)
+                clearTimeout(timeout.current);
             }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -35,22 +35,22 @@ const Login = () => {
     //  setInterval(checkAuth, 1000);
 
     const onSub = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         const data = {
             email: email,
             password: password,
             checked: checked
         }
 
-        const res = await axios.post("http://localhost:8000/login", data)
+        const res = await axios.post("http://localhost:8000/login", data);
         if (res.data.msg) {
-            setStatus(true)
-            setMsg(res.data.msg)
+            setStatus(true);
+            setMsg(res.data.msg);
         }
         else {
-            localStorage.setItem("Ecomtoken", res.data.token)
-            localStorage.setItem("EcomUser", res.data.user)
-            localStorage.setItem("EcomUserId", res.data.userID)
+            localStorage.setItem("Ecomtoken", res.data.token);
+            localStorage.setItem("EcomUser", res.data.user);
+            localStorage.setItem("EcomUserId", res.data.userID);
             localStorage.setItem("EcomEmail", res.data.userEmail);
             var decoded;
             const checkRole = () => {
@@ -100,15 +100,13 @@ const Login = () => {
                                 <button type="submit" className="btn btn-info">Login</button>
                             </form>
                             <br />
-                            <span>
-                                Don't have an account? <NavLink to="/register" >Register Now</NavLink>
+                            <span>Don't have an account? <NavLink to="/register" >Register Now</NavLink>
                             </span>
                             <br />
                             <NavLink to="/resetpassword">Forgot Password</NavLink>
                         </div>
                     </div>
                 </div>
-
             </div>
         </>
     )

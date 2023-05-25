@@ -1,33 +1,33 @@
-import React from 'react'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // eslint-disable-next-line no-unused-vars
-import AdminNav from './component/AdminNav'
-import Footer from './component/Footer'
-import Home from './page/Home'
-import Products from './page/Products'
-import Cart from './page/Cart'
-import ProductDetails from './page/ProductDetails'
-import Contact from './page/Contact'
-import Payment from './page/Payment'
-import MyAccount from './page/MyAccount'
-import EditAdd from './page/EditAdd'
+import AdminNav from './component/AdminNav';
+import Footer from './component/Footer';
+import Home from './page/Home';
+import Products from './page/Products';
+import Cart from './page/Cart';
+import ProductDetails from './page/ProductDetails';
+import Contact from './page/Contact';
+import Payment from './page/Payment';
+import MyAccount from './page/MyAccount';
+import EditAdd from './page/EditAdd';
 import MyOrder from './page/MyOrder'
-import { ConText } from './context/DataContext'
-import Register from './page/Register'
-import Login from './page/Login'
-import Success from './page/Success'
-import Wishlist from './page/Wishlist'
-import './App.css'
-import SearchProducts from './page/SearchProducts'
-import AddProduct from './page/AddProduct'
-import AddAddress from './page/AddAddress'
-import CheckOut from './page/CheckOut'
-import MyAddress from './page/MyAddress'
+import { ConText } from './context/DataContext';
+import Register from './page/Register';
+import Login from './page/Login';
+import Success from './page/Success';
+import Wishlist from './page/Wishlist';
+import './App.css';
+import SearchProducts from './page/SearchProducts';
+import AddProduct from './page/AddProduct';
+import AddAddress from './page/AddAddress';
+import CheckOut from './page/CheckOut';
+import MyAddress from './page/MyAddress';
 import PermissionCheck from './context/PermissionCheck';
-import ProductsAdminSide from './page/ProductsAdminSide'
-import ResetPassword from './page/ResetPassword'
-import Dashboard from './component/AdminSide/Dashboard'
-import FeedBack from './page/AddOn/FeedBack'
+import ProductsAdminSide from './page/ProductsAdminSide';
+import ResetPassword from './page/ResetPassword';
+import Dashboard from './component/AdminSide/Dashboard';
+import FeedBack from './page/AddOn/FeedBack';
 
 const App = () => {
   return (

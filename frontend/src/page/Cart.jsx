@@ -71,7 +71,6 @@ const Cart = () => {
                                             <div style={{ textAlign: 'center' }}>
                                                 <button className="btn btn-info" onClick={() => navigate('/products')}>Continue Shopping</button>
                                             </div>
-
                                         </div>
                                     ) : (
                                         <>
@@ -103,7 +102,6 @@ const Cart = () => {
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </>
                                     )
                                 }

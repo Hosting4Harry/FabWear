@@ -25,7 +25,7 @@ function ProductsAdminSide() {
     const deleteProduct = window.confirm("Do you want to delete the product?");
     if (deleteProduct) {
       await axios.post("http://localhost:8000/product/deleteProduct/" + id);
-      window.location.reload(true)
+      window.location.reload(true);
     }
   }
 
@@ -151,7 +151,6 @@ function ProductsAdminSide() {
                 }
               })
               }
-
             </tbody>
           </table>
         </div>

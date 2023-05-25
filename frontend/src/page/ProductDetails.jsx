@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
-import { useParams, useNavigate, Link } from 'react-router-dom'
-import axios from 'axios'
-import { DataContext } from '../context/DataContext'
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { useParams, useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
+import { DataContext } from '../context/DataContext';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Review from './AddOn/Review';
@@ -37,7 +37,7 @@ const ProductDetails = () => {
                 )
             }
             else {
-                setCart([...cart, data])
+                setCart([...cart, data]);
             }
 
             // toast.success('Added to the Cart!', {
@@ -65,8 +65,8 @@ const ProductDetails = () => {
                     }).catch(error => {
                         if (error)
                             setData([]);
-                    })
-            })
+                    });
+            });
     }
     useEffect(() => {
         getData();

@@ -3,14 +3,14 @@ import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 
 const EditAdd = () => {
-    const datemail = localStorage.getItem('EcomEmail')
-    const [name, setName] = useState("")
-    const [email, setEmail] = useState(datemail)
-    const [phone, setPhone] = useState("")
-    const [addr, setAddr] = useState("")
-    const { id } = useParams()
-    const timeout = useRef(null)
-    const navigate = useNavigate()
+    const datemail = localStorage.getItem('EcomEmail');
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState(datemail);
+    const [phone, setPhone] = useState("");
+    const [addr, setAddr] = useState("");
+    const { id } = useParams();
+    const timeout = useRef(null);
+    const navigate = useNavigate();
     const checkAuth = () => {
         axios.get("http://localhost:8000/isAuth", {
             headers: {

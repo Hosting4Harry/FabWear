@@ -20,7 +20,6 @@ function AddAddress() {
         city: '',
         cityData: []
     });
-
     const handelData = (e) => {
         let { name, value } = e.target;
         let x = { ...addressDetails, [name]: value };
@@ -30,13 +29,11 @@ function AddAddress() {
         if (val.length === 6) {
             const res = await axios.get('https://api.postalpincode.in/pincode/' + val, {
                 headers: {
-
                 }
             })
             if (res.data[0].PostOffice !== null) {
                 setAddressDetails(addressDetails => ({ ...addressDetails, state: res.data[0].PostOffice[0].Circle, cityData: res.data[0].PostOffice, zip: val }))
             } else {
-                debugger
                 alert("Enter a valid Pin")
             }
         }
@@ -68,11 +65,10 @@ function AddAddress() {
         }
     }
     const onSub = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         sendData(addressDetails, id);
-        navigate('/myaddress')
+        navigate('/myaddress');
     }
-
 
     return (
         <section>
@@ -147,7 +143,6 @@ function AddAddress() {
                                                 </div>
                                             </div>
                                             <div className="row">
-
                                                 <div className="col-md-6 mb-4">
                                                     <input type="text" name='phone' id="form3Example8" className="form-control" placeholder='Mobile' defaultValue={addressDetails.phone} onChange={handelData} required />
                                                     <label className="form-label" htmlFor="form3Example8"></label>
@@ -157,7 +152,6 @@ function AddAddress() {
                                                     <label className="form-label" htmlFor="form3Example2"></label>
                                                 </div>
                                             </div>
-
                                             <div className="d-flex justify-content-end pt-3">
                                                 <button type="button" onClick={() => navigate(-1)} className="btn bg-secondary  ms-2">Go Back</button>
                                                 <button type="submit" className="btn btn-success ms-2"
@@ -166,7 +160,6 @@ function AddAddress() {
                                                 &nbsp;<button type="button" onClick={() => navigate('/checkout')} className="btn btn-success btn-lg ms-2"
                                                     style={{ backgroundColor: "hsl(210, 100%, 50%) " }}>Place order</button> */}
                                             </div>
-
                                         </div>
                                     </form>
                                 </div>
@@ -176,7 +169,6 @@ function AddAddress() {
                 </div>
             </div>
         </section>
-
     )
 }
 

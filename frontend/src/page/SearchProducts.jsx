@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import CardProducts from '../component/CardProducts';
 import { DataContext } from '../context/DataContext';
@@ -11,7 +11,6 @@ function SearchProducts() {
         setLoading(true);
         await axios.get('http://localhost:8000/product/searchProduct/' + name)
             .then(response => {
-                debugger
                 setLoading(false);
                 setSearchResult(response.data);
             }).catch(error => {
@@ -74,12 +73,7 @@ function SearchProducts() {
                         } else {
                             return <></>
                         }
-
                     })}
-                    {/* if (item.product_image.split('/')[1] === name.toLowerCase() || item.product_image.split('/')[2] === name.toLowerCase()) { */}
-                    {/* } else {
-                            return <></>
-                        } */}
                 </div>
             </div>
         </section>
