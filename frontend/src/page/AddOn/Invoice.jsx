@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 const Invoice = () => {
     const { id } = useParams();
@@ -39,18 +40,17 @@ const Invoice = () => {
                                 <p style={{ color: "#7e8d9f", fontSize: "20px;" }}>Invoice  <strong>ID: #{in_No}</strong></p>
                             </div>
                             <div className="col-xl-3 float-end">
-                                <a className="btn btn-light text-capitalize border-0" data-mdb-ripple-color="dark" onClick={download}><i
-
-                                    className="fas fa-print text-primary" ></i> Print</a>
+                                <Link className="btn btn-light text-capitalize border-0" data-mdb-ripple-color="dark" onClick={download}>
+                                    <i className="fas fa-print text-primary" ></i> Print</Link>
                             </div>
                             <hr />
                         </div>
 
                         <div className="container">
                             <div className="col-md-12">
-                                <div className="text-center">
-                                    <i className=" fa-4x ms-0" style={{ color: "#5d9fc5 " }}>FabWear</i>
-                                    <p className="pt-0">FabWear.com</p>
+                                <div className="text-center" style={{ "overflowY": "hidden" }} >
+                                    <i className=" fa-4x ms-0" style={{ color: "#5d9fc5 ", "fontFamily": 'Gistesy' }} >Fab Wear</i> &nbsp;<sub style={{ color: "#5d9fc5 ", "fontSize": '2rem' }} >.com</sub>
+                                    {/* <p className="pt-0"><i>.com</i></p> */}
                                 </div>
 
                             </div>
@@ -128,7 +128,7 @@ const Invoice = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
