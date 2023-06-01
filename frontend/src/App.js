@@ -28,6 +28,7 @@ import ProductsAdminSide from './page/ProductsAdminSide';
 import ResetPassword from './page/ResetPassword';
 import Dashboard from './component/AdminSide/Dashboard';
 import FeedBack from './page/AddOn/FeedBack';
+import Invoice from './page/AddOn/Invoice';
 
 const App = () => {
   return (
@@ -60,6 +61,7 @@ const App = () => {
             <Route exact path="/addaddress/:id" element={<AddAddress />} />
             <Route exact path="/checkout" element={<CheckOut />} />
             <Route exact path="/checkout/:id" element={<CheckOut />} />
+            <Route exact path="/invoice/:id" element={<Invoice />} />
             <Route exact path="/myaddress" element={<MyAddress />} />
             <Route exact path="/dashboard" element={<Dashboard />} />
             {/* <Route exact path="/paynow/:pid" element={PayNow} /> */}
