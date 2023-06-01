@@ -13,6 +13,7 @@ const Invoice = () => {
                 setProducts(res.data)
                 console.log(res.data);
             });
+
     }
     const in_No = Math.floor(Math.random(100000, 999999) * 1000000);
     const date = new Date().toLocaleString('en-IN', { timeZone: 'IST' });
@@ -79,7 +80,7 @@ const Invoice = () => {
 
                             <div className="row my-2 mx-1 justify-content-center">
                                 <table className="table table-striped table-borderless">
-                                    <thead style={{ backgroundColor: "#84B0CA ;" }} className="text-white">
+                                    <thead style={{ backgroundColor: "#84B0CA ;" }} className="text-black">
                                         <tr>
                                             <th scope="col">#</th>
                                             <th scope="col">Image</th>
@@ -96,7 +97,7 @@ const Invoice = () => {
                                                     <td><img src={`../img/${val.product_image}`} height="60px" width="50px" alt={(val.name)} /></td>
                                                     <td>{(val.name)}</td>
                                                     <td>{(val.price)}</td>
-                                                    <td>{new Date(val.createdAt).toLocaleString()}</td>
+                                                    <td>{new Date(val.createdAt).toLocaleString('en-IN', { timeZone: 'IST' })}</td>
                                                 </tr>)
                                             })
                                         }
