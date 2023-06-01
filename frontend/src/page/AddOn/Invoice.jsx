@@ -1,0 +1,135 @@
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom';
+
+const Invoice = () => {
+    const { id } = useParams();
+    let sum = 0;
+    const [products, setProducts] = useState([]);
+    const getData = () => {
+        axios.get(`http://localhost:8000/order/myorder/` + id)
+            .then((res) => {
+                setProducts(res.data)
+                console.log(res.data);
+            });
+    }
+    const in_No = Math.floor(Math.random(100000, 999999) * 1000000);
+    const date = new Date().toLocaleString('en-IN', { timeZone: 'IST' });
+
+
+    // this is the process to download the pdf
+    const download = async () => {
+        var printContents = document.getElementById('print').innerHTML;
+        var originalContents = document.body.innerHTML;
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+    }
+    useEffect(() => {
+        getData();
+        // eslint-disable-next-line
+    }, [])
+    return (
+        <div id='print'>
+            <div className="card">
+                <div className="card-body">
+                    <div className="container mb-5 mt-3">
+                        <div className="row d-flex align-items-baseline">
+                            <div className="col-xl-9">
+                                <p style={{ color: "#7e8d9f", fontSize: "20px;" }}>Invoice  <strong>ID: #{in_No}</strong></p>
+                            </div>
+                            <div className="col-xl-3 float-end">
+                                <a className="btn btn-light text-capitalize border-0" data-mdb-ripple-color="dark" onClick={download}><i
+
+                                    className="fas fa-print text-primary" ></i> Print</a>
+                            </div>
+                            <hr />
+                        </div>
+
+                        <div className="container">
+                            <div className="col-md-12">
+                                <div className="text-center">
+                                    <i className=" fa-4x ms-0" style={{ color: "#5d9fc5 " }}>FabWear</i>
+                                    <p className="pt-0">FabWear.com</p>
+                                </div>
+
+                            </div>
+                            <div className="row">
+                                <div className="col-xl-8">
+                                    <ul className="list-unstyled">
+                                        <li className="text-muted">To: <span style={{ color: "#5d9fc5" }}>{localStorage.getItem('EcomUser')}</span></li>
+                                        <li className="text-muted">Street, City</li>
+                                        <li className="text-muted">State, India</li>
+                                        <li className="text-muted"><i className="fas fa-phone"></i> +91 6370017676</li>
+                                    </ul>
+                                </div>
+                                <div className="col-xl-4">
+                                    <p className="text-muted">Invoice</p>
+                                    <ul className="list-unstyled">
+                                        <li className="text-muted"><i className="fas fa-circle" style={{ color: "#84B0CA " }}></i> <span
+                                            className="fw-bold">ID:</span>#{in_No}</li>
+                                        <li className="text-muted"><i className="fas fa-circle" style={{ color: "#84B0CA " }}></i> <span
+                                            className="fw-bold">Creation Date: </span>{date}</li>
+                                        <li className="text-muted"><i className="fas fa-circle" style={{ color: "#84B0CA " }}></i> <span
+                                            className="me-1 fw-bold">Status:</span><span className="badge bg-warning text-black fw-bold">
+                                                Paid</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div className="row my-2 mx-1 justify-content-center">
+                                <table className="table table-striped table-borderless">
+                                    <thead style={{ backgroundColor: "#84B0CA ;" }} className="text-white">
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Image</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Unit Price</th>
+                                            <th scope="col">Time</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            products.map((val, ind) => {
+                                                return (<tr key={ind}>
+                                                    <td>{ind + 1}</td>
+                                                    <td><img src={`../img/${val.product_image}`} height="60px" width="50px" alt={(val.name)} /></td>
+                                                    <td>{(val.name)}</td>
+                                                    <td>{(val.price)}</td>
+                                                    <td>{new Date(val.createdAt).toLocaleString()}</td>
+                                                </tr>)
+                                            })
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div className="row">
+                                <div className="col-xl-8">
+                                    <p className="ms-3"></p>
+
+                                </div>
+                                <div className="col-xl-3">
+                                    <p className="text-black float-start"><span className="text-black me-3" style={{ fontSize: "20px" }}> Total Amount</span><span style={{ fontSize: "25px" }}>{
+                                        products.forEach(val => {
+                                            sum += (val.price)
+                                            if (sum <= 500) {
+                                                sum = sum + 50
+                                            }
+                                        })} ₹ &nbsp;{sum}</span></p>
+                                </div>
+                            </div>
+                            <hr />
+                            <div className="row">
+                                <div className="col-xl-10">
+                                    <p>Thank you for your purchase</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default Invoice

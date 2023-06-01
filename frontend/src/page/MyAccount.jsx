@@ -157,8 +157,9 @@ const MyAccount = () => {
                                                     <td>{(val.orderstatus === "cancelled") ? "---" : (val.paymentmode)}</td>
                                                     <td>{val.orderstatus}</td>
                                                     <td>{(val.orderstatus === "cancelled") ? "---" : (val.totalprice)}</td>
-                                                    <td>
-                                                        <NavLink to={`/myorder/${val.id}`} className="btn btn-info">View</NavLink>
+                                                    <td className='d-flex'>
+                                                        <NavLink to={`/myorder/${val.id}`} className="btn btn-info">View</NavLink> &nbsp;
+                                                        <NavLink to={`/invoice/${val.id}`} className="btn btn-info">Invoice</NavLink>
                                                     </td>
                                                 </tr>
                                                 )
