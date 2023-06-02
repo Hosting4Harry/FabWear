@@ -27,7 +27,9 @@ function Dashboard() {
         await axios('http://localhost:8000/order/allOrder')
             .then(res => {
                 setOrder(res.data);
+                var total2 = 0;
                 res.data.map((item) => {
+                    debugger
                     switch (item.createdAt.split('-')[1]) {
                         case '01':
                             setData(data => ({ ...data, jan: data.jan + 1 }))
@@ -68,10 +70,14 @@ function Dashboard() {
                         default:
                             break;
                     }
-                    return setTotal(total + item.productprice);
+
+                    total2 = total2 + item.productprice
+                    return total2;
                 })
+                setTotal(total2);
             });
     }
+    console.log(total)
     useEffect(() => {
         orders();
         // eslint-disable-next-line react-hooks/exhaustive-deps
