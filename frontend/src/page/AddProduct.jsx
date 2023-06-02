@@ -73,7 +73,7 @@ const AddProduct = () => {
         data.append("image_path", image_path);
         data.append('accessories', productDetails.accessories);
         data.append('product_image', productDetails.product_image);
-        console.log(data);
+
         if (!id) {
             var config = {
                 method: 'post',
