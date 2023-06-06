@@ -140,8 +140,7 @@ function Dashboard() {
                 </div>
                 <div className=" row " style={{}}>
                     <h3>Sale statistics</h3>
-                    <div className='col-6'>
-                    </div>
+
                     <div className='col-6'>
                         <div className=' w-100' >
                             <CChart
@@ -170,6 +169,8 @@ function Dashboard() {
                                 }}
                             />
                         </div>
+                    </div>
+                    <div className='col-6'>
                     </div>
                     <div>
 
