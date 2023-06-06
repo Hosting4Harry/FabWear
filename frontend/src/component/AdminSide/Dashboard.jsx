@@ -83,48 +83,48 @@ function Dashboard() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (
-        <section style={{ marginBottom: '100px' }}>
-            <div className="ms-5">
-                <h1>Dashboard</h1>
-                <div className='row mb-3'>
-                    <div className='col-sm-12 card1 col-lg-3 col-md-6  my-5 py-3 shadow '>
-                        <div className=' pt-3 d-flex'>
-                            <div>
-                                <img src="/img/dollar_icon.png" alt="" height="50px" />
-                            </div>
-                            <div style={{ marginLeft: "20px" }}>
-                                <h4 fontWeight="600" fontSize="17px" >Revenue <br />₹{total}.00</h4>
-                                <span fontSize="16px" color="grey.600" >Shipping fees are not included</span>
-                            </div>
+        // <section style={{ marginBottom: '100px' }}>
+        <div className="ms-5">
+            <h1>Dashboard</h1>
+            <div className='row mb-3'>
+                <div className='col-sm-12 card1 col-lg-3 col-md-6  my-5 py-3 shadow '>
+                    <div className=' pt-3 d-flex'>
+                        <div>
+                            <img src="/img/dollar_icon.png" alt="" height="50px" />
+                        </div>
+                        <div style={{ marginLeft: "20px" }}>
+                            <h4 fontWeight="600" fontSize="17px" >Revenue <br />₹{total}.00</h4>
+                            <span fontSize="16px" color="grey.600" >Shipping fees are not included</span>
                         </div>
                     </div>
-                    <div className='col-sm-12 col-lg-3 card2 col-md-6 d-flex my-5 py-3 shadow' >
-                        <div className='pt-3 d-flex' >
-                            <div className='pt-3'>
-                                <img src="/img/delivery.png" alt="" />
-                            </div>
-                            <div style={{ marginLeft: "20px" }}>
-                                <h4 fontWeight="600" fontSize="17px" >Orders <br />
-                                    &nbsp;  {order.length}
-                                </h4>
-                                <span fontSize="16px" color="grey.600" >Excluding orders in transit</span>
-                            </div>
+                </div>
+                <div className='col-sm-12 col-lg-3 card2 col-md-6 d-flex my-5 py-3 shadow' >
+                    <div className='pt-3 d-flex' >
+                        <div className='pt-3'>
+                            <img src="/img/delivery.png" alt="" />
+                        </div>
+                        <div style={{ marginLeft: "20px" }}>
+                            <h4 fontWeight="600" fontSize="17px" >Orders <br />
+                                &nbsp;  {order.length}
+                            </h4>
+                            <span fontSize="16px" color="grey.600" >Excluding orders in transit</span>
                         </div>
                     </div>
-                    <div className='col-sm-12 col-lg-3 card3 col-md-6 d-flex my-5 py-3 shadow' >
-                        <div className='pt-3 d-flex' >
-                            <div className='pt-3'>
-                                <img src="/img/QR_icon.webp" alt="" style={{ height: "50px" }} />
-                            </div>
-                            <div style={{ marginLeft: "20px" }}>
-                                <h4 fontWeight="600" fontSize="17px" >Products<br />
-                                    {totalProduct.length}
-                                </h4>
-                                <span fontSize="16px" color="grey.600" >In 4 Categories</span>
-                            </div>
+                </div>
+                <div className='col-sm-12 col-lg-3 card3 col-md-6 d-flex my-5 py-3 shadow' >
+                    <div className='pt-3 d-flex' >
+                        <div className='pt-3'>
+                            <img src="/img/QR_icon.webp" alt="" style={{ height: "50px" }} />
+                        </div>
+                        <div style={{ marginLeft: "20px" }}>
+                            <h4 fontWeight="600" fontSize="17px" >Products<br />
+                                {totalProduct.length}
+                            </h4>
+                            <span fontSize="16px" color="grey.600" >In 4 Categories</span>
                         </div>
                     </div>
-                    {/* <div className='col-sm-12 col-lg-3 col-md-6 card4 d-flex my-5 py-3 shadow' >
+                </div>
+                {/* <div className='col-sm-12 col-lg-3 col-md-6 card4 d-flex my-5 py-3 shadow' >
                         <div className='pt-3 d-flex'>
                             <div>
                                 <img src="/img/bag_icon.png" alt="" width="50px" />
@@ -137,46 +137,47 @@ function Dashboard() {
                             </div>
                         </div>
                     </div> */}
-                </div>
-                <div className=" row " style={{}}>
-                    <h3>Sale statistics</h3>
-                    <div className='col-6'>
-                    </div>
-                    <div className='col-6'>
-                        <div className=' w-100' >
-                            <CChart
-                                type="line"
-                                data={{
-                                    labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-                                    datasets: [
-                                        {
-                                            label: "Total orders for year 2023",
-                                            backgroundColor: "rgba(220, 220, 220, 0.2)",
-                                            borderColor: "rgba(151, 187, 205, 1)",
-                                            pointBackgroundColor: "rgba(151, 187, 205, 1)",
-                                            pointBorderColor: "#fff",
-                                            data: [data.jan, data.feb, data.mar, data.apr, data.may, data.june, data.jul, data.aug, data.sept, data.oct, data.nov, data.dec, 10]
-                                        }
-                                        // ,
-                                        // {
-                                        //     label: "My Second dataset",
-                                        //     backgroundColor: "rgba(151, 187, 205, 0.2)",
-                                        //     borderColor: "rgba(151, 187, 205, 1)",
-                                        //     pointBackgroundColor: "rgba(151, 187, 205, 1)",
-                                        //     pointBorderColor: "#fff",
-                                        //     data: [50, 12, 28, 29, 7, 25, 12, 70, 60]
-                                        // },
-                                    ],
-                                }}
-                            />
-                        </div>
-                    </div>
-                    <div>
+            </div>
+            <div className=" row " style={{}}>
+                <h3>Sale statistics</h3>
 
+                <div className='col-6'>
+                    <div className=' w-100' >
+                        <CChart
+                            type="line"
+                            data={{
+                                labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+                                datasets: [
+                                    {
+                                        label: "Total orders for year 2023",
+                                        backgroundColor: "rgba(220, 220, 220, 0.2)",
+                                        borderColor: "rgba(151, 187, 205, 1)",
+                                        pointBackgroundColor: "rgba(151, 187, 205, 1)",
+                                        pointBorderColor: "#fff",
+                                        data: [data.jan, data.feb, data.mar, data.apr, data.may, data.june, data.jul, data.aug, data.sept, data.oct, data.nov, data.dec, 10]
+                                    }
+                                    // ,
+                                    // {
+                                    //     label: "My Second dataset",
+                                    //     backgroundColor: "rgba(151, 187, 205, 0.2)",
+                                    //     borderColor: "rgba(151, 187, 205, 1)",
+                                    //     pointBackgroundColor: "rgba(151, 187, 205, 1)",
+                                    //     pointBorderColor: "#fff",
+                                    //     data: [50, 12, 28, 29, 7, 25, 12, 70, 60]
+                                    // },
+                                ],
+                            }}
+                        />
                     </div>
+                </div>
+                <div className='col-6'>
+                </div>
+                <div>
+
                 </div>
             </div>
-        </section>
+        </div>
+        // </section>
     )
 }
 
