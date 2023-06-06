@@ -38,7 +38,7 @@ const Invoice = () => {
                     <div className="container mb-5 mt-3">
                         <div className="row d-flex align-items-baseline">
                             <div className="col-xl-9">
-                                <p style={{ color: "#7e8d9f", fontSize: "20px;" }}>Invoice  <strong>ID: #{in_No}</strong></p>
+                                <p style={{ color: "#7e8d9f", fontSize: "20px" }}>Invoice  <strong>ID: #{in_No}</strong></p>
                             </div>
                             <div className="col-xl-3 float-end">
                                 <Link className="btn btn-light text-capitalize border-0" data-mdb-ripple-color="dark" onClick={download}>
@@ -80,7 +80,7 @@ const Invoice = () => {
 
                             <div className="row my-2 mx-1 justify-content-center">
                                 <table className="table table-striped table-borderless">
-                                    <thead style={{ backgroundColor: "#84B0CA ;" }} className="text-black">
+                                    <thead style={{ backgroundColor: "#84B0CA " }} className="text-black">
                                         <tr>
                                             <th scope="col">#</th>
                                             <th scope="col">Image</th>

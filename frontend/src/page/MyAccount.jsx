@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef, useContext } from 'react'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { DataContext } from '../context/DataContext'
+import { GrView, GrDownload } from "react-icons/gr";
 
 const MyAccount = () => {
     const { setLoading, roleId } = useContext(DataContext);
@@ -158,8 +159,8 @@ const MyAccount = () => {
                                                     <td>{val.orderstatus}</td>
                                                     <td>{(val.orderstatus === "cancelled") ? "---" : (val.totalprice)}</td>
                                                     <td className='d-flex'>
-                                                        <NavLink to={`/myorder/${val.id}`} className="btn btn-info">View</NavLink> &nbsp;
-                                                        <NavLink to={`/invoice/${val.id}`} className="btn btn-info">Invoice</NavLink>
+                                                        <NavLink to={`/myorder/${val.id}`} className="btn btn-info btn-sm"><GrView></GrView></NavLink> &nbsp;
+                                                        <NavLink to={`/invoice/${val.id}`} className="btn btn-info btn-sm"><GrDownload></GrDownload></NavLink>
                                                     </td>
                                                 </tr>
                                                 )
