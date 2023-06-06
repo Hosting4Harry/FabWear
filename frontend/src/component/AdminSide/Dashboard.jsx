@@ -84,58 +84,60 @@ function Dashboard() {
     }, []);
     return (
         <section style={{ marginBottom: '100px' }}>
-            <div className="ms-5">
-                <h1>Dashboard</h1>
-                <div className='row mb-3'>
-                    <div className='col-sm-12 card1 col-lg-3 col-md-6  my-5 py-3 shadow '>
-                        <div className=' pt-3 d-flex'>
-                            <div>
-                                <img src="/img/dollar_icon.png" alt="" height="50px" />
-                            </div>
-                            <div style={{ marginLeft: "20px" }}>
-                                <h4 fontWeight="600" fontSize="17px" >Revenue <br />₹{total}.00</h4>
-                                <span fontSize="16px" color="grey.600" >Shipping fees are not included</span>
-                            </div>
+            {/* <div className="ms-5"> */}
+            <h1>Dashboard</h1>
+            <div className='row mb-3 mx-5'>
+                <div className='col-sm-10 card1 col-lg-3 col-md-5  my-5 py-3 shadow mx-2'>
+                    <div className=' pt-3 d-flex'>
+                        <div>
+                            <img src="/img/dollar_icon.png" alt="" height="50px" />
+                        </div>
+                        <div style={{ marginLeft: "20px" }}>
+                            <h4 fontWeight="600" fontSize="17px" >Revenue <br />₹{total}.00</h4>
+                            <span fontSize="16px" color="grey.600" >Shipping fees are not included</span>
                         </div>
                     </div>
-                    <div className='col-sm-12 col-lg-3 card2 col-md-6 d-flex my-5 py-3 shadow' >
-                        <Link to='/admin/allOrders' className='text-dark' style={{ "textDecoration": 'none' }}>
-                            <div className='pt-3 d-flex' >
-                                <div className='pt-3'>
-                                    <img src="/img/delivery.png" alt="" />
-                                </div>
-                                <div style={{ marginLeft: "20px" }}>
-                                    <h4 fontWeight="600" fontSize="17px" >Orders <br />
-                                        &nbsp;  {order.length}
-                                    </h4>
-                                    <span fontSize="16px" color="grey.600" >Excluding orders in transit</span>
-                                </div>
-                            </div>
-                        </Link>
-                    </div>
-                    <div className='col-sm-12 col-lg-3 card3 col-md-6 d-flex my-5 py-3 shadow' >
-                        <Link to='/admin/products' className='text-dark' style={{ "textDecoration": 'none' }}>
-
-                            <div className='pt-3 d-flex' >
-                                <div className='pt-3'>
-                                    <img src="/img/QR_icon.webp" alt="" style={{ height: "50px" }} />
-                                </div>
-                                <div style={{ marginLeft: "20px" }}>
-                                    <h4 fontWeight="600" fontSize="17px" >
-                                        Products <br />
-                                        {totalProduct.length}
-                                    </h4>
-                                    <span fontSize="16px" color="grey.600" >In 4 Categories</span>
-                                </div>
-                            </div>
-                        </Link>
-                    </div>
-
                 </div>
+                <div className='col-sm-10 col-lg-3 card2 col-md-5 d-flex my-5 py-3 shadow mx-2' >
+                    <Link to='/admin/allOrders' className='text-dark' style={{ "textDecoration": 'none' }}>
+                        <div className='pt-3 d-flex' >
+                            <div className='pt-3'>
+                                <img src="/img/delivery.png" alt="" />
+                            </div>
+                            <div style={{ marginLeft: "20px" }}>
+                                <h4 fontWeight="600" fontSize="17px" >Orders <br />
+                                    &nbsp;  {order.length}
+                                </h4>
+                                <span fontSize="16px" color="grey.600" >Excluding orders in transit</span>
+                            </div>
+                        </div>
+                    </Link>
+                </div>
+                <div className='col-sm-10 col-lg-3 card3 col-md-5 d-flex my-5 py-3 shadow mx-2' >
+                    <Link to='/admin/products' className='text-dark' style={{ "textDecoration": 'none' }}>
+
+                        <div className='pt-3 d-flex' >
+                            <div className='pt-3'>
+                                <img src="/img/QR_icon.webp" alt="" style={{ height: "50px" }} />
+                            </div>
+                            <div style={{ marginLeft: "20px" }}>
+                                <h4 fontWeight="600" fontSize="17px" >
+                                    Products <br />
+                                    {totalProduct.length}
+                                </h4>
+                                <span fontSize="16px" color="grey.600" >In 4 Categories</span>
+                            </div>
+                        </div>
+                    </Link>
+                </div>
+
+                {/* </div> */}
+            </div>
+            <div className='container'>
                 <div className=" row " style={{}}>
-                    <h3>&nbsp; Sale statistics</h3>
-                    <div className='col-1'></div>
-                    <div className='col-6 border'>
+                    <h3>Sale statistics</h3>
+                    {/* <div className='col-1'></div> */}
+                    <div className='col-8 border'>
                         <div className=' w-100' >
                             <h4>Graphical</h4>
                             <CChart
@@ -144,20 +146,22 @@ function Dashboard() {
                                     labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
                                     datasets: [
                                         {
-                                            label: "Total orders for year 2023",
+                                            label: "Total orders ",
                                             backgroundColor: "rgba(220, 220, 220, 0.2)",
                                             borderColor: "rgba(151, 187, 205, 1)",
                                             pointBackgroundColor: "rgba(151, 187, 205, 1)",
                                             pointBorderColor: "#fff",
-                                            data: [data.jan, data.feb, data.mar, data.apr, data.may, data.june, data.jul, data.aug, data.sept, data.oct, data.nov, data.dec, 10]
+                                            data: [data.jan, data.feb, data.mar, data.apr, data.may, data.june, data.jul, data.aug, data.sept, data.oct, data.nov, data.dec, 10],
+                                            borderWidth: 1
                                         },
                                         {
-                                            label: "Total orders for year 2022",
+                                            label: "Total orders",
                                             backgroundColor: "rgba(220, 220, 220, 0.2)",
                                             borderColor: "rgb(236, 129, 7)",
                                             pointBackgroundColor: "rgb(236, 129, 7)",
                                             pointBorderColor: "#fff",
-                                            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10]
+                                            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10],
+                                            borderWidth: 1
                                         }
 
                                     ],
@@ -165,7 +169,7 @@ function Dashboard() {
                             />
                         </div>
                     </div>
-                    <div className='col-3 border ' >
+                    <div className='col-4 border ' >
                         <div className=''>
                             <h4>Pie</h4>
                             <CChart
@@ -183,12 +187,12 @@ function Dashboard() {
                             />
                         </div>
                     </div>
-                    <div className='col-1'></div>
+                    {/* <div className='col-1'></div> */}
                     <div>
-
                     </div>
                 </div>
             </div>
+
         </section>
     )
 }
