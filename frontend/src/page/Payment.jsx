@@ -22,7 +22,6 @@ const Payment = () => {
     const { cart, setCart, wishlist } = useContext(DataContext);
     var tot = 0;
     const timeout = useRef(null);
-
     const checkAuth = () => {
         axios.get("http://localhost:8000/isAuth", {
             headers: {
@@ -32,7 +31,7 @@ const Payment = () => {
             if (!response.data.login) {
                 navigate("/");
             }
-        })
+        });
     }
     useEffect(() => {
         localStorage.setItem('NavLoc', location.pathname);
@@ -46,7 +45,7 @@ const Payment = () => {
             }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, []);
 
     useEffect(() => {
         let totamo = 0;
