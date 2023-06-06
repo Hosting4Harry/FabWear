@@ -11,7 +11,6 @@ const Navbar = () => {
   const { cart, setCart, wishlist, setWishlist, searchResult, setSearchResult, loading } = useContext(DataContext);
   const [searchValue, setSearchValue] = useState("");
   const btn = document.getElementById('button');
-
   window.onscroll = () => {
     if (window.scrollY <= 150) {
       document.getElementById('logo').style.color = 'inherit';
@@ -135,8 +134,8 @@ const Navbar = () => {
               }
             </NavLink>
           </li>
-          <li>
-            <NavLink to="/myaccount" className=" position-relative me-3" >User </NavLink>
+          <li>{userId ? <NavLink to="/myaccount" className=" position-relative me-3" >User </NavLink> : <NavLink to="/" className=" position-relative me-3" >Login </NavLink>}
+
           </li>
         </ul>
       </nav>
