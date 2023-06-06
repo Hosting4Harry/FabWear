@@ -105,7 +105,7 @@ function Dashboard() {
                                 <img src="/img/delivery.png" alt="" />
                             </div>
                             <div style={{ marginLeft: "20px" }}>
-                                <h4 fontWeight="600" fontSize="17px" >Orders <br />
+                                <h4 fontWeight="600" fontSize="17px" ><Link to='/admin/allOrders' className='text-dark' style={{ "textDecoration": 'none' }}>Orders </Link> <br />
                                     &nbsp;  {order.length}
                                 </h4>
                                 <span fontSize="16px" color="grey.600" >Excluding orders in transit</span>
