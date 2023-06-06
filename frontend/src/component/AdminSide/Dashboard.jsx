@@ -113,18 +113,21 @@ function Dashboard() {
                         </div>
                     </div>
                     <div className='col-sm-12 col-lg-3 card3 col-md-6 d-flex my-5 py-3 shadow' >
+                        <Link to='/admin/products' className='text-dark' style={{ "textDecoration": 'none' }}>
 
-                        <div className='pt-3 d-flex' >
-                            <div className='pt-3'>
-                                <img src="/img/QR_icon.webp" alt="" style={{ height: "50px" }} />
+                            <div className='pt-3 d-flex' >
+                                <div className='pt-3'>
+                                    <img src="/img/QR_icon.webp" alt="" style={{ height: "50px" }} />
+                                </div>
+                                <div style={{ marginLeft: "20px" }}>
+                                    <h4 fontWeight="600" fontSize="17px" >
+                                        Products <br />
+                                        {totalProduct.length}
+                                    </h4>
+                                    <span fontSize="16px" color="grey.600" >In 4 Categories</span>
+                                </div>
                             </div>
-                            <div style={{ marginLeft: "20px" }}>
-                                <h4 fontWeight="600" fontSize="17px" ><Link to='/admin/products' className='text-dark' style={{ "textDecoration": 'none' }}>Products </Link><br />
-                                    {totalProduct.length}
-                                </h4>
-                                <span fontSize="16px" color="grey.600" >In 4 Categories</span>
-                            </div>
-                        </div>
+                        </Link>
                     </div>
                     {/* <div className='col-sm-12 col-lg-3 col-md-6 card4 d-flex my-5 py-3 shadow' >
                         <div className='pt-3 d-flex'>
