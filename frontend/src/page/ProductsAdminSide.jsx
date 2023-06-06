@@ -54,7 +54,7 @@ function ProductsAdminSide() {
               <option value="sneakers">sneakers</option>
               <option value="tees">tees</option>
             </select>&nbsp; &nbsp;
-            <button className="btn btn-light" onClick={() => navigate('/addproduct')}>Add Product</button>
+            <button className="btn btn-light" onClick={() => navigate('/admin/addproduct')}>Add Product</button>
           </div>
         </div>
         <div className="card-body" data-mdb-perfect-scrollbar="true" style={{ position: "relative", height: "50rem" }}>
