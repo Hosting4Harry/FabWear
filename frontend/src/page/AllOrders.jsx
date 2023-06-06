@@ -6,6 +6,7 @@ const AllOrders = () => {
     const getData = () => {
         axios.get('http://localhost:8000/order/allOrder')
             .then((result) => {
+                debugger
                 setOrders(result.data);
             });
     }
@@ -27,10 +28,11 @@ const AllOrders = () => {
                         <thead>
                             <tr>
                                 <th>Sl No</th>
-                                <th >OrderID</th>
-                                <th >ProductID</th>
-                                <th >price</th>
+                                <th >Product Image</th>
+                                <th >OrderId</th>
+                                <th >Price</th>
                                 <th >Quantity</th>
+                                <th >Date/Time</th>
                             </tr>
                         </thead>
                         <tbody className='scrollbar'>
@@ -39,10 +41,11 @@ const AllOrders = () => {
                                     return (
                                         <tr key={ind} className="fw-normal">
                                             <td>{ind + 1}</td>
+                                            <td> <img src={'/img/' + val.product_image} alt="" height='80px' width='80px' /></td>
                                             <td>{val.orderid}</td>
-                                            <td>{val.productid}</td>
                                             <td>{val.productprice}</td>
                                             <td>{val.productqty}</td>
+                                            <td>{val.updatedAt.replace('T', '/').split('.')[0]}</td>
                                         </tr>
                                     )
                                 })

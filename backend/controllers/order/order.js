@@ -43,7 +43,12 @@ router.get("/myorder/:id", (req, res) => {
         })
 });
 router.get("/allOrder", async (req, res) => {
-    const result = await db.orderitems.findAll();
-    res.send(result);
+    let sqll = `SELECT * FROM orderitems,products WHERE orderitems.productid = products.id order by orderitems.CreatedAt desc`
+    db.sequelize.query(sqll, { type: QueryTypes.SELECT })
+        .then(result => {
+            res.send(result)
+        }).catch(error => {
+            console.log(error)
+        })
 })
 module.exports = router;
