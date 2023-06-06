@@ -30,7 +30,6 @@ function Dashboard() {
                 setOrder(res.data);
                 var total2 = 0;
                 res.data.map((item) => {
-                    debugger
                     switch (item.createdAt.split('-')[1]) {
                         case '01':
                             setData(data => ({ ...data, jan: data.jan + 1 }))
@@ -100,17 +99,19 @@ function Dashboard() {
                         </div>
                     </div>
                     <div className='col-sm-12 col-lg-3 card2 col-md-6 d-flex my-5 py-3 shadow' >
-                        <div className='pt-3 d-flex' >
-                            <div className='pt-3'>
-                                <img src="/img/delivery.png" alt="" />
+                        <Link to='/admin/allOrders' className='text-dark' style={{ "textDecoration": 'none' }}>
+                            <div className='pt-3 d-flex' >
+                                <div className='pt-3'>
+                                    <img src="/img/delivery.png" alt="" />
+                                </div>
+                                <div style={{ marginLeft: "20px" }}>
+                                    <h4 fontWeight="600" fontSize="17px" >Orders <br />
+                                        &nbsp;  {order.length}
+                                    </h4>
+                                    <span fontSize="16px" color="grey.600" >Excluding orders in transit</span>
+                                </div>
                             </div>
-                            <div style={{ marginLeft: "20px" }}>
-                                <h4 fontWeight="600" fontSize="17px" ><Link to='/admin/allOrders' className='text-dark' style={{ "textDecoration": 'none' }}>Orders </Link> <br />
-                                    &nbsp;  {order.length}
-                                </h4>
-                                <span fontSize="16px" color="grey.600" >Excluding orders in transit</span>
-                            </div>
-                        </div>
+                        </Link>
                     </div>
                     <div className='col-sm-12 col-lg-3 card3 col-md-6 d-flex my-5 py-3 shadow' >
                         <Link to='/admin/products' className='text-dark' style={{ "textDecoration": 'none' }}>
@@ -129,25 +130,14 @@ function Dashboard() {
                             </div>
                         </Link>
                     </div>
-                    {/* <div className='col-sm-12 col-lg-3 col-md-6 card4 d-flex my-5 py-3 shadow' >
-                        <div className='pt-3 d-flex'>
-                            <div>
-                                <img src="/img/bag_icon.png" alt="" width="50px" />
-                            </div>
-                            <div style={{ marginLeft: "20px" }}>
-                                <h4 fontWeight="600" fontSize="17px"  >Monthly Earning<br />
-                                    $6,982
-                                </h4>
-                                <span fontSize="16px" color="grey.600" >Based in your local time.</span>
-                            </div>
-                        </div>
-                    </div> */}
+
                 </div>
                 <div className=" row " style={{}}>
-                    <h3>Sale statistics</h3>
-
-                    <div className='col-6'>
+                    <h3>&nbsp; Sale statistics</h3>
+                    <div className='col-1'></div>
+                    <div className='col-6 border'>
                         <div className=' w-100' >
+                            <h4>Graphical</h4>
                             <CChart
                                 type="line"
                                 data={{
@@ -160,23 +150,40 @@ function Dashboard() {
                                             pointBackgroundColor: "rgba(151, 187, 205, 1)",
                                             pointBorderColor: "#fff",
                                             data: [data.jan, data.feb, data.mar, data.apr, data.may, data.june, data.jul, data.aug, data.sept, data.oct, data.nov, data.dec, 10]
+                                        },
+                                        {
+                                            label: "Total orders for year 2022",
+                                            backgroundColor: "rgba(220, 220, 220, 0.2)",
+                                            borderColor: "rgb(236, 129, 7)",
+                                            pointBackgroundColor: "rgb(236, 129, 7)",
+                                            pointBorderColor: "#fff",
+                                            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10]
                                         }
-                                        // ,
-                                        // {
-                                        //     label: "My Second dataset",
-                                        //     backgroundColor: "rgba(151, 187, 205, 0.2)",
-                                        //     borderColor: "rgba(151, 187, 205, 1)",
-                                        //     pointBackgroundColor: "rgba(151, 187, 205, 1)",
-                                        //     pointBorderColor: "#fff",
-                                        //     data: [50, 12, 28, 29, 7, 25, 12, 70, 60]
-                                        // },
+
                                     ],
                                 }}
                             />
                         </div>
                     </div>
-                    <div className='col-6'>
+                    <div className='col-3 border ' >
+                        <div className=''>
+                            <h4>Pie</h4>
+                            <CChart
+                                type="pie"
+                                data={{
+                                    labels: ["Product Sold", "Total Products", "Unsold Products"],
+                                    datasets: [
+                                        {
+                                            backgroundColor: ['#41B883', '#00D8FF', '#DD1B16'],
+                                            data: [order.length, totalProduct.length, totalProduct.length - order.length],
+                                        }
+
+                                    ],
+                                }}
+                            />
+                        </div>
                     </div>
+                    <div className='col-1'></div>
                     <div>
 
                     </div>
