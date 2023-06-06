@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { CChart } from '@coreui/react-chartjs'
 import './Dashboard.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import jwt_decode from "jwt-decode";
 import axios from 'axios';
 
 function Dashboard() {
+    const navigate = useNavigate();
     const [order, setOrder] = useState([]);
     const [total, setTotal] = useState(0);
     const [totalProduct, setTotalProducts] = useState(0);
@@ -77,8 +79,26 @@ function Dashboard() {
                 setTotal(total2);
             });
     }
-    console.log(total)
+
+    const checkRole = () => {
+        const token = localStorage.getItem('Ecomtoken');
+        var decoded;
+        if (token) {
+            try {
+                decoded = jwt_decode(token);
+            } catch (error) {
+            }
+        }
+
+        if (decoded?.role === 1 || decoded?.role === 2) {
+            navigate("/dashboard");
+        } else {
+            navigate("/home");
+        }
+    }
+
     useEffect(() => {
+        checkRole();
         orders();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
