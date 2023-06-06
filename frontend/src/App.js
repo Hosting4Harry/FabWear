@@ -29,6 +29,7 @@ import ResetPassword from './page/ResetPassword';
 import Dashboard from './component/AdminSide/Dashboard';
 import FeedBack from './page/AddOn/FeedBack';
 import Invoice from './page/AddOn/Invoice';
+import AllOrders from './page/AllOrders';
 
 const App = () => {
   return (
@@ -64,6 +65,7 @@ const App = () => {
             <Route exact path="/invoice/:id" element={<Invoice />} />
             <Route exact path="/myaddress" element={<MyAddress />} />
             <Route exact path="/dashboard" element={<Dashboard />} />
+            <Route exact path="/admin/allOrders" element={<AllOrders />} />
             {/* <Route exact path="/paynow/:pid" element={PayNow} /> */}
           </Routes>
           <Footer />
