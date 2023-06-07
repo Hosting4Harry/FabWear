@@ -6,7 +6,6 @@ const AllOrders = () => {
     const getData = () => {
         axios.get('http://localhost:8000/order/allOrder')
             .then((result) => {
-                debugger
                 setOrders(result.data);
             });
     }

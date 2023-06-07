@@ -46,7 +46,7 @@ router.get("/allOrder", async (req, res) => {
     let sqll = `SELECT * FROM orderitems,products WHERE orderitems.productid = products.id order by orderitems.CreatedAt desc`
     db.sequelize.query(sqll, { type: QueryTypes.SELECT })
         .then(result => {
-            res.send(result)
+            res.send(result);
         }).catch(error => {
             console.log(error)
         })
