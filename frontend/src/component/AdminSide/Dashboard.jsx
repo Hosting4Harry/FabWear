@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { CChart } from '@coreui/react-chartjs'
 import './Dashboard.css'
 import { Link, useNavigate } from 'react-router-dom'
 import jwt_decode from "jwt-decode";
 import axios from 'axios';
+import { DataContext } from '../../context/DataContext';
 
 function Dashboard() {
+    const { totalUser, setTotalUser } = useContext(DataContext);
     const navigate = useNavigate();
     const [order, setOrder] = useState([]);
     const [total, setTotal] = useState(0);
@@ -24,10 +26,13 @@ function Dashboard() {
         nov: 0,
         dec: 0
     });
+    console.log(totalUser)
     const orders = async () => {
         const res = await axios.get('http://localhost:8000/product/getdataall');
+        const allUser = await axios.get('http://localhost:8000/register/allUsers');
+        setTotalUser(allUser.data);
         setTotalProducts(res.data);
-        await axios('http://localhost:8000/order/allOrder')
+        await axios('http://localhost:8000/order/allOrders')
             .then(res => {
                 setOrder(res.data);
                 var total2 = 0;
@@ -43,12 +48,14 @@ function Dashboard() {
                             setData(data => ({ ...data, mar: data.mar + 1 }))
                             break;
                         case '04':
+                            debugger
                             setData(data => ({ ...data, apr: data.apr + 1 }))
                             break;
                         case '05':
                             setData(data => ({ ...data, may: data.may + 1 }))
                             break;
                         case '06':
+                            debugger
                             setData(data => ({ ...data, june: data.june + 1 }))
                             break;
                         case '07':
@@ -107,7 +114,7 @@ function Dashboard() {
             {/* <div className="ms-5"> */}
             <h1>Dashboard</h1>
             <div className='row mb-3 mx-5'>
-                <div className='col-sm-10 card1 col-lg-3 col-md-5  my-5 py-3 shadow mx-2'>
+                <div className='col-sm-10 card1 col-lg-3 col-md-5  my-5 py-3 shadow '>
                     <div className=' pt-3 d-flex'>
                         <div>
                             <img src="/img/dollar_icon.png" alt="" height="50px" />
@@ -118,7 +125,7 @@ function Dashboard() {
                         </div>
                     </div>
                 </div>
-                <div className='col-sm-10 col-lg-3 card2 col-md-5 d-flex my-5 py-3 shadow mx-2' >
+                <div className='col-sm-10 col-lg-3 card2 col-md-5 d-flex my-5 py-3 shadow ' >
                     <Link to='/admin/allOrders' className='text-dark' style={{ "textDecoration": 'none' }}>
                         <div className='pt-3 d-flex' >
                             <div className='pt-3'>
@@ -133,7 +140,7 @@ function Dashboard() {
                         </div>
                     </Link>
                 </div>
-                <div className='col-sm-10 col-lg-3 card3 col-md-5 d-flex my-5 py-3 shadow mx-2' >
+                <div className='col-sm-10 col-lg-3 card3 col-md-5 d-flex my-5 py-3 shadow ' >
                     <Link to='/admin/products' className='text-dark' style={{ "textDecoration": 'none' }}>
 
                         <div className='pt-3 d-flex' >
@@ -146,6 +153,23 @@ function Dashboard() {
                                     {totalProduct.length}
                                 </h4>
                                 <span fontSize="16px" color="grey.600" >In 4 Categories</span>
+                            </div>
+                        </div>
+                    </Link>
+                </div>
+                <div className='col-sm-10 col-lg-3 card3 col-md-5 d-flex my-5 py-3 shadow ' >
+                    <Link to='/admin/allUser' className='text-dark' style={{ "textDecoration": 'none' }}>
+
+                        <div className='pt-3 d-flex' >
+                            <div className='pt-3'>
+                                <img src="/img/QR_icon.webp" alt="" style={{ height: "50px" }} />
+                            </div>
+                            <div style={{ marginLeft: "20px" }}>
+                                <h4 fontWeight="600" fontSize="17px" >
+                                    Users <br />
+                                    {totalUser.length}
+                                </h4>
+                                <span fontSize="16px" color="grey.600" >All registered users</span>
                             </div>
                         </div>
                     </Link>

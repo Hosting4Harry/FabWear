@@ -3,6 +3,7 @@ import jwt_decode from "jwt-decode";
 import axios from 'axios';
 export const DataContext = createContext();
 export const ConText = (props) => {
+    const [totalUser, setTotalUser] = useState([]);
     const [roleId, setRoleId] = useState(null);
     const [cart, setCart] = useState([]);
     const [wishlist, setWishlist] = useState([]);
@@ -38,7 +39,7 @@ export const ConText = (props) => {
 
     return (
         <>
-            <DataContext.Provider value={{ roleId, cart, setCart, wishlist, setWishlist, isAuth, searchResult, setSearchResult, loading, setLoading }}>
+            <DataContext.Provider value={{ roleId, cart, totalUser, setTotalUser, setCart, wishlist, setWishlist, isAuth, searchResult, setSearchResult, loading, setLoading }}>
                 {props.children}
             </DataContext.Provider>
         </>

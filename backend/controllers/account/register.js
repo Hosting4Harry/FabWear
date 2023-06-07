@@ -4,6 +4,14 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const db = require('../../models');
 
+router.get('/allUsers', async (req, res) => {
+    await db.users.findAll()
+        .then(result => {
+            res.send(result);
+        }).catch(error => {
+            console.log(error);
+        })
+})
 router.post("/", (req, res) => {
     const { email, username, password } = req.body;
     bcrypt.hash(password, saltRounds, async (errr, hash) => {
