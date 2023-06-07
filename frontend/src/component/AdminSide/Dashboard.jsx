@@ -7,9 +7,8 @@ import axios from 'axios';
 import { DataContext } from '../../context/DataContext';
 
 function Dashboard() {
-    const { totalUser, setTotalUser } = useContext(DataContext);
+    const { totalUser, setTotalUser, order, setOrder } = useContext(DataContext);
     const navigate = useNavigate();
-    const [order, setOrder] = useState([]);
     const [total, setTotal] = useState(0);
     const [totalProduct, setTotalProducts] = useState(0);
     const [data, setData] = useState({
@@ -26,15 +25,16 @@ function Dashboard() {
         nov: 0,
         dec: 0
     });
-    console.log(totalUser)
+    console.log(order)
     const orders = async () => {
         const res = await axios.get('http://localhost:8000/product/getdataall');
         const allUser = await axios.get('http://localhost:8000/register/allUsers');
+        const orderRes = await axios.get('http://localhost:8000/order/allOrder');
+        setOrder(orderRes.data);
         setTotalUser(allUser.data);
         setTotalProducts(res.data);
         await axios('http://localhost:8000/order/allOrders')
             .then(res => {
-                setOrder(res.data);
                 var total2 = 0;
                 res.data.map((item) => {
                     switch (item.createdAt.split('-')[1]) {
