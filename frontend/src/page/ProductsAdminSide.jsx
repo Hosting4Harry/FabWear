@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
-import "./ProductsAdminSide.css"
-
+import { useNavigate } from 'react-router-dom';
+import "./ProductsAdminSide.css";
+import DataTable from 'react-data-table-component';
 function ProductsAdminSide() {
   const [getProducts, setProducts] = useState([]);
   const [search, setSearch] = useState('');
@@ -21,6 +21,33 @@ function ProductsAdminSide() {
       setProducts(res.data);
     }
   }
+  const colums = [
+    {
+      name: <h3>Image</h3>,
+      selector: (row) => <img className='img-fluid t-img' src={`../img/${row.product_image}`} alt="" />
+    },
+    {
+      name: <h3>Name</h3>,
+      selector: (row) => row.name,
+      sortable: true
+    },
+    {
+      name: <h3>Price</h3>,
+      selector: (row) => row.price
+    },
+    {
+      name: <h3>Available</h3>,
+      selector: (row) => row.id
+    },
+    {
+      name: <h3>Action</h3>,
+      // selector: (row) => row.id
+      // &nbsp; <span className="fas fa-trash-alt text-danger" onClick={() => deleteProduct(val.id)}></span>&nbsp;&nbsp;&nbsp;
+      // <span className="fa fa-edit text-primery" onClick={() => navigate("/addproduct/edit/" + val.id)}></span>
+      cell: row => <p> &nbsp;&nbsp;&nbsp;<span className='fas fa-trash-alt text-danger' onClick={() => deleteProduct(row.id)}></span> &nbsp; &nbsp;&nbsp;<span className="fa fa-edit text-primery" onClick={() => navigate("/addproduct/edit/" + row.id)}></span></p>,
+
+    },
+  ]
   const deleteProduct = async (id) => {
     const deleteProduct = window.confirm("Do you want to delete the product?");
     if (deleteProduct) {
@@ -58,7 +85,7 @@ function ProductsAdminSide() {
           </div>
         </div>
         <div className="card-body" data-mdb-perfect-scrollbar="true" style={{ position: "relative", height: "50rem" }}>
-          <table className="table mb-0">
+          {/* <table className="table mb-0">
             <thead>
               <tr>
                 <th >Product Image</th>
@@ -152,7 +179,8 @@ function ProductsAdminSide() {
               })
               }
             </tbody>
-          </table>
+          </table> */}
+          <DataTable columns={colums} data={getProducts} pagination fixedHeader fixedHeaderScrollHeight='450px' highlightOnHover />
         </div>
       </div>
     </>
