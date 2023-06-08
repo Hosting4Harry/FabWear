@@ -51,12 +51,12 @@ router.get("/allOrder", async (req, res) => {
             console.log(error)
         })
 })
-// router.get("/allOrders", async (req, res) => {
-//     await db.orderitems.findAll()
-//         .then(result => {
-//             res.send(result);
-//         }).catch(error => {
-//             console.log(error)
-//         })
-// })
+router.get("/allOrders", async (req, res) => {
+    await db.orderitems.findAll()
+        .then(result => {
+            res.send(result);
+        }).catch(error => {
+            console.log(error)
+        })
+})
 module.exports = router;
