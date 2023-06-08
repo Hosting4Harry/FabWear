@@ -82,7 +82,6 @@ const Navbar = () => {
           <i className="fa fa-bars"></i>
         </label>
         <label className="logo">
-          {/* <img style={{ width: "50px" }} src="../img/logo/Fab wear3.png" alt="box" className="img-fluid" /> */}
           <NavLink id='logo' to="/home">Fab Wear</NavLink>
         </label>
         <label className='searchBar' id='searchBar' style={{ marginLeft: "50px" }}>

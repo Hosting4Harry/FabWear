@@ -156,9 +156,6 @@ function AddAddress() {
                                                 <button type="button" onClick={() => navigate(-1)} className="btn bg-secondary  ms-2">Go Back</button>
                                                 <button type="submit" className="btn btn-success ms-2"
                                                     style={{ backgroundColor: "hsl(210, 100%, 50%) " }}>Add Address</button>
-                                                {/* <label>Already Added?</label>
-                                                &nbsp;<button type="button" onClick={() => navigate('/checkout')} className="btn btn-success btn-lg ms-2"
-                                                    style={{ backgroundColor: "hsl(210, 100%, 50%) " }}>Place order</button> */}
                                             </div>
                                         </div>
                                     </form>
