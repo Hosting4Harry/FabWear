@@ -117,7 +117,7 @@ function CheckOut() {
             key: "rzp_test_T3tAATbEcOqopL", // Enter the Key ID generated from the Dashboard
             amount: amount.toString(),
             currency: currency,
-            name: "Favware",
+            name: "FabWare",
             description: "Test Transaction",
             image: "../../img/empty-cart.png",
             order_id: order_id,
@@ -136,8 +136,8 @@ function CheckOut() {
                 alert(result.data.msg);
             },
             prefill: {
-                name: "Fabwear",
-                email: "favwear@gmail.com",
+                name: "FabWear",
+                email: "fabwear@gmail.com",
                 contact: "7077552981",
             },
             notes: {

@@ -7,9 +7,8 @@ import axios from 'axios';
 import { DataContext } from '../../context/DataContext';
 
 function Dashboard() {
-    const { totalUser, setTotalUser } = useContext(DataContext);
+    const { totalUser, setTotalUser, order, setOrder } = useContext(DataContext);
     const navigate = useNavigate();
-    const [order, setOrder] = useState([]);
     const [total, setTotal] = useState(0);
     const [totalProduct, setTotalProducts] = useState(0);
     const [data, setData] = useState({
@@ -26,15 +25,16 @@ function Dashboard() {
         nov: 0,
         dec: 0
     });
-    console.log(totalUser)
+    console.log(order)
     const orders = async () => {
         const res = await axios.get('http://localhost:8000/product/getdataall');
         const allUser = await axios.get('http://localhost:8000/register/allUsers');
+        const orderRes = await axios.get('http://localhost:8000/order/allOrder');
+        setOrder(orderRes.data);
         setTotalUser(allUser.data);
         setTotalProducts(res.data);
         await axios('http://localhost:8000/order/allOrders')
             .then(res => {
-                setOrder(res.data);
                 var total2 = 0;
                 res.data.map((item) => {
                     switch (item.createdAt.split('-')[1]) {
@@ -125,6 +125,23 @@ function Dashboard() {
                         </div>
                     </div>
                 </div>
+                <div className='col-sm-10 col-lg-3 card3 col-md-5 d-flex my-5 py-3 shadow ' >
+                    <Link to='/admin/allUser' className='text-dark' style={{ "textDecoration": 'none' }}>
+
+                        <div className='pt-3 d-flex' >
+                            <div className='pt-3'>
+                                <img src="/img/logo/user_logo.png" alt="" style={{ height: "50px" }} />
+                            </div>
+                            <div style={{ marginLeft: "20px" }}>
+                                <h4 fontWeight="600" fontSize="17px" >
+                                    Users <br />
+                                    {totalUser.length}
+                                </h4>
+                                <span fontSize="16px" color="grey.600" >All registered users</span>
+                            </div>
+                        </div>
+                    </Link>
+                </div>
                 <div className='col-sm-10 col-lg-3 card2 col-md-5 d-flex my-5 py-3 shadow ' >
                     <Link to='/admin/allOrders' className='text-dark' style={{ "textDecoration": 'none' }}>
                         <div className='pt-3 d-flex' >
@@ -145,7 +162,7 @@ function Dashboard() {
 
                         <div className='pt-3 d-flex' >
                             <div className='pt-3'>
-                                <img src="/img/QR_icon.webp" alt="" style={{ height: "50px" }} />
+                                <img src="/img/product_icon.png" alt="" style={{ height: "50px" }} />
                             </div>
                             <div style={{ marginLeft: "20px" }}>
                                 <h4 fontWeight="600" fontSize="17px" >
@@ -157,23 +174,7 @@ function Dashboard() {
                         </div>
                     </Link>
                 </div>
-                <div className='col-sm-10 col-lg-3 card3 col-md-5 d-flex my-5 py-3 shadow ' >
-                    <Link to='/admin/allUser' className='text-dark' style={{ "textDecoration": 'none' }}>
 
-                        <div className='pt-3 d-flex' >
-                            <div className='pt-3'>
-                                <img src="/img/QR_icon.webp" alt="" style={{ height: "50px" }} />
-                            </div>
-                            <div style={{ marginLeft: "20px" }}>
-                                <h4 fontWeight="600" fontSize="17px" >
-                                    Users <br />
-                                    {totalUser.length}
-                                </h4>
-                                <span fontSize="16px" color="grey.600" >All registered users</span>
-                            </div>
-                        </div>
-                    </Link>
-                </div>
 
                 {/* </div> */}
             </div>
@@ -195,7 +196,7 @@ function Dashboard() {
                                             borderColor: "rgba(151, 187, 205, 1)",
                                             pointBackgroundColor: "rgba(151, 187, 205, 1)",
                                             pointBorderColor: "#fff",
-                                            data: [data.jan, data.feb, data.mar, data.apr, data.may, data.june, data.jul, data.aug, data.sept, data.oct, data.nov, data.dec, 10],
+                                            data: [data.jan, data.feb, data.mar, data.apr, data.may, data.june, data.jul, data.aug, data.sept, data.oct, data.nov, data.dec],
                                             borderWidth: 1
                                         },
                                         {
@@ -204,7 +205,7 @@ function Dashboard() {
                                             borderColor: "rgb(236, 129, 7)",
                                             pointBackgroundColor: "rgb(236, 129, 7)",
                                             pointBorderColor: "#fff",
-                                            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10],
+                                            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                                             borderWidth: 1
                                         }
 

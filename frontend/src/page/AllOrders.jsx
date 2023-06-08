@@ -1,17 +1,9 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext } from 'react'
+import { DataContext } from '../context/DataContext'
 
 const AllOrders = () => {
-    const [getOrders, setOrders] = useState([]);
-    const getData = () => {
-        axios.get('http://localhost:8000/order/allOrder')
-            .then((result) => {
-                setOrders(result.data);
-            });
-    }
-    useEffect(() => {
-        getData();
-    }, []);
+    const { order } = useContext(DataContext);
+    console.log(order)
     return (
         <div>
             <div className="card">
@@ -36,7 +28,7 @@ const AllOrders = () => {
                         </thead>
                         <tbody className='scrollbar'>
                             {
-                                getOrders.map((val, ind) => {
+                                order.map((val, ind) => {
                                     return (
                                         <tr key={ind} className="fw-normal">
                                             <td>{ind + 1}</td>
