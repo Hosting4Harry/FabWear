@@ -7,12 +7,15 @@ const CartP = ({ id, productId, name, price, product_image, qty, size }) => {
     const { cart, setCart } = useContext(DataContext);
 
     const deleteProduct = (id) => {
-        axios.delete('http://localhost:8000/cart/' + id);
-        const exist = cart.find((x) => x.id === id)
-        if (exist) {
-            setCart(
-                cart.filter((x) => x.id !== id)
-            )
+        const deleteProduct = window.confirm("Do you want to delete the product?");
+        if (deleteProduct) {
+            axios.delete('http://localhost:8000/cart/' + id);
+            const exist = cart.find((x) => x.id === id)
+            if (exist) {
+                setCart(
+                    cart.filter((x) => x.id !== id)
+                )
+            }
         }
     }
     return (
