@@ -5,6 +5,7 @@ import "./ProductsAdminSide.css";
 import DataTable from 'react-data-table-component';
 function ProductsAdminSide() {
   const [getProducts, setProducts] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [search, setSearch] = useState('');
   const navigate = useNavigate();
   const getData = async () => {
@@ -23,20 +24,20 @@ function ProductsAdminSide() {
   }
   const colums = [
     {
-      name: <h3>Image</h3>,
+      name: <h4>Image</h4>,
       selector: (row) => <img className='img-fluid t-img' src={`../img/${row.product_image}`} alt="" />
     },
     {
-      name: <h3>Name</h3>,
+      name: <h4>Name</h4>,
       selector: (row) => row.name,
       sortable: true
     },
     {
-      name: <h3>Price</h3>,
+      name: <h4>Price</h4>,
       selector: (row) => row.price
     },
     {
-      name: <h3>Available</h3>,
+      name: <h4>Available</h4>,
       selector: (row) => row.id
     },
     {
@@ -58,30 +59,34 @@ function ProductsAdminSide() {
   }, []);
   return (
     <>
-      <div className="card">
-        <div className="card-header row d-flex p-3">
-          <div className='d-flex col-6'>
-            <i className="fas fa-tasks me-2"></i> <h5>product List</h5>
-          </div>
-          <div className="d-flex col-6 justify-content-end align-items-center  " style={{ position: 'absolute', right: "0px" }}>
-            <p className="small mb-0 me-2 text-muted">Filter</p>
-            <select className="select" onChange={handelChange} >
-              <option value="all">All</option>
-              <option value="men">Men</option>
-              <option value="women">women</option>
-              <option value="kids">Kids</option>
-              <option value="hat">Hat</option>
-              <option value="jackets">jackets</option>
-              <option value="kurta">kurta</option>
-              <option value="pant">pant</option>
-              <option value="perfume">perfume</option>
-              <option value="sneakers">sneakers</option>
-              <option value="tees">tees</option>
-            </select>&nbsp; &nbsp;
+      <div className="row">
+
+        <div className='col-3' style={{ "position": "relative" }}>
+          <div className="card-header row d-flex p-3">
+            <div className='d-flex col-6'>
+              <i className="fas fa-tasks me-2"></i> <h5>product List</h5>
+            </div>
+            <div className="d-flex col-6 justify-content-end align-items-center  " style={{ position: 'absolute', right: "0px" }}>
+              <p className="small mb-0 me-2 text-muted">Filter</p>
+              <select className="select" onChange={handelChange} >
+                <option value="all">All</option>
+                <option value="men">Men</option>
+                <option value="women">women</option>
+                <option value="kids">Kids</option>
+                <option value="hat">Hat</option>
+                <option value="jackets">jackets</option>
+                <option value="kurta">kurta</option>
+                <option value="pant">pant</option>
+                <option value="perfume">perfume</option>
+                <option value="sneakers">sneakers</option>
+                <option value="tees">tees</option>
+              </select>&nbsp; &nbsp;
+            </div>
             <button className="btn btn-light" onClick={() => navigate('/admin/addproduct')}>Add Product</button>
           </div>
         </div>
-        <div className="card-body" data-mdb-perfect-scrollbar="true" style={{ position: "relative", height: "50rem" }}>
+        <div className="col-9 datatable" style={{}}>
+          <DataTable columns={colums} data={getProducts} pagination PaginationPageAction fixedHeader fixedHeaderScrollHeight='500px' highlightOnHover allowOverflow />
           {/* <table className="table mb-0">
             <thead>
               <tr>
@@ -177,7 +182,7 @@ function ProductsAdminSide() {
               }
             </tbody>
           </table> */}
-          <DataTable columns={colums} data={getProducts} pagination fixedHeader fixedHeaderScrollHeight='450px' highlightOnHover />
+
         </div>
       </div>
     </>

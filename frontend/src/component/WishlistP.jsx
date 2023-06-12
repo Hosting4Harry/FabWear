@@ -6,13 +6,16 @@ const WishlistP = ({ id, name, price, product_image, productId }) => {
     const { wishlist, setWishlist, cart, setCart } = useContext(DataContext);
     const navigate = useNavigate();
     const deleteProduct = async (productId) => {
-        const exist = wishlist.find((x) => x.productId === productId)
-        if (exist) {
-            setWishlist(
-                wishlist.filter((x) => x.productId !== productId)
-            )
+        const deleteProduct = window.confirm("Do you want to delete the product?");
+        if (deleteProduct) {
+            const exist = wishlist.find((x) => x.productId === productId)
+            if (exist) {
+                setWishlist(
+                    wishlist.filter((x) => x.productId !== productId)
+                )
+            }
+            await axios.delete('http://localhost:8000/wishlist/' + productId);
         }
-        await axios.delete('http://localhost:8000/wishlist/' + productId);
     }
 
     const userId = localStorage.getItem('EcomUserId');
