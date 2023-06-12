@@ -41,9 +41,6 @@ function ProductsAdminSide() {
     },
     {
       name: <h3>Action</h3>,
-      // selector: (row) => row.id
-      // &nbsp; <span className="fas fa-trash-alt text-danger" onClick={() => deleteProduct(val.id)}></span>&nbsp;&nbsp;&nbsp;
-      // <span className="fa fa-edit text-primery" onClick={() => navigate("/addproduct/edit/" + val.id)}></span>
       cell: row => <p> &nbsp;&nbsp;&nbsp;<span className='fas fa-trash-alt text-danger' onClick={() => deleteProduct(row.id)}></span> &nbsp; &nbsp;&nbsp;<span className="fa fa-edit text-primery" onClick={() => navigate("/addproduct/edit/" + row.id)}></span></p>,
 
     },
