@@ -8,13 +8,13 @@ const router = express();
 router.post("/orders", async (req, res) => {
     const { cart, paymentemail, name } = req.body;
     const data = {
-        name: req.body.name,
-        orderstatus: req.body.orderstatus,
+        // name: req.body.name,
+        // orderstatus: req.body.orderstatus,
         paymentemail: req.body.paymentemail,
-        paymentmode: req.body.paymentmode,
-        totalprice: req.body.totalprice,
-        userid: req.body.userid,
-        addressId: +req.body.address.id
+        //     paymentmode: req.body.paymentmode,
+        //     totalprice: req.body.totalprice,
+        //     userid: req.body.userid,
+        //     addressId: +req.body.address.id
     }
     try {
         const instance = new Razorpay({

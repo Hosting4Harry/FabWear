@@ -31,6 +31,7 @@ import FeedBack from './page/AddOn/FeedBack';
 import Invoice from './page/AddOn/Invoice';
 import AllOrders from './page/AllOrders';
 import AllUser from './component/AdminSide/AllUser';
+import TrackOrder from './page/AddOn/TrackOrder';
 
 const App = () => {
   return (
@@ -68,6 +69,7 @@ const App = () => {
             <Route exact path="/dashboard" element={<Dashboard />} />
             <Route exact path="/admin/allOrders" element={<AllOrders />} />
             <Route exact path="/admin/allUser" element={<AllUser />} />
+            <Route exact path="/trackOrder" element={<TrackOrder />} />
             {/* <Route exact path="/paynow/:pid" element={PayNow} /> */}
           </Routes>
           <Footer />
