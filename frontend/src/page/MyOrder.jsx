@@ -33,6 +33,9 @@ const MyOrder = () => {
         const { data } = await axios.get(`http://localhost:8000/order/myorder/${id}`);
         setData(data);
     }
+    const track = (id) => {
+        navigate('/trackOrder/' + id)
+    }
     useEffect(() => {
         getData();
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -52,30 +55,33 @@ const MyOrder = () => {
                                             <th>Price</th>
                                             <th>Qty</th>
                                             <th>Amount</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {
                                             data.map((val, ind) => {
                                                 return (
-                                                    <>
-                                                        <tr key={ind}>
-                                                            <td>{ind + 1}</td>
-                                                            <td className="tb-or">
-                                                                <NavLink to={`/details/${val.productid}`}>
-                                                                    <img src={`../img/${val.product_image}`} alt={val.product_image} className="img-fluid or-img" />
-                                                                    <p>{val.name}</p>
-                                                                </NavLink>
-                                                            </td>
-                                                            <td>
-                                                                {val.productprice}
-                                                            </td>
-                                                            <td>{val.productqty}</td>
-                                                            <td>
-                                                                {val.price * val.productqty}
-                                                            </td>
-                                                        </tr>
-                                                    </>
+                                                    <tr key={ind}>
+                                                        <td>{ind + 1}</td>
+                                                        <td className="tb-or">
+                                                            <NavLink to={`/details/${val.productid}`}>
+                                                                <img src={`../img/${val.product_image}`} alt={val.product_image} className="img-fluid or-img" />
+                                                                <p>{val.name}</p>
+                                                            </NavLink>
+                                                        </td>
+                                                        <td>
+                                                            {val.productprice}
+                                                        </td>
+                                                        <td>{val.productqty}</td>
+                                                        <td>
+                                                            {val.price * val.productqty}
+                                                        </td>
+                                                        <td>
+                                                            <button className="btn btn-info ml-1 mr-1" onClick={() => track(val.orderid
+                                                            )}>Track Order</button>
+                                                        </td>
+                                                    </tr>
                                                 );
                                             })
                                         }

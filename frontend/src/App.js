@@ -69,7 +69,7 @@ const App = () => {
             <Route exact path="/dashboard" element={<Dashboard />} />
             <Route exact path="/admin/allOrders" element={<AllOrders />} />
             <Route exact path="/admin/allUser" element={<AllUser />} />
-            <Route exact path="/trackOrder" element={<TrackOrder />} />
+            <Route exact path="/trackOrder/:id" element={<TrackOrder />} />
             {/* <Route exact path="/paynow/:pid" element={PayNow} /> */}
           </Routes>
           <Footer />
