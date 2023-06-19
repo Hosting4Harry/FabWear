@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import configData from '../environments/config.json'
 
 function ResetPassword() {
     const navigate = useNavigate()
@@ -14,7 +15,7 @@ function ResetPassword() {
         e.preventDefault();
         const config = {
             method: 'post',
-            url: "http://localhost:8000/resetPassword",
+            url: `${configData.baseUrl}/resetPassword`,
             data: {
                 email: allValues.email,
                 otp: allValues.otp,

@@ -73,7 +73,6 @@ const Navbar = () => {
     cartItems();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading]);
-  console.log(loading)
   return (<>
     <div className="code-nav flex ">
       <nav id='nav' className='right-nav flex'>

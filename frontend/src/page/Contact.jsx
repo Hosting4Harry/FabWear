@@ -2,13 +2,15 @@ import React, { useRef, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-toastify';
+import configData from '../environments/config.json'
+
 import 'react-toastify/dist/ReactToastify.css';
 toast.configure();
 const Contact = () => {
     const timeout = useRef(null);
     const navigate = useNavigate();
     const checkAuth = () => {
-        axios.get("http://localhost:8000/isAuth", {
+        axios.get(`${configData.baseUrl}/isAuth`, {
             headers: {
                 "x-access-token": localStorage.getItem("Ecomtoken")
             }
@@ -38,7 +40,7 @@ const Contact = () => {
         let details = {
             message: message.value,
         };
-        axios.post("http://localhost:8000/contact", {
+        axios.post(`${configData.baseUrl}/contact`, {
             headers: {
                 "Content-Type": "application/json;charset=utf-8",
             },

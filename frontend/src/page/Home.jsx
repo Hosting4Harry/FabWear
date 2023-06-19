@@ -7,14 +7,14 @@ import { DataContext } from '../context/DataContext';
 import "./Home.css";
 import Category from './Category';
 import Offers from './AddOn/Offers';
-
+import configData from '../environments/config.json'
 const Home = () => {
     const ref = useRef(null);
     const [modal, setModal] = useState(false);
     const [getdata, setGetdata] = useState([]);
     const navigate = useNavigate();
     window.onload = async () => {
-        const res = await axios.get('http://localhost:8000/product/getdata');
+        const res = await axios.get(`${configData.baseUrl}/product/getdata`);
         if (res.data.length === 0) return;
         setGetdata(res.data.slice(0, 1))
         document.getElementById("root").style.overflowY = "hidden"
@@ -26,7 +26,7 @@ const Home = () => {
     const { setWishlist } = useContext(DataContext);
     const getData = async () => {
         const userId = localStorage.getItem("EcomUserId");
-        const res = await axios.get('http://localhost:8000/wishlist/' + userId);
+        const res = await axios.get(`${configData.baseUrl}/wishlist/` + userId);
         setWishlist(res.data);
     }
     useEffect(() => {

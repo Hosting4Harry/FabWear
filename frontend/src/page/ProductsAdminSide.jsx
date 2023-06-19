@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import "./ProductsAdminSide.css";
+import configData from '../environments/config.json'
 import DataTable from 'react-data-table-component';
 function ProductsAdminSide() {
   const [getProducts, setProducts] = useState([]);
@@ -9,7 +10,7 @@ function ProductsAdminSide() {
   const [search, setSearch] = useState('');
   const navigate = useNavigate();
   const getData = async () => {
-    const res = await axios.get('http://localhost:8000/product/getdataall')
+    const res = await axios.get(`${configData.baseUrl}/product/getdataall`)
     setProducts(res.data);
   }
   const handelChange = async (e) => {
@@ -18,7 +19,7 @@ function ProductsAdminSide() {
       getData();
     } else {
       setSearch(e.target.value);
-      const res = await axios.get('http://localhost:8000/product/searchProduct/' + e.target.value);
+      const res = await axios.get(`${configData.baseUrl}/product/searchProduct/` + e.target.value);
       setProducts(res.data);
     }
   }
@@ -34,11 +35,11 @@ function ProductsAdminSide() {
     },
     {
       name: <h4>Price</h4>,
-      selector: (row) => row.price
+      selector: (row) => row.price, sortable: true
     },
     {
       name: <h4>Available</h4>,
-      selector: (row) => row.id
+      selector: (row) => row.id, sortable: true
     },
     {
       name: <h3>Action</h3>,
@@ -49,7 +50,7 @@ function ProductsAdminSide() {
   const deleteProduct = async (id) => {
     const deleteProduct = window.confirm("Do you want to delete the product?");
     if (deleteProduct) {
-      await axios.post("http://localhost:8000/product/deleteProduct/" + id);
+      await axios.post(`${configData.baseUrl}/product/deleteProduct/` + id);
       window.location.reload(true);
     }
   }
@@ -103,8 +104,8 @@ function ProductsAdminSide() {
                   return (
                     <tr kay={ind} className="fw-normal">
                       <td>
-                        <Link to={`/addproduct/edit/${val.id}`}>
-                          <img src={`../img/${val.product_image}`} alt={`../img/${val.product_image}`} className="img-fluid t-img" />
+                        <Link to={`/ addproduct / edit / ${ val.id }`}>
+                          <img src={`../ img / ${ val.product_image }`} alt={`../ img / ${ val.product_image }`} className="img-fluid t-img" />
                         </Link>
                       </td>
                       <td>{val.name}</td>
@@ -118,8 +119,8 @@ function ProductsAdminSide() {
                   return (
                     <tr kay={ind} className="fw-normal">
                       <td>
-                        <Link to={`/addproduct/edit/${val.id}`}>
-                          <img src={`../img/${val.product_image}`} alt={`../img/${val.product_image}`} className="img-fluid t-img" />
+                        <Link to={`/ addproduct / edit / ${ val.id }`}>
+                          <img src={`../ img / ${ val.product_image }`} alt={`../ img / ${ val.product_image }`} className="img-fluid t-img" />
                         </Link>
                       </td>
                       <td>{val.name}</td>
@@ -133,8 +134,8 @@ function ProductsAdminSide() {
                   return (
                     <tr kay={ind} className="fw-normal">
                       <td>
-                        <Link to={`/addproduct/edit/${val.id}`}>
-                          <img src={`../img/${val.product_image}`} alt={`../img/${val.product_image}`} className="img-fluid t-img" />
+                        <Link to={`/ addproduct / edit / ${ val.id }`}>
+                          <img src={`../ img / ${ val.product_image }`} alt={`../ img / ${ val.product_image }`} className="img-fluid t-img" />
                         </Link>
                       </td>
                       <td>{val.name}</td>
@@ -148,8 +149,8 @@ function ProductsAdminSide() {
                   return (
                     <tr kay={ind} className="fw-normal">
                       <td>
-                        <Link to={`/addproduct/edit/${val.id}`}>
-                          <img src={`../img/${val.product_image}`} alt={`../img/${val.product_image}`} className="img-fluid t-img" />
+                        <Link to={`/ addproduct / edit / ${ val.id }`}>
+                          <img src={`../ img / ${ val.product_image }`} alt={`../ img / ${ val.product_image }`} className="img-fluid t-img" />
                         </Link>
                       </td>
                       <td>{val.name}</td>
@@ -163,8 +164,8 @@ function ProductsAdminSide() {
                   return (
                     <tr kay={ind} className="fw-normal">
                       <td>
-                        <Link to={`/addproduct/edit/${val.id}`}>
-                          <img src={`../img/${val.product_image}`} alt={`../img/${val.product_image}`} className="img-fluid t-img" />
+                        <Link to={`/ addproduct / edit / ${ val.id }`}>
+                          <img src={`../ img / ${ val.product_image }`} alt={`../ img / ${ val.product_image }`} className="img-fluid t-img" />
                         </Link>
                       </td>
                       <td>{val.name}</td>

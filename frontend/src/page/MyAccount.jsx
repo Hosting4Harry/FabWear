@@ -3,6 +3,7 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { DataContext } from '../context/DataContext'
 import { GrView, GrDownload } from "react-icons/gr";
+import configData from '../environments/config.json'
 
 const MyAccount = () => {
     const { setLoading, roleId } = useContext(DataContext);
@@ -18,7 +19,7 @@ const MyAccount = () => {
     const timeout = useRef(null);
     const navigate = useNavigate();
     const checkAuth = () => {
-        axios.get("http://localhost:8000/isAuth", {
+        axios.get(`${configData.baseUrl}/isAuth`, {
             headers: {
                 "x-access-token": localStorage.getItem("Ecomtoken")
             }
@@ -44,7 +45,7 @@ const MyAccount = () => {
         setModal(true);
         setLoading(true);
         if (!id) return;
-        await axios.get(`http://localhost:8000/order/account/${id}`)
+        await axios.get(`${configData.baseUrl}/order/account/${id}`)
             .then(response => {
                 setLoading(false);
                 setOrder(response.data);
@@ -58,7 +59,7 @@ const MyAccount = () => {
             setLoading(false);
             return;
         }
-        await axios.get(`http://localhost:8000/order/pendingOrder/${id}`)
+        await axios.get(`${configData.baseUrl}/order/pendingOrder/${id}`)
             .then(response => {
                 setLoading(false);
                 setOrder(response.data);

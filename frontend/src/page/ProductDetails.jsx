@@ -5,6 +5,8 @@ import { DataContext } from '../context/DataContext';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Review from './AddOn/Review';
+import configData from '../environments/config.json'
+
 toast.configure();
 
 const ProductDetails = () => {
@@ -29,7 +31,7 @@ const ProductDetails = () => {
             alert("please login into your account,to acces Your cart");
             navigate('/');
         } else {
-            await axios.post('http://localhost:8000/cart', data)
+            await axios.post(`${configData.baseUrl}/cart`, data)
             const exist = cart.find((x) => x.id === data.id);
             if (exist) {
                 setCart(
@@ -55,11 +57,11 @@ const ProductDetails = () => {
 
     const getData = async () => {
         setLoading(true);
-        await axios(`http://localhost:8000/product/getdata/${id}`)
+        await axios(`${configData.baseUrl}/product/getdata/${id}`)
             .then(async response => {
                 setLoading(false);
                 setDetdata(response.data);
-                await axios('http://localhost:8000/product/searchProduct/' + response.data.product_image.split('/')[3 || 2 || 1])
+                await axios(`${configData.baseUrl}/product/searchProduct/` + response.data.product_image.split('/')[3 || 2 || 1])
                     .then(response => {
                         setData(response.data);
                     }).catch(error => {

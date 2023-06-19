@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState, useRef } from 'react'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { DataContext } from '../context/DataContext'
 // import logo from "./logo.svg";
+import configData from '../environments/config.json'
 
 import axios from 'axios'
 const Payment = () => {
@@ -23,7 +24,7 @@ const Payment = () => {
     var tot = 0;
     const timeout = useRef(null);
     const checkAuth = () => {
-        axios.get("http://localhost:8000/isAuth", {
+        axios.get(`${configData.baseUrl}/isAuth`, {
             headers: {
                 "x-access-token": localStorage.getItem("Ecomtoken")
             }

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState, useRef } from 'react'
 import { NavLink, useParams, useNavigate } from 'react-router-dom'
+import configData from '../environments/config.json'
 
 const MyOrder = () => {
     const [data, setData] = useState([]);
@@ -8,7 +9,7 @@ const MyOrder = () => {
     const timeout = useRef(null);
     const navigate = useNavigate();
     const checkAuth = () => {
-        axios.get("http://localhost:8000/isAuth", {
+        axios.get(`${configData.baseUrl}/isAuth`, {
             headers: {
                 "x-access-token": localStorage.getItem("Ecomtoken")
             }
@@ -30,7 +31,7 @@ const MyOrder = () => {
     }, []);
 
     const getData = async () => {
-        const { data } = await axios.get(`http://localhost:8000/order/myorder/${id}`);
+        const { data } = await axios.get(`${configData.baseUrl}/order/myorder/${id}`);
         setData(data);
     }
     useEffect(() => {
