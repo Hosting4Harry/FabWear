@@ -3,12 +3,13 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { DataContext } from '../context/DataContext';
 import "./CheckOut.css"
+import configData from '../environments/config.json'
 
 function CheckOut() {
     const timeout = useRef(null);
     // const loc = localStorage.getItem('NavLoc');
     const checkAuth = () => {
-        axios.get("http://localhost:8000/isAuth", {
+        axios.get(`${configData.baseUrl}/isAuth`, {
             headers: {
                 "x-access-token": localStorage.getItem("Ecomtoken")
             }
@@ -39,7 +40,7 @@ function CheckOut() {
     const [inputAddress, setInputAddress] = useState({});
     const getaddress = async () => {
         const dat = localStorage.getItem('EcomUserId');
-        const res = await axios.get(`http://localhost:8000/address/getaddress/${dat}`);
+        const res = await axios.get(`${configData.baseUrl}/address/getaddress/${dat}`);
         setYourAddress(res.data);
     }
     // const { id } = useParams();
@@ -105,7 +106,7 @@ function CheckOut() {
             return;
         }
         // creating a new order
-        const result = await axios.post("http://localhost:8000/payment/orders", data);
+        const result = await axios.post(`${configData.baseUrl}/payment/orders`, data);
         if (!result) {
             alert("Server error. Are you online?");
             return;
@@ -129,7 +130,7 @@ function CheckOut() {
                     razorpaySignature: response.razorpay_signature,
                     orderData: orderData
                 };
-                const result = await axios.post("http://localhost:8000/payment/success", data);
+                const result = await axios.post(`${configData.baseUrl}/payment/success`, data);
                 setCart([]);
                 localStorage.setItem('Ecomlongid', result.razorpayPaymentId);
                 navigate(`/myaccount`);

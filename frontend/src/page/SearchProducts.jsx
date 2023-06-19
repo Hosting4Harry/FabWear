@@ -3,13 +3,14 @@ import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import CardProducts from '../component/CardProducts';
 import { DataContext } from '../context/DataContext';
+import configData from '../environments/config.json'
 
 function SearchProducts() {
     const { searchResult, setSearchResult, setLoading } = useContext(DataContext);
     const { name } = useParams();
     const getData = async (name) => {
         setLoading(true);
-        await axios.get('http://localhost:8000/product/searchProduct/' + name)
+        await axios.get(`${configData.baseUrl}/product/searchProduct/` + name)
             .then(response => {
                 setLoading(false);
                 setSearchResult(response.data);

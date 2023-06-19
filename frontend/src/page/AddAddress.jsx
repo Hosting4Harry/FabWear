@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import "./AddAddress.css"
-
+import configData from '../environments/config.json'
 function AddAddress() {
     const navigate = useNavigate();
     const datemail = localStorage.getItem('EcomEmail');
@@ -39,7 +39,7 @@ function AddAddress() {
         }
     }
     const getAddressById = async (id) => {
-        const res = await axios(`http://localhost:8000/address/addaddress/` + id);
+        const res = await axios(`${configData.baseUrl}/address/addaddress/` + id);
         const data = {
             fname: res.data.name.split(' ')[0],
             lname: res.data.name.split(' ')[1],

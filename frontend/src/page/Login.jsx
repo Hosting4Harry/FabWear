@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import jwt_decode from "jwt-decode";
+import configData from '../environments/config.json'
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -13,7 +14,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     const checkAuth = () => {
-        axios.get("http://localhost:8000/isAuth", {
+        axios.get(`${configData.baseUrl}/isAuth`, {
             headers: {
                 "x-access-token": localStorage.getItem("Ecomtoken")
             }

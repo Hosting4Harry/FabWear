@@ -2,6 +2,8 @@
 import React, { useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import configData from '../environments/config.json'
+
 const Success = () => {
     const navigate = useNavigate();
     const loc = useLocation();
@@ -16,7 +18,7 @@ const Success = () => {
                 pid: pid,
                 pyid: pyid
             }
-            await axios.post(`http://localhost:8000/payment/paydetails`, data)
+            await axios.post(`${configData.baseUrl}/payment/paydetails`, data)
         }
         paydet();
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -24,7 +26,7 @@ const Success = () => {
 
     const timeout = useRef(null);
     const checkAuth = () => {
-        axios.get("http://localhost:8000/isAuth", {
+        axios.get(`${configData.baseUrl}/isAuth`, {
             headers: {
                 "x-access-token": localStorage.getItem("Ecomtoken")
             }

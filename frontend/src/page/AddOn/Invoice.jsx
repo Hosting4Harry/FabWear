@@ -2,13 +2,14 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom'
+import configData from '../.././environments/config.json'
 
 const Invoice = () => {
     const { id } = useParams();
     let sum = 0;
     const [products, setProducts] = useState([]);
     const getData = () => {
-        axios.get(`http://localhost:8000/order/myorder/` + id)
+        axios.get(`${configData.baseUrl}/order/myorder/` + id)
             .then((res) => {
                 setProducts(res.data)
                 console.log(res.data);

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import StarRating from './StarRating';
 import './Review.css'
+import configData from '../.././environments/config.json'
 
 function Review() {
     const [review, setReview] = useState('');
@@ -18,7 +19,7 @@ function Review() {
             userName: localStorage.getItem('EcomUser'),
             stars: rating
         }
-        axios.post('http://localhost:8000/review', data)
+        axios.post(`${configData.baseUrl}/review`, data)
             .then(response => {
                 if (response.status) {
                     alert("thanks for your valueable review");
@@ -28,7 +29,7 @@ function Review() {
             })
     }
     const getReviews = () => {
-        axios('http://localhost:8000/review/' + productId)
+        axios(`${configData.baseUrl}/review/` + productId)
             .then(response => {
                 setReviewData(response.data.reviewData)
             })

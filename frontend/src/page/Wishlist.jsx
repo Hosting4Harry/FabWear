@@ -3,13 +3,14 @@ import React, { useContext, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import WishlistP from '../component/WishlistP';
 import { DataContext } from '../context/DataContext';
+import configData from '../environments/config.json'
 
 const Wishlist = () => {
     const { wishlist, setWishlist } = useContext(DataContext);
     const timeout = useRef(null);
     const navigate = useNavigate();
     const checkAuth = () => {
-        axios.get("http://localhost:8000/isAuth", {
+        axios.get(`${configData.baseUrl}/isAuth`, {
             headers: {
                 "x-access-token": localStorage.getItem("Ecomtoken")
             }
@@ -21,7 +22,7 @@ const Wishlist = () => {
     }
     const id = localStorage.getItem("EcomUserId")
     function getWish(id) {
-        axios.get('http://localhost:8000/wishlist/' + id)
+        axios.get(`${configData.baseUrl}/wishlist/` + id)
             .then((response) => {
                 setWishlist(response.data);
             }).catch((err) => {

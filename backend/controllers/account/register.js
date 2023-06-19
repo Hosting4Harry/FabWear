@@ -43,6 +43,7 @@ router.post("/", (req, res) => {
             else {
                 await db.users.create(data)
                     .then(async response => {
+
                         await db.user_roles.create({ name: "User", userId: response.id, roleId: 3 })
                         res.send({ userData: response });
                     }).catch(error => {

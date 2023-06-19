@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import axios from 'axios'
+import axios from 'axios';
+import configData from '../environments/config.json'
+
 
 const EditAdd = () => {
     const datemail = localStorage.getItem('EcomEmail');
@@ -12,7 +14,7 @@ const EditAdd = () => {
     const timeout = useRef(null);
     const navigate = useNavigate();
     const checkAuth = () => {
-        axios.get("http://localhost:8000/isAuth", {
+        axios.get(`${configData.baseUrl}/isAuth`, {
             headers: {
                 "x-access-token": localStorage.getItem("Ecomtoken")
             }
@@ -35,7 +37,7 @@ const EditAdd = () => {
     }, [])
 
     const getaddress = async () => {
-        const res = await axios.get(`http://localhost:8000/address/getaddress/${id}`)
+        const res = await axios.get(`${configData.baseUrl}/address/getaddress/${id}`)
         setName(res.data[0].name)
         setEmail(res.data[0].email)
         setPhone(res.data[0].phone)
@@ -56,7 +58,7 @@ const EditAdd = () => {
             userId: id
         }
         // eslint-disable-next-line no-unused-vars
-        const res = await axios.post(`http://localhost:8000/address/editadd`, data)
+        const res = await axios.post(`${configData.baseUrl}/address/editadd`, data)
         navigate("/payment")
     }
 

@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import configData from '../environments/config.json'
+
 // import { DataContext } from '../context/DataContext'
 const Register = () => {
     const [username, setUserName] = useState("")
@@ -11,7 +13,7 @@ const Register = () => {
     const timeout = useRef(null)
     const navigate = useNavigate()
     const checkAuth = () => {
-        axios.get("http://localhost:8000/isAuth", {
+        axios.get(`${configData.baseUrl}/isAuth`, {
             headers: {
                 "x-access-token": localStorage.getItem("Ecomtoken")
             }
@@ -39,7 +41,7 @@ const Register = () => {
             email: email,
             password: password
         }
-        const res = await axios.post("http://localhost:8000/register", data)
+        const res = await axios.post(`${configData.baseUrl}/register`, data)
         if (res.data.msg) {
             setStatus(true);
             setMsg(res.data.msg);

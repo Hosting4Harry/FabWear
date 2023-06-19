@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import CartP from '../component/CartP'
 import { DataContext } from '../context/DataContext'
 import axios from 'axios'
+import configData from '../environments/config.json'
+
 // import NewProducts from './NewProducts'
 const Cart = () => {
     const { cart, setCart, setLoading } = useContext(DataContext);
@@ -10,7 +12,7 @@ const Cart = () => {
     const navigate = useNavigate();
     const checkAuth = () => {
         setLoading(true);
-        axios.get("http://localhost:8000/isAuth", {
+        axios.get(`${configData.baseUrl}/isAuth`, {
             headers: {
                 "x-access-token": localStorage.getItem("Ecomtoken")
             }
@@ -34,7 +36,7 @@ const Cart = () => {
 
     const id = localStorage.getItem("EcomUserId");
     const cartItems = (id) => {
-        axios.get('http://localhost:8000/cart/' + id)
+        axios.get(`${configData.baseUrl}/cart/` + id)
             .then((response) => {
                 setCart(response.data);
             }).catch((error) => {

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import StarRating from './StarRating';
+import configData from '../.././environments/config.json'
 
 function FeedBack() {
     const [rating, setRating] = useState(0);
@@ -14,7 +15,7 @@ function FeedBack() {
             stars: rating,
             userName: localStorage.getItem('EcomUser')
         }
-        axios.post('http://localhost:8000/feedback', data)
+        axios.post(`${configData.baseUrl}/feedback`, data)
             .then(response => {
                 if (response.status) {
                     alert("thanks for your valueable review");

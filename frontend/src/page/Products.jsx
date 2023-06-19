@@ -4,6 +4,7 @@ import CardProducts from '../component/CardProducts'
 import productData from './ProductData.json'
 import { Link, useNavigate } from 'react-router-dom'
 import { DataContext } from '../context/DataContext'
+import configData from '../environments/config.json'
 
 const sideModal = {
     position: "fixed",
@@ -28,7 +29,7 @@ const Products = () => {
 
     const getDatas = async () => {
         setLoading(true);
-        const res = await axios.get('http://localhost:8000/product/getdataall');
+        const res = await axios.get(`${configData.baseUrl}/product/getdataall`);
         if (!res.data) {
             setGetdata(productData);
         } else {
@@ -37,7 +38,7 @@ const Products = () => {
         }
     }
     const getModalData = async () => {
-        const resModal = await axios.get('http://localhost:8000/product/getdata');
+        const resModal = await axios.get(`${configData.baseUrl}/product/getdata`);
         setGetModaldata(resModal.data);
     }
     useEffect(() => {
@@ -48,7 +49,7 @@ const Products = () => {
     }, [])
 
     const sortData = async (sort) => {
-        const res = await axios.get(`http://localhost:8000/product/sort/${sort}`)
+        const res = await axios.get(`${configData.baseUrl}/product/sort/${sort}`)
         setGetdata(res.data);
     }
     const sortHandel = (e) => {

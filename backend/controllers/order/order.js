@@ -32,7 +32,6 @@ router.get("/pendingOrder/:id", async (req, res) => {
 });
 router.get("/myorder/:id", (req, res) => {
     const id = +req.params.id;
-
     let sqll = `SELECT * FROM orderitems,products WHERE orderitems.productid = products.id && orderitems.orderid=${id}`
     // let sqll = `SELECT * FROM orderitems,products WHERE orderitems.orderid=${id} && orderitems.productid = products.id`
     db.sequelize.query(sqll, { type: QueryTypes.SELECT })

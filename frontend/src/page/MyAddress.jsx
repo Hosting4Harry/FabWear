@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import "./MyAddress.css";
 import { GrAdd } from "react-icons/gr";
+import configData from '../environments/config.json'
 
 function MyAddress() {
     const navigate = useNavigate();
@@ -13,12 +14,12 @@ function MyAddress() {
     const userEmail = localStorage.getItem('EcomEmail');
     const getaddress = async () => {
         const dat = localStorage.getItem('EcomUserId');
-        const res = await axios.get(`http://localhost:8000/address/getaddress/${dat}`);
+        const res = await axios.get(`${configData.baseUrl}/address/getaddress/${dat}`);
         setYourAddress(res.data);
     }
 
     const deleteAddress = async (id) => {
-        axios.post("http://localhost:8000/address/deleteAddress/" + id);
+        axios.post(`${configData.baseUrl}/address/deleteAddress/` + id);
     }
     useEffect(() => {
         getaddress();

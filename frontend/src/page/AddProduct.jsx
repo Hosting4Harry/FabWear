@@ -1,13 +1,14 @@
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
+import configData from '../environments/config.json'
 
 const AddProduct = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const timeout = useRef(null);
     const checkAuth = () => {
-        axios.get("http://localhost:8000/isAuth", {
+        axios.get(`${configData.baseUrl}/isAuth`, {
             headers: {
                 "x-access-token": localStorage.getItem("Ecomtoken")
             }
@@ -38,7 +39,7 @@ const AddProduct = () => {
 
     const getData = async () => {
         if (id) {
-            await axios.get("http://localhost:8000/product/getdata/" + id)
+            await axios.get(`${configData.baseUrl}/product/getdata/` + id)
                 .then(response => {
                     setProductDetails(productDetails => ({
                         ...productDetails,
@@ -77,7 +78,7 @@ const AddProduct = () => {
         if (!id) {
             var config = {
                 method: 'post',
-                url: "http://localhost:8000/product/addproduct",
+                url: `${configData.baseUrl}/product/addproduct`,
                 headers: {
                     "Content-Type": "multipart/form-data",
                     "Accept": "application/json",
@@ -93,7 +94,7 @@ const AddProduct = () => {
         } else {
             config = {
                 method: 'put',
-                url: "http://localhost:8000/product/edit/" + id,
+                url: `${configData.baseUrl}/product/edit/` + id,
                 headers: {
                     "Content-Type": "multipart/form-data",
                     "Accept": "application/json",
