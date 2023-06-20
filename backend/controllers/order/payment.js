@@ -8,20 +8,20 @@ const router = express();
 router.post("/orders", async (req, res) => {
     const { cart, paymentemail, name } = req.body;
     const data = {
-        // name: req.body.name,
-        // orderstatus: req.body.orderstatus,
+        name: req.body.name,
+        orderstatus: req.body.orderstatus,
         paymentemail: req.body.paymentemail,
-        //     paymentmode: req.body.paymentmode,
-        //     totalprice: req.body.totalprice,
-        //     userid: req.body.userid,
-        //     addressId: +req.body.address.id
+        paymentmode: req.body.paymentmode,
+        totalprice: req.body.totalprice,
+        userid: req.body.userid,
+        addressId: +req.body.address.id
     }
     try {
         const instance = new Razorpay({
             key_id: process.env.RAZORPAY_KEY_ID || "rzp_test_T3tAATbEcOqopL",
             key_secret: process.env.RAZORPAY_SECRET || "IIDn2dhDvH9fIEE83BD6odGI",
         });
-
+        debugger
         const options = {
             amount: data.totalprice * 100, // amount in smallest currency unit
             currency: "INR",

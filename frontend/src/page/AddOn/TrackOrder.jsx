@@ -5,13 +5,53 @@ import { useParams } from 'react-router-dom';
 
 function TrackOrder() {
     const [data, setData] = useState([]);
+    const [date, setDate] = useState('');
+    const [step, setStep] = useState({
+        step1: false,
+        step2: false,
+        step3: false,
+        step4: false
+    })
     const { id } = useParams();
     const getData = async () => {
         const res = await axios.get(`http://localhost:8000/order/myOrder/${id}`);
         debugger
         setData(res.data);
+        trans();
     }
     console.log(data[0])
+    const check = (newDate) => {
+        if (date === newDate.split('T')[0]) {
+            debugger
+            return true;
+        } else {
+            debugger
+            return false
+        }
+    }
+    const trans = () => {
+        if (!data) return false;
+        if (data !== []) setDate(data[0]?.updatedAt.split("T")[0]);
+        const newDate = new Date(date);
+        for (let i = 1; i <= 7; i++) {
+            if (i === 1) {
+                newDate.setDate(newDate.getDate() + i);
+
+            }
+            if (i === 3) {
+                newDate.setDate(newDate.getDate() + i);
+
+            }
+            if (i === 6) {
+                newDate.setDate(newDate.getDate() + i);
+
+            }
+            if (i === 7) {
+                newDate.setDate(newDate.getDate() + i);
+
+            }
+        }
+    }
     useEffect(() => {
         getData();
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -36,25 +76,25 @@ function TrackOrder() {
                                     </div>
                                     <h4 className="step-title">Confirmed Order</h4>
                                 </div>
-                                <div className="step completed">
+                                <div className={step.step1 ? "step completed" : "step"} >
                                     <div className="step-icon-wrap">
                                         <div className="step-icon"><i className="pe-7s-config"></i></div>
                                     </div>
                                     <h4 className="step-title">Processing Order</h4>
                                 </div>
-                                <div className="step completed">
+                                <div className={step.step2 ? "step completed" : "step"}>
                                     <div className="step-icon-wrap">
                                         <div className="step-icon"><i className="pe-7s-medal"></i></div>
                                     </div>
                                     <h4 className="step-title">Quality Check</h4>
                                 </div>
-                                <div className="step">
+                                <div className={step.step3 ? "step completed" : "step"}>
                                     <div className="step-icon-wrap">
                                         <div className="step-icon"><i className="pe-7s-car"></i></div>
                                     </div>
                                     <h4 className="step-title">Product Dispatched</h4>
                                 </div>
-                                <div className="step">
+                                <div className={step.step4 ? "step completed" : "step"}>
                                     <div className="step-icon-wrap">
                                         <div className="step-icon"><i className="pe-7s-home"></i></div>
                                     </div>
@@ -66,9 +106,9 @@ function TrackOrder() {
                     <div className="d-flex flex-wrap flex-md-nowrap justify-content-center justify-content-sm-between align-items-center">
                         <div className="custom-control custom-checkbox mr-3">
                             <input className="custom-control-input" type="checkbox" id="notify_me" checked="" />
-                            <label className="custom-control-label" for="notify_me">Notify me when order is delivered</label>
+                            <label className="custom-control-label" htmlFor="notify_me">Notify me when order is delivered</label>
                         </div>
-                        <div className="text-left text-sm-right"><bu className="btn btn-outline-primary btn-rounded btn-sm" href="#">View Order Details</bu></div>
+                        <div className="text-left text-sm-right"><button className="btn btn-outline-primary btn-rounded btn-sm" href="#">View Order Details</button></div>
                     </div>
                 </div>
             </div>

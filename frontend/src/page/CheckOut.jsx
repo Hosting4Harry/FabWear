@@ -82,6 +82,7 @@ function CheckOut() {
         });
     }
     const displayRazorpay = async (e) => {
+        debugger
         e.preventDefault();
         const dat = localStorage.getItem('EcomUserId');
         const datemail = localStorage.getItem('EcomEmail');
@@ -105,12 +106,14 @@ function CheckOut() {
             alert("Razorpay SDK failed to load. Are you online?");
             return;
         }
+        debugger
         // creating a new order
         const result = await axios.post(`${configData.baseUrl}/payment/orders`, data);
         if (!result) {
             alert("Server error. Are you online?");
             return;
         }
+        debugger
         // Getting the order details back
         const { order, orderData } = result.data;
         const { amount, id: order_id, currency } = order;
