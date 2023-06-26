@@ -36,6 +36,18 @@ router.post("/orders", async (req, res) => {
         await db.orders.create(data)
             .then(result => {
                 orderData = result;
+                const trackingDetails = {
+                    orderid: result.id,
+                    orderProcess: 0,
+                    qualitycheck: 0,
+                    shipped: 0,
+                    dispatched: 0,
+                    delivered: 0,
+                }
+                db.ordertrack.create(trackingDetails).then(result => {
+
+                    console.log(result);
+                })
                 for (let i = 0; i < cart.length; i++) {
                     // console.log(cart[i].name)
                     const detailsdata = {
@@ -47,18 +59,8 @@ router.post("/orders", async (req, res) => {
                     // let sqll = "INSERT INTO `orderitems` SET ?";
                     db.orderitems.create(detailsdata)
                         .then(result2 => {
-                            const trackingDetails = {
-                                orderid: result.id,
-                                orderProcess: 0,
-                                qualitycheck: 0,
-                                shipped: 0,
-                                dispatched: 0,
-                                delivered: 0,
-                            }
-                            db.ordertrack.create(trackingDetails).then(result => {
+                            // res.send('created')
 
-                                console.log(result);
-                            })
                         })
                 }
             }).catch(error => {

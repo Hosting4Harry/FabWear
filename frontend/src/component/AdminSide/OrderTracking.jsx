@@ -11,15 +11,15 @@ const OrderTracking = () => {
     }
 
     const handelChange = async (e) => {
-        const findId = await axios.get(`${configData.baseUrl}/trackorder/orderId/${id}`)
-        if (findId.data) {
-            const key = e.target.name;
-            const checked = e.target.checked ? 1 : 0;
-            const data = {
-                key, checked
-            }
-            const res = await axios.put(`${configData.baseUrl}/trackorder/${id}`, data)
+        // const findId = await axios.get(`${configData.baseUrl}/trackorder/orderId/${id}`)
+        // if (findId.data) {
+        const key = e.target.name;
+        const checked = e.target.checked ? 1 : 0;
+        const data = {
+            key, checked
         }
+        const res = await axios.put(`${configData.baseUrl}/trackorder/${id}`, data)
+        // }
     }
     useEffect(() => {
         getAll();
