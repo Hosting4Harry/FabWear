@@ -21,7 +21,6 @@ router.post("/orders", async (req, res) => {
             key_id: process.env.RAZORPAY_KEY_ID || "rzp_test_T3tAATbEcOqopL",
             key_secret: process.env.RAZORPAY_SECRET || "IIDn2dhDvH9fIEE83BD6odGI",
         });
-        debugger
         const options = {
             amount: data.totalprice * 100, // amount in smallest currency unit
             currency: "INR",
@@ -47,8 +46,19 @@ router.post("/orders", async (req, res) => {
                     }
                     // let sqll = "INSERT INTO `orderitems` SET ?";
                     db.orderitems.create(detailsdata)
-                        .then(result => {
-                            console.log(result);
+                        .then(result2 => {
+                            const trackingDetails = {
+                                orderid: result.id,
+                                orderProcess: 0,
+                                qualitycheck: 0,
+                                shipped: 0,
+                                dispatched: 0,
+                                delivered: 0,
+                            }
+                            db.ordertrack.create(trackingDetails).then(result => {
+
+                                console.log(result);
+                            })
                         })
                 }
             }).catch(error => {

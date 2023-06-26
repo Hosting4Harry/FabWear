@@ -17,6 +17,7 @@ const wishlistRouter = require('./controllers/wishlist/wishlist');
 const cartRouter = require('./controllers/cart/cart');
 const reviewRouter = require('./controllers/reviewFeedback/review');
 const feedbackRouter = require('./controllers/reviewFeedback/feedback');
+const trackorderRouter = require('./controllers/trackOrder/trackorder');
 (async () => {
     try {
         await db.sequelize.authenticate();
@@ -47,6 +48,7 @@ app.use('/wishlist', wishlistRouter);
 app.use('/cart', cartRouter);
 app.use('/review', reviewRouter);
 app.use('/feedback', feedbackRouter);
+app.use('/trackorder', trackorderRouter)
 app.listen(PORT, () => {
     console.log(`app running on port ${PORT}`)
 })

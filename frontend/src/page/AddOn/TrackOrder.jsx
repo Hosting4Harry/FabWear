@@ -2,41 +2,45 @@ import React, { useEffect, useState } from 'react'
 import './TrackOrder.css'
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-
+import configData from '../../environments/config.json';
 function TrackOrder() {
     const [data, setData] = useState([]);
     const [date, setDate] = useState('');
-    const [step, setStep] = useState({
-        step1: false,
-        step2: false,
-        step3: false,
-        step4: false
-    })
+    const [step, setStep] = useState([{
+        orderProcess: false,
+        qualitycheck: false,
+        shipped: false,
+        dispatched: false,
+        delivered: false,
+    }])
     const { id } = useParams();
     const getData = async () => {
-        const res = await axios.get(`http://localhost:8000/order/myOrder/${id}`);
         debugger
+        const res = await axios.get(`http://localhost:8000/order/myOrder/${id}`);
         setData(res.data);
         trans();
     }
-    console.log(data[0])
+    const trackingDetails = async () => {
+        const res = await axios.get(`${configData.baseUrl}/trackorder/${id}`)
+        debugger
+        setStep(res.data)
+    }
     const check = (newDate) => {
+        debugger
         if (date === newDate.split('T')[0]) {
-            debugger
             return true;
         } else {
-            debugger
             return false
         }
     }
     const trans = () => {
+        debugger
         if (!data) return false;
         if (data !== []) setDate(data[0]?.updatedAt.split("T")[0]);
         const newDate = new Date(date);
         for (let i = 1; i <= 7; i++) {
             if (i === 1) {
                 newDate.setDate(newDate.getDate() + i);
-
             }
             if (i === 3) {
                 newDate.setDate(newDate.getDate() + i);
@@ -54,6 +58,7 @@ function TrackOrder() {
     }
     useEffect(() => {
         getData();
+        trackingDetails();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -69,38 +74,52 @@ function TrackOrder() {
                             <div className="w-100 text-center py-1 px-2"><span className="text-medium">Expected Date:</span> APR 27, 2021</div>
                         </div>
                         <div className="card-body">
-                            <div className="steps d-flex flex-wrap flex-sm-nowrap justify-content-between padding-top-2x padding-bottom-1x">
-                                <div className="step completed">
-                                    <div className="step-icon-wrap">
-                                        <div className="step-icon"><i className="pe-7s-cart"></i></div>
-                                    </div>
-                                    <h4 className="step-title">Confirmed Order</h4>
-                                </div>
-                                <div className={step.step1 ? "step completed" : "step"} >
-                                    <div className="step-icon-wrap">
-                                        <div className="step-icon"><i className="pe-7s-config"></i></div>
-                                    </div>
-                                    <h4 className="step-title">Processing Order</h4>
-                                </div>
-                                <div className={step.step2 ? "step completed" : "step"}>
-                                    <div className="step-icon-wrap">
-                                        <div className="step-icon"><i className="pe-7s-medal"></i></div>
-                                    </div>
-                                    <h4 className="step-title">Quality Check</h4>
-                                </div>
-                                <div className={step.step3 ? "step completed" : "step"}>
-                                    <div className="step-icon-wrap">
-                                        <div className="step-icon"><i className="pe-7s-car"></i></div>
-                                    </div>
-                                    <h4 className="step-title">Product Dispatched</h4>
-                                </div>
-                                <div className={step.step4 ? "step completed" : "step"}>
-                                    <div className="step-icon-wrap">
-                                        <div className="step-icon"><i className="pe-7s-home"></i></div>
-                                    </div>
-                                    <h4 className="step-title">Product Delivered</h4>
-                                </div>
-                            </div>
+                            {
+                                step.map((val, ind) => {
+                                    return (
+
+                                        <div className="steps d-flex flex-wrap flex-sm-nowrap justify-content-between padding-top-2x padding-bottom-1x">
+                                            <div className="step completed">
+                                                <div className="step-icon-wrap">
+                                                    <div className="step-icon"><i className="pe-7s-cart"></i></div>
+                                                </div>
+                                                <h4 className="step-title">Confirmed Order</h4>
+                                            </div>
+                                            <div className={step[ind].orderProcess ? "step completed" : "step"} >
+                                                <div className="step-icon-wrap">
+                                                    <div className="step-icon"><i className="pe-7s-config"></i></div>
+                                                </div>
+                                                <h4 className="step-title">Processing Order</h4>
+                                            </div>
+                                            <div className={step[ind].qualitycheck ? "step completed" : "step"}>
+                                                <div className="step-icon-wrap">
+                                                    <div className="step-icon"><i className="pe-7s-medal"></i></div>
+                                                </div>
+                                                <h4 className="step-title">Quality Check</h4>
+                                            </div>
+                                            <div className={step[ind].shipped ? "step completed" : "step"}>
+                                                <div className="step-icon-wrap">
+                                                    <div className="step-icon"><i className="pe-7s-gift"></i></div>
+                                                </div>
+                                                <h4 className="step-title">Product shipped</h4>
+                                            </div>
+                                            <div className={step[ind].dispatched ? "step completed" : "step"}>
+                                                <div className="step-icon-wrap">
+                                                    <div className="step-icon"><i className="pe-7s-car"></i></div>
+                                                </div>
+                                                <h4 className="step-title">Product Dispatched</h4>
+                                            </div>
+                                            <div className={step[ind].delivered ? "step completed" : "step"}>
+                                                <div className="step-icon-wrap">
+                                                    <div className="step-icon"><i className="pe-7s-home"></i></div>
+                                                </div>
+                                                <h4 className="step-title">Product Delivered</h4>
+                                            </div>
+                                        </div>
+
+                                    )
+                                })
+                            }
                         </div>
                     </div>
                     <div className="d-flex flex-wrap flex-md-nowrap justify-content-center justify-content-sm-between align-items-center">

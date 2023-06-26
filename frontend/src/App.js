@@ -32,6 +32,7 @@ import Invoice from './page/AddOn/Invoice';
 import AllOrders from './page/AllOrders';
 import AllUser from './component/AdminSide/AllUser';
 import TrackOrder from './page/AddOn/TrackOrder';
+import OrderTracking from './component/AdminSide/OrderTracking';
 
 const App = () => {
   return (
@@ -70,6 +71,8 @@ const App = () => {
             <Route exact path="/admin/allOrders" element={<AllOrders />} />
             <Route exact path="/admin/allUser" element={<AllUser />} />
             <Route exact path="/trackOrder/:id" element={<TrackOrder />} />
+            <Route exact path="/admin/trackOrder" element={<OrderTracking />} />
+            <Route exact path="/admin/trackOrder/:id" element={<OrderTracking />} />
             {/* <Route exact path="/paynow/:pid" element={PayNow} /> */}
           </Routes>
           <Footer />

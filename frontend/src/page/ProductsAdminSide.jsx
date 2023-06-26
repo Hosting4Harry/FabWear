@@ -18,9 +18,21 @@ function ProductsAdminSide() {
       setSearch('all');
       getData();
     } else {
+      localStorage.setItem('dropdownValue', e.target.value)
       setSearch(e.target.value);
       const res = await axios.get(`${configData.baseUrl}/product/searchProduct/` + e.target.value);
       setProducts(res.data);
+    }
+  }
+  const mantainPreviousData = async () => {
+    const data = localStorage.getItem('dropdownValue')
+    if (data) {
+      setSearch(data);
+      const res = await axios.get(`${configData.baseUrl}/product/searchProduct/` + data);
+      setProducts(res.data);
+    } else {
+      setSearch('all')
+      getData();
     }
   }
   const colums = [
@@ -56,7 +68,8 @@ function ProductsAdminSide() {
   }
 
   useEffect(() => {
-    getData();
+    mantainPreviousData();
+    // eslint-disable-next-line
   }, []);
   return (
     <>

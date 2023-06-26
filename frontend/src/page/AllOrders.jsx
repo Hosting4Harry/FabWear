@@ -1,7 +1,9 @@
 import React, { useContext } from 'react'
 import { DataContext } from '../context/DataContext'
+import { useNavigate } from 'react-router-dom';
 
 const AllOrders = () => {
+    const navigate = useNavigate();
     const { order } = useContext(DataContext);
     console.log(order)
     return (
@@ -23,6 +25,7 @@ const AllOrders = () => {
                                 <th >OrderId</th>
                                 <th >Price</th>
                                 <th >Quantity</th>
+                                <th >TrackOrder</th>
                                 <th >Date/Time</th>
                             </tr>
                         </thead>
@@ -36,6 +39,7 @@ const AllOrders = () => {
                                             <td>{val.orderid}</td>
                                             <td>{val.productprice}</td>
                                             <td>{val.productqty}</td>
+                                            <td><button className='btn btn-success' onClick={(e) => navigate(`/admin/trackOrder/${val.orderid}`)}>Track</button></td>
                                             <td>{val.updatedAt.replace('T', '/').split('.')[0]}</td>
                                         </tr>
                                     )

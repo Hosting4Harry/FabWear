@@ -132,8 +132,8 @@ const Navbar = () => {
               }
             </NavLink>
           </li>
-          <li>{userId ? <NavLink to="/myaccount" className=" position-relative me-3" >User </NavLink> : <NavLink to="/" className=" position-relative me-3" >Login </NavLink>}
-
+          <li >
+            {userId ? <NavLink to="/myaccount" className=" position-relative me-3" >User </NavLink> : <NavLink to="/" className=" position-relative me-3" >Login </NavLink>}
           </li>
         </ul>
       </nav>
