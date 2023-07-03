@@ -36,7 +36,7 @@ export const ConText = (props) => {
         checkAuth();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-    setInterval(checkAuth, 1000);
+    // setInterval(checkAuth, 10000);
 
     return (
         <>

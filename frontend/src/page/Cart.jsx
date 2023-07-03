@@ -2,47 +2,31 @@ import React, { useContext, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import CartP from '../component/CartP'
 import { DataContext } from '../context/DataContext'
-import axios from 'axios'
 import configData from '../environments/config.json'
+import useAuth from '../context/useAuth'
 
 // import NewProducts from './NewProducts'
 const Cart = () => {
     const { cart, setCart, setLoading } = useContext(DataContext);
     const timeout = useRef(null);
+    const instance = useAuth()
     const navigate = useNavigate();
-    const checkAuth = () => {
-        setLoading(true);
-        axios.get(`${configData.baseUrl}/isAuth`, {
-            headers: {
-                "x-access-token": localStorage.getItem("Ecomtoken")
-            }
-        }).then((response) => {
-            if (!response.data.login) {
-                navigate("/");
-                setLoading(false);
-            }
-            setLoading(false);
-        })
-    }
-    useEffect(() => {
-        timeout.current = setTimeout(checkAuth, 100)
-        return function () {
-            if (timeout.current) {
-                clearTimeout(timeout.current);
-            }
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-
     const id = localStorage.getItem("EcomUserId");
+
     const cartItems = (id) => {
-        axios.get(`${configData.baseUrl}/cart/` + id)
+        instance.get(`${configData.baseUrl}/cart/` + id)
             .then((response) => {
-                setCart(response.data);
+                if (response.data.login) {
+                    setCart(response.data);
+                } else {
+                    navigate('/')
+                }
             }).catch((error) => {
                 console.log(error);
             })
     }
+
+
     useEffect(() => {
         window.scrollTo(0, 0)
         cartItems(id);

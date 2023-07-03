@@ -2,8 +2,8 @@ const express = require("express");
 const { QueryTypes } = require("sequelize");
 const router = express();
 const db = require('../../models')
-
-router.get('/:id', async (req, res) => {
+const { verifyJwt } = require('../../controllers/account/middleware');
+router.get('/:id', verifyJwt, async (req, res) => {
     const id = req.params.id;
     const sql = `SELECT * FROM products,wishlists WHERE wishlists.productId = products.id && wishlists.userId=${id}`
     await db.sequelize.query(sql, { type: QueryTypes.SELECT })
@@ -14,7 +14,7 @@ router.get('/:id', async (req, res) => {
         });
 })
 
-router.post('/', async (req, res) => {
+router.post('/', verifyJwt, async (req, res) => {
     const result = await db.wishlists.findOne({
         where: {
             userId: req.body.userId,
@@ -41,7 +41,7 @@ router.post('/', async (req, res) => {
             }
         })
 });
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', verifyJwt, async (req, res) => {
     await db.products.update({
         product_status: false
     },

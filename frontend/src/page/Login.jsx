@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import jwt_decode from "jwt-decode";
@@ -13,27 +13,27 @@ const Login = () => {
     const timeout = useRef(null);
     const navigate = useNavigate();
 
-    const checkAuth = () => {
-        axios.get(`${configData.baseUrl}/isAuth`, {
-            headers: {
-                "x-access-token": localStorage.getItem("Ecomtoken")
-            }
-        }).then((response) => {
-            if (response.data.login) {
-            }
-        });
-    }
+    // const checkAuth = () => {
+    //     axios.get(`${configData.baseUrl}/isAuth`, {
+    //         headers: {
+    //             "x-access-token": localStorage.getItem("Ecomtoken")
+    //         }
+    //     }).then((response) => {
+    //         if (response.data.login) {
+    //         }
+    //     });
+    // }
 
-    useEffect(() => {
-        timeout.current = setTimeout(checkAuth, 1000);
-        return function () {
-            if (timeout.current) {
-                clearTimeout(timeout.current);
-            }
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-    //  setInterval(checkAuth, 1000);
+    // useEffect(() => {
+    //     timeout.current = setTimeout(checkAuth, 1000);
+    //     return function () {
+    //         if (timeout.current) {
+    //             clearTimeout(timeout.current);
+    //         }
+    //     }
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [])
+    // //  setInterval(checkAuth, 1000);
 
     const onSub = async (e) => {
         e.preventDefault();
@@ -43,7 +43,7 @@ const Login = () => {
             checked: checked
         }
 
-        const res = await axios.post("http://localhost:8000/login", data);
+        const res = await axios.post(`${configData.baseUrl}/login`, data);
         if (res.data.msg) {
             setStatus(true);
             setMsg(res.data.msg);

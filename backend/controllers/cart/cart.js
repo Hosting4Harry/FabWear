@@ -2,8 +2,8 @@ const express = require('express');
 const { QueryTypes } = require('sequelize');
 const router = express();
 const db = require('../../models');
-
-router.get('/:id', async (req, res) => {
+const { verifyJwt } = require('../../controllers/account/middleware')
+router.get('/:id', verifyJwt, async (req, res) => {
     const id = +req.params.id;
     const sql = `SELECT * FROM products,carts WHERE carts.productId= products.id && carts.userId=${id}`
     await db.sequelize.query(sql, { type: QueryTypes.SELECT })
@@ -11,11 +11,12 @@ router.get('/:id', async (req, res) => {
         .then(result => {
             res.send(result);
         }).catch(err => {
-            console.log(err);
+            res.status(400).send({ msg: 'Please login' })
         })
+
 })
 
-router.post('/', async (req, res) => {
+router.post('/', verifyJwt, async (req, res) => {
     var result;
     if (req.body.size) {
         result = await db.carts.findOne({
@@ -58,7 +59,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', verifyJwt, async (req, res) => {
     await db.carts.destroy({
         where: {
             id: +req.params.id

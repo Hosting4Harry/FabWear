@@ -1,28 +1,29 @@
-import axios from 'axios';
 import React, { useContext, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import WishlistP from '../component/WishlistP';
 import { DataContext } from '../context/DataContext';
 import configData from '../environments/config.json'
+import useAuth from '../context/useAuth';
 
 const Wishlist = () => {
+    const instance = useAuth()
     const { wishlist, setWishlist } = useContext(DataContext);
     const timeout = useRef(null);
     const navigate = useNavigate();
-    const checkAuth = () => {
-        axios.get(`${configData.baseUrl}/isAuth`, {
-            headers: {
-                "x-access-token": localStorage.getItem("Ecomtoken")
-            }
-        }).then((response) => {
-            if (!response.data.login) {
-                navigate("/");
-            }
-        });
-    }
+    // const checkAuth = () => {
+    //     instance.get(`${configData.baseUrl}/isAuth`, {
+    //         headers: {
+    //             "x-access-token": localStorage.getItem("Ecomtoken")
+    //         }
+    //     }).then((response) => {
+    //         if (!response.data.login) {
+    //             navigate("/");
+    //         }
+    //     });
+    // }
     const id = localStorage.getItem("EcomUserId")
     function getWish(id) {
-        axios.get(`${configData.baseUrl}/wishlist/` + id)
+        instance.get(`${configData.baseUrl}/wishlist/` + id)
             .then((response) => {
                 setWishlist(response.data);
             }).catch((err) => {
@@ -35,15 +36,15 @@ const Wishlist = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])
 
-    useEffect(() => {
-        timeout.current = setTimeout(checkAuth, 100)
-        return function () {
-            if (timeout.current) {
-                clearTimeout(timeout.current);
-            }
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    // useEffect(() => {
+    //     timeout.current = setTimeout(checkAuth, 100)
+    //     return function () {
+    //         if (timeout.current) {
+    //             clearTimeout(timeout.current);
+    //         }
+    //     }
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, []);
 
     return (<>
         <div className="cart pt-2" style={{ backgroundColor: "#eee", marginBottom: "200px" }}>
