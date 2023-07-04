@@ -5,8 +5,10 @@ import { toast } from 'react-toastify';
 import "../App.css";
 import { DataContext } from '../context/DataContext';
 import "../page/Wishlist.css"
+import useAuth from '../context/useAuth';
 
 const CardProducts = ({ id, name, price, product_image }) => {
+    const instance = useAuth()
     const navigate = useNavigate();
     const [detdata, setDetdata] = useState([]);
     const { wishlist, setWishlist } = useContext(DataContext);
@@ -34,7 +36,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
             navigate('/');
         } else {
             const postWish = async (data) => {
-                const response = await axios.post('http://localhost:8000/wishlist', data);
+                const response = await instance.post('http://localhost:8000/wishlist', data);
                 const exist = wishlist.find((x) => x.id === data.id);
                 if (exist) {
                     setWishlist(

@@ -34,6 +34,7 @@ const ProductDetails = () => {
             alert("please login into your account,to acces Your cart");
             navigate('/');
         } else {
+
             await instance.post(`${configData.baseUrl}/cart`, data)
             const exist = cart.find((x) => x.id === data.id);
             if (exist) {

@@ -5,7 +5,7 @@ import axios from 'axios';
 let instance = axios.create({
     headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/json'
     }
 });
 
