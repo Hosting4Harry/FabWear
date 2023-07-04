@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Review from './AddOn/Review';
 import configData from '../environments/config.json'
+import useAuth from '../context/useAuth';
 
 toast.configure();
 
@@ -19,6 +20,8 @@ const ProductDetails = () => {
     const [size, setSize] = useState("L");
     const [getdata, setData] = useState([]);
     const navigate = useNavigate();
+    const instance = useAuth()
+
     const onSub = async (e) => {
         e.preventDefault();
         const data = {
@@ -31,7 +34,7 @@ const ProductDetails = () => {
             alert("please login into your account,to acces Your cart");
             navigate('/');
         } else {
-            await axios.post(`${configData.baseUrl}/cart`, data)
+            await instance.post(`${configData.baseUrl}/cart`, data)
             const exist = cart.find((x) => x.id === data.id);
             if (exist) {
                 setCart(

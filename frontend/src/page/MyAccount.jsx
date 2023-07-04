@@ -4,66 +4,48 @@ import axios from 'axios'
 import { DataContext } from '../context/DataContext'
 import { GrView, GrDownload } from "react-icons/gr";
 import configData from '../environments/config.json'
+import useAuth from '../context/useAuth';
 
 const MyAccount = () => {
     const { setLoading, roleId } = useContext(DataContext);
     const [order, setOrder] = useState([]);
     const location = useLocation();
+    const instance = useAuth()
+
     const [modal, setModal] = useState(false);
     localStorage.setItem('NavLoc', location.pathname);
     const userdatast = localStorage.getItem('EcomUser');
     const logout = () => {
         localStorage.clear();
-        window.location.reload();
+        navigate('/')
     }
-    const timeout = useRef(null);
     const navigate = useNavigate();
-    const checkAuth = () => {
-        axios.get(`${configData.baseUrl}/isAuth`, {
-            headers: {
-                "x-access-token": localStorage.getItem("Ecomtoken")
-            }
-        }).then((response) => {
-            if (!response.data.login) {
-                navigate("/");
-                setLoading(false);
-            }
-        });
-    }
-
-    useEffect(() => {
-        timeout.current = setTimeout(checkAuth, 10)
-        return function () {
-            if (timeout.current) {
-                clearTimeout(timeout.current);
-            }
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
     const getOrderDetails = async (id) => {
         setModal(true);
         setLoading(true);
-        if (!id) return;
-        await axios.get(`${configData.baseUrl}/order/account/${id}`)
+        // if (!id) return;
+        await instance.get(`${configData.baseUrl}/order/account/${id}`)
             .then(response => {
                 setLoading(false);
                 setOrder(response.data);
+            }).catch(err => {
+                navigate('/')
             })
         setLoading(false);
     }
     const getPendingOrderDetails = async (id) => {
         setModal(true);
         setLoading(true);
-        if (!id) {
-            setLoading(false);
-            return;
-        }
-        await axios.get(`${configData.baseUrl}/order/pendingOrder/${id}`)
+        // if (!id) {
+        //     setLoading(false);
+        //     return;
+        // }
+        await instance.get(`${configData.baseUrl}/order/pendingOrder/${id}`)
             .then(response => {
                 setLoading(false);
                 setOrder(response.data);
             }).catch(error => {
+                navigate('/')
                 setLoading(false);
             });
     }

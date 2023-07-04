@@ -22,11 +22,9 @@ function TrackOrder() {
     }
     const trackingDetails = async () => {
         const res = await axios.get(`${configData.baseUrl}/trackorder/${id}`)
-        debugger
         setStep(res.data)
     }
     const check = (newDate) => {
-        debugger
         if (date === newDate.split('T')[0]) {
             return true;
         } else {

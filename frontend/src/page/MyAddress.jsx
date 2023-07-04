@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import "./MyAddress.css";
 import { GrAdd } from "react-icons/gr";
 import configData from '../environments/config.json'
+import useAuth from '../context/useAuth';
 
 function MyAddress() {
     const navigate = useNavigate();
@@ -12,10 +13,15 @@ function MyAddress() {
     const loc = localStorage.getItem('NavLoc');
     const user = localStorage.getItem('EcomUser');
     const userEmail = localStorage.getItem('EcomEmail');
+    const instance = useAuth()
+
     const getaddress = async () => {
         const dat = localStorage.getItem('EcomUserId');
-        const res = await axios.get(`${configData.baseUrl}/address/getaddress/${dat}`);
-        setYourAddress(res.data);
+        await instance.get(`${configData.baseUrl}/address/getaddress/${dat}`).then(response => {
+            setYourAddress(response.data);
+        }).catch(err => {
+            navigate('/')
+        })
     }
 
     const deleteAddress = async (id) => {

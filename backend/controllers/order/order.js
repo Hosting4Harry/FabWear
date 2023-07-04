@@ -2,8 +2,8 @@ const express = require('express');
 const router = express();
 const db = require('../../models');
 const { QueryTypes, Op } = require("sequelize");
-
-router.get("/account/:id", async (req, res) => {
+const { verifyJwt } = require('../../controllers/account/middleware')
+router.get("/account/:id", verifyJwt, async (req, res) => {
     const id = +req.params.id;
     await db.orders.findAll({
         where: {
@@ -16,7 +16,7 @@ router.get("/account/:id", async (req, res) => {
         console.log(error);
     })
 });
-router.get("/pendingOrder/:id", async (req, res) => {
+router.get("/pendingOrder/:id", verifyJwt, async (req, res) => {
     const id = +req.params.id;
     await db.orders.findAll({
         where: {
@@ -30,7 +30,7 @@ router.get("/pendingOrder/:id", async (req, res) => {
         console.log(error);
     })
 });
-router.get("/myorder/:id", (req, res) => {
+router.get("/myorder/:id", verifyJwt, (req, res) => {
     const id = +req.params.id;
     let sqll = `SELECT * FROM orderitems,products WHERE orderitems.productid = products.id && orderitems.orderid=${id}`
     // let sqll = `SELECT * FROM orderitems,products WHERE orderitems.orderid=${id} && orderitems.productid = products.id`
@@ -41,7 +41,7 @@ router.get("/myorder/:id", (req, res) => {
             console.log(error)
         })
 });
-router.get("/allOrder", async (req, res) => {
+router.get("/allOrder", verifyJwt, async (req, res) => {
     let sqll = `SELECT * FROM orderitems,products WHERE orderitems.productid = products.id`
     db.sequelize.query(sqll, { type: QueryTypes.SELECT })
         .then(result => {
@@ -50,7 +50,7 @@ router.get("/allOrder", async (req, res) => {
             console.log(error)
         })
 })
-router.get("/allOrders", async (req, res) => {
+router.get("/allOrders", verifyJwt, async (req, res) => {
     await db.orderitems.findAll()
         .then(result => {
             res.send(result);

@@ -5,31 +5,24 @@ import { toast } from 'react-toastify';
 import configData from '../environments/config.json'
 
 import 'react-toastify/dist/ReactToastify.css';
+import useAuth from '../context/useAuth';
 toast.configure();
 const Contact = () => {
     const timeout = useRef(null);
     const navigate = useNavigate();
-    const checkAuth = () => {
-        axios.get(`${configData.baseUrl}/isAuth`, {
-            headers: {
-                "x-access-token": localStorage.getItem("Ecomtoken")
-            }
-        }).then((response) => {
-            if (!response.data.login) {
-                navigate("/");
-            }
-        });
-    }
+    const instance = useAuth()
 
-    useEffect(() => {
-        timeout.current = setTimeout(checkAuth, 1000)
-        return function () {
-            if (timeout.current) {
-                clearTimeout(timeout.current);
-            }
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    // const checkAuth = () => {
+    //     instance.get(`${configData.baseUrl}/isAuth`, {
+    //         headers: {
+    //             "x-access-token": localStorage.getItem("Ecomtoken")
+    //         }
+    //     }).then((response) => {
+    //         if (!response.data.login) {
+    //             navigate("/");
+    //         }
+    //     });
+    // }
     const userName = localStorage.getItem('EcomUser');
     const userEmail = localStorage.getItem('EcomEmail');
     const [status, setStatus] = useState("Submit");
@@ -40,22 +33,26 @@ const Contact = () => {
         let details = {
             message: message.value,
         };
-        axios.post(`${configData.baseUrl}/contact`, {
+        instance.post(`${configData.baseUrl}/contact`, {
             headers: {
                 "Content-Type": "application/json;charset=utf-8",
             },
             body: details
         }).then(response => {
-            toast.success(response.data.message || "message send", {
-                position: "bottom-right",
-                autoClose: 1500,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            });
+            if (response.data.login) {
+                toast.success(response.data.message || "message send", {
+                    position: "bottom-right",
+                    autoClose: 1500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            } else {
+                navigate('/');
+            }
         })
         setStatus("Submit");
     };

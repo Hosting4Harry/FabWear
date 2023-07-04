@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express();
 const db = require('../../models');
-
-router.get("/getaddress/:userid", async (req, res) => {
+const { verifyJwt } = require('../../controllers/account/middleware')
+router.get("/getaddress/:userid", verifyJwt, async (req, res) => {
     const userid = req.params?.userid;
     await db.user_data.findAll({
         where: {

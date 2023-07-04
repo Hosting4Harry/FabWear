@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const verifyJwt = (req, res, next) => {
     const token = req.headers["x-access-token"]
     if (!token) {
-        res.send({ login: false, msg: "need token" });
+        res.status(401).send({ login: false, msg: "need token" });
     }
     else {
         jwt.verify(token, 'ecomreact', (err, decoded) => {

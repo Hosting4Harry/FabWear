@@ -41,7 +41,7 @@ router.post('/', verifyJwt, async (req, res) => {
             }
         })
 });
-router.delete('/:id', verifyJwt, async (req, res) => {
+router.delete('/:id', async (req, res) => {
     await db.products.update({
         product_status: false
     },

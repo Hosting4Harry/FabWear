@@ -5,11 +5,14 @@ import { DataContext } from '../context/DataContext'
 import axios from 'axios'
 import '../page/AddOn/Loader.css'
 import '../page/AddOn/BackToTop.css'
+import useAuth from '../context/useAuth'
 
 const Navbar = () => {
   const navigate = useNavigate();
   const { cart, setCart, wishlist, setWishlist, searchResult, setSearchResult, loading } = useContext(DataContext);
   const [searchValue, setSearchValue] = useState("");
+  const instance = useAuth()
+
   const btn = document.getElementById('button');
   window.onscroll = () => {
     if (window.scrollY <= 150) {
@@ -61,11 +64,11 @@ const Navbar = () => {
   }
   const userId = localStorage.getItem("EcomUserId");
   const cartItems = async () => {
-    const res = await axios.get('http://localhost:8000/cart/' + userId);
+    const res = await instance.get('http://localhost:8000/cart/' + userId);
     setCart(res.data);
   }
   const getData = async () => {
-    const res = await axios.get('http://localhost:8000/wishlist/' + userId);
+    const res = await instance.get('http://localhost:8000/wishlist/' + userId);
     setWishlist(res.data);
   }
   useEffect(() => {

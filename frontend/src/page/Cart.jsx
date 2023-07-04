@@ -5,10 +5,8 @@ import { DataContext } from '../context/DataContext'
 import configData from '../environments/config.json'
 import useAuth from '../context/useAuth'
 
-// import NewProducts from './NewProducts'
 const Cart = () => {
     const { cart, setCart, setLoading } = useContext(DataContext);
-    const timeout = useRef(null);
     const instance = useAuth()
     const navigate = useNavigate();
     const id = localStorage.getItem("EcomUserId");
@@ -16,13 +14,9 @@ const Cart = () => {
     const cartItems = (id) => {
         instance.get(`${configData.baseUrl}/cart/` + id)
             .then((response) => {
-                if (response.data.login) {
-                    setCart(response.data);
-                } else {
-                    navigate('/')
-                }
+                setCart(response.data);
             }).catch((error) => {
-                console.log(error);
+                navigate('/')
             })
     }
 

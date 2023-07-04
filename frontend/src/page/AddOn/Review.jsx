@@ -1,15 +1,18 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import StarRating from './StarRating';
 import './Review.css'
 import configData from '../.././environments/config.json'
+import useAuth from '../../context/useAuth';
 
 function Review() {
     const [review, setReview] = useState('');
     const [rating, setRating] = useState(0);
     const [reviewData, setReviewData] = useState([]);
     const { id: productId } = useParams();
+    const instance = useAuth()
+    const navigate = useNavigate();
     const onSub = (e) => {
         e.preventDefault();
         const data = {
@@ -19,13 +22,17 @@ function Review() {
             userName: localStorage.getItem('EcomUser'),
             stars: rating
         }
-        axios.post(`${configData.baseUrl}/review`, data)
+        instance.post(`${configData.baseUrl}/review`, data)
             .then(response => {
+                debugger
                 if (response.status) {
                     alert("thanks for your valueable review");
                     window.location.reload();
                     window.scrollTo(0, 0);
                 }
+            }).catch(err => {
+                alert('please login')
+                navigate('/')
             })
     }
     const getReviews = () => {

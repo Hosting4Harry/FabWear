@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 const AllOrders = () => {
     const navigate = useNavigate();
     const { order } = useContext(DataContext);
-    console.log(order)
     return (
         <div>
             <div className="card">

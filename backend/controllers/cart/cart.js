@@ -59,7 +59,7 @@ router.post('/', verifyJwt, async (req, res) => {
     }
 });
 
-router.delete('/:id', verifyJwt, async (req, res) => {
+router.delete('/:id', async (req, res) => {
     await db.carts.destroy({
         where: {
             id: +req.params.id

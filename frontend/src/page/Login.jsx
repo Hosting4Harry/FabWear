@@ -13,27 +13,6 @@ const Login = () => {
     const timeout = useRef(null);
     const navigate = useNavigate();
 
-    // const checkAuth = () => {
-    //     axios.get(`${configData.baseUrl}/isAuth`, {
-    //         headers: {
-    //             "x-access-token": localStorage.getItem("Ecomtoken")
-    //         }
-    //     }).then((response) => {
-    //         if (response.data.login) {
-    //         }
-    //     });
-    // }
-
-    // useEffect(() => {
-    //     timeout.current = setTimeout(checkAuth, 1000);
-    //     return function () {
-    //         if (timeout.current) {
-    //             clearTimeout(timeout.current);
-    //         }
-    //     }
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [])
-    // //  setInterval(checkAuth, 1000);
 
     const onSub = async (e) => {
         e.preventDefault();

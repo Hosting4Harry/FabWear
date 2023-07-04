@@ -8,28 +8,6 @@ import configData from '../environments/config.json'
 function CheckOut() {
     const timeout = useRef(null);
     // const loc = localStorage.getItem('NavLoc');
-    const checkAuth = () => {
-        axios.get(`${configData.baseUrl}/isAuth`, {
-            headers: {
-                "x-access-token": localStorage.getItem("Ecomtoken")
-            }
-        }).then((response) => {
-            if (!response.data.login) {
-                navigate("/");
-            }
-        });
-    }
-
-    useEffect(() => {
-        timeout.current = setTimeout(checkAuth, 1000)
-        return function () {
-            if (timeout.current) {
-                clearTimeout(timeout.current);
-            }
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-
     const navigate = useNavigate();
     const [payment, setPayment] = useState("");
     const { cart, setCart } = useContext(DataContext);
@@ -113,7 +91,6 @@ function CheckOut() {
             alert("Server error. Are you online?");
             return;
         }
-        debugger
         // Getting the order details back
         const { order, orderData } = result.data;
         const { amount, id: order_id, currency } = order;

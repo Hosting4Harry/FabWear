@@ -10,24 +10,14 @@ const Wishlist = () => {
     const { wishlist, setWishlist } = useContext(DataContext);
     const timeout = useRef(null);
     const navigate = useNavigate();
-    // const checkAuth = () => {
-    //     instance.get(`${configData.baseUrl}/isAuth`, {
-    //         headers: {
-    //             "x-access-token": localStorage.getItem("Ecomtoken")
-    //         }
-    //     }).then((response) => {
-    //         if (!response.data.login) {
-    //             navigate("/");
-    //         }
-    //     });
-    // }
+
     const id = localStorage.getItem("EcomUserId")
     function getWish(id) {
         instance.get(`${configData.baseUrl}/wishlist/` + id)
             .then((response) => {
                 setWishlist(response.data);
             }).catch((err) => {
-                console.log(err);
+                navigate('/')
             });
     }
     useEffect(() => {
@@ -36,15 +26,7 @@ const Wishlist = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])
 
-    // useEffect(() => {
-    //     timeout.current = setTimeout(checkAuth, 100)
-    //     return function () {
-    //         if (timeout.current) {
-    //             clearTimeout(timeout.current);
-    //         }
-    //     }
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, []);
+
 
     return (<>
         <div className="cart pt-2" style={{ backgroundColor: "#eee", marginBottom: "200px" }}>

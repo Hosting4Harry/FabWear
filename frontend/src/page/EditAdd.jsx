@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios';
 import configData from '../environments/config.json'
+import useAuth from '../context/useAuth';
 
 
 const EditAdd = () => {
@@ -13,31 +14,34 @@ const EditAdd = () => {
     const { id } = useParams();
     const timeout = useRef(null);
     const navigate = useNavigate();
-    const checkAuth = () => {
-        axios.get(`${configData.baseUrl}/isAuth`, {
-            headers: {
-                "x-access-token": localStorage.getItem("Ecomtoken")
-            }
-        }).then((response) => {
-            //  console.log()
-            if (!response.data.login) {
-                navigate("/");
-            }
-        })
-    }
+    const instance = useAuth()
 
-    useEffect(() => {
-        timeout.current = setTimeout(checkAuth, 100)
-        return function () {
-            if (timeout.current) {
-                clearTimeout(timeout.current)
-            }
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    // const checkAuth = () => {
+    //     axios.get(`${configData.baseUrl}/isAuth`, {
+    //         headers: {
+    //             "x-access-token": localStorage.getItem("Ecomtoken")
+    //         }
+    //     }).then((response) => {
+    //         //  console.log()
+    //         if (!response.data.login) {
+    //             navigate("/");
+    //         }
+    //     })
+    // }
+
+    // useEffect(() => {
+    //     timeout.current = setTimeout(checkAuth, 100)
+    //     return function () {
+    //         if (timeout.current) {
+    //             clearTimeout(timeout.current)
+    //         }
+    //     }
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [])
 
     const getaddress = async () => {
-        const res = await axios.get(`${configData.baseUrl}/address/getaddress/${id}`)
+        debugger
+        const res = await instance.get(`${configData.baseUrl}/address/getaddress/${id}`)
         setName(res.data[0].name)
         setEmail(res.data[0].email)
         setPhone(res.data[0].phone)
@@ -58,7 +62,8 @@ const EditAdd = () => {
             userId: id
         }
         // eslint-disable-next-line no-unused-vars
-        const res = await axios.post(`${configData.baseUrl}/address/editadd`, data)
+        const res = await instance.post(`${configData.baseUrl}/address/editadd`, data)
+        debugger
         navigate("/payment")
     }
 
