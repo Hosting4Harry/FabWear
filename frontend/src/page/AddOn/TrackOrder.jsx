@@ -16,7 +16,7 @@ function TrackOrder() {
     const { id } = useParams();
     const getData = async () => {
         debugger
-        const res = await axios.get(`http://localhost:8000/order/myOrder/${id}`);
+        const res = await axios.get(`${configData.baseUrl}/order/myOrder/${id}`);
         setData(res.data);
         trans();
     }

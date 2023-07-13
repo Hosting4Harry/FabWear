@@ -59,9 +59,9 @@ function AddAddress() {
     }, [id])
     const sendData = async (addressDetails, id) => {
         if (id) {
-            await axios.post(`http://localhost:8000/address/addaddress/` + id, addressDetails);
+            await axios.post(`${configData.baseUrl}/address/addaddress/` + id, addressDetails);
         } else {
-            await axios.post(`http://localhost:8000/address/addaddress`, addressDetails);
+            await axios.post(`${configData.baseUrl}/address/addaddress`, addressDetails);
         }
     }
     const onSub = (e) => {

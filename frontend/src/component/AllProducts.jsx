@@ -2,14 +2,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import CardProducts from './CardProducts';
 import axios from 'axios';
 import { DataContext } from '../context/DataContext';
-
+import configData from '../environments/config.json'
 const AllProducts = () => {
     const { setLoading } = useContext(DataContext)
     const [getdata, setGetdata] = useState([]);
     const getData = async () => {
         setLoading(true);
 
-        await axios.get('http://localhost:8000/product/getdata')
+        await axios.get(`${configData.baseUrl}/product/getdata`)
             .then(response => {
                 setLoading(false);
                 setGetdata(response.data);

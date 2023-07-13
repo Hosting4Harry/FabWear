@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { DataContext } from '../context/DataContext';
 import "./CheckOut.css"
 import configData from '../environments/config.json'
+import useAuth from '../context/useAuth';
 
 function CheckOut() {
     const timeout = useRef(null);
@@ -12,13 +13,13 @@ function CheckOut() {
     const [payment, setPayment] = useState("");
     const { cart, setCart } = useContext(DataContext);
     const [total, setTotal] = useState(0);
-
+    const instance = useAuth();
     const [yourAddress, setYourAddress] = useState([]);
     // eslint-disable-next-line no-unused-vars
     const [inputAddress, setInputAddress] = useState({});
     const getaddress = async () => {
         const dat = localStorage.getItem('EcomUserId');
-        const res = await axios.get(`${configData.baseUrl}/address/getaddress/${dat}`);
+        const res = await instance.get(`${configData.baseUrl}/address/getaddress/${dat}`);
         setYourAddress(res.data);
     }
     // const { id } = useParams();

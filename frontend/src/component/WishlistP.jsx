@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { DataContext } from '../context/DataContext'
+import configData from '../environments/config.json';
 const WishlistP = ({ id, name, price, product_image, productId }) => {
     const { wishlist, setWishlist, cart, setCart } = useContext(DataContext);
     const navigate = useNavigate();
@@ -14,7 +15,7 @@ const WishlistP = ({ id, name, price, product_image, productId }) => {
                     wishlist.filter((x) => x.productId !== productId)
                 )
             }
-            await axios.delete('http://localhost:8000/wishlist/' + productId);
+            await axios.delete(`${configData.baseUrl}/wishlist/` + productId);
         }
     }
 
@@ -23,7 +24,7 @@ const WishlistP = ({ id, name, price, product_image, productId }) => {
         const data = {
             productId: productId, qty: 1, userId: userId
         }
-        await axios.post('http://localhost:8000/cart', data)
+        await axios.post(`${configData.baseUrl}/cart`, data)
         const exist = cart.find((x) => x.id === data.id);
         if (exist) {
             setCart(

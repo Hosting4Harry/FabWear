@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import jwt_decode from "jwt-decode";
 import axios from 'axios';
 import { DataContext } from '../../context/DataContext';
-
+import configData from '../../environments/config.json;'
 function Dashboard() {
     const { totalUser, setTotalUser, order, setOrder } = useContext(DataContext);
     const navigate = useNavigate();
@@ -27,13 +27,13 @@ function Dashboard() {
     });
     console.log(order)
     const orders = async () => {
-        const res = await axios.get('http://localhost:8000/product/getdataall');
-        const allUser = await axios.get('http://localhost:8000/register/allUsers');
-        const orderRes = await axios.get('http://localhost:8000/order/allOrder');
+        const res = await axios.get(`${configData.baseUrl}/product/getdataall`);
+        const allUser = await axios.get(`${configData.baseUrl}/register/allUsers`);
+        const orderRes = await axios.get(`${configData.baseUrl}/order/allOrder`);
         setOrder(orderRes.data);
         setTotalUser(allUser.data);
         setTotalProducts(res.data);
-        await axios('http://localhost:8000/order/allOrders')
+        await axios(`${configData.baseUrl}/order/allOrders`)
             .then(res => {
                 var total2 = 0;
                 res.data.map((item) => {

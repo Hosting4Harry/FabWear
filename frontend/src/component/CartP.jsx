@@ -9,7 +9,7 @@ const CartP = ({ id, productId, name, price, product_image, qty, size }) => {
     const deleteProduct = (id) => {
         const deleteProduct = window.confirm("Do you want to delete the product?");
         if (deleteProduct) {
-            axios.delete('http://localhost:8000/cart/' + id);
+            axios.delete(`${configData.baseUrl}/cart/` + id);
             const exist = cart.find((x) => x.id === id)
             if (exist) {
                 setCart(

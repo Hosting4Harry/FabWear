@@ -33,6 +33,7 @@ import AllOrders from './page/AllOrders';
 import AllUser from './component/AdminSide/AllUser';
 import TrackOrder from './page/AddOn/TrackOrder';
 import OrderTracking from './component/AdminSide/OrderTracking';
+import PageNotFound from './page/AddOn/PageNotFound';
 
 const App = () => {
   return (
@@ -73,6 +74,7 @@ const App = () => {
             <Route exact path="/trackOrder/:id" element={<TrackOrder />} />
             <Route exact path="/admin/trackOrder" element={<OrderTracking />} />
             <Route exact path="/admin/trackOrder/:id" element={<OrderTracking />} />
+            <Route exact path="*" element={<PageNotFound />} />
             {/* <Route exact path="/paynow/:pid" element={PayNow} /> */}
           </Routes>
           <Footer />

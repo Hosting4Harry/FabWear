@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
 import jwt_decode from "jwt-decode";
 import axios from 'axios';
+import configData from '../environments/config.json'
 export const DataContext = createContext();
 export const ConText = (props) => {
     const [order, setOrder] = useState([]);
@@ -12,7 +13,7 @@ export const ConText = (props) => {
     const [searchResult, setSearchResult] = useState([]);
     const [loading, setLoading] = useState(false);
     const checkAuth = () => {
-        axios.get("http://localhost:8000/isAuth", {
+        axios.get(`${configData.baseUrl}/isAuth`, {
             headers: {
                 "x-access-token": localStorage.getItem("Ecomtoken")
             }

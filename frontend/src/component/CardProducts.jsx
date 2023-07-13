@@ -6,6 +6,7 @@ import "../App.css";
 import { DataContext } from '../context/DataContext';
 import "../page/Wishlist.css"
 import useAuth from '../context/useAuth';
+import configData from '../environments/config.json'
 
 const CardProducts = ({ id, name, price, product_image }) => {
     const instance = useAuth()
@@ -36,14 +37,14 @@ const CardProducts = ({ id, name, price, product_image }) => {
             navigate('/');
         } else {
             const postWish = async (data) => {
-                const response = await instance.post('http://localhost:8000/wishlist', data);
+                const response = await instance.post(`${configData.baseUrl}/wishlist`, data);
                 const exist = wishlist.find((x) => x.id === data.id);
                 if (exist) {
                     setWishlist(
                         wishlist.filter((x) => x.id !== id)
                     )
                     repeats(wishlist);
-                    await axios.delete('http://localhost:8000/wishlist/' + data.id);
+                    await axios.delete(`${configData.baseUrl}/wishlist/` + data.id);
                 } else {
                     setWishlist([...wishlist, data]);
                 }
@@ -60,7 +61,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
                     });
                 } else {
                     // eslint-disable-next-line no-unused-vars
-                    const res = await axios.get('http://localhost:8000/wishlist/' + userId);
+                    const res = await axios.get(`${configData.baseUrl}/wishlist/` + userId);
                     toast.success("Added to the Wishlist", {
                         position: "bottom-right",
                         autoClose: 1500,
@@ -77,7 +78,7 @@ const CardProducts = ({ id, name, price, product_image }) => {
         }
     }
     const getData = async (id) => {
-        const res = await axios.get(`http://localhost:8000/product/getdata/${id}`);
+        const res = await axios.get(`${configData.baseUrl}/product/getdata/${id}`);
         setDetdata(res.data);
     }
     useEffect(() => {

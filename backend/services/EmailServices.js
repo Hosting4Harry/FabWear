@@ -5,11 +5,11 @@ const nodemailer = require("nodemailer");
 function connectToSmtp() {
     return nodemailer.createTransport({
         host: "smtp.gmail.com",
-        port: 587,
-        secure: false,
+        port: 465,
+        secure: true,
         auth: {
-            user: "testlamtemail@gmail.com",
-            pass: "nrcehgnoolbgxbds",
+            user: "sumitofcmail@gmail.com",
+            pass: "cuxrwzpagvhoaksj",
         },
     });
 }

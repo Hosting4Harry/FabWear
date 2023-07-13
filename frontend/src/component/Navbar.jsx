@@ -46,7 +46,7 @@ const Navbar = () => {
   const submitForm = async (e) => {
     setSearchValue(e.target.value);
     if (e.target.value === " ") return;
-    await axios.get('http://localhost:8000/product/searchProduct/' + e.target.value)
+    await axios.get(`${configData.baseUrl}/product/searchProduct/` + e.target.value)
       .then(response => {
         setSearchResult(response.data);
         document.getElementById("searchList").style.display = "list-item";
@@ -64,11 +64,11 @@ const Navbar = () => {
   }
   const userId = localStorage.getItem("EcomUserId");
   const cartItems = async () => {
-    const res = await instance.get('http://localhost:8000/cart/' + userId);
+    const res = await instance.get(`${configData.baseUrl}/cart/` + userId);
     setCart(res.data);
   }
   const getData = async () => {
-    const res = await instance.get('http://localhost:8000/wishlist/' + userId);
+    const res = await instance.get(`${configData.baseUrl}/wishlist/` + userId);
     setWishlist(res.data);
   }
   useEffect(() => {

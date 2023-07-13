@@ -24,7 +24,7 @@ async function resetPassword(req, res, next) {
                 otp: sentOtp,
                 user_id: account.id
             });
-            // send2faOTP(email, sentOtp);
+            send2faOTP(email, sentOtp);
             res.send({ message: "OTP Sent....", otp: sentOtp, status: false })
         } else {
             res.send({ message: "account not found", status: false });
