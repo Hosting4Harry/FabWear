@@ -6,7 +6,7 @@ import axios from 'axios'
 import '../page/AddOn/Loader.css'
 import '../page/AddOn/BackToTop.css'
 import useAuth from '../context/useAuth'
-
+import configData from '../environments/config.json';
 const Navbar = () => {
   const navigate = useNavigate();
   const { cart, setCart, wishlist, setWishlist, searchResult, setSearchResult, loading } = useContext(DataContext);

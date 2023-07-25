@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { DataContext } from '../context/DataContext'
+import configData from '../environments/config.json';
 const CartP = ({ id, productId, name, price, product_image, qty, size }) => {
     const navigate = useNavigate();
     const { cart, setCart } = useContext(DataContext);

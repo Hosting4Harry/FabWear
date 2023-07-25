@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import jwt_decode from "jwt-decode";
 import axios from 'axios';
 import { DataContext } from '../../context/DataContext';
-import configData from '../../environments/config.json;'
+import configData from '../../environments/config.json'
 function Dashboard() {
     const { totalUser, setTotalUser, order, setOrder } = useContext(DataContext);
     const navigate = useNavigate();
