@@ -3,11 +3,12 @@ import { CChart } from '@coreui/react-chartjs'
 import './Dashboard.css'
 import { Link, useNavigate } from 'react-router-dom'
 import jwt_decode from "jwt-decode";
-import axios from 'axios';
 import { DataContext } from '../../context/DataContext';
-import configData from '../../environments/config.json'
+import configData from '../../environments/config.json';
+import useAuth from '../../context/useAuth';
 function Dashboard() {
     const { totalUser, setTotalUser, order, setOrder } = useContext(DataContext);
+    const instance = useAuth();
     const navigate = useNavigate();
     const [total, setTotal] = useState(0);
     const [totalProduct, setTotalProducts] = useState(0);
@@ -27,13 +28,13 @@ function Dashboard() {
     });
     console.log(order)
     const orders = async () => {
-        const res = await axios.get(`${configData.baseUrl}/product/getdataall`);
-        const allUser = await axios.get(`${configData.baseUrl}/register/allUsers`);
-        const orderRes = await axios.get(`${configData.baseUrl}/order/allOrder`);
+        const res = await instance.get(`${configData.baseUrl}/product/getdataall`);
+        const allUser = await instance.get(`${configData.baseUrl}/register/allUsers`);
+        const orderRes = await instance.get(`${configData.baseUrl}/order/allOrder`);
         setOrder(orderRes.data);
         setTotalUser(allUser.data);
         setTotalProducts(res.data);
-        await axios(`${configData.baseUrl}/order/allOrders`)
+        await instance.get(`${configData.baseUrl}/order/allOrders`)
             .then(res => {
                 var total2 = 0;
                 res.data.map((item) => {

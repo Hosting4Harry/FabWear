@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef, useContext } from 'react'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
-import axios from 'axios'
 import { DataContext } from '../context/DataContext'
 import { GrView, GrDownload } from "react-icons/gr";
 import configData from '../environments/config.json'
