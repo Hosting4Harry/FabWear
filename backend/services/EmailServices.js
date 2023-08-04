@@ -3,6 +3,7 @@ const nodemailer = require("nodemailer");
 // const { decodeToken, decodeByToken } = require('./AuthServices/jwtServices')
 // const { findOneClaimByName } = require('./AuthServices/claimsDb')
 function connectToSmtp() {
+    
     return nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 587,
