@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { DataContext } from '../context/DataContext';
 import "./CheckOut.css"
@@ -7,7 +7,7 @@ import configData from '../environments/config.json'
 import useAuth from '../context/useAuth';
 
 function CheckOut() {
-    const timeout = useRef(null);
+    // const timeout = useRef(null);
     // const loc = localStorage.getItem('NavLoc');
     const navigate = useNavigate();
     const [payment, setPayment] = useState("");
@@ -61,7 +61,6 @@ function CheckOut() {
         });
     }
     const displayRazorpay = async (e) => {
-        debugger
         e.preventDefault();
         const dat = localStorage.getItem('EcomUserId');
         const datemail = localStorage.getItem('EcomEmail');
@@ -85,7 +84,6 @@ function CheckOut() {
             alert("Razorpay SDK failed to load. Are you online?");
             return;
         }
-        debugger
         // creating a new order
         const result = await axios.post(`${configData.baseUrl}/payment/orders`, data);
         if (!result) {

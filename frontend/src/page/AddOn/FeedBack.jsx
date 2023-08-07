@@ -7,7 +7,6 @@ function FeedBack() {
     const [rating, setRating] = useState(0);
     const [feedback, setFeedBack] = useState('');
     const onSub = (e) => {
-        debugger
         e.preventDefault();
         const data = {
             userId: localStorage.getItem('EcomUserId'),

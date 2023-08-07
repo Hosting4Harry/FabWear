@@ -49,14 +49,12 @@ function Dashboard() {
                             setData(data => ({ ...data, mar: data.mar + 1 }))
                             break;
                         case '04':
-                            debugger
                             setData(data => ({ ...data, apr: data.apr + 1 }))
                             break;
                         case '05':
                             setData(data => ({ ...data, may: data.may + 1 }))
                             break;
                         case '06':
-                            debugger
                             setData(data => ({ ...data, june: data.june + 1 }))
                             break;
                         case '07':

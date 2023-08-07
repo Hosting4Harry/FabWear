@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import WishlistP from '../component/WishlistP';
 import { DataContext } from '../context/DataContext';
@@ -8,7 +8,7 @@ import useAuth from '../context/useAuth';
 const Wishlist = () => {
     const instance = useAuth()
     const { wishlist, setWishlist } = useContext(DataContext);
-    const timeout = useRef(null);
+    // const timeout = useRef(null);
     const navigate = useNavigate();
 
     const id = localStorage.getItem("EcomUserId")

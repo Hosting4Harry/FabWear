@@ -15,7 +15,6 @@ function TrackOrder() {
     }])
     const { id } = useParams();
     const getData = async () => {
-        debugger
         const res = await axios.get(`${configData.baseUrl}/order/myOrder/${id}`);
         setData(res.data);
         trans();
@@ -24,15 +23,14 @@ function TrackOrder() {
         const res = await axios.get(`${configData.baseUrl}/trackorder/${id}`)
         setStep(res.data)
     }
-    const check = (newDate) => {
-        if (date === newDate.split('T')[0]) {
-            return true;
-        } else {
-            return false
-        }
-    }
+    // const check = (newDate) => {
+    //     if (date === newDate.split('T')[0]) {
+    //         return true;
+    //     } else {
+    //         return false
+    //     }
+    // }
     const trans = () => {
-        debugger
         if (!data) return false;
         if (data !== []) setDate(data[0]?.updatedAt.split("T")[0]);
         const newDate = new Date(date);

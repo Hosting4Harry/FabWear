@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import axios from 'axios';
+// import axios from 'axios';
 import configData from '../environments/config.json'
 import useAuth from '../context/useAuth';
 
@@ -12,7 +12,7 @@ const EditAdd = () => {
     const [phone, setPhone] = useState("");
     const [addr, setAddr] = useState("");
     const { id } = useParams();
-    const timeout = useRef(null);
+    // const timeout = useRef(null);
     const navigate = useNavigate();
     const instance = useAuth()
 
@@ -40,7 +40,6 @@ const EditAdd = () => {
     // }, [])
 
     const getaddress = async () => {
-        debugger
         const res = await instance.get(`${configData.baseUrl}/address/getaddress/${id}`)
         setName(res.data[0].name)
         setEmail(res.data[0].email)
@@ -63,7 +62,6 @@ const EditAdd = () => {
         }
         // eslint-disable-next-line no-unused-vars
         const res = await instance.post(`${configData.baseUrl}/address/editadd`, data)
-        debugger
         navigate("/payment")
     }
 

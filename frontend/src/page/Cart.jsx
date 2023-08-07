@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import CartP from '../component/CartP'
 import { DataContext } from '../context/DataContext'
@@ -6,7 +6,7 @@ import configData from '../environments/config.json'
 import useAuth from '../context/useAuth'
 
 const Cart = () => {
-    const { cart, setCart, setLoading } = useContext(DataContext);
+    const { cart, setCart } = useContext(DataContext);
     const instance = useAuth()
     const navigate = useNavigate();
     const id = localStorage.getItem("EcomUserId");

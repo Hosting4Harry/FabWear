@@ -18,7 +18,7 @@ const OrderTracking = () => {
         const data = {
             key, checked
         }
-        const res = await axios.put(`${configData.baseUrl}/trackorder/${id}`, data)
+        await axios.put(`${configData.baseUrl}/trackorder/${id}`, data)
         // }
     }
     useEffect(() => {

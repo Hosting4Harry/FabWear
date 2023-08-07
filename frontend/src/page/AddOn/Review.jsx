@@ -24,7 +24,6 @@ function Review() {
         }
         instance.post(`${configData.baseUrl}/review`, data)
             .then(response => {
-                debugger
                 if (response.status) {
                     alert("thanks for your valueable review");
                     window.location.reload();

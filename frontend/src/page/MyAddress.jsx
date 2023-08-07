@@ -29,6 +29,7 @@ function MyAddress() {
     }
     useEffect(() => {
         getaddress();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [yourAddress]);
     return (
         <section className='container'>

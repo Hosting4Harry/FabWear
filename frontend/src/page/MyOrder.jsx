@@ -1,5 +1,5 @@
-import axios from 'axios'
-import React, { useEffect, useState, useRef } from 'react'
+// import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { NavLink, useParams, useNavigate } from 'react-router-dom'
 import configData from '../environments/config.json'
 import useAuth from '../context/useAuth'
@@ -7,7 +7,7 @@ import useAuth from '../context/useAuth'
 const MyOrder = () => {
     const [data, setData] = useState([]);
     const { id } = useParams();
-    const timeout = useRef(null);
+    // const timeout = useRef(null);
     const instance = useAuth()
 
     const navigate = useNavigate();
@@ -34,7 +34,6 @@ const MyOrder = () => {
     // }, []);
 
     const getData = async () => {
-        debugger
         const { data } = await instance.get(`${configData.baseUrl}/order/myorder/${id}`);
         setData(data);
     }

@@ -1,6 +1,6 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
+// import axios from 'axios'
 import { toast } from 'react-toastify';
 import configData from '../environments/config.json'
 
@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import useAuth from '../context/useAuth';
 toast.configure();
 const Contact = () => {
-    const timeout = useRef(null);
+    // const timeout = useRef(null);
     const navigate = useNavigate();
     const instance = useAuth()
 

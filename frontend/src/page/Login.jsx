@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import jwt_decode from "jwt-decode";
@@ -10,7 +10,7 @@ const Login = () => {
     const [checked, setChecked] = useState(false);
     const [status, setStatus] = useState(false);
     const [msg, setMsg] = useState("");
-    const timeout = useRef(null);
+    // const timeout = useRef(null);
     const navigate = useNavigate();
 
 
