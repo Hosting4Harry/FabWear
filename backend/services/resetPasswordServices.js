@@ -52,7 +52,7 @@ async function resetPassword(req, res, next) {
                     }
                 })
                     .then(async response => {
-                        res.send({ userData: response });
+                        res.send({ message: "Reset passsword successful", status: true });
                     }).catch(error => {
                         console.log(error);
                     });

@@ -6,15 +6,15 @@ const { QueryTypes } = require("sequelize");
 const router = express();
 
 router.post("/orders", async (req, res) => {
-    const { cart, paymentemail, name } = req.body;
+    const { userid, cart, paymentemail, name, paymentmode, orderstatus, totalprice, address } = req.body;
     const data = {
-        name: req.body.name,
-        orderstatus: req.body.orderstatus,
-        paymentemail: req.body.paymentemail,
-        paymentmode: req.body.paymentmode,
-        totalprice: req.body.totalprice,
-        userid: req.body.userid,
-        addressId: +req.body.address.id
+        name: name,
+        orderstatus: orderstatus,
+        paymentemail: paymentemail,
+        paymentmode: paymentmode,
+        totalprice: totalprice,
+        userid: userid,
+        addressId: +address.id
     }
     try {
         const instance = new Razorpay({
