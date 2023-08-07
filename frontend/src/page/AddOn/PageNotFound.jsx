@@ -6,7 +6,7 @@ const PageNotFound = () => {
 
     return (
         <>
-            <div className='container' style={{ justifyContent: "center", paddingTop: "8vh" }}>
+            <div className='container' style={{ justifyContent: "center", paddingTop: "1vh" }}>
                 <section className="page_404">
                     <div className="container">
                         <div className="row">

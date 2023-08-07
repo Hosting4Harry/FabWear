@@ -39,46 +39,46 @@ const App = () => {
   return (
     <>
       <ConText>
-        <Router>
-          <PermissionCheck >
-          </PermissionCheck>
-          <Routes>
-            <Route exact path="/home" element={<Home />} />
-            <Route exact path='/searchProduct/:name' element={<SearchProducts />} />
-            <Route exact path="/admin/products" element={<ProductsAdminSide />} />
-            <Route exact path="/products" element={<Products />} />
-            <Route exact path="/contact" element={<Contact />} />
-            <Route exact path="/feedback" element={<FeedBack />} />
-            <Route exact path="/wishlist" element={<Wishlist />} />
-            <Route exact path="/cart" element={<Cart />} />
-            <Route exact path="/details/:id" element={<ProductDetails />} />
-            <Route exact path="/payment" element={<Payment />} />
-            <Route exact path="/myaccount" element={<MyAccount />} />
-            <Route exact path="/edit_address/:id" element={<EditAdd />} />
-            <Route exact path="/myorder/:id" element={<MyOrder />} />
-            <Route exact path="/admin/addProduct" element={<AddProduct />} />
-            <Route exact path="/addProduct/edit/:id" element={<AddProduct />} />
-            <Route exact path="/" element={<Login />} />
-            <Route exact path="/register" element={<Register />} />
-            <Route exact path="/resetpassword" element={<ResetPassword />} />
-            <Route exact path="/success" element={<Success />} />
-            <Route exact path="/addaddress" element={<AddAddress />} />
-            <Route exact path="/addaddress/:id" element={<AddAddress />} />
-            <Route exact path="/checkout" element={<CheckOut />} />
-            <Route exact path="/checkout/:id" element={<CheckOut />} />
-            <Route exact path="/invoice/:id" element={<Invoice />} />
-            <Route exact path="/myaddress" element={<MyAddress />} />
-            <Route exact path="/dashboard" element={<Dashboard />} />
-            <Route exact path="/admin/allOrders" element={<AllOrders />} />
-            <Route exact path="/admin/allUser" element={<AllUser />} />
-            <Route exact path="/trackOrder/:id" element={<TrackOrder />} />
-            <Route exact path="/admin/trackOrder" element={<OrderTracking />} />
-            <Route exact path="/admin/trackOrder/:id" element={<OrderTracking />} />
-            <Route exact path="*" element={<PageNotFound />} />
-            {/* <Route exact path="/paynow/:pid" element={PayNow} /> */}
-          </Routes>
-          <Footer />
-        </Router>
+        {/* <Router> */}
+        <PermissionCheck >
+        </PermissionCheck>
+        <Routes>
+          <Route exact path="/home" element={<Home />} />
+          <Route exact path='/searchProduct/:name' element={<SearchProducts />} />
+          <Route exact path="/admin/products" element={<ProductsAdminSide />} />
+          <Route exact path="/products" element={<Products />} />
+          <Route exact path="/contact" element={<Contact />} />
+          <Route exact path="/feedback" element={<FeedBack />} />
+          <Route exact path="/wishlist" element={<Wishlist />} />
+          <Route exact path="/cart" element={<Cart />} />
+          <Route exact path="/details/:id" element={<ProductDetails />} />
+          <Route exact path="/payment" element={<Payment />} />
+          <Route exact path="/myaccount" element={<MyAccount />} />
+          <Route exact path="/edit_address/:id" element={<EditAdd />} />
+          <Route exact path="/myorder/:id" element={<MyOrder />} />
+          <Route exact path="/admin/addProduct" element={<AddProduct />} />
+          <Route exact path="/addProduct/edit/:id" element={<AddProduct />} />
+          <Route exact path="/" element={<Login />} />
+          <Route exact path="/register" element={<Register />} />
+          <Route exact path="/resetpassword" element={<ResetPassword />} />
+          <Route exact path="/success" element={<Success />} />
+          <Route exact path="/addaddress" element={<AddAddress />} />
+          <Route exact path="/addaddress/:id" element={<AddAddress />} />
+          <Route exact path="/checkout" element={<CheckOut />} />
+          <Route exact path="/checkout/:id" element={<CheckOut />} />
+          <Route exact path="/invoice/:id" element={<Invoice />} />
+          <Route exact path="/myaddress" element={<MyAddress />} />
+          <Route exact path="/dashboard" element={<Dashboard />} />
+          <Route exact path="/admin/allOrders" element={<AllOrders />} />
+          <Route exact path="/admin/allUser" element={<AllUser />} />
+          <Route exact path="/trackOrder/:id" element={<TrackOrder />} />
+          <Route exact path="/admin/trackOrder" element={<OrderTracking />} />
+          <Route exact path="/admin/trackOrder/:id" element={<OrderTracking />} />
+          <Route exact path="*" element={<PageNotFound />} />
+          {/* <Route exact path="/paynow/:pid" element={PayNow} /> */}
+        </Routes>
+        <Footer />
+        {/* </Router> */}
       </ConText>
     </>
   )

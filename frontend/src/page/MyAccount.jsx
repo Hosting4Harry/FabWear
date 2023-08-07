@@ -9,7 +9,7 @@ const MyAccount = () => {
     const { setLoading, roleId } = useContext(DataContext);
     const [order, setOrder] = useState([]);
     const location = useLocation();
-    const instance = useAuth()
+    const instance = useAuth();
 
     const [modal, setModal] = useState(false);
     localStorage.setItem('NavLoc', location.pathname);

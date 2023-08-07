@@ -1,16 +1,20 @@
-import axios from 'axios';
+// import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom'
 import configData from '../.././environments/config.json'
+import useAuth from '../../context/useAuth';
 
 const Invoice = () => {
+    const instance = useAuth();
     const { id } = useParams();
     let sum = 0;
     const [products, setProducts] = useState([]);
-    const getData = () => {
-        axios.get(`${configData.baseUrl}/order/myorder/` + id)
+    const getData = async () => {
+        debugger
+        await instance.get(`${configData.baseUrl}/order/myorder/` + +id)
             .then((res) => {
+                debugger
                 setProducts(res.data)
                 console.log(res.data);
             });

@@ -11,8 +11,9 @@ const Footer = () => {
                             <h6 className="text-uppercase fw-bold">Contact</h6>
                             <hr className="mb-4 mt-0 d-inline-block mx-auto" style={{ width: "60px", backgroundColor: " #7c4dff", height: "2px" }} />
                             <p><i className="fas fa-home mr-3"></i> New York, NY 10012, US</p>
-                            <p><i className="fas fa-envelope mr-3"></i> Cart@gmail.com</p>
+                            <p><i className="fas fa-envelope mr-3"></i> fabwear@gmail.com</p>
                             <p><i className="fas fa-phone mr-3"></i> + 91 70775 52981</p>
+                            <p><i className="fas fa-phone mr-3"></i> + 91 77508 24876</p>
                             <p><i className="fas fa-print mr-3"></i> + 01 234 567 89</p>
                             <div className="socails">
                                 <div className="social-outer-box">
