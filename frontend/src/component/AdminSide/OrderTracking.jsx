@@ -4,6 +4,7 @@ import configData from '../../environments/config.json';
 import { useParams } from 'react-router-dom';
 const OrderTracking = () => {
     const [getData, setData] = useState([]);
+    const [trackingId, setTrackingId] = useState(0);
     const { id } = useParams();
     const getAll = async () => {
         const res = await axios.get(`${configData.baseUrl}/trackorder/${id}`);
@@ -16,8 +17,9 @@ const OrderTracking = () => {
         const key = e.target.name;
         const checked = e.target.checked ? 1 : 0;
         const data = {
-            key, checked
+            key, checked, trackingId
         }
+        debugger
         await axios.put(`${configData.baseUrl}/trackorder/${id}`, data)
         // }
     }
@@ -49,27 +51,27 @@ const OrderTracking = () => {
                                     <td value={val.orderid}>{val.orderid}</td>
                                     <td>
                                         <div class="form-check form-switch" style={{ paddingLeft: '5.25rem' }}>
-                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" defaultChecked={val.orderProcess === true} name='orderProcess' value={val.orderProcess} onChange={handelChange} />
+                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" defaultChecked={val.orderProcess === true} name='orderProcess' value={val.orderProcess} onClick={(e) => setTrackingId(val.id)} onChange={handelChange} />
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-check form-switch" style={{ paddingLeft: '5.25rem' }}>
-                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" defaultChecked={val.qualitycheck === true} name='qualitycheck' value={val.qualitycheck} onChange={handelChange} />
+                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" defaultChecked={val.qualitycheck === true} name='qualitycheck' value={val.qualitycheck} onClick={(e) => setTrackingId(val.id)} onChange={handelChange} />
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-check form-switch" style={{ paddingLeft: '5.25rem' }}>
-                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" defaultChecked={val.shipped === true} name='shipped' value={val.shipped} onChange={handelChange} />
+                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" defaultChecked={val.shipped === true} name='shipped' value={val.shipped} onClick={(e) => setTrackingId(val.id)} onChange={handelChange} />
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-check form-switch" style={{ paddingLeft: '5.25rem' }}>
-                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" defaultChecked={val.dispatched === true} name='dispatched' value={val.dispatched} onChange={handelChange} />
+                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" defaultChecked={val.dispatched === true} name='dispatched' value={val.dispatched} onClick={(e) => setTrackingId(val.id)} onChange={handelChange} />
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-check form-switch" style={{ paddingLeft: '5.25rem' }}>
-                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" defaultChecked={val.delivered === true} name='delivered' value={val.delivered} onChange={handelChange} />
+                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" defaultChecked={val.delivered === true} name='delivered' value={val.delivered} onChange={handelChange} onClick={(e) => setTrackingId(val.id)} />
                                         </div>
                                     </td>
                                 </tr>

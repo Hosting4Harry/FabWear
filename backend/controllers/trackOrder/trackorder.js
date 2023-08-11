@@ -19,8 +19,8 @@ const { QueryTypes } = require('sequelize');
 //         })
 // })
 router.put('/:id', async (req, res) => {
-    const id = req.params.id;
-    const sql = `UPDATE ordertracks SET ${req.body.key}=${req.body.checked} WHERE orderid=${id}`
+    const id = req.body.trackingId;
+    const sql = `UPDATE ordertracks SET ${req.body.key}=${req.body.checked} WHERE id=${id}`
     await db.sequelize.query(sql, { type: QueryTypes.UPDATE })
         .then(result => {
             res.send({ msg: 'updated successfully' })
