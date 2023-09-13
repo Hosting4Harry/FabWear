@@ -5,98 +5,12 @@ import configData from '../../environments/config.json';
 const OrderTracking = () => {
     const [getData, setData] = useState([]);
     const getAll = async () => {
-        debugger;
+        
         const res = await axios.get(`${configData.baseUrl}/trackorder`);
         setData(res.data);
     }
 
-    // const handelChange = async (e) => {
-    //     const key = e.target.name;
-    //     var data;
-    //     if (key === "delivered") {
-    //         if (e.target.checked) {
-    //             data = {
-    //                 orderProcess: 1,
-    //                 qualitycheck: 1,
-    //                 shipped: 1,
-    //                 dispatched: 1,
-    //                 delivered: 1,
-    //             }
-    //         } else {
-    //             data = {
-    //                 orderProcess: 1,
-    //                 qualitycheck: 1,
-    //                 shipped: 1,
-    //                 dispatched: 1,
-    //                 delivered: 0,
-
-    //             }
-    //         }
-    //     }
-    //     if (key === "dispatched") {
-    //         if (e.target.checked) {
-    //             data = {
-    //                 orderProcess: 1,
-    //                 qualitycheck: 1,
-    //                 shipped: 1,
-    //                 dispatched: 1,
-    //                 delivered: 0,
-    //             }
-    //         } else {
-    //             data = {
-    //                 orderProcess: 1,
-    //                 qualitycheck: 1,
-    //                 shipped: 1,
-    //                 dispatched: 0,
-    //                 delivered: 0,
-    //             }
-    //         }
-    //     }
-    //     if (key === "shipped") {
-    //         debugger
-    //         if (e.target.checked) {
-    //             data = {
-    //                 orderProcess: 1,
-    //                 qualitycheck: 1,
-    //                 shipped: 1,
-    //                 dispatched: 0,
-    //                 delivered: 0,
-    //             }
-    //         } else {
-    //             data = {
-    //                 orderProcess: 1,
-    //                 qualitycheck: 1,
-    //                 shipped: 0,
-    //                 dispatched: 0,
-    //                 delivered: 0,
-    //             }
-    //         }
-    //     }
-
-    //     if (key === "qualitycheck") {
-    //         if (e.target.checked) {
-    //             data = {
-    //                 orderProcess: 1,
-    //                 qualitycheck: 1,
-    //                 shipped: 0,
-    //                 dispatched: 1,
-    //                 delivered: 0,
-    //             }
-    //         } else {
-    //             data = {
-    //                 orderProcess: 1,
-    //                 qualitycheck: 0,
-    //                 shipped: 0,
-    //                 dispatched: 1,
-    //                 delivered: 0,
-    //             }
-    //         }
-    //     }
-    //     await axios.put(`${configData.baseUrl}/trackorder/${id}`, data)
-
-    // }
     const handelChange = async (val, e) => {
-        debugger;
         const key = e.target.name;
         const id = val.id;
         var data;
@@ -118,7 +32,6 @@ const OrderTracking = () => {
                 data.orderProcess = data.qualitycheck = 1;
             }
         } else {
-
             data = {
                 orderProcess: 1,
                 qualitycheck: 1,
@@ -197,7 +110,7 @@ const OrderTracking = () => {
 
                 </tbody>
             </table>
-        </div >
+        </div>
     )
 }
 

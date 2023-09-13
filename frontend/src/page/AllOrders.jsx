@@ -10,7 +10,6 @@ const AllOrders = () => {
     const { order, setOrder } = useContext(DataContext);
     const getData = async () => {
         const orderRes = await instance.get(`${configData.baseUrl}/order/all`);
-        debugger
         // const orderRes = await instance.get(`${configData.baseUrl}/order/allOrder`);
         setOrder(orderRes.data);
     }

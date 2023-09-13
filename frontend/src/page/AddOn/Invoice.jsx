@@ -10,13 +10,12 @@ const Invoice = () => {
     const { id } = useParams();
     let sum = 0;
     const [products, setProducts] = useState([]);
+    const [productsTotal, setProductsTotal] = useState([]);
     const getData = async () => {
-        debugger
-        await instance.get(`${configData.baseUrl}/order/myorder/` + +id)
+        await instance.get(`${configData.baseUrl}/order/myorder/` + id)
             .then((res) => {
-                debugger
                 setProducts(res.data)
-                console.log(res.data);
+
             });
 
     }
@@ -90,7 +89,8 @@ const Invoice = () => {
                                             <th scope="col">#</th>
                                             <th scope="col">Image</th>
                                             <th scope="col">Name</th>
-                                            <th scope="col">Unit Price</th>
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col">Price</th>
                                             <th scope="col">Time</th>
                                         </tr>
                                     </thead>
@@ -101,7 +101,8 @@ const Invoice = () => {
                                                     <td>{ind + 1}</td>
                                                     <td><img src={`../img/${val.product_image}`} height="60px" width="50px" alt={(val.name)} /></td>
                                                     <td>{(val.name)}</td>
-                                                    <td>{(val.price)}</td>
+                                                    <td>{val.productqty}</td>
+                                                    <td>{val.productprice * val.productqty}</td>
                                                     <td>{new Date(val.createdAt).toLocaleString('en-IN', { timeZone: 'IST' })}</td>
                                                 </tr>)
                                             })
@@ -115,13 +116,15 @@ const Invoice = () => {
 
                                 </div>
                                 <div className="col-xl-3">
-                                    <p className="text-black float-start"><span className="text-black me-3" style={{ fontSize: "20px" }}> Total Amount</span><span style={{ fontSize: "25px" }}>{
+                                    <p className="text-black float-start"><span className="text-black me-3" style={{ fontSize: "20px" }}> Total Amount</span><span style={{ fontSize: "25px" }}>
+                                        {/*  {
                                         products.forEach(val => {
-                                            sum += (val.price)
+                                            sum += (val.productprice)
                                             if (sum <= 500) {
                                                 sum = sum + 50
                                             }
-                                        })} ₹ &nbsp;{sum}</span></p>
+                                        })} ₹ &nbsp;{sum} */}
+                                        ₹{products[0]?.totalprice}</span></p>
                                 </div>
                             </div>
                             <hr />

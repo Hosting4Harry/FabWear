@@ -44,7 +44,7 @@ export const ConText = (props) => {
 
     return (
         <>
-            <DataContext.Provider value={{ roleId, cart, totalUser, setTotalUser, order, setOrder, setCart, wishlist, setWishlist, isAuth, searchResult, setSearchResult, loading, setLoading, review, setReview,userData, setUserData }}>
+            <DataContext.Provider value={{ roleId, cart, totalUser, setTotalUser, order, setOrder, setCart, wishlist, setWishlist, isAuth, searchResult, setSearchResult, loading, setLoading, review, setReview, userData, setUserData, setRoleId }}>
                 {props.children}
             </DataContext.Provider>
         </>

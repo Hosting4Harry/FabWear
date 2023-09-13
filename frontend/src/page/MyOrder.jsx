@@ -38,7 +38,6 @@ const MyOrder = () => {
         setData(data);
     }
     const track = (id) => {
-        debugger
         navigate('/trackOrder/' + id);
     }
     useEffect(() => {

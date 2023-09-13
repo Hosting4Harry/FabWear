@@ -7,15 +7,11 @@ function TrackOrder() {
     const [date, setDate] = useState('');
     const [step, setStep] = useState()
     const { id } = useParams();
-    // const getData = async () => { 
-    //     const res = await axios.get(`${configData.baseUrl}/order/myOrder/${id}`);
-    //     setData(res.data);
-    // }
-    const trackingDetails = async () => {
-        debugger
-        const res = await axios.get(`${configData.baseUrl}/trackorder/${id}`)
+
+    const trackingDetail = async () => {
+        const res = await axios.get(`${configData.baseUrl}/trackorder/${id}`);
         setStep(res.data[0]);
-        onDayClick(res?.data[0]?.createdAt)
+        onDayClick(res?.data[0]?.createdAt);
     }
 
     const status = () => {
@@ -58,7 +54,7 @@ function TrackOrder() {
     }
 
     useEffect(() => {
-        trackingDetails();
+        trackingDetail();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 

@@ -48,7 +48,6 @@ router.post("/orders", async (req, res) => {
                     // let sqll = "INSERT INTO `orderitems` SET ?";
                     db.orderitems.create(detailsdata)
                         .then(result2 => {
-                            debugger;
                             // res.send('created')
                             const trackingDetails = {
                                 orderitemid: result2.id,

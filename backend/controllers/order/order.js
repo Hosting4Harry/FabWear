@@ -32,7 +32,7 @@ router.get("/pendingOrder/:id", verifyJwt, async (req, res) => {
 });
 router.get("/myorder/:id", verifyJwt, (req, res) => {
     const id = +req.params.id;
-    let sqll = `SELECT o.*,p.name,p.product_image FROM orderitems o join products p on o.productid = p.id WHERE o.orderid=${id}`
+    let sqll = `SELECT oi.*,p.name,p.product_image,o.totalprice FROM orderitems oi join products p on oi.productid = p.id join orders o on o.id=oi.orderid WHERE oi.orderid=${id}`
     // let sqll = `SELECT * FROM orderitems,products WHERE orderitems.orderid=${id} && orderitems.productid = products.id`
     db.sequelize.query(sqll, { type: QueryTypes.SELECT })
         .then(result => {

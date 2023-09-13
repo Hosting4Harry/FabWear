@@ -27,7 +27,7 @@ const AdminNav = () => {
         }
     }
     const scrollTop = () => {
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
     }
     return (<>
         <div className="code-nav flex">

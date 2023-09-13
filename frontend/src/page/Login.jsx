@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import jwt_decode from "jwt-decode";
 import configData from '../environments/config.json'
+import { DataContext } from '../context/DataContext';
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -10,6 +11,8 @@ const Login = () => {
     const [checked, setChecked] = useState(false);
     const [status, setStatus] = useState(false);
     const [msg, setMsg] = useState("");
+    const { setRoleId } = useContext(DataContext);
+
     // const timeout = useRef(null);
     const navigate = useNavigate();
 
@@ -31,6 +34,7 @@ const Login = () => {
             } else {
                 navigate("/home");
             }
+            setRoleId(decoded.role);
         } else {
             navigate('/')
         }
