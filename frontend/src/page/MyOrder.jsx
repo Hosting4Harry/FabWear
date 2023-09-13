@@ -38,7 +38,8 @@ const MyOrder = () => {
         setData(data);
     }
     const track = (id) => {
-        navigate('/trackOrder/' + id)
+        debugger
+        navigate('/trackOrder/' + id);
     }
     useEffect(() => {
         getData();
@@ -79,10 +80,10 @@ const MyOrder = () => {
                                                         </td>
                                                         <td>{val.productqty}</td>
                                                         <td>
-                                                            {val.price * val.productqty}
+                                                            {val.productprice * val.productqty}
                                                         </td>
                                                         <td>
-                                                            <button className="btn btn-info ml-1 mr-1" onClick={() => track(val.orderid
+                                                            <button className="btn btn-info ml-1 mr-1" onClick={() => track(val.id
                                                             )}>Track Order</button>
                                                         </td>
                                                     </tr>

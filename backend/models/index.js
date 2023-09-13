@@ -53,4 +53,6 @@ db.carts = require('./cart')(sequelize, DataTypes);
 db.reviews = require('./reviews')(sequelize, DataTypes);
 db.feedbacks = require('./feedbacks')(sequelize, DataTypes);
 db.ordertrack = require('./ordertrack')(sequelize, DataTypes);
+db.comments = require('./comment')(sequelize, DataTypes);
+db.commentreplies = require('./commentreply')(sequelize, DataTypes);
 module.exports = db;

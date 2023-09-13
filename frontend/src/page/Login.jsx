@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import jwt_decode from "jwt-decode";
@@ -13,6 +13,29 @@ const Login = () => {
     // const timeout = useRef(null);
     const navigate = useNavigate();
 
+    useEffect(() => {
+        checkRole();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+    const checkRole = () => {
+        const t = localStorage.getItem("Ecomtoken");
+        if (t) {
+            let decoded;
+            try {
+                decoded = jwt_decode(t);
+            } catch (error) {
+            }
+            if (decoded.role === 1 || decoded.role === 2) {
+                navigate("/dashboard");
+            } else {
+                navigate("/home");
+            }
+        } else {
+            navigate('/')
+        }
+
+    }
 
     const onSub = async (e) => {
         e.preventDefault();
@@ -32,20 +55,7 @@ const Login = () => {
             localStorage.setItem("EcomUser", res.data.user);
             localStorage.setItem("EcomUserId", res.data.userID);
             localStorage.setItem("EcomEmail", res.data.userEmail);
-            var decoded;
-            const checkRole = () => {
-                try {
-                    decoded = jwt_decode(res.data.token);
-                } catch (error) {
-                }
-            }
             checkRole();
-            if (decoded.role === 1 || decoded.role === 2) {
-                navigate("/dashboard");
-            } else {
-                navigate("/home");
-            }
-            window.location.reload(true);
         }
     }
 

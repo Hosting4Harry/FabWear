@@ -41,6 +41,8 @@ const AddProduct = () => {
         if (id) {
             await axios.get(`${configData.baseUrl}/product/getdata/` + id)
                 .then(response => {
+                    console.log(response);
+                     
                     setProductDetails(productDetails => ({
                         ...productDetails,
                         name: response.data.name,
@@ -57,6 +59,7 @@ const AddProduct = () => {
     }
 
     const handelData = (e) => {
+         
         let { name, value } = e.target;
         let x = { ...productDetails, [name]: value };
         setProductDetails(x);
@@ -64,8 +67,13 @@ const AddProduct = () => {
     console.log(productDetails)
     const handelSubmit = (e) => {
         e.preventDefault();
+        console.log(productDetails?.category)
+        console.log(productDetails?.subcategory)
+         
         // eslint-disable-next-line no-useless-concat
         const image_path = "/" + `${productDetails?.accessories ? "accessories" : ''}` + "/" + productDetails?.category + "/" + productDetails?.subcategory + "/"
+
+         
         var data = new FormData();
         data.append('name', productDetails.name);
         data.append('price', productDetails.price);
@@ -74,7 +82,7 @@ const AddProduct = () => {
         data.append("image_path", image_path);
         data.append('accessories', productDetails.accessories);
         data.append('product_image', productDetails.product_image);
-
+         
         if (!id) {
             var config = {
                 method: 'post',

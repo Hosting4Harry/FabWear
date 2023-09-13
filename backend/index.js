@@ -16,6 +16,8 @@ const paymentRouter = require('./controllers/order/payment');
 const wishlistRouter = require('./controllers/wishlist/wishlist');
 const cartRouter = require('./controllers/cart/cart');
 const reviewRouter = require('./controllers/reviewFeedback/review');
+const commentRouter = require('./controllers/reviewFeedback/comment');
+const commentReplyRouter = require('./controllers/reviewFeedback/commentReply');
 const feedbackRouter = require('./controllers/reviewFeedback/feedback');
 const trackorderRouter = require('./controllers/trackOrder/trackorder');
 (async () => {
@@ -47,8 +49,10 @@ app.use('/isAuth', authRouter);
 app.use('/wishlist', wishlistRouter);
 app.use('/cart', cartRouter);
 app.use('/review', reviewRouter);
+app.use('/comment', commentRouter);
+app.use('/commentReply', commentReplyRouter);
 app.use('/feedback', feedbackRouter);
-app.use('/trackorder', trackorderRouter)
+app.use('/trackorder', trackorderRouter);
 app.listen(PORT, () => {
     console.log(`app running on port ${PORT}`)
 })

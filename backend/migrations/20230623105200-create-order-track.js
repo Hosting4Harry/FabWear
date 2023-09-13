@@ -9,8 +9,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      orderid: {
-        type: Sequelize.INTEGER
+      orderitemid: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'orderitems',
+          key: 'id'
+        }
       },
       orderProcess: {
         type: Sequelize.BOOLEAN

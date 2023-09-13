@@ -1,10 +1,23 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { DataContext } from '../context/DataContext'
 import { useNavigate } from 'react-router-dom';
+import useAuth from '../context/useAuth';
+import configData from '../environments/config.json';
 
 const AllOrders = () => {
     const navigate = useNavigate();
-    const { order } = useContext(DataContext);
+    const instance = useAuth();
+    const { order, setOrder } = useContext(DataContext);
+    const getData = async () => {
+        const orderRes = await instance.get(`${configData.baseUrl}/order/all`);
+        debugger
+        // const orderRes = await instance.get(`${configData.baseUrl}/order/allOrder`);
+        setOrder(orderRes.data);
+    }
+    useEffect(() => {
+        getData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
     return (
         <div>
             <div className="card">
@@ -20,10 +33,14 @@ const AllOrders = () => {
                         <thead>
                             <tr>
                                 <th>Sl No</th>
-                                <th >Product Image</th>
+                                <th>User Id</th>
+                                <th>Total Price</th>
+                                <th>Order Status</th>
+                                <th>Payment Mode</th>
+                                {/* <th >Product Image</th>
                                 <th >OrderId</th>
                                 <th >Price</th>
-                                <th >Quantity</th>
+                                <th >Quantity</th> */}
                                 <th >TrackOrder</th>
                                 <th >Date/Time</th>
                             </tr>
@@ -34,11 +51,15 @@ const AllOrders = () => {
                                     return (
                                         <tr key={ind} className="fw-normal">
                                             <td>{ind + 1}</td>
-                                            <td> <img src={'/img/' + val.product_image} alt="" height='80px' width='80px' /></td>
+                                            <td>{val.userid}</td>
+                                            <td>{val.totalprice}</td>
+                                            <td>{val.orderstatus}</td>
+                                            <td>{val.paymentmode}</td>
+                                            {/* <td> <img src={'/img/' + val.product_image} alt="" height='80px' width='80px' /></td>
                                             <td>{val.orderid}</td>
                                             <td>{val.productprice}</td>
-                                            <td>{val.productqty}</td>
-                                            <td><button className='btn btn-success' onClick={(e) => navigate(`/admin/trackOrder/${val.orderid}`)}>Track</button></td>
+                                            <td>{val.productqty}</td> */}
+                                            <td><button className='btn btn-success' onClick={(e) => navigate(`/admin/trackOrder/${val.id}`)}>Track</button></td>
                                             <td>{val.updatedAt.replace('T', '/').split('.')[0]}</td>
                                         </tr>
                                     )

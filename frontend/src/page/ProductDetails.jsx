@@ -34,7 +34,6 @@ const ProductDetails = () => {
             alert("please login into your account,to acces Your cart");
             navigate('/');
         } else {
-
             await instance.post(`${configData.baseUrl}/cart`, data)
             const exist = cart.find((x) => x.id === data.id);
             if (exist) {
@@ -101,7 +100,7 @@ const ProductDetails = () => {
                                         <h4>Price : <strong>{detdata.price}.00</strong> </h4>
                                         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab quisquam quae ex maiores possimus nihil eum assumenda asperiores! Autem maxime incidunt voluptatibus quidem quaerat corrupti ex natus sed mollitia modi.</p>
                                         <form onSubmit={onSub}>
-                                            <input type="hidden" value={detdata.id} />
+                                            <input type="hidden" defaultValue={detdata.id} />
                                             <div className="form-group d-flex">
                                                 <label htmlFor="sel1">Qty:&nbsp;</label>
                                                 <select className="form-control" style={{ width: "10%", height: "32px" }} id="" onChange={(e) => setPdetails(e.target.value)} required>
@@ -180,7 +179,7 @@ const ProductDetails = () => {
                 </div>
             </>
             }
-            <div>
+            <div className='container rounded'>
                 <Review></Review>
             </div>
 

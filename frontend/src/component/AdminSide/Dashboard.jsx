@@ -114,15 +114,17 @@ function Dashboard() {
             <h1>Dashboard</h1>
             <div className='row mb-3 mx-5'>
                 <div className='col-sm-10 card1 col-lg-3 col-md-5  my-5 py-3 shadow '>
-                    <div className=' pt-3 d-flex'>
-                        <div>
-                            <img src="/img/dollar_icon.png" alt="" height="50px" />
+                    <Link to='/#pie' className='text-dark' style={{ "textDecoration": 'none' }}>
+                        <div className=' pt-3 d-flex'>
+                            <div>
+                                <img src="/img/dollar_icon.png" alt="" height="50px" />
+                            </div>
+                            <div style={{ marginLeft: "20px" }}>
+                                <h4 fontWeight="600" fontSize="17px" >Revenue <br />₹{total}.00</h4>
+                                <span fontSize="16px" color="grey.600" >Shipping fees are not included</span>
+                            </div>
                         </div>
-                        <div style={{ marginLeft: "20px" }}>
-                            <h4 fontWeight="600" fontSize="17px" >Revenue <br />₹{total}.00</h4>
-                            <span fontSize="16px" color="grey.600" >Shipping fees are not included</span>
-                        </div>
-                    </div>
+                    </Link>
                 </div>
                 <div className='col-sm-10 col-lg-3 card3 col-md-5 d-flex my-5 py-3 shadow ' >
                     <Link to='/admin/allUser' className='text-dark' style={{ "textDecoration": 'none' }}>
@@ -181,8 +183,8 @@ function Dashboard() {
                 <div className=" row " style={{}}>
                     <h3>Sale statistics</h3>
                     {/* <div className='col-1'></div> */}
-                    <div className='col-8 border'>
-                        <div className=' w-100' >
+                    <div className='col-lg-8 col-sm-12 border shadow'>
+                        <div className=' w-100'>
                             <h4>Graphical</h4>
                             <CChart
                                 type="line"
@@ -198,28 +200,28 @@ function Dashboard() {
                                             data: [data.jan, data.feb, data.mar, data.apr, data.may, data.june, data.jul, data.aug, data.sept, data.oct, data.nov, data.dec],
                                             borderWidth: 1
                                         },
-                                        {
-                                            label: "Total orders",
-                                            backgroundColor: "rgba(220, 220, 220, 0.2)",
-                                            borderColor: "rgb(236, 129, 7)",
-                                            pointBackgroundColor: "rgb(236, 129, 7)",
-                                            pointBorderColor: "#fff",
-                                            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                                            borderWidth: 1
-                                        }
+                                        // {
+                                        //     label: "Total orders",
+                                        //     backgroundColor: "rgba(220, 220, 220, 0.2)",
+                                        //     borderColor: "rgb(236, 129, 7)",
+                                        //     pointBackgroundColor: "rgb(236, 129, 7)",
+                                        //     pointBorderColor: "#fff",
+                                        //     data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                                        //     borderWidth: 1
+                                        // }
 
                                     ],
                                 }}
                             />
                         </div>
                     </div>
-                    <div className='col-4 border ' >
+                    <div className='col-lg-4 col-sm-12 border shadow' id="pie">
                         <div className=''>
                             <h4>Pie</h4>
                             <CChart
                                 type="pie"
                                 data={{
-                                    labels: ["Product Sold", "Total Products", "Unsold Products"],
+                                    labels: ["Sold Product", "Total Products", "Unsold Products"],
                                     datasets: [
                                         {
                                             backgroundColor: ['#41B883', '#00D8FF', '#DD1B16'],

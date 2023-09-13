@@ -18,13 +18,18 @@ const WishlistP = ({ id, name, price, product_image, productId }) => {
             await axios.delete(`${configData.baseUrl}/wishlist/` + productId);
         }
     }
-
+    const header = {
+        headers: {
+            'x-access-token': localStorage.getItem('Ecomtoken')
+        }
+    }
     const userId = localStorage.getItem('EcomUserId');
     const addToCart = async () => {
         const data = {
             productId: productId, qty: 1, userId: userId
         }
-        await axios.post(`${configData.baseUrl}/cart`, data)
+
+        await axios.post(`${configData.baseUrl}/cart`, data, header)
         const exist = cart.find((x) => x.id === data.id);
         if (exist) {
             setCart(

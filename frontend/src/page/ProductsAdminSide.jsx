@@ -7,35 +7,42 @@ import DataTable from 'react-data-table-component';
 function ProductsAdminSide() {
   const [getProducts, setProducts] = useState([]);
   // eslint-disable-next-line no-unused-vars
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState('all');
   const navigate = useNavigate();
   const getData = async () => {
     const res = await axios.get(`${configData.baseUrl}/product/getdataall`)
     setProducts(res.data);
   }
   const handelChange = async (e) => {
+
     if (e.target.value === "all") {
+
       setSearch('all');
       getData();
     } else {
-      localStorage.setItem('dropdownValue', e.target.value)
       setSearch(e.target.value);
       const res = await axios.get(`${configData.baseUrl}/product/searchProduct/` + e.target.value);
       setProducts(res.data);
     }
+    localStorage.setItem('dropdownValue', e.target.value);
   }
   const mantainPreviousData = async () => {
+
     const data = localStorage.getItem('dropdownValue')
-    if (data) {
+    if (data && data !== 'all') {
+
       setSearch(data);
       const res = await axios.get(`${configData.baseUrl}/product/searchProduct/` + data);
       setProducts(res.data);
     } else {
-      setSearch('all')
       getData();
     }
   }
   const colums = [
+    {
+      name: <h4>#</h4>,
+      selector: (row, index) => index + 1
+    },
     {
       name: <h4>Image</h4>,
       selector: (row) => <img className='img-fluid t-img' src={`../img/${row.product_image}`} alt="" />
@@ -55,10 +62,16 @@ function ProductsAdminSide() {
     },
     {
       name: <h3>Action</h3>,
-      cell: row => <p> &nbsp;&nbsp;&nbsp;<span className='fas fa-trash-alt text-danger' onClick={() => deleteProduct(row.id)}></span> &nbsp; &nbsp;&nbsp;<span className="fa fa-edit text-primery" onClick={() => navigate("/addproduct/edit/" + row.id)}></span></p>,
+      cell: row => <p>
+        &nbsp;&nbsp;&nbsp;
+        <span className='fas fa-trash-alt text-danger' onClick={() => deleteProduct(row.id)}></span>
+        &nbsp;&nbsp;&nbsp;
+        <span className="fa fa-edit text-primery" onClick={() => navigate("/addproduct/edit/" + row.id)}></span>
+      </p>,
 
-    },
+    }
   ]
+
   const deleteProduct = async (id) => {
     const deleteProduct = window.confirm("Do you want to delete the product?");
     if (deleteProduct) {
@@ -67,39 +80,42 @@ function ProductsAdminSide() {
     }
   }
 
+
   useEffect(() => {
     mantainPreviousData();
     // eslint-disable-next-line
   }, []);
   return (
     <>
-      <div className="row">
+      <div className="">
 
-        <div className='col-3' style={{ "position": "relative" }}>
+        <div className='' style={{ "position": "relative" }}>
           <div className="card-header row d-flex p-3">
             <div className='d-flex col-6'>
               <i className="fas fa-tasks me-2"></i> <h5>product List</h5>
             </div>
             <div className="d-flex col-6 justify-content-end align-items-center  " style={{ position: 'absolute', right: "0px" }}>
               <p className="small mb-0 me-2 text-muted">Filter</p>
-              <select className="select" onChange={handelChange} >
+              <select className="select rounded pe-3 me-3" value={search} onChange={handelChange} >
                 <option value="all">All</option>
                 <option value="men">Men</option>
-                <option value="women">women</option>
+                <option value="women">Women</option>
                 <option value="kids">Kids</option>
+                <option value="tees">Tees</option>
                 <option value="hat">Hat</option>
-                <option value="jackets">jackets</option>
-                <option value="kurta">kurta</option>
-                <option value="pant">pant</option>
-                <option value="perfume">perfume</option>
-                <option value="sneakers">sneakers</option>
-                <option value="tees">tees</option>
+                <option value="jackets">Jackets</option>
+                <option value="kurta">Kurta</option>
+                <option value="pant">Pant</option>
+                <option value="perfume">Perfume</option>
+                <option value="sneakers">Sneakers</option>
+                <option value="shirt">Shirt</option>
               </select>&nbsp; &nbsp;
+              {/* <button className="btn btn-light" onClick={() => navigate('/admin/addproduct')}>Add Product</button> */}
             </div>
-            <button className="btn btn-light" onClick={() => navigate('/admin/addproduct')}>Add Product</button>
           </div>
         </div>
-        <div className="col-9 datatable" style={{}}>
+        <div className=" datatable" style={{}}>
+
           <DataTable columns={colums} data={getProducts} pagination PaginationPageAction fixedHeader fixedHeaderScrollHeight='500px' highlightOnHover allowOverflow />
           {/* <table className="table mb-0">
             <thead>

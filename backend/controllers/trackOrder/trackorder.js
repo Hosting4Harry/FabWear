@@ -20,10 +20,20 @@ const { QueryTypes } = require('sequelize');
 // })
 router.put('/:id', async (req, res) => {
     const id = req.params.id;
-    const sql = `UPDATE ordertracks SET ${req.body.key}=${req.body.checked} WHERE orderid=${id}`
+    data = ''
+    for (const [key, value] of Object.entries(req.body)) {
+        console.log(key, value);
+        data += key + '=' + value + ","
+    }
+    data = data.substring(0, data.length - 1);
+
+    const sql = `UPDATE ordertracks SET ${data} WHERE id=${id}`
     await db.sequelize.query(sql, { type: QueryTypes.UPDATE })
         .then(result => {
             res.send({ msg: 'updated successfully' })
+        })
+        .catch(err => {
+            console.log(err)
         })
 })
 router.get('/orderId/:id', async (req, res) => {
@@ -39,18 +49,23 @@ router.get('/orderId/:id', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     const id = +req.params.id;
-    await db.ordertrack.findAll({
-        where: {
-            orderid: id
-        }
-    }).then(result => {
-        res.send(result);
-    })
+    const sql = `select * from ordertracks where orderitemid = ${id}`
+    await db.sequelize.query(sql, { type: QueryTypes.SELECT })
+        .then(result => {
+            res.send(result);
+        })
 })
 router.get('/', async (req, res) => {
-    await db.ordertrack.findAll().then(result => {
-        res.send(result);
-    })
+    const sql = `select ot.*,p.product_image from ordertracks ot join orderitems o on o.id=ot.orderitemid join products p on p.id= o.productid`
+    await db.sequelize.query(sql, { type: QueryTypes.SELECT })
+        .then(result => {
+            res.send(result);
+        })
 })
+// router.get('/', async (req, res) => {
+//     await db.ordertrack.findAll().then(result => {
+//         res.send(result);
+//     })
+// })
 
 module.exports = router;

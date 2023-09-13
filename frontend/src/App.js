@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
+// BrowserRouter as Router,
 // eslint-disable-next-line no-unused-vars
 import AdminNav from './component/AdminNav';
 import Footer from './component/Footer';
@@ -34,10 +35,13 @@ import AllUser from './component/AdminSide/AllUser';
 import TrackOrder from './page/AddOn/TrackOrder';
 import OrderTracking from './component/AdminSide/OrderTracking';
 import PageNotFound from './page/AddOn/PageNotFound';
+import { StyleSheetManager } from 'styled-components';
 
 const App = () => {
+  const shouldForwardProp = (prop) => !['dense', 'headCell', 'isDragging', 'sortActive'].includes(prop);
+
   return (
-    <>
+    <StyleSheetManager shouldForwardProp={shouldForwardProp}>
       <ConText>
         {/* <Router> */}
         <PermissionCheck >
@@ -80,7 +84,7 @@ const App = () => {
         <Footer />
         {/* </Router> */}
       </ConText>
-    </>
+    </StyleSheetManager>
   )
 }
 

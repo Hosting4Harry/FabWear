@@ -1,0 +1,2 @@
+generate new component in sequelize
+-->npx sequelize-cli model:generate --name Comment --attributes user_id:integer,comment:string

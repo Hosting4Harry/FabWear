@@ -1,15 +1,27 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { DataContext } from '../../context/DataContext';
+import useAuth from '../../context/useAuth';
+import configData from '../../environments/config.json';
 
 function AllUser() {
-    const { totalUser } = useContext(DataContext);
+    const { totalUser, setTotalUser } = useContext(DataContext);
+    const instance = useAuth();
 
+    const userData = async () => {
+        const allUser = await instance.get(`${configData.baseUrl}/register/allUsers`);
+
+        setTotalUser(allUser.data);
+    }
+    useEffect(() => {
+        userData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
     return (
         <div>
             <div className="card">
                 <div className="card-header row d-flex p-3">
                     <div className='d-flex col-6'>
-                        <i className="fas fa-tasks me-2"></i> <h5>Order List</h5>
+                        <i className="fas fa-tasks me-2"></i> <h5>User List</h5>
                     </div>
                     <div className="d-flex col-6 justify-content-end align-items-center  " style={{ position: 'absolute', right: "0px" }}>
                     </div>

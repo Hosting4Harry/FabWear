@@ -5,6 +5,7 @@ import configData from '../environments/config.json'
 export const DataContext = createContext();
 export const ConText = (props) => {
     const [order, setOrder] = useState([]);
+    const [review, setReview] = useState('');
     const [totalUser, setTotalUser] = useState([]);
     const [roleId, setRoleId] = useState(null);
     const [cart, setCart] = useState([]);
@@ -12,6 +13,8 @@ export const ConText = (props) => {
     const [isAuth, setIsAuth] = useState(false);
     const [searchResult, setSearchResult] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [userData, setUserData] = useState({});
+
     const checkAuth = () => {
         axios.get(`${configData.baseUrl}/isAuth`, {
             headers: {
@@ -41,7 +44,7 @@ export const ConText = (props) => {
 
     return (
         <>
-            <DataContext.Provider value={{ roleId, cart, totalUser, setTotalUser, order, setOrder, setCart, wishlist, setWishlist, isAuth, searchResult, setSearchResult, loading, setLoading }}>
+            <DataContext.Provider value={{ roleId, cart, totalUser, setTotalUser, order, setOrder, setCart, wishlist, setWishlist, isAuth, searchResult, setSearchResult, loading, setLoading, review, setReview,userData, setUserData }}>
                 {props.children}
             </DataContext.Provider>
         </>

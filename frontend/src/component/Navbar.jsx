@@ -28,10 +28,10 @@ const Navbar = () => {
       document.querySelector('nav > label > form').style.display = 'none';
       document.querySelector('nav > label > i').style.display = 'none';
     }
-    if (window.scrollY > 300) {
-      btn.classList.add('show');
+    if (btn && window.scrollY > 300) {
+      btn?.classList.add('show');
     } else {
-      btn.classList.remove('show');
+      btn?.classList.remove('show');
     }
   }
   const scrollTop = () => {
@@ -153,7 +153,7 @@ const Navbar = () => {
         <div className='text text-light'></div>
       </div>
     }
-    <i id='button' onClick={scrollTop}></i>
+    <i id='button' className='' onClick={scrollTop}></i>
 
   </>
   )
