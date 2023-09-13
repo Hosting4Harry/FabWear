@@ -50,7 +50,7 @@ function Review() {
         try {
             // eslint-disable-next-line no-unused-vars
             const response = await axios.post(config, data);
-         
+
             setUserData({});
             setReview('');
             alert("thanks for your valuable review");
