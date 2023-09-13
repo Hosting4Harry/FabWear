@@ -55,8 +55,8 @@ router.get('/:id', async (req, res) => {
             res.send(result);
         })
 })
-router.get('/', async (req, res) => {
-    const sql = `select ot.*,p.product_image from ordertracks ot join orderitems o on o.id=ot.orderitemid join products p on p.id= o.productid`
+router.get('/by/:id', async (req, res) => {
+    const sql = `select ot.*,p.product_image from ordertracks ot join orderitems oi on oi.id=ot.orderitemid join products p on p.id= oi.productid where oi.orderid=${req.params.id}`
     await db.sequelize.query(sql, { type: QueryTypes.SELECT })
         .then(result => {
             res.send(result);

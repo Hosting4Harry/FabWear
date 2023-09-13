@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": "YOTIpnJWq5HS",
-    "database": "ecom-react-db",
-    "host": "localhost",
+    "username": "uxhytr4i5d8ktxng",
+    "password": "K2QI0m9htwGiOsyRDZJp",
+    "database": "bdf3ch9tev7ptdmzcrhp",
+    "host": "bdf3ch9tev7ptdmzcrhp-mysql.services.clever-cloud.com",
     "dialect": "mysql"
   },
   "test": {
@@ -14,10 +14,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "uxhytr4i5d8ktxng",
-    "password": "K2QI0m9htwGiOsyRDZJp",
-    "database": "bdf3ch9tev7ptdmzcrhp",
-    "host": "bdf3ch9tev7ptdmzcrhp-mysql.services.clever-cloud.com",
+    "username": "root",
+    "password": "YOTIpnJWq5HS",
+    "database": "ecom-react-db",
+    "host": "localhost",
     "dialect": "mysql"
   }
 }

@@ -1,12 +1,16 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import configData from '../../environments/config.json';
+import { useParams } from 'react-router-dom';
 
 const OrderTracking = () => {
     const [getData, setData] = useState([]);
+    const { id } = useParams();
+
     const getAll = async () => {
-        
-        const res = await axios.get(`${configData.baseUrl}/trackorder`);
+        debugger
+        console.log(id)
+        const res = await axios.get(`${configData.baseUrl}/trackorder/by/` + id);
         setData(res.data);
     }
 
