@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     delivered: DataTypes.BOOLEAN
   }, {
     sequelize,
-    modelName: 'OrderTrack',
+    modelName: 'ordertrack',
   });
   return OrderTrack;
 };

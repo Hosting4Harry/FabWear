@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     replyCount: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'Comment',
+    modelName: 'comment',
   });
   return Comment;
 };

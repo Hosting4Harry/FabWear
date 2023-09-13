@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     reply: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'CommentReply',
+    modelName: 'commentreply',
   });
   return CommentReply;
 };
