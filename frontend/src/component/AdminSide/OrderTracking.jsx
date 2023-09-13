@@ -162,31 +162,31 @@ const OrderTracking = () => {
                     {getData &&
                         getData.map((val, ind) => {
                             return (
-                                <tr key={ind}>
+                                <tr key={ind} style={{ height: '90px' }}>
                                     <td>{ind + 1}</td>
                                     <td ><img src={'/img/' + val.product_image} alt="" height='80px' width='80px' /></td>
                                     <td>
-                                        <div className="form-check form-switch" style={{ paddingLeft: '5.25rem' }}>
+                                        <div className="form-check form-switch" style={{ paddingLeft: '5.25rem', overflowY: 'hidden' }}>
                                             <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" defaultChecked={val.orderProcess} name='orderProcess' value={val.orderProcess} onChange={(e) => handelChange(val, e)} />
                                         </div>
                                     </td>
                                     <td>
-                                        <div className="form-check form-switch" style={{ paddingLeft: '5.25rem' }}>
+                                        <div className="form-check form-switch" style={{ paddingLeft: '5.25rem', overflowY: 'hidden' }}>
                                             <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" defaultChecked={val.qualitycheck} name='qualitycheck' value={val.qualitycheck} onChange={(e) => handelChange(val, e)} />
                                         </div>
                                     </td>
                                     <td>
-                                        <div className="form-check form-switch" style={{ paddingLeft: '5.25rem' }}>
+                                        <div className="form-check form-switch" style={{ paddingLeft: '5.25rem', overflowY: 'hidden' }}>
                                             <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" defaultChecked={val.shipped} name='shipped' value={val.shipped} onChange={(e) => handelChange(val, e)} />
                                         </div>
                                     </td>
                                     <td>
-                                        <div className="form-check form-switch" style={{ paddingLeft: '5.25rem' }}>
+                                        <div className="form-check form-switch" style={{ paddingLeft: '5.25rem', overflowY: 'hidden' }}>
                                             <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" defaultChecked={val.dispatched} name='dispatched' value={val.dispatched} onChange={(e) => handelChange(val, e)} />
                                         </div>
                                     </td>
                                     <td>
-                                        <div className="form-check form-switch" style={{ paddingLeft: '5.25rem' }}>
+                                        <div className="form-check form-switch" style={{ paddingLeft: '5.25rem', overflowY: 'hidden' }}>
                                             <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" defaultChecked={val.delivered} name='delivered' value={val.delivered} onChange={(e) => handelChange(val, e)} />
                                         </div>
                                     </td>
