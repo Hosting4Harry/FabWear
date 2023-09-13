@@ -7,7 +7,7 @@ import { DataContext } from '../../context/DataContext';
 import configData from '../../environments/config.json';
 import useAuth from '../../context/useAuth';
 function Dashboard() {
-    const { totalUser, setTotalUser, order, setOrder } = useContext(DataContext);
+    const { totalUser, setTotalUser, order, setOrder, setLoading } = useContext(DataContext);
     const instance = useAuth();
     const navigate = useNavigate();
     const [total, setTotal] = useState(0);
@@ -28,12 +28,14 @@ function Dashboard() {
     });
     console.log(order)
     const orders = async () => {
-        const res = await instance.get(`${configData.baseUrl}/product/getdataall`);
+        setLoading(true);
+        const rest = await instance.get(`${configData.baseUrl}/product/getdataall`);
         const allUser = await instance.get(`${configData.baseUrl}/register/allUsers`);
         const orderRes = await instance.get(`${configData.baseUrl}/order/allOrder`);
         setOrder(orderRes.data);
         setTotalUser(allUser.data);
-        setTotalProducts(res.data);
+        setTotalProducts(rest.data);
+
         await instance.get(`${configData.baseUrl}/order/allOrders`)
             .then(res => {
                 var total2 = 0;
@@ -83,6 +85,9 @@ function Dashboard() {
                     return total2;
                 })
                 setTotal(total2);
+                if (rest && allUser && orderRes) {
+                    setLoading(false);
+                }
             });
     }
 

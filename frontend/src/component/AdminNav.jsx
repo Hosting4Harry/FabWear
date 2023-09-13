@@ -1,8 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import './Navbar.css'
 import { NavLink } from 'react-router-dom'
+import { DataContext } from '../context/DataContext';
 
 const AdminNav = () => {
+    const { loading } = useContext(DataContext);
+
     useEffect(() => {
         window.scrollTo(0, 0);
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -53,7 +56,18 @@ const AdminNav = () => {
             </nav>
         </div>
         <i id='button' onClick={scrollTop}></i>
-
+        {loading &&
+            <div className=" wrapper wrapper-spin ">
+                <figure>
+                    <div className="dot white"></div>
+                    <div className="dot"></div>
+                    <div className="dot"></div>
+                    <div className="dot"></div>
+                    <div className="dot"></div>
+                </figure>
+                <div className='text text-light'></div>
+            </div>
+        }
     </>
     )
 }

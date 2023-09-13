@@ -7,11 +7,15 @@ import configData from '../environments/config.json';
 const AllOrders = () => {
     const navigate = useNavigate();
     const instance = useAuth();
-    const { order, setOrder } = useContext(DataContext);
+    const { order, setOrder, setLoading } = useContext(DataContext);
     const getData = async () => {
+        setLoading(true)
         const orderRes = await instance.get(`${configData.baseUrl}/order/all`);
         // const orderRes = await instance.get(`${configData.baseUrl}/order/allOrder`);
         setOrder(orderRes.data);
+        if (orderRes) {
+            setLoading(false);
+        }
     }
     useEffect(() => {
         getData();

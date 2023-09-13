@@ -8,8 +8,6 @@ const OrderTracking = () => {
     const { id } = useParams();
 
     const getAll = async () => {
-        debugger
-        console.log(id)
         const res = await axios.get(`${configData.baseUrl}/trackorder/by/` + id);
         setData(res.data);
     }
