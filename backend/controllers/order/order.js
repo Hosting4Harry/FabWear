@@ -41,6 +41,7 @@ router.get("/myorder/:id", verifyJwt, (req, res) => {
             console.log(error)
         })
 });
+
 router.get("/allOrder", verifyJwt, async (req, res) => {
     let sqll = `SELECT * FROM orderitems,products WHERE orderitems.productid = products.id`
     db.sequelize.query(sqll, { type: QueryTypes.SELECT })

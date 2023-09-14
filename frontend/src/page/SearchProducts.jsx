@@ -71,8 +71,15 @@ function SearchProducts() {
                                 product_image={item.product_image}
                             />
                             )
-                        } else {
-                            return <></>
+                        } else if ((item.product_image.includes(name.toLocaleLowerCase()))) {
+                            debugger
+                            return (<CardProducts
+                                key={i}
+                                id={item.id}
+                                name={item.name}
+                                price={item.price}
+                                product_image={item.product_image}
+                            />)
                         }
                     })}
                 </div>

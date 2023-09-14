@@ -114,9 +114,9 @@ function ProductsAdminSide() {
             </div>
           </div>
         </div>
-        <div className=" datatable" style={{}}>
+        <div className="container datatable" style={{}}>
 
-          <DataTable columns={colums} data={getProducts} pagination PaginationPageAction fixedHeader fixedHeaderScrollHeight='500px' highlightOnHover allowOverflow />
+          <DataTable columns={colums} data={getProducts} pagination PaginationPageAction fixedHeader fixedHeaderScrollHeight='600px' highlightOnHover allowOverflow />
           {/* <table className="table mb-0">
             <thead>
               <tr>
