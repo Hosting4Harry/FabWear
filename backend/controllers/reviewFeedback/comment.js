@@ -4,7 +4,7 @@ const db = require('../../models');
 const { verifyJwt } = require('../account/middleware');
 const { QueryTypes } = require('sequelize');
 router.get('/:id', async (req, res) => {
-    const query = `select * from Comments where productId=${req.params.id}`
+    const query = `select * from comments where productId=${req.params.id}`
 
     await db.sequelize.query(query, { type: QueryTypes.SELECT })
         .then(result => {
@@ -25,7 +25,9 @@ router.post('/', async (req, res) => {
         .then(response => {
             res.send({ status: true });
         }).catch(err => {
-            res.status(401).send({ msg: 'please login' })
+            console.log(req.body)
+            console.log(err)
+            res.status(401).send({ msg: 'Not able to add comment' })
         })
 })
 
