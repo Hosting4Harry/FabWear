@@ -72,7 +72,6 @@ function SearchProducts() {
                             />
                             )
                         } else if ((item.product_image.includes(name.toLocaleLowerCase()))) {
-                            debugger
                             return (<CardProducts
                                 key={i}
                                 id={item.id}

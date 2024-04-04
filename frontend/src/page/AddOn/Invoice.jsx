@@ -8,9 +8,7 @@ import useAuth from '../../context/useAuth';
 const Invoice = () => {
     const instance = useAuth();
     const { id } = useParams();
-    let sum = 0;
     const [products, setProducts] = useState([]);
-    const [productsTotal, setProductsTotal] = useState([]);
     const getData = async () => {
         await instance.get(`${configData.baseUrl}/order/myorder/` + id)
             .then((res) => {

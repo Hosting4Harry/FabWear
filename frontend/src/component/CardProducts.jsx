@@ -9,7 +9,6 @@ import useAuth from '../context/useAuth';
 import configData from '../environments/config.json'
 
 const CardProducts = ({ id, name, price, product_image }) => {
-    debugger
     const instance = useAuth()
     const navigate = useNavigate();
     const [detdata, setDetdata] = useState([]);
